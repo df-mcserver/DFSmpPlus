@@ -4,7 +4,6 @@
     <root id="archive" name="DFSmpPlus.jar">
       <element id="module-output" name="DFSmpPlus" />
       <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/jeff-media/custom-block-data/2.2.4/custom-block-data-2.2.4.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
