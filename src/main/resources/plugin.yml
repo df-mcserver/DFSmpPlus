@@ -1,0 +1,12 @@
+name: DFSmpPlus
+version: '1.0.0'
+main: uk.co.nikodem.dFSmpPlus.DFSmpPlus
+api-version: '1.21.3'
+author: 'deadfry42'
+commands:
+  givedf:
+    description: "Gives DFMaterial."
+    usage: /givedf {item}
+  test:
+    description: "Test"
+    usage: /test
