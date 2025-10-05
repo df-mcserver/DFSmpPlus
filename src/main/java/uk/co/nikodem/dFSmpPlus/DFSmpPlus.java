@@ -64,8 +64,6 @@ public final class DFSmpPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DFMaterialEvents(), this);
         getServer().getPluginManager().registerEvents(new SmithingTableEvents(), this);
         getServer().getPluginManager().registerEvents(new PopulateChests(), this);
-
-        FishPlayer.doOxygen(this);
     }
 
     @Override

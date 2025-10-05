@@ -7,8 +7,6 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 public class OnRespawn implements Listener {
     @EventHandler
     public void onRespawn(PlayerRespawnEvent event) {
-        FishPlayer.oxygenAmounts.put(event.getPlayer().getUniqueId(), 300);
 
-        if (FishPlayer.isFishPlayer(event.getPlayer())) FishPlayer.onFishRespawn(event.getPlayer());
     }
 }

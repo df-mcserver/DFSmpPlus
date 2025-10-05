@@ -8,10 +8,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class OnDeath implements Listener {
     @EventHandler
     public void OnDeath(PlayerDeathEvent e) {
-        Player plr = e.getPlayer();
 
-        if (FishPlayer.isFishPlayer(plr)) {
-            FishPlayer.onFishDeath(plr);
-        }
     }
 }

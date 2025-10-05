@@ -28,13 +28,6 @@ public class OnJoin implements Listener {
     public void OnJoin(PlayerJoinEvent e) {
         Player plr = e.getPlayer();
 
-        if (FishPlayer.isFishPlayer(plr)) {
-            FishPlayer.applyFishChanges(plr);
-            FishPlayer.onFishRespawn(plr);
-        } else {
-            FishPlayer.removeFishChanges(plr);
-        }
-
         for (CraftingTemplate template : DFSmpPlus.craftingTemplateList) {
             template.discoverRecipes(plr);
         }
