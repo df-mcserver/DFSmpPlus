@@ -1,6 +1,5 @@
 package uk.co.nikodem.dFSmpPlus;
 
-import com.jeff_media.customblockdata.CustomBlockData;
 import org.bukkit.plugin.java.JavaPlugin;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
@@ -48,8 +47,6 @@ public final class DFSmpPlus extends JavaPlugin {
         );
 
         RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove
-
-        CustomBlockData.registerListener(this); // make sure custom block data works properly
 
         // Command initiation
         Objects.requireNonNull(getCommand("givedf")).setExecutor(new GiveDF());
