@@ -16,6 +16,8 @@ import uk.co.nikodem.dFSmpPlus.Constants.IDGuide;
 
 import java.util.*;
 
+import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createModelKey;
+
 public class DFMaterialBuilder {
 
     private final Material base;
@@ -112,6 +114,13 @@ public class DFMaterialBuilder {
 
     public DFMaterialBuilder addItemFlag(ItemFlag flag) {
         this.flags.add(flag);
+        return this;
+    }
+
+    public DFMaterialBuilder setEquippable(String equipModel, Sound equipSound, EquipmentSlot equipSlot) {
+        this.equipModel = createModelKey(equipModel);
+        this.equipSound = equipSound;
+        this.equipSlot = equipSlot;
         return this;
     }
 

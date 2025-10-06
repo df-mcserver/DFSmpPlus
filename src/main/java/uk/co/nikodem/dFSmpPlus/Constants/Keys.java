@@ -8,10 +8,6 @@ public class Keys {
     public static NamespacedKey dfmaterial = createDefaultKey("dfmaterial");
     public static NamespacedKey dfmaterialVersion = createDefaultKey("dfmaterial_version");
 
-    public static NamespacedKey copperEquippable = createResourceKey("copper");
-    public static NamespacedKey firidiumEquippable = createResourceKey("firidium");
-    public static NamespacedKey obsidianEquippable = createResourceKey("obsidian");
-
     public static NamespacedKey lifefruit = createDefaultKey("lifefruit");
 
     public static NamespacedKey createDefaultKey(String key) {

@@ -92,28 +92,28 @@ public class DFMaterial {
 
     public static DFMaterial FiridiumHelmet = new DFMaterialBuilder(Material.IRON_HELMET, "firidium_helmet", 1)
             .setDisplayName("<red>Firidium Helmet")
-            .setEquippable(Keys.firidiumEquippable, Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.HEAD)
+            .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.HEAD)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Helmet)")
             .create();
 
     public static DFMaterial FiridiumChestplate = new DFMaterialBuilder(Material.IRON_CHESTPLATE, "firidium_chestplate", 1)
             .setDisplayName("<red>Firidium Chestplate")
-            .setEquippable(Keys.firidiumEquippable, Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.CHEST)
+            .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.CHEST)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Chestplate)")
             .create();
 
     public static DFMaterial FiridiumLeggings = new DFMaterialBuilder(Material.IRON_LEGGINGS, "firidium_leggings", 1)
             .setDisplayName("<red>Firidium Leggings")
-            .setEquippable(Keys.firidiumEquippable, Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.LEGS)
+            .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.LEGS)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Leggings)")
             .create();
 
     public static DFMaterial FiridiumBoots = new DFMaterialBuilder(Material.IRON_BOOTS, "firidium_boots", 1)
             .setDisplayName("<red>Firidium Boots")
-            .setEquippable(Keys.firidiumEquippable, Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.FEET)
+            .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.FEET)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Boots)")
             .create();
@@ -154,25 +154,25 @@ public class DFMaterial {
 
     public static DFMaterial CopperHelmet = new DFMaterialBuilder(Material.IRON_HELMET, "copper_helmet", 1)
             .setDisplayName("Copper Helmet")
-            .setEquippable(Keys.copperEquippable, Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.HEAD)
+            .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.HEAD)
             .addLore("<gray>(Equivalent to Iron Helmet)")
             .create();
 
     public static DFMaterial CopperChestplate = new DFMaterialBuilder(Material.IRON_CHESTPLATE, "copper_chestplate", 1)
             .setDisplayName("Copper Chestplate")
-            .setEquippable(Keys.copperEquippable, Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.CHEST)
+            .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.CHEST)
             .addLore("<gray>(Equivalent to Iron Chestplate)")
             .create();
 
     public static DFMaterial CopperLeggings = new DFMaterialBuilder(Material.IRON_LEGGINGS, "copper_leggings", 1)
             .setDisplayName("Copper Leggings")
-            .setEquippable(Keys.copperEquippable, Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.LEGS)
+            .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.LEGS)
             .addLore("<gray>(Equivalent to Iron Leggings)")
             .create();
 
     public static DFMaterial CopperBoots = new DFMaterialBuilder(Material.IRON_BOOTS, "copper_boots", 1)
             .setDisplayName("Copper Boots")
-            .setEquippable(Keys.copperEquippable, Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.FEET)
+            .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.FEET)
             .addLore("<gray>(Equivalent to Iron Boots)")
             .create();
 //
@@ -243,28 +243,28 @@ public class DFMaterial {
     public static DFMaterial ObsidianHelmet = new DFMaterialBuilder(Material.NETHERITE_HELMET, "obsidian_helmet", 1)
             .setDisplayName("Obsidian Helmet")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .setEquippable(Keys.obsidianEquippable, Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.HEAD)
+            .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.HEAD)
             .addLore("<gray>(Equivalent to Netherite Helmet)")
             .create();
 
     public static DFMaterial ObsidianChestplate = new DFMaterialBuilder(Material.NETHERITE_CHESTPLATE, "obsidian_chestplate", 1)
             .setDisplayName("Obsidian Chestplate")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .setEquippable(Keys.obsidianEquippable, Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.CHEST)
+            .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.CHEST)
             .addLore("<gray>(Equivalent to Netherite Chestplate)")
             .create();
 
     public static DFMaterial ObsidianLeggings = new DFMaterialBuilder(Material.NETHERITE_LEGGINGS, "obsidian_leggings", 1)
             .setDisplayName("Obsidian Leggings")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .setEquippable(Keys.obsidianEquippable, Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.LEGS)
+            .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.LEGS)
             .addLore("<gray>(Equivalent to Netherite Leggings)")
             .create();
 
     public static DFMaterial ObsidianBoots = new DFMaterialBuilder(Material.NETHERITE_BOOTS, "obsidian_boots", 1)
             .setDisplayName("Obsidian Boots")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .setEquippable(Keys.obsidianEquippable, Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.FEET)
+            .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.FEET)
             .addLore("<gray>(Equivalent to Netherite Boots)")
             .create();
 
