@@ -41,7 +41,7 @@ public class LifeCrystalManager {
         removePlayerLifeCrystalModifier(plr);
 
         AttributeModifier newMod = new AttributeModifier(
-                Keys.lifefruit,
+                Keys.lifecrystal,
                 amount*2,
                 AttributeModifier.Operation.ADD_NUMBER
         );
@@ -55,8 +55,8 @@ public class LifeCrystalManager {
         AttributeInstance attr = plr.getAttribute(attribute);
         if (attr == null) return;
 
-        AttributeModifier currentMod = attr.getModifier(Keys.lifefruit);
+        AttributeModifier currentMod = attr.getModifier(Keys.lifecrystal);
 
-        if (currentMod != null) attr.removeModifier(Keys.lifefruit);
+        if (currentMod != null) attr.removeModifier(Keys.lifecrystal);
     }
 }
