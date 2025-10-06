@@ -23,7 +23,6 @@ public class DFMaterialBuilder {
     private final int version;
 
     private TextComponent displayName;
-    private int Id;
     private boolean markedForUuid;
 
     private NamespacedKey equipModel;
@@ -37,6 +36,8 @@ public class DFMaterialBuilder {
     private final HashMap<Enchantment, Integer> enchants = new HashMap<>();
     private final HashMap<Attribute, AttributeModifier> attributes = new HashMap<>();
     private final HashMap<String, Map.Entry<PersistentDataType, Object>> persistentData = new HashMap<>();
+
+    private boolean hasCustomModel = true;
 
     public DFMaterialBuilder(Material base, String namedId, int version) {
         this.base = base;
@@ -128,6 +129,11 @@ public class DFMaterialBuilder {
         return this;
     }
 
+    public DFMaterialBuilder removeCustomModel() {
+        this.hasCustomModel = false;
+        return this;
+    }
+
     public DFMaterial create() {
         DFMaterial newMaterial = new DFMaterial(
                 base,
@@ -143,7 +149,8 @@ public class DFMaterialBuilder {
                 equipSlot,
                 version,
                 flags,
-                metas
+                metas,
+                hasCustomModel
         );
         DFMaterial.DFMaterialIndex.add(newMaterial);
         return newMaterial;

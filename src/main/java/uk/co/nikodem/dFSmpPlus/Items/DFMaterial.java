@@ -1,7 +1,5 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
-import io.papermc.paper.datacomponent.DataComponentTypes;
-import io.papermc.paper.datacomponent.item.CustomModelData;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -12,7 +10,6 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.components.CustomModelDataComponent;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
@@ -26,7 +23,6 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createModelKey;
-import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createResourceKey;
 
 public class DFMaterial {
     // please don't touch lol
@@ -133,6 +129,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.AQUA_AFFINITY)
             .addEnchantment(Enchantment.MENDING)
             .addMeta(new BluebellsarMeta())
+            .removeCustomModel()
             .create();
 
     public static DFMaterial CopperSword = new DFMaterialBuilder(Material.IRON_SWORD, "copper_sword", 1)
@@ -362,7 +359,8 @@ public class DFMaterial {
             @Nullable EquipmentSlot equipSlot,
             int version,
             @Nullable List<ItemFlag> flags,
-            List<DFMaterialMeta> dfmetas
+            List<DFMaterialMeta> dfmetas,
+            boolean hasCustomModel
     )
     {
         this.version = version;
@@ -382,7 +380,7 @@ public class DFMaterial {
         ItemMeta meta = newItem.getItemMeta();
         if (meta == null) return;
 
-        meta.setItemModel(createModelKey(namedId));
+        if (hasCustomModel) meta.setItemModel(createModelKey(namedId));
 
         if (Name != null) meta.displayName(Name);
         if (lores != null && !lores.isEmpty()) meta.lore(lores);
