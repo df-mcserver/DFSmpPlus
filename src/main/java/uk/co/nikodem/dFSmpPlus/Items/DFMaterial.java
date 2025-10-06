@@ -25,6 +25,9 @@ import org.bukkit.Material;
 import javax.annotation.Nullable;
 import java.util.*;
 
+import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createModelKey;
+import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createResourceKey;
+
 public class DFMaterial {
     // please don't touch lol
     public final static List<DFMaterial> DFMaterialIndex = new ArrayList<>();
@@ -379,16 +382,7 @@ public class DFMaterial {
         ItemMeta meta = newItem.getItemMeta();
         if (meta == null) return;
 
-//        meta.setCustomModelDataComponent(CustomModelData.customModelData()
-//                .addString(namedId)
-//                .build().);
-//        meta.setCustomModelData(id);
-
-        // TODO: verify this works
-        // attempt to set customModelData as a string
-        newItem.setData(DataComponentTypes.CUSTOM_MODEL_DATA, CustomModelData.customModelData()
-                .addString(namedId).build()
-        );
+        meta.setItemModel(createModelKey(namedId));
 
         if (Name != null) meta.displayName(Name);
         if (lores != null && !lores.isEmpty()) meta.lore(lores);

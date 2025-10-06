@@ -16,6 +16,7 @@ public class BungeeUtils {
     }
 
     public void initiateBungeeCordChannel() {
+//        Bukkit.getMessenger().registerOutgoingPluginChannel(plugin, "df:proxy");
         Bukkit.getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
     }
 
