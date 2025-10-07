@@ -3,6 +3,8 @@ package uk.co.nikodem.dFSmpPlus.Items;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
@@ -12,13 +14,14 @@ import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
 public class DFItemUtils {
-
-
     public static void addUUID(ItemStack item) {
+        if (item == null) return;
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
         meta.getPersistentDataContainer().set(
@@ -29,16 +32,122 @@ public class DFItemUtils {
     }
 
     public static void addUUIDIfMarked(ItemStack item) {
+        if (item == null) return;
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
-        NamespacedKey key = Keys.markedForUUID;
         Boolean marked = meta.getPersistentDataContainer().get(
+                Keys.markedForUUID,
+                PersistentDataType.BOOLEAN
+        );
+        meta.getPersistentDataContainer().remove(Keys.markedForUUID);
+        if (marked == null) return;
+        if (marked) addUUID(item);
+    }
+
+    @Nullable
+    public static String getUUID(ItemStack item) {
+        if (item == null) return null;
+        return getString(item, Keys.UUID);
+    }
+
+    @Nullable
+    public static boolean set(ItemStack item, NamespacedKey key, PersistentDataType type, Object val) {
+        if (item == null || type == null || val == null) return false;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return false;
+        meta.getPersistentDataContainer().set(
+                key,
+                type,
+                val
+        );
+        item.setItemMeta(meta);
+        return true;
+    }
+
+    @Nullable
+    public static String getString(ItemStack item, NamespacedKey key) {
+        if (item == null) return null;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return null;
+        String string = meta.getPersistentDataContainer().get(
+                key,
+                PersistentDataType.STRING
+        );
+        if (string == null) return null;
+        return string;
+    }
+
+    @Nullable
+    public static Boolean getBoolean(ItemStack item, NamespacedKey key) {
+        if (item == null) return null;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return null;
+        Boolean bool = meta.getPersistentDataContainer().get(
                 key,
                 PersistentDataType.BOOLEAN
         );
-        meta.getPersistentDataContainer().remove(key);
-        if (marked == null) return;
-        if (marked) addUUID(item);
+        if (bool == null) return null;
+        return bool;
+    }
+
+    @Nullable
+    public static Integer getInteger(ItemStack item, NamespacedKey key) {
+        if (item == null) return null;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return null;
+        Integer integer = meta.getPersistentDataContainer().get(
+                key,
+                PersistentDataType.INTEGER
+        );
+        if (integer == null) return null;
+        return integer;
+    }
+
+    public static boolean setModel(ItemStack item, NamespacedKey key) {
+        if (item == null) return false;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return false;
+        meta.setItemModel(key);
+        item.setItemMeta(meta);
+        return true;
+    }
+
+    public static boolean setModel(ItemStack item, String key) {
+        return setModel(item, Keys.createModelKey(key));
+    }
+
+    public static boolean removeAttributes(ItemStack item) {
+        if (item == null) return false;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return false;
+        if (!meta.hasAttributeModifiers()) return false;
+        for (Map.Entry<Attribute, AttributeModifier> a : meta.getAttributeModifiers().entries()) {
+            meta.removeAttributeModifier(a.getKey());
+        }
+        item.setItemMeta(meta);
+        return true;
+    }
+
+    public static boolean removeAttribute(ItemStack item, Attribute attr) {
+        if (item == null) return false;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return false;
+        if (!meta.hasAttributeModifiers()) return false;
+        meta.removeAttributeModifier(attr);
+        item.setItemMeta(meta);
+        return true;
+    }
+
+    public static boolean setAttribute(ItemStack item, Attribute attr, AttributeModifier modifier) {
+        if (item == null) return false;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return false;
+        meta.addAttributeModifier(
+                attr,
+                modifier
+        );
+        item.setItemMeta(meta);
+        return true;
     }
 
     public static boolean isRealTool(ItemStack item) {

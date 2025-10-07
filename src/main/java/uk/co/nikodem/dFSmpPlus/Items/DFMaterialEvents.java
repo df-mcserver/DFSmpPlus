@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
 import io.papermc.paper.event.block.BlockBreakProgressUpdateEvent;
+import org.bukkit.damage.DamageSource;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -8,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -127,6 +129,29 @@ public class DFMaterialEvents implements Listener {
             if (material.hasMeta()) {
                 for (DFMaterialMeta meta : material.getMeta()) {
                     meta.ItemStartMine(plr, material, tool, e);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void ItemKillEntity(EntityDeathEvent e) {
+        Entity target = e.getEntity();
+        DamageSource source = e.getDamageSource();
+
+        Entity causer = source.getCausingEntity(); // james causer
+        if (causer == null) return;
+
+        if (causer instanceof Player plr) {
+            ItemStack tool = plr.getInventory().getItemInMainHand();
+
+            DFMaterial material = DFItemUtils.getDFMaterial(tool);
+
+            if (material == null) return;
+
+            if (material.hasMeta()) {
+                for (DFMaterialMeta meta : material.getMeta()) {
+                    meta.ItemKilledEntity(plr, material, target, e);
                 }
             }
         }

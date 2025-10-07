@@ -7,6 +7,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -21,8 +22,6 @@ import org.bukkit.Material;
 
 import javax.annotation.Nullable;
 import java.util.*;
-
-import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createDefaultKey;
 
 public class DFMaterial {
     // please don't touch lol
@@ -311,6 +310,8 @@ public class DFMaterial {
             .overrideCustomModel("vamp_stage0")
             .addLore("<aqua>A powerful sword which grows in power with every kill.")
             .markForUUID()
+            .addPersistentData(Keys.vampireSwordStage, PersistentDataType.INTEGER, 0)
+            .addMeta(new VampireSwordMeta())
             .create();
 
     private final String namedId;
@@ -379,7 +380,7 @@ public class DFMaterial {
             @Nullable List<TextComponent> lores,
             @Nullable HashMap<Enchantment, Integer> Enchantments,
             @Nullable HashMap<org.bukkit.attribute.Attribute, AttributeModifier> Attributes,
-            @Nullable HashMap<String, Map.Entry<PersistentDataType, Object>> PersistentData,
+            @Nullable HashMap<NamespacedKey, Map.Entry<PersistentDataType, Object>> PersistentData,
             boolean markedForUuid,
             @Nullable NamespacedKey equipModel,
             @Nullable Sound equipSound,
@@ -440,13 +441,13 @@ public class DFMaterial {
                 version
         );
         if (PersistentData != null && !PersistentData.isEmpty()) {
-            for (Map.Entry<String, Map.Entry<PersistentDataType, Object>> data : PersistentData.entrySet()) {
-                String key = data.getKey();
+            for (Map.Entry<NamespacedKey, Map.Entry<PersistentDataType, Object>> data : PersistentData.entrySet()) {
+                NamespacedKey key = data.getKey();
                 PersistentDataType type = data.getValue().getKey();
                 var val = data.getValue().getValue();
 
                 meta.getPersistentDataContainer().set(
-                        createDefaultKey(key),
+                        key,
                         type,
                         val
                 );

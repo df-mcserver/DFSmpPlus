@@ -14,6 +14,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.*;
 
+import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createDefaultKey;
 import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createModelKey;
 
 public class DFMaterialBuilder {
@@ -35,7 +36,7 @@ public class DFMaterialBuilder {
 
     private final HashMap<Enchantment, Integer> enchants = new HashMap<>();
     private final HashMap<Attribute, AttributeModifier> attributes = new HashMap<>();
-    private final HashMap<String, Map.Entry<PersistentDataType, Object>> persistentData = new HashMap<>();
+    private final HashMap<NamespacedKey, Map.Entry<PersistentDataType, Object>> persistentData = new HashMap<>();
 
     private boolean hasCustomModel = true;
     private NamespacedKey overrideModel = null;
@@ -63,6 +64,10 @@ public class DFMaterialBuilder {
     }
 
     public DFMaterialBuilder addPersistentData(String key, PersistentDataType type, Object val) {
+        return addPersistentData(createDefaultKey(key), type, val);
+    }
+
+    public DFMaterialBuilder addPersistentData(NamespacedKey key, PersistentDataType type, Object val) {
         persistentData.put(key, new AbstractMap.SimpleEntry<>(
                 type,
                 val
