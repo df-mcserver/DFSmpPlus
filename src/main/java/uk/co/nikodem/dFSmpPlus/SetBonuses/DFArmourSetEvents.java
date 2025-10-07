@@ -59,8 +59,6 @@ public class DFArmourSetEvents implements Listener {
 
         if (armourSet == null) return;
 
-        plr.sendMessage(armourSet.getName());
-
         if (armourSet.hasMeta()) {
             for (DFArmourSetMeta meta : armourSet.getMeta()) {
                 meta.RunPerSecond(plr, armourSet);
