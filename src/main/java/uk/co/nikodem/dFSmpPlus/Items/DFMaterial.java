@@ -290,7 +290,7 @@ public class DFMaterial {
             .addLore("<gray>(Equivalent to Diamond Chestplate)")
             .create();
 
-    public static DFMaterial SculkLeggings = new DFMaterialBuilder(Material.DIAMOND_HELMET, "sculk_leggings", 1)
+    public static DFMaterial SculkLeggings = new DFMaterialBuilder(Material.DIAMOND_LEGGINGS, "sculk_leggings", 1)
             .setDisplayName("Sculk Leggings")
             .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.LEGS)
             .addLore("<gray>(Equivalent to Diamond Leggings)")

@@ -34,6 +34,7 @@ public class CustomSetRecipes extends CraftingTemplate {
         addVein(recipesToAdd);
         addFiridium(recipesToAdd);
         addObsidian(recipesToAdd);
+        addSculk(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -377,6 +378,48 @@ public class CustomSetRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .setGroup("CopperHoe")
                         .build(getInfo(), "Right")
+        );
+    }
+
+    public void addSculk(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.SculkHelmet)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo())
+                        .shape("SES", "S S")
+                        .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.SculkFragment.toItemStack()))
+                        .setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.ECHO_SHARD)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.SculkChestplate)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo())
+                        .shape("S S", "SES", "ESE")
+                        .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.SculkFragment.toItemStack()))
+                        .setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.ECHO_SHARD)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.SculkLeggings)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo())
+                        .shape("SSS", "E E", "S S")
+                        .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.SculkFragment.toItemStack()))
+                        .setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.ECHO_SHARD)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.SculkBoots)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo())
+                        .shape("S S", "E E")
+                        .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.SculkFragment.toItemStack()))
+                        .setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.ECHO_SHARD)))
         );
     }
 
