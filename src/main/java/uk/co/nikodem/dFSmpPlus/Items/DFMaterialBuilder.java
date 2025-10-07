@@ -11,8 +11,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.persistence.PersistentDataType;
-import uk.co.nikodem.dFSmpPlus.Constants.Enums;
-import uk.co.nikodem.dFSmpPlus.Constants.IDGuide;
 
 import java.util.*;
 
