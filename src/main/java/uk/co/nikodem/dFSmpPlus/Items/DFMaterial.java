@@ -278,6 +278,30 @@ public class DFMaterial {
             .setDisplayName("Warped Wart")
             .create();
 
+public static DFMaterial SculkHelmet = new DFMaterialBuilder(Material.DIAMOND_HELMET, "sculk_helmet", 1)
+        .setDisplayName("Sculk Helmet")
+        .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.HAND)
+        .addLore("<gray>(Equivalent to Diamond Helmet)")
+        .create();
+
+public static DFMaterial SculkChestplate = new DFMaterialBuilder(Material.DIAMOND_CHESTPLATE, "sculk_chestplace", 1)
+        .setDisplayName("Sculk Chestplate")
+        .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.CHEST)
+        .addLore("<gray>(Equivalent to Diamond Chestplate)")
+        .create();
+
+public static DFMaterial SculkLeggings = new DFMaterialBuilder(Material.DIAMOND_HELMET, "sculk_leggings", 1)
+        .setDisplayName("Sculk Leggings")
+        .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.LEGS)
+        .addLore("<gray>(Equivalent to Diamond Leggings)")
+        .create();
+
+public static DFMaterial SculkBoots = new DFMaterialBuilder(Material.DIAMOND_BOOTS, "sculk_boots", 1)
+        .setDisplayName("Sculk Boots")
+        .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.FEET)
+        .addLore("<gray>(Equivalent to Diamond Boots)")
+        .create();
+
 //    public static DFMaterial StorageHeart = new DFMaterialBuilder(Material.DIORITE, "storage_heart", 1)
 //            .setDisplayName("Storage Heart")
 //            .create();
