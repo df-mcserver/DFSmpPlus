@@ -60,7 +60,6 @@ public class BlockData extends StorageUtility{
         data.set("path", list);
     }
 
-    @Nullable
     public void removeBlockLocation(Location loc) {
         FileConfiguration data = getFileData();
         List<String> list = data.isSet("path") ? data.getStringList("path") : new ArrayList<>();
