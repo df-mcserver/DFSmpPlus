@@ -40,6 +40,7 @@ public class DFMaterialBuilder {
     private final HashMap<String, Map.Entry<PersistentDataType, Object>> persistentData = new HashMap<>();
 
     private boolean hasCustomModel = true;
+    private NamespacedKey overrideModel = null;
 
     public DFMaterialBuilder(Material base, String namedId, int version) {
         this.base = base;
@@ -143,6 +144,16 @@ public class DFMaterialBuilder {
         return this;
     }
 
+    public DFMaterialBuilder overrideCustomModel(String newModel) {
+        this.overrideModel = createModelKey(newModel);
+        return this;
+    }
+
+    public DFMaterialBuilder overrideCustomModel(NamespacedKey newModel) {
+        this.overrideModel = newModel;
+        return this;
+    }
+
     public DFMaterial create() {
         DFMaterial newMaterial = new DFMaterial(
                 base,
@@ -159,7 +170,8 @@ public class DFMaterialBuilder {
                 version,
                 flags,
                 metas,
-                hasCustomModel
+                hasCustomModel,
+                overrideModel == null ? createModelKey(namedId) : overrideModel
         );
         DFMaterial.DFMaterialIndex.add(newMaterial);
         return newMaterial;

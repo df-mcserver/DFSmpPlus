@@ -22,8 +22,6 @@ import org.bukkit.Material;
 import javax.annotation.Nullable;
 import java.util.*;
 
-import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createModelKey;
-
 public class DFMaterial {
     // please don't touch lol
     public final static List<DFMaterial> DFMaterialIndex = new ArrayList<>();
@@ -360,7 +358,8 @@ public class DFMaterial {
             int version,
             @Nullable List<ItemFlag> flags,
             List<DFMaterialMeta> dfmetas,
-            boolean hasCustomModel
+            boolean hasCustomModel,
+            NamespacedKey customModel
     )
     {
         this.version = version;
@@ -380,7 +379,9 @@ public class DFMaterial {
         ItemMeta meta = newItem.getItemMeta();
         if (meta == null) return;
 
-        if (hasCustomModel) meta.setItemModel(createModelKey(namedId));
+        if (hasCustomModel) {
+            meta.setItemModel(customModel);
+        }
 
         if (Name != null) meta.displayName(Name);
         if (lores != null && !lores.isEmpty()) meta.lore(lores);

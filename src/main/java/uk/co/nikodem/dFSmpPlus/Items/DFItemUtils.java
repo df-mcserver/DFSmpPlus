@@ -65,6 +65,7 @@ public class DFItemUtils {
                 res = isWooden(item)
                         || isStone(item)
                         || isIron(item)
+                        || isCopper(item)
                         || isGolden(item)
                         || isDiamond(item)
                         || isNetherite(item);
@@ -72,12 +73,14 @@ public class DFItemUtils {
             case STONE -> {
                 res = isStone(item)
                         || isIron(item)
+                        || isCopper(item)
                         || isGolden(item)
                         || isDiamond(item)
                         || isNetherite(item);
             }
             case IRON -> {
                 res = isIron(item)
+                        || isCopper(item)
                         || isGolden(item)
                         || isDiamond(item)
                         || isNetherite(item);
@@ -116,11 +119,11 @@ public class DFItemUtils {
     }
 
     public static boolean isIron(ItemStack item) {
-        return item.getType() == Material.IRON_SWORD
+        return (item.getType() == Material.IRON_SWORD
                 || item.getType() == Material.IRON_AXE
                 || item.getType() == Material.IRON_PICKAXE
                 || item.getType() == Material.IRON_SHOVEL
-                || item.getType() == Material.IRON_HOE;
+                || item.getType() == Material.IRON_HOE) && !isCopper(item);
     }
 
     public static boolean isGolden(ItemStack item) {
