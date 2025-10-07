@@ -7,14 +7,12 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
-import uk.co.nikodem.dFSmpPlus.Constants.Enums.*;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Constants.VeinMineable;
 import uk.co.nikodem.dFSmpPlus.Items.Metas.*;
@@ -312,6 +310,12 @@ public class DFMaterial {
             .markForUUID()
             .addPersistentData(Keys.vampireSwordStage, PersistentDataType.INTEGER, 0)
             .addMeta(new VampireSwordMeta())
+            .create();
+
+    public static DFMaterial PointyStick = new DFMaterialBuilder(Material.STICK, "pointy_stick", 1)
+            .setDisplayName("Pointy Stick")
+            .addMeta(new SoundOnCraftMeta(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR), new PointyStickMeta())
+            .markForUUID() // 1 stack
             .create();
 
     private final String namedId;
