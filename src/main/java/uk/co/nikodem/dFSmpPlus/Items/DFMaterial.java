@@ -22,6 +22,8 @@ import org.bukkit.Material;
 import javax.annotation.Nullable;
 import java.util.*;
 
+import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createDefaultKey;
+
 public class DFMaterial {
     // please don't touch lol
     public final static List<DFMaterial> DFMaterialIndex = new ArrayList<>();
@@ -417,7 +419,7 @@ public class DFMaterial {
                 var val = data.getValue().getValue();
 
                 meta.getPersistentDataContainer().set(
-                        new NamespacedKey("dfsmpplus", key),
+                        createDefaultKey(key),
                         type,
                         val
                 );
