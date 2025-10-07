@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
+import uk.co.nikodem.dFSmpPlus.Commands.GiveDFTabCompleter;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipes.SmithingTable.SmithingTableEvents;
 import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
@@ -50,6 +51,7 @@ public final class DFSmpPlus extends JavaPlugin {
 
         // Command initiation
         Objects.requireNonNull(getCommand("givedf")).setExecutor(new GiveDF());
+        Objects.requireNonNull(getCommand("givedf")).setTabCompleter(new GiveDFTabCompleter());
 
         // Event initiation
         getServer().getPluginManager().registerEvents(new OnCraft(), this);
