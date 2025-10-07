@@ -16,7 +16,7 @@ public class DFArmourSetBuilder {
     private ItemStack chestplate;
     private ItemStack leggings;
     private ItemStack boots;
-    private List<DFArmourSetMeta> metas;
+    private List<DFArmourSetMeta> metas = new ArrayList<>();
 
     private String setBonusText;
     private String base;

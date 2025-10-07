@@ -10,7 +10,7 @@ public class FireImmunityMeta implements DFArmourSetMeta {
     @Override
     public void RunPerSecond(Player plr, DFArmourSet armourSet) {
         plr.addPotionEffect(new PotionEffect(
-                PotionEffectType.FIRE_RESISTANCE, 40, 1
+                PotionEffectType.FIRE_RESISTANCE, 40, 1, true, false
         ));
     };
 }

@@ -53,4 +53,18 @@ public class DFArmourSetEvents implements Listener {
             }
         }
     }
+
+    public static void ApplyRunPerSecond(Player plr) {
+        DFArmourSet armourSet = DFArmourSetUtils.getPlayersArmourSet(plr);
+
+        if (armourSet == null) return;
+
+        plr.sendMessage(armourSet.getName());
+
+        if (armourSet.hasMeta()) {
+            for (DFArmourSetMeta meta : armourSet.getMeta()) {
+                meta.RunPerSecond(plr, armourSet);
+            }
+        }
+    }
 }

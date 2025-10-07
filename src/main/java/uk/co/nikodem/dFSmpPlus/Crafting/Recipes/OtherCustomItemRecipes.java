@@ -30,6 +30,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         addEntityBucket(recipesToAdd);
         doWartChanges(recipesToAdd);
         addBluebellsarStick(recipesToAdd);
+        addVampireSword(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -98,6 +99,19 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setIngredient('A', Material.AMETHYST_SHARD)
                         .setIngredient('d', Material.DIAMOND)
                         .setIngredient('X', Material.STICK)
+        );
+    }
+
+    public void addVampireSword(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.VampireSword)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo())
+                        .shape("B", "F", "S")
+                        .setIngredient('B', Material.BREEZE_ROD)
+                        .setIngredient('F', Material.FLINT)
+                        .setIngredient('S', Material.STICK)
         );
     }
 

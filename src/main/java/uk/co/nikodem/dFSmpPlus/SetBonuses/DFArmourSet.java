@@ -5,12 +5,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
+import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.Metas.*;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DFArmourSet {
     // do not touch this list
@@ -86,7 +88,7 @@ public class DFArmourSet {
             .setChestplate(DFMaterial.SculkChestplate)
             .setLeggings(DFMaterial.SculkLeggings)
             .setBoots(DFMaterial.SculkBoots)
-            .setSetBonus("TODO")
+            .setSetBonus("When hit, your opponent is blinded and you become invisible.")
             .addMeta(new SculkArmourMeta())
             .create();
 
@@ -96,64 +98,64 @@ public class DFArmourSet {
             .setChestplate(DFMaterial.FiridiumChestplate)
             .setLeggings(DFMaterial.FiridiumLeggings)
             .setBoots(DFMaterial.FiridiumBoots)
-            .setSetBonus("TODO")
+            .setSetBonus("Attackers get set on fire.")
             .addMeta(new FiridiumMeta())
             .create();
 
-    public static boolean hasArmourSetEquipped(Player plr, DFArmourSet set) {
-        return hasArmourSetEquipped(plr.getInventory(), set);
-    }
+    public static final DFArmourSet Obsidian = new DFArmourSetBuilder("Obsidian")
+            .setBase(DFArmourSet.Native_Netherite)
+            .setHelmet(DFMaterial.ObsidianHelmet)
+            .setChestplate(DFMaterial.ObsidianChestplate)
+            .setLeggings(DFMaterial.ObsidianLeggings)
+            .setBoots(DFMaterial.ObsidianBoots)
+            .setSetBonus("Resistance I")
+            .addMeta(new ResistanceMeta())
+            .create();
 
-    public static boolean hasArmourSetEquipped(PlayerInventory inv, DFArmourSet set) {
-        return compareArmourPieces(inv.getHelmet(), set.getHelmet())
-                && compareArmourPieces(inv.getChestplate(), set.getChestplate())
-                && compareArmourPieces(inv.getLeggings(), set.getLeggings())
-                && compareArmourPieces(inv.getBoots(), set.getBoots());
+    public static boolean hasArmourSetEquipped(Player plr, DFArmourSet set) {
+        PlayerInventory inv = plr.getInventory();
+        ItemStack helmet = inv.getHelmet();
+        ItemStack chestplace = inv.getChestplate();
+        ItemStack leggings = inv.getLeggings();
+        ItemStack boots = inv.getBoots();
+        return compareArmourPieces(helmet, set.getHelmet())
+                && compareArmourPieces(chestplace, set.getChestplate())
+                && compareArmourPieces(leggings, set.getLeggings())
+                && compareArmourPieces(boots, set.getBoots())
+                && set.runAdditionalQualifications(plr, helmet, chestplace, leggings, boots);
     }
 
     public static boolean compareArmourPieces(ItemStack item1, ItemStack item2) {
         if (item1 == null) return false;
         if (item2 == null) return false;
 
-        ItemMeta im1 = item1.getItemMeta();
-        ItemMeta im2 = item2.getItemMeta();
+        DFMaterial dfm1 = DFItemUtils.getDFMaterial(item1);
+        DFMaterial dfm2 = DFItemUtils.getDFMaterial(item2);
 
-        if (im1 == null) return false;
-        if (im2 == null) return false;
+        if ((dfm1 == null && dfm2 != null) || (dfm1 != null && dfm2 == null)) return false;
 
-
-        if (item1.getType() == item2.getType()) {
-            if (im1.hasCustomModelData() && im2.hasCustomModelData()) {
-                return im1.getCustomModelData() == im2.getCustomModelData();
-            } else return (!im1.hasCustomModelData() || im2.hasCustomModelData())
-                    && (im1.hasCustomModelData() || !im2.hasCustomModelData());
-        } else {
-            return false;
+        if (dfm1 == null && dfm2 == null) {
+            return item1.getType() == item2.getType();
         }
+
+        return Objects.equals(dfm1.getNamedId(), dfm2.getNamedId());
     }
 
     public static boolean hasArmourSetEquippedWithSetBonus(Player plr) {
-        return hasArmourSetEquippedWithSetBonus(plr.getInventory());
-    }
-
-    public static boolean hasArmourSetEquippedWithSetBonus(PlayerInventory inv) {
         for (DFArmourSet set : DFArmourSetIndex) {
             if (!set.hasSetBonus()) continue;
-            if (set.playerHasEquipped(inv)) {
+            if (set.playerHasEquipped(plr)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static DFArmourSet getArmourSetEquipped(Player plr) {
-        return getArmourSetEquipped(plr.getInventory());
-    }
 
     @Nullable
-    public static DFArmourSet getArmourSetEquipped(PlayerInventory inv) {
+    public static DFArmourSet getArmourSetEquipped(Player plr) {
         for (DFArmourSet set : DFArmourSetIndex) {
-            if (hasArmourSetEquipped(inv, set)) return set;
+            if (hasArmourSetEquipped(plr, set)) return set;
         }
         return null;
     }
@@ -241,11 +243,16 @@ public class DFArmourSet {
     }
 
     public boolean playerHasEquipped(Player plr) {
-        return playerHasEquipped(plr.getInventory());
+        return hasArmourSetEquipped(plr, this);
     }
 
-    public boolean playerHasEquipped(PlayerInventory inv) {
-        return hasArmourSetEquipped(inv, this);
+    public boolean runAdditionalQualifications(Player plr, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots) {
+        if (this.hasMeta()) {
+            for (DFArmourSetMeta meta : this.getMeta()) {
+                if (!meta.AdditionalQualification(plr, this, helmet, chestplate, leggings, boots)) return false;
+            }
+        }
+        return true;
     }
 
     public boolean itemInSet(ItemStack item) {

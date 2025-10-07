@@ -10,7 +10,7 @@ public class FastMineMeta implements DFArmourSetMeta {
     @Override
     public void RunPerSecond(Player plr, DFArmourSet armourSet) {
         plr.addPotionEffect(new PotionEffect(
-                PotionEffectType.HASTE, 40, 1
+                PotionEffectType.HASTE, 40, 1, true, false
         ));
     };
 }

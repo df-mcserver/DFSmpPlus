@@ -10,7 +10,7 @@ public class ConduitMeta implements DFArmourSetMeta {
     @Override
     public void RunPerSecond(Player plr, DFArmourSet armourSet) {
         plr.addPotionEffect(new PotionEffect(
-                PotionEffectType.CONDUIT_POWER, 40, 1
+                PotionEffectType.CONDUIT_POWER, 40, 1, true, false
         ));
     };
 }

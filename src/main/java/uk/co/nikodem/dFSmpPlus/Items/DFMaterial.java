@@ -309,8 +309,8 @@ public class DFMaterial {
     public static DFMaterial VampireSword = new DFMaterialBuilder(Material.WOODEN_SWORD, "vampire_sword", 1)
             .setDisplayName("Vampire Sword")
             .overrideCustomModel("vamp_stage0")
-            .addLore("<cyan>A powerful sword which grows in power with every kill.")
-            .addPersistentData("uuid", PersistentDataType.STRING, UUID.randomUUID().toString())
+            .addLore("<aqua>A powerful sword which grows in power with every kill.")
+            .markForUUID()
             .create();
 
     private final String namedId;

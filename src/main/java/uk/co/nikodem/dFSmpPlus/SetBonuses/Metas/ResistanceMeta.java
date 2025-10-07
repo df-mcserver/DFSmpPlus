@@ -6,11 +6,11 @@ import org.bukkit.potion.PotionEffectType;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSet;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetMeta;
 
-public class SpeedMeta implements DFArmourSetMeta {
+public class ResistanceMeta implements DFArmourSetMeta {
     @Override
     public void RunPerSecond(Player plr, DFArmourSet armourSet) {
         plr.addPotionEffect(new PotionEffect(
-                PotionEffectType.SPEED, 40, 1, true, false
+                PotionEffectType.RESISTANCE, 40, 1, true, false
         ));
-    }
+    };
 }

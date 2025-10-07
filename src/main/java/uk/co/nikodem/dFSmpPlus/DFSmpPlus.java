@@ -1,5 +1,7 @@
 package uk.co.nikodem.dFSmpPlus;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDFTabCompleter;
@@ -16,6 +18,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
 import uk.co.nikodem.dFSmpPlus.Player.*;
 import uk.co.nikodem.dFSmpPlus.Player.DFUpdates.OnOpenContainer;
 import uk.co.nikodem.dFSmpPlus.Player.DFUpdates.OnPlayerPickUpItem;
+import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.BungeeUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Storage.BlockData;
 import uk.co.nikodem.dFSmpPlus.Utils.Storage.PlayerData;
@@ -63,9 +66,17 @@ public final class DFSmpPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnOpenContainer(), this);
         getServer().getPluginManager().registerEvents(new OnEat(), this);
         getServer().getPluginManager().registerEvents(new OnEntityPickUpItem(), this);
-        getServer().getPluginManager().registerEvents(new DFMaterialEvents(), this);
         getServer().getPluginManager().registerEvents(new SmithingTableEvents(), this);
         getServer().getPluginManager().registerEvents(new PopulateChests(), this);
+
+        getServer().getPluginManager().registerEvents(new DFMaterialEvents(), this);
+        getServer().getPluginManager().registerEvents(new DFArmourSetEvents(), this);
+
+        Bukkit.getScheduler().runTaskTimer(this, () -> {
+            for (Player plr : Bukkit.getOnlinePlayers()) {
+                DFArmourSetEvents.ApplyRunPerSecond(plr);
+            }
+        }, 0, 20);
     }
 
     @Override
