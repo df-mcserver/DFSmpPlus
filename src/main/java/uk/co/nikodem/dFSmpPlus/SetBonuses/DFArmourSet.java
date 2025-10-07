@@ -80,14 +80,23 @@ public class DFArmourSet {
             .addMeta(new CopperMeta())
             .create();
 
-    // TODO: ADD FIRIDIUM SET
+    public static final DFArmourSet Sculk = new DFArmourSetBuilder("Sculk")
+            .setBase(DFArmourSet.Native_Diamond)
+            .setHelmet(DFMaterial.SculkHelmet)
+            .setChestplate(DFMaterial.SculkChestplate)
+            .setLeggings(DFMaterial.SculkLeggings)
+            .setBoots(DFMaterial.SculkBoots)
+            .setSetBonus("TODO")
+            .addMeta(new SculkArmourMeta())
+            .create();
+
     public static final DFArmourSet Firidium = new DFArmourSetBuilder("Firidium")
             .setBase(DFArmourSet.Native_Iron)
-            .setHelmet(DFMaterial.CopperHelmet)
-            .setChestplate(DFMaterial.CopperChestplate)
-            .setLeggings(DFMaterial.CopperLeggings)
-            .setBoots(DFMaterial.CopperBoots)
-            .setSetBonus("TODO I FORGOT")
+            .setHelmet(DFMaterial.FiridiumHelmet)
+            .setChestplate(DFMaterial.FiridiumChestplate)
+            .setLeggings(DFMaterial.FiridiumLeggings)
+            .setBoots(DFMaterial.FiridiumBoots)
+            .setSetBonus("TODO")
             .addMeta(new FiridiumMeta())
             .create();
 
