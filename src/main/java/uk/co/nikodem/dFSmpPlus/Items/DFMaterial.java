@@ -302,13 +302,16 @@ public static DFMaterial SculkBoots = new DFMaterialBuilder(Material.DIAMOND_BOO
         .addLore("<gray>(Equivalent to Diamond Boots)")
         .create();
 
-//    public static DFMaterial StorageHeart = new DFMaterialBuilder(Material.DIORITE, "storage_heart", 1)
-//            .setDisplayName("Storage Heart")
-//            .create();
-//
-//    public static DFMaterial StorageUnit = new DFMaterialBuilder(Material.DIORITE, "storage_unit", 1)
-//            .setDisplayName("Storage Unit")
-//            .create();
+public static DFMaterial SculkFragment = new DFMaterialBuilder(Material.ECHO_SHARD, "sculk_fragment", 1)
+        .setDisplayName("Sculk Fragment")
+        .create();
+
+public static DFMaterial VampireSword = new DFMaterialBuilder(Material.WOODEN_SWORD, "vampire_sword", 1)
+        .setDisplayName("Vampire Sword")
+        .overrideCustomModel("vamp_stage0")
+        .addLore("<cyan>A powerful sword which grows in power with every kill.")
+        .addPersistentData("uuid", PersistentDataType.STRING, UUID.randomUUID().toString())
+        .create();
 
     private final String namedId;
     private final TextComponent displayName;
