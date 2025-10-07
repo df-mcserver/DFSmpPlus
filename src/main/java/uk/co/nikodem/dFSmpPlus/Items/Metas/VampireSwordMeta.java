@@ -1,11 +1,9 @@
 package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
@@ -28,6 +26,15 @@ public class VampireSwordMeta implements DFMaterialMeta {
         }
     };
 
+    @Override
+    public void ItemAttack(Player plr, DFMaterial material, ItemStack weapon, EntityDamageByEntityEvent event) {
+        // work around to buggy attributes
+        Integer stage = getStage(weapon);
+        if (stage == null) return;
+
+        event.setDamage(event.getDamage() + stage);
+    };
+
     @Nullable
     public Integer getStage(ItemStack item) {
         return DFItemUtils.getInteger(item, Keys.vampireSwordStage);
@@ -43,19 +50,6 @@ public class VampireSwordMeta implements DFMaterialMeta {
                 Keys.vampireSwordStage,
                 PersistentDataType.INTEGER,
                 currentStage+1
-        );
-
-        DFItemUtils.removeAttribute(item, Attribute.ATTACK_DAMAGE);
-
-        DFItemUtils.setAttribute(
-                item,
-                Attribute.ATTACK_DAMAGE,
-                new AttributeModifier(
-                        Keys.vampireSwordDamage,
-                        (double) currentStage+1,
-                        AttributeModifier.Operation.ADD_NUMBER,
-                        EquipmentSlotGroup.MAINHAND
-                )
         );
 
         return currentStage+1;
