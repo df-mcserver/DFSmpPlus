@@ -7,7 +7,7 @@ import java.util.Map;
 import static java.util.Map.entry;
 
 public class ChiselBlocks {
-    public final static Map<Material, Map.Entry<Material, Material>> getMappings = Map.ofEntries(
+    public final static Map<Material, Map.Entry<Material, Material>> blockMappings = Map.ofEntries(
             entry(Material.STONE, entry(Material.GRAVEL, Material.GRAVEL)),
             entry(Material.GRAVEL, entry(Material.PALE_OAK_LEAVES, Material.FLINT)),
 

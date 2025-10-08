@@ -20,7 +20,7 @@ public class ChiselMeta implements DFMaterialMeta {
         Block block = event.getBlock();
         Location loc = block.getLocation();
 
-        for (Map.Entry<Material, Map.Entry<Material, Material>> potential : ChiselBlocks.getMappings.entrySet()) {
+        for (Map.Entry<Material, Map.Entry<Material, Material>> potential : ChiselBlocks.blockMappings.entrySet()) {
             if (potential.getKey() == block.getType()) {
                 event.setCancelled(true);
                 block.setType(potential.getValue().getKey());
