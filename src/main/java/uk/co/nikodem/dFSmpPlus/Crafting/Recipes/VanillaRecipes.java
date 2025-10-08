@@ -17,6 +17,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithIngredi
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithResultRemoval;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
+import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class VanillaRecipes extends CraftingTemplate {
         doDispenserChange(recipesToAdd);
         doSlimeblockChange(recipesToAdd);
 
-        doLooseStoneChanges();
+        addLooseStoneRecipes(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -249,10 +250,51 @@ public class VanillaRecipes extends CraftingTemplate {
         );
     }
 
-    private void doLooseStoneChanges() {
-//        RecipeRemover.addQuery(new RecipeWithIngredientReplace()
-//                .setReplacementIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.IRON_INGOT)))
-//                .setIngredient(new RecipeChoice.MaterialChoice()));
+    private void addLooseStoneRecipes(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(Material.STONE_AXE)
+                        .setCategory(CraftingBookCategory.BUILDING)
+                        .build(getInfo())
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
+                        .addIngredient(Material.STICK)
+                        .addIngredient(Material.STRING)
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(Material.STONE_SHOVEL)
+                        .setCategory(CraftingBookCategory.BUILDING)
+                        .build(getInfo())
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
+                        .addIngredient(Material.STICK)
+                        .addIngredient(Material.STRING)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.STONE_PICKAXE)
+                        .setCategory(CraftingBookCategory.BUILDING)
+                        .setGroup("StonePickaxeLS")
+                        .build(getInfo(), "LEFT")
+                        .shape("XXX", "SI ", " I ")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
+                        .setIngredient('I', Material.STICK)
+                        .setIngredient('S', Material.STRING)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.STONE_PICKAXE)
+                        .setCategory(CraftingBookCategory.BUILDING)
+                        .setGroup("StonePickaxeLS")
+                        .build(getInfo(), "LEFT")
+                        .shape("XXX", " IS", " I ")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
+                        .setIngredient('I', Material.STICK)
+                        .setIngredient('S', Material.STRING)
+        );
     }
 
     @Override
