@@ -325,14 +325,19 @@ public class DFMaterial {
     public static DFMaterial SharpStone = new DFMaterialBuilder(Material.STICK, "sharp_stone", 1)
             // TODO: Add faster mining speed attribute
             .setDisplayName("Sharp Stone")
-            .addMeta(new SoundOnCraftMeta(Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F), new ChiselMeta())
+            .addMeta(new SoundOnCraftMeta(Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F), new ChiselMeta(), new CustomDurabilityMeta(8))
             .setMaxStack(1)
             .create();
 
     public static DFMaterial IronChisel = new DFMaterialBuilder(Material.STICK, "iron_chisel", 1)
-            // TODO: double check this
             .setDisplayName("Iron Chisel")
-            .addMeta(new ChiselMeta())
+            .addMeta(new ChiselMeta(), new CustomDurabilityMeta(50))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial DiamondChisel = new DFMaterialBuilder(Material.STICK, "diamond_chisel", 1)
+            .setDisplayName("Diamond Chisel")
+            .addMeta(new ChiselMeta(), new CustomDurabilityMeta(500))
             .setMaxStack(1)
             .create();
 
