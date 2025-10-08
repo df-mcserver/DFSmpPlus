@@ -49,6 +49,7 @@ public final class DFSmpPlus extends JavaPlugin {
         );
 
         RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove
+        ChiselBlockData.createChiselBlockData();
 
         // Command initiation
         Objects.requireNonNull(getCommand("givedf")).setExecutor(new GiveDF());
