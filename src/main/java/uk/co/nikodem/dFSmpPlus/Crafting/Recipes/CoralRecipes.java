@@ -369,6 +369,6 @@ public class CoralRecipes extends CraftingTemplate {
 
     @Override
     public String getRecipesID() {
-        return "othercustom";
+        return "coral";
     }
 }

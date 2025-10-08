@@ -9,10 +9,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipes.SmithingTable.SmithingTableEvents;
 import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
-import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CoralRecipes;
-import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSetRecipes;
-import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.OtherCustomItemRecipes;
-import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.VanillaRecipes;
+import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.*;
 import uk.co.nikodem.dFSmpPlus.Entities.OnEntityPickUpItem;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
 import uk.co.nikodem.dFSmpPlus.Player.*;
@@ -47,7 +44,8 @@ public final class DFSmpPlus extends JavaPlugin {
                 new VanillaRecipes(this),
                 new CustomSetRecipes(this),
                 new OtherCustomItemRecipes(this),
-                new CoralRecipes(this)
+                new CoralRecipes(this),
+                new ChiselRecipes(this)
         );
 
         RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove

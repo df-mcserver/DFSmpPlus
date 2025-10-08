@@ -323,7 +323,6 @@ public class DFMaterial {
             .create();
 
     public static DFMaterial SharpStone = new DFMaterialBuilder(Material.STICK, "sharp_stone", 1)
-            // TODO: Add faster mining speed attribute
             .setDisplayName("Sharp Stone")
             .addMeta(new SoundOnCraftMeta(Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F), new ChiselMeta(), new CustomDurabilityMeta(8))
             .setMaxStack(1)

@@ -33,8 +33,6 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         addBluebellsarStick(recipesToAdd);
         addVampireSword(recipesToAdd);
 
-        addPointyStick(recipesToAdd);
-
         return recipesToAdd;
     }
 
@@ -115,20 +113,6 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setIngredient('B', Material.BREEZE_ROD)
                         .setIngredient('F', Material.FLINT)
                         .setIngredient('S', Material.STICK)
-        );
-    }
-
-    public void addPointyStick(List<Recipe> recipesToAdd) {
-        RecipeRemover.addQuery(new RecipeWithIngredientReplace()
-                .setReplacementIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.STICK)))
-                .setIngredient(Material.STICK));
-
-        recipesToAdd.add(
-                new ShapelessRecipeBuilder()
-                        .setOutput(DFMaterial.PointyStick)
-                        .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo(), "PointyStick")
-                        .addIngredient(new RecipeChoice.ExactChoice(ItemStack.of(Material.STICK)))
         );
     }
 
