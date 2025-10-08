@@ -7,6 +7,12 @@ A [PaperMC](https://papermc.io/) plugin (1.21.8) built to add various QoL additi
 > I will not help you if you try to use this plugin. The code here is provided as-is.
 
 ## Dependencies
+- [ProtocolLib](https://github.com/dmulloy2/ProtocolLib)
+   - Some features in this plugin require ProtocolLib to work.
+   - The ProtocolLib jar must be present in the plugins folder for this plugin to properly load.
+   - Download the jar for this plugin here: https://github.com/dmulloy2/ProtocolLib/releases/tag/5.4.0
+
+## Other requirements
 - [PaperMC](https://papermc.io/)
    - This is a plugin using the Paper API. Any Minecraft server software which implements the Paper API (whether that be Paper, or forks like [Purpur](https://purpurmc.org/)) should support this plugin.
    - Note: This plugin is only tested on [LeafMC](https://www.leafmc.one/), a PaperMC fork.

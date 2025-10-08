@@ -1,10 +1,14 @@
 package uk.co.nikodem.dFSmpPlus;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDFTabCompleter;
+import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
+import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockDataBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipes.SmithingTable.SmithingTableEvents;
 import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
@@ -15,6 +19,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
 import uk.co.nikodem.dFSmpPlus.Player.*;
 import uk.co.nikodem.dFSmpPlus.Player.DFUpdates.OnOpenContainer;
 import uk.co.nikodem.dFSmpPlus.Player.DFUpdates.OnPlayerPickUpItem;
+import uk.co.nikodem.dFSmpPlus.Player.Mining.MiningListener;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.BungeeUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Storage.BlockData;
@@ -32,8 +37,12 @@ public final class DFSmpPlus extends JavaPlugin {
     public static PlayerData playerData;
     public static BlockData blockData;
 
+    public static ProtocolManager protocolManager;
+
     @Override
     public void onEnable() {
+        protocolManager = ProtocolLibrary.getProtocolManager();
+
         DFSmpPlus.playerData = new PlayerData(this);
         DFSmpPlus.blockData = new BlockData(this);
 
@@ -67,6 +76,8 @@ public final class DFSmpPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnEntityPickUpItem(), this);
         getServer().getPluginManager().registerEvents(new SmithingTableEvents(), this);
         getServer().getPluginManager().registerEvents(new PopulateChests(), this);
+
+        getServer().getPluginManager().registerEvents(new MiningListener(), this);
 
         getServer().getPluginManager().registerEvents(new DFMaterialEvents(), this);
         getServer().getPluginManager().registerEvents(new DFArmourSetEvents(), this);
