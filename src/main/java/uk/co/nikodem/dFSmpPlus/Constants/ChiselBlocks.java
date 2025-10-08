@@ -6,8 +6,8 @@ import java.util.Map;
 
 import static java.util.Map.entry;
 
-public class PointyStick {
-    public final static Map<Material, Map.Entry<Material, Material>> PointyStick = Map.ofEntries(
+public class ChiselBlocks {
+    public final static Map<Material, Map.Entry<Material, Material>> getMappings = Map.ofEntries(
             entry(Material.STONE, entry(Material.GRAVEL, Material.GRAVEL)),
             entry(Material.GRAVEL, entry(Material.PALE_OAK_LEAVES, Material.FLINT)),
 
@@ -29,6 +29,6 @@ public class PointyStick {
             entry(Material.DEEPSLATE_GOLD_ORE, entry(Material.DEEPSLATE, Material.AIR)),
             entry(Material.DEEPSLATE_DIAMOND_ORE, entry(Material.DEEPSLATE, Material.AIR)),
             entry(Material.DEEPSLATE_LAPIS_ORE, entry(Material.DEEPSLATE, Material.AIR))
+            // TODO: add concrete -> concrete powder
     );
-
 }

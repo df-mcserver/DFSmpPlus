@@ -314,9 +314,30 @@ public class DFMaterial {
 
     public static DFMaterial PointyStick = new DFMaterialBuilder(Material.STICK, "pointy_stick", 1)
             .setDisplayName("Pointy Stick")
-            .addMeta(new SoundOnCraftMeta(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR), new PointyStickMeta())
+            .addMeta(new SoundOnCraftMeta(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR), new ChiselMeta())
+            // TODO: make markForUUID do something
             .markForUUID() // 1 stack
             .create();
+
+    public static DFMaterial LooseStone = new DFMaterialBuilder(Material.STICK, "loose_stone", 1)
+            .setDisplayName("Loose Stone")
+            .create();
+
+    public static DFMaterial SharpStone = new DFMaterialBuilder(Material.STICK, "sharp_stone", 1)
+            // TODO: Add faster mining speed attribute
+            .setDisplayName("Sharp Stone")
+            .addMeta(new SoundOnCraftMeta(Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F), new ChiselMeta())
+            .markForUUID() // 1 stack
+            .create();
+
+    public static DFMaterial IronChisel = new DFMaterialBuilder(Material.STICK, "iron_chisel", 1)
+            // TODO: double check this
+            .setDisplayName("Iron Chisel")
+            .addMeta(new ChiselMeta())
+            .markForUUID()
+            .create();
+
+    public static DFMaterial 
 
     private final String namedId;
     private final TextComponent displayName;

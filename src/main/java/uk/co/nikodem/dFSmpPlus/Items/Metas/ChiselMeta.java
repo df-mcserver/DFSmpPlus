@@ -7,20 +7,20 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import uk.co.nikodem.dFSmpPlus.Constants.PointyStick;
+import uk.co.nikodem.dFSmpPlus.Constants.ChiselBlocks;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
 import java.util.Map;
 
-public class PointyStickMeta implements DFMaterialMeta {
+public class ChiselMeta implements DFMaterialMeta {
     @Override
     public void ItemMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakEvent event) {
 
         Block block = event.getBlock();
         Location loc = block.getLocation();
 
-        for (Map.Entry<Material, Map.Entry<Material, Material>> potential : PointyStick.PointyStick.entrySet()) {
+        for (Map.Entry<Material, Map.Entry<Material, Material>> potential : ChiselBlocks.getMappings.entrySet()) {
             if (potential.getKey() == block.getType()) {
                 event.setCancelled(true);
                 block.setType(potential.getValue().getKey());
