@@ -13,6 +13,7 @@ public class ChiselBlockDataBuilder {
     private final Material block;
     private Material convertInto;
     private ItemStack drop;
+    private Float speedMultiplier;
 
     public ChiselBlockDataBuilder(Material block) {
         this.block = block;
@@ -38,6 +39,11 @@ public class ChiselBlockDataBuilder {
         return this;
     }
 
+    public ChiselBlockDataBuilder setSpeedMultiplayer(float speedMultiplier) {
+        this.speedMultiplier = speedMultiplier;
+        return this;
+    }
+
     public ChiselBlockDataBuilder setMinimumTool (Enums.ToolLevel level) {
         this.minimumToolLevel = level;
         return this;
@@ -47,8 +53,9 @@ public class ChiselBlockDataBuilder {
         ChiselBlockData data = new ChiselBlockData(
                 minimumToolLevel == null ? Enums.ToolLevel.WOODEN : minimumToolLevel,
                 block,
-                convertInto,
-                drop
+                convertInto == null ? Material.AIR : convertInto,
+                drop == null ? ItemStack.of(Material.AIR) : drop,
+                speedMultiplier == null ? 1.5F : speedMultiplier
         );
         ChiselBlockDataIndex.add(data);
         return data;

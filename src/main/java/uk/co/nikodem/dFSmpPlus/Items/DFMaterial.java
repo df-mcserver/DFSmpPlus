@@ -119,7 +119,6 @@ public class DFMaterial {
             .setDisplayName("<light_purple>Bluebellsar Stick")
             .markForUUID()
             .addLore("<aqua>Using this item shrivels shrieks from past souls.")
-            .addLore("<red>Will not work in combat.")
             .addEnchantment(Enchantment.UNBREAKING, 25)
             .addEnchantment(Enchantment.LOOTING, 3)
             .addEnchantment(Enchantment.LUCK_OF_THE_SEA)
@@ -314,7 +313,7 @@ public class DFMaterial {
 
     public static DFMaterial PointyStick = new DFMaterialBuilder(Material.STICK, "pointy_stick", 1)
             .setDisplayName("Pointy Stick")
-            .addMeta(new SoundOnCraftMeta(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR), new ChiselMeta(), new CustomDurabilityMeta(2))
+            .addMeta(new SoundOnCraftMeta(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR), new ChiselMeta(1f), new CustomDurabilityMeta(2))
             .setMaxStack(1)
             .create();
 
@@ -324,19 +323,19 @@ public class DFMaterial {
 
     public static DFMaterial SharpStone = new DFMaterialBuilder(Material.STICK, "sharp_stone", 1)
             .setDisplayName("Sharp Stone")
-            .addMeta(new SoundOnCraftMeta(Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F), new ChiselMeta(), new CustomDurabilityMeta(8))
+            .addMeta(new SoundOnCraftMeta(Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F), new ChiselMeta(3f), new CustomDurabilityMeta(8))
             .setMaxStack(1)
             .create();
 
     public static DFMaterial IronChisel = new DFMaterialBuilder(Material.STICK, "iron_chisel", 1)
             .setDisplayName("Iron Chisel")
-            .addMeta(new ChiselMeta(), new CustomDurabilityMeta(50))
+            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50))
             .setMaxStack(1)
             .create();
 
     public static DFMaterial DiamondChisel = new DFMaterialBuilder(Material.STICK, "diamond_chisel", 1)
             .setDisplayName("Diamond Chisel")
-            .addMeta(new ChiselMeta(), new CustomDurabilityMeta(500))
+            .addMeta(new ChiselMeta(6f), new CustomDurabilityMeta(500))
             .setMaxStack(1)
             .create();
 

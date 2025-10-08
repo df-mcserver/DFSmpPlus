@@ -358,15 +358,13 @@ public class DFItemUtils {
                 PersistentDataType.STRING
         );
 
-        DFMaterial dfMaterial = null;
         for (DFMaterial material : DFMaterial.DFMaterialIndex) {
             if (Objects.equals(material.getNamedId(), dfMaterialId)) {
-                dfMaterial = material;
-                break;
+                return material;
             }
         }
 
-        return dfMaterial;
+        return null;
     }
 
     @Nullable

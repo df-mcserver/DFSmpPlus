@@ -1,11 +1,15 @@
 package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.Tool;
+import io.papermc.paper.event.block.BlockBreakProgressUpdateEvent;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+
 import org.bukkit.util.Vector;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
@@ -13,6 +17,12 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
 public class ChiselMeta implements DFMaterialMeta {
+    private final float miningSpeed;
+
+    public ChiselMeta(float miningSpeed) {
+        this.miningSpeed = miningSpeed;
+    }
+
     @Override
     public void ItemMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakEvent event) {
 
@@ -29,5 +39,20 @@ public class ChiselMeta implements DFMaterialMeta {
                 break;
             }
         }
+    }
+
+    @Override
+    public void ItemStartMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakProgressUpdateEvent event) {
+        Block block = event.getBlock();
+        ChiselBlockData data = ChiselBlockData.getChiselBlockData(block);
+        // !! WARNING !!
+        // the code below may or may not make you want to kill yourself
+        // PLEASE I BEG if there's a better way to do this that is easy to do
+        // fix it as soon as physcially possible
+        if (data == null) {
+            tool.setData(DataComponentTypes.TOOL, Tool.tool().defaultMiningSpeed(1f).build());
+            return;
+        };
+        tool.setData(DataComponentTypes.TOOL, Tool.tool().defaultMiningSpeed(miningSpeed * data.getSpeedMultiplier()).build());
     }
 }
