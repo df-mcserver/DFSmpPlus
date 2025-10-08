@@ -41,6 +41,8 @@ public class DFMaterialBuilder {
     private boolean hasCustomModel = true;
     private NamespacedKey overrideModel = null;
 
+    private Integer maxStack = null;
+
     public DFMaterialBuilder(Material base, String namedId, int version) {
         this.base = base;
         this.namedId = namedId;
@@ -157,6 +159,11 @@ public class DFMaterialBuilder {
         return this;
     }
 
+    public DFMaterialBuilder setMaxStack(Integer max) {
+        this.maxStack = max;
+        return this;
+    }
+
     public DFMaterial create() {
         DFMaterial newMaterial = new DFMaterial(
                 base,
@@ -174,7 +181,8 @@ public class DFMaterialBuilder {
                 flags,
                 metas,
                 hasCustomModel,
-                overrideModel == null ? createModelKey(namedId) : overrideModel
+                overrideModel == null ? createModelKey(namedId) : overrideModel,
+                maxStack
         );
         DFMaterial.DFMaterialIndex.add(newMaterial);
         return newMaterial;

@@ -40,9 +40,9 @@ public class DFItemUtils {
                 Keys.markedForUUID,
                 PersistentDataType.BOOLEAN
         );
-        meta.getPersistentDataContainer().remove(Keys.markedForUUID);
         if (marked == null) return;
         if (marked) addUUID(item);
+        meta.getPersistentDataContainer().remove(Keys.markedForUUID);
     }
 
     @Nullable

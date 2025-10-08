@@ -315,8 +315,7 @@ public class DFMaterial {
     public static DFMaterial PointyStick = new DFMaterialBuilder(Material.STICK, "pointy_stick", 1)
             .setDisplayName("Pointy Stick")
             .addMeta(new SoundOnCraftMeta(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR), new ChiselMeta(), new CustomDurabilityMeta(2))
-            // TODO: make markForUUID do something
-            .markForUUID() // 1 stack
+            .setMaxStack(1)
             .create();
 
     public static DFMaterial LooseStone = new DFMaterialBuilder(Material.STICK, "loose_stone", 1)
@@ -327,14 +326,14 @@ public class DFMaterial {
             // TODO: Add faster mining speed attribute
             .setDisplayName("Sharp Stone")
             .addMeta(new SoundOnCraftMeta(Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F), new ChiselMeta())
-            .markForUUID() // 1 stack
+            .setMaxStack(1)
             .create();
 
     public static DFMaterial IronChisel = new DFMaterialBuilder(Material.STICK, "iron_chisel", 1)
             // TODO: double check this
             .setDisplayName("Iron Chisel")
             .addMeta(new ChiselMeta())
-            .markForUUID()
+            .setMaxStack(1)
             .create();
 
     private final String namedId;
@@ -412,7 +411,8 @@ public class DFMaterial {
             @Nullable List<ItemFlag> flags,
             List<DFMaterialMeta> dfmetas,
             boolean hasCustomModel,
-            NamespacedKey customModel
+            NamespacedKey customModel,
+            @Nullable Integer maxStack
     )
     {
         this.version = version;
@@ -435,6 +435,8 @@ public class DFMaterial {
         if (hasCustomModel) {
             meta.setItemModel(customModel);
         }
+
+        if (maxStack != null) meta.setMaxStackSize(maxStack);
 
         if (Name != null) meta.displayName(Name);
         if (lores != null && !lores.isEmpty()) meta.lore(lores);
