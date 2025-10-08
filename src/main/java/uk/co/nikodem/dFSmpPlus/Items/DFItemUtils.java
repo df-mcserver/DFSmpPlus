@@ -8,6 +8,7 @@ import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
@@ -146,6 +147,16 @@ public class DFItemUtils {
                 attr,
                 modifier
         );
+        item.setItemMeta(meta);
+        return true;
+    }
+
+    public static boolean reduceDurability(ItemStack item, int damageAmount) {
+        if (item == null) return false;
+        Damageable meta = (Damageable) item.getItemMeta();
+        if (meta == null) return false;
+        if (meta.hasDamage()) meta.setDamage(meta.getDamage() + damageAmount);
+        else meta.setDamage(damageAmount);
         item.setItemMeta(meta);
         return true;
     }

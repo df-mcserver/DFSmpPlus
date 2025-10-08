@@ -314,7 +314,7 @@ public class DFMaterial {
 
     public static DFMaterial PointyStick = new DFMaterialBuilder(Material.STICK, "pointy_stick", 1)
             .setDisplayName("Pointy Stick")
-            .addMeta(new SoundOnCraftMeta(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR), new ChiselMeta())
+            .addMeta(new SoundOnCraftMeta(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR), new ChiselMeta(), new CustomDurabilityMeta(2))
             // TODO: make markForUUID do something
             .markForUUID() // 1 stack
             .create();
@@ -336,8 +336,6 @@ public class DFMaterial {
             .addMeta(new ChiselMeta())
             .markForUUID()
             .create();
-
-    public static DFMaterial 
 
     private final String namedId;
     private final TextComponent displayName;

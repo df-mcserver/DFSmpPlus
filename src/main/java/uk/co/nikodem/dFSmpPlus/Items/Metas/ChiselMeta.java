@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Constants.ChiselBlocks;
+import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
@@ -26,7 +27,7 @@ public class ChiselMeta implements DFMaterialMeta {
                 block.setType(potential.getValue().getKey());
                 block.getWorld().dropItemNaturally(loc, ItemStack.of(potential.getValue().getValue()));
                 loc.getWorld().playSound(loc, Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F);
-                tool.setAmount(tool.getAmount() - 1);
+                DFItemUtils.reduceDurability(tool, 1);
                 break;
             }
         }

@@ -9,8 +9,8 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
 public class SoundOnCraftMeta implements DFMaterialMeta {
     private final Sound sound;
-    private final float volume = 1F;
-    private final float pitch = 1F;
+    private float volume = 1F;
+    private float pitch = 1F;
 
     public SoundOnCraftMeta(Sound sound) {
         this.sound = sound;
