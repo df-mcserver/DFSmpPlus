@@ -261,7 +261,8 @@ public class DFItemUtils {
                 || item.getType() == Material.GOLDEN_AXE
                 || item.getType() == Material.GOLDEN_PICKAXE
                 || item.getType() == Material.GOLDEN_SHOVEL
-                || item.getType() == Material.GOLDEN_HOE;
+                || item.getType() == Material.GOLDEN_HOE
+                || DFMaterial.GoldChisel.isSimilar(item);
     }
 
     public static boolean isDiamond(ItemStack item) {
@@ -278,7 +279,8 @@ public class DFItemUtils {
                 || item.getType() == Material.NETHERITE_AXE
                 || item.getType() == Material.NETHERITE_PICKAXE
                 || item.getType() == Material.NETHERITE_SHOVEL
-                || item.getType() == Material.NETHERITE_HOE;
+                || item.getType() == Material.NETHERITE_HOE
+                || DFMaterial.NetheriteChisel.isSimilar(item);
     }
 
     public static boolean isCopper(ItemStack item) {
@@ -286,10 +288,27 @@ public class DFItemUtils {
                 || DFMaterial.CopperAxe.isSimilar(item)
                 || DFMaterial.CopperPickaxe.isSimilar(item)
                 || DFMaterial.CopperShovel.isSimilar(item)
-                || DFMaterial.CopperHoe.isSimilar(item);
+                || DFMaterial.CopperHoe.isSimilar(item)
+                || DFMaterial.CopperChisel.isSimilar(item);
     }
 
+    public static boolean isObsidian(ItemStack item) {
+        return DFMaterial.ObsidianSword.isSimilar(item)
+                || DFMaterial.ObsidianAxe.isSimilar(item)
+                || DFMaterial.ObsidianPickaxe.isSimilar(item)
+                || DFMaterial.ObsidianShovel.isSimilar(item)
+                || DFMaterial.ObsidianHoe.isSimilar(item)
+                || DFMaterial.ObsidianChisel.isSimilar(item);
+    }
 
+    public static boolean isFiridium(ItemStack item) {
+        return DFMaterial.FiridiumSword.isSimilar(item)
+                || DFMaterial.FiridiumAxe.isSimilar(item)
+                || DFMaterial.FiridiumPickaxe.isSimilar(item)
+                || DFMaterial.FiridiumShovel.isSimilar(item)
+                || DFMaterial.FiridiumHoe.isSimilar(item)
+                || DFMaterial.FiridiumChisel.isSimilar(item);
+    }
 
     public static boolean isSword(ItemStack item) {
         return item.getType() == Material.WOODEN_SWORD
@@ -339,8 +358,13 @@ public class DFItemUtils {
     public static boolean isChisel(ItemStack item) {
         return DFMaterial.PointyStick.isSimilar(item)
                 || DFMaterial.SharpStone.isSimilar(item)
+                || DFMaterial.CopperChisel.isSimilar(item)
                 || DFMaterial.IronChisel.isSimilar(item)
-                || DFMaterial.DiamondChisel.isSimilar(item);
+                || DFMaterial.FiridiumChisel.isSimilar(item)
+                || DFMaterial.GoldChisel.isSimilar(item)
+                || DFMaterial.DiamondChisel.isSimilar(item)
+                || DFMaterial.NetheriteChisel.isSimilar(item)
+                || DFMaterial.ObsidianChisel.isSimilar(item);
     }
 
     public static boolean hasFireAspect(ItemStack item) {
@@ -380,8 +404,15 @@ public class DFItemUtils {
     }
 
     public static boolean itemIsRenamed(ItemStack item) {
+        DFMaterial material = DFItemUtils.getDFMaterial(item);
         ItemMeta meta = item.getItemMeta();
+        if (meta == null) return false;
         Component displayName = meta.displayName();
-        return displayName != null;
+
+        if (material == null) {
+            return displayName != null;
+        }
+
+        return displayName != material.getDisplayName();
     }
 }

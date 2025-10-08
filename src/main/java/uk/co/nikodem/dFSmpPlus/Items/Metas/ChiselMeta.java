@@ -50,6 +50,10 @@ public class ChiselMeta implements DFMaterialMeta {
 
     @Override
     public void ItemStartMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakProgressUpdateEvent event) {
+
+        //TODO: fix this on bedrock
+        // (animations plays fine, but it doesn't actually break until it normally should
+
         Block block = event.getBlock();
         ChiselBlockData data = ChiselBlockData.getChiselBlockData(block);
         // !! WARNING !!

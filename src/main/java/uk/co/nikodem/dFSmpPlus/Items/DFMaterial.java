@@ -83,7 +83,7 @@ public class DFMaterial {
             .setDisplayName("<red>Firidium Ingot")
             .create();
 
-    public static DFMaterial FiridiumNugget = new DFMaterialBuilder(Material.IRON_INGOT, "firidium_nugget", 1)
+    public static DFMaterial FiridiumNugget = new DFMaterialBuilder(Material.IRON_NUGGET, "firidium_nugget", 1)
             .setDisplayName("<red>Firidium Nugget")
             .create();
 
@@ -126,6 +126,10 @@ public class DFMaterial {
             .addEnchantment(Enchantment.MENDING)
             .addMeta(new BluebellsarMeta())
             .removeCustomModel()
+            .create();
+
+    public static DFMaterial CopperNugget = new DFMaterialBuilder(Material.IRON_NUGGET, "copper_nugget", 1)
+            .setDisplayName("Copper Nugget")
             .create();
 
     public static DFMaterial CopperSword = new DFMaterialBuilder(Material.IRON_SWORD, "copper_sword", 1)
@@ -327,15 +331,47 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
+    public static DFMaterial CopperChisel = new DFMaterialBuilder(Material.STICK, "copper_chisel", 1)
+            .setDisplayName("Copper Chisel")
+            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50))
+            .setMaxStack(1)
+            .create();
+
     public static DFMaterial IronChisel = new DFMaterialBuilder(Material.STICK, "iron_chisel", 1)
             .setDisplayName("Iron Chisel")
             .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50))
             .setMaxStack(1)
             .create();
 
+    public static DFMaterial FiridiumChisel = new DFMaterialBuilder(Material.STICK, "firidium_chisel", 1)
+            .setDisplayName("Firidium Chisel")
+            .addEnchantment(Enchantment.FIRE_ASPECT, 1)
+            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial GoldChisel = new DFMaterialBuilder(Material.STICK, "gold_chisel", 1)
+            .setDisplayName("Gold Chisel")
+            .addMeta(new ChiselMeta(5.5f), new CustomDurabilityMeta(70))
+            .setMaxStack(1)
+            .create();
+
     public static DFMaterial DiamondChisel = new DFMaterialBuilder(Material.STICK, "diamond_chisel", 1)
             .setDisplayName("Diamond Chisel")
             .addMeta(new ChiselMeta(6f), new CustomDurabilityMeta(500))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial NetheriteChisel = new DFMaterialBuilder(Material.STICK, "netherite_chisel", 1)
+            .setDisplayName("Netherite Chisel")
+            .addMeta(new ChiselMeta(7f), new CustomDurabilityMeta(1500))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial ObsidianChisel = new DFMaterialBuilder(Material.STICK, "obsidian_chisel", 1)
+            .setDisplayName("Obsidian Chisel")
+            .addEnchantment(Enchantment.UNBREAKING, 10)
+            .addMeta(new ChiselMeta(7f), new CustomDurabilityMeta(1500), new ObsidianToolMeta())
             .setMaxStack(1)
             .create();
 
