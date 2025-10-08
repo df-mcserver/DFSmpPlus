@@ -192,37 +192,46 @@ public class DFItemUtils {
                 res = isWooden(item)
                         || isStone(item)
                         || isIron(item)
+                        || isFiridium(item)
                         || isCopper(item)
                         || isGolden(item)
                         || isDiamond(item)
-                        || isNetherite(item);
+                        || isNetherite(item)
+                        || isObsidian(item);
             }
             case STONE -> {
                 res = isStone(item)
                         || isIron(item)
+                        || isFiridium(item)
                         || isCopper(item)
                         || isGolden(item)
                         || isDiamond(item)
-                        || isNetherite(item);
+                        || isNetherite(item)
+                        || isObsidian(item);
             }
             case IRON -> {
                 res = isIron(item)
+                        || isFiridium(item)
                         || isCopper(item)
                         || isGolden(item)
                         || isDiamond(item)
-                        || isNetherite(item);
+                        || isNetherite(item)
+                        || isObsidian(item);
             }
             case GOLDEN -> {
                 res = isGolden(item)
                         || isDiamond(item)
-                        || isNetherite(item);
+                        || isNetherite(item)
+                        || isObsidian(item);
             }
             case DIAMOND -> {
                 res = isDiamond(item)
-                        || isNetherite(item);
+                        || isNetherite(item)
+                        || isObsidian(item);
             }
             case NETHERITE -> {
-                res = isNetherite(item);
+                res = isNetherite(item)
+                        || isObsidian(item);
             }
         };
 
