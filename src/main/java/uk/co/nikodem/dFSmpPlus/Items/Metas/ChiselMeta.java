@@ -34,7 +34,14 @@ public class ChiselMeta implements DFMaterialMeta {
                 event.setCancelled(true);
                 block.setType(data.getReplacingMaterial());
                 if (DFItemUtils.isLevelOrAbove(tool, data.getMinimumToolLevel())) block.getWorld().dropItemNaturally(loc.add(new Vector(0.5, 0.5, 0.5)), data.getDrop());
-                loc.getWorld().playSound(loc, Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F);
+
+                Sound sound = Sound.BLOCK_ANVIL_PLACE;
+                float pitch = 1.75F;
+
+                if (data.hasSoundOverride()) sound = data.getSoundOverride();
+                if (data.hasPitchOverride()) pitch = data.getPitchOverride();
+
+                loc.getWorld().playSound(loc, sound, 1F, pitch);
                 DFItemUtils.reduceDurability(tool, 1);
                 break;
             }

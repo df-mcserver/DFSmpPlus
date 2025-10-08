@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.Recipes;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.inventory.ItemStack;
@@ -12,6 +13,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.BlastFurnaceRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithIngredientReplace;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithResultRemoval;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
@@ -36,6 +38,8 @@ public class VanillaRecipes extends CraftingTemplate {
         doHorseArmourRecipes(recipesToAdd);
         doDispenserChange(recipesToAdd);
         doSlimeblockChange(recipesToAdd);
+
+        doLooseStoneChanges();
 
         return recipesToAdd;
     }
@@ -243,6 +247,12 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
+    }
+
+    private void doLooseStoneChanges() {
+//        RecipeRemover.addQuery(new RecipeWithIngredientReplace()
+//                .setReplacementIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.IRON_INGOT)))
+//                .setIngredient(new RecipeChoice.MaterialChoice()));
     }
 
     @Override

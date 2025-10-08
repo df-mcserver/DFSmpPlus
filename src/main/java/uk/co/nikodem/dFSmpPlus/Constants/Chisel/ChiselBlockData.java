@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Constants.Chisel;
 
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
@@ -18,9 +19,7 @@ public class ChiselBlockData {
     // Chisel Blocks
     public static void createChiselBlockData() {
         new ChiselBlockDataBuilder(Material.STONE).setReplacement(Material.GRAVEL).setDrop(DFMaterial.LooseStone).create();
-
-        new ChiselBlockDataBuilder(Material.GRAVEL).setReplacement(Material.PALE_OAK_LEAVES).setDrop(Material.FLINT).setSpeedMultiplayer(0.25f).create();
-        new ChiselBlockDataBuilder(Material.PALE_OAK_LEAVES).setReplacement(Material.AIR).setDrop(Material.AIR).setSpeedMultiplayer(0.1f).create();
+        new ChiselBlockDataBuilder(Material.GRAVEL).setReplacement(Material.AIR).setDrop(Material.FLINT).setSpeedMultiplayer(0.25f).create();
 
         // TODO: autosmelt
         new ChiselBlockDataBuilder(Material.COAL_ORE).setReplacement(Material.STONE).setDrop(Material.COAL).setMinimumTool(Enums.ToolLevel.STONE).create();
@@ -38,7 +37,6 @@ public class ChiselBlockData {
         new ChiselBlockDataBuilder(Material.DEEPSLATE_EMERALD_ORE).setReplacement(Material.DEEPSLATE).setDrop(Material.EMERALD_ORE).setMinimumTool(Enums.ToolLevel.STONE).create();
         new ChiselBlockDataBuilder(Material.DEEPSLATE_REDSTONE_ORE).setReplacement(Material.DEEPSLATE).setDrop(Material.REDSTONE).setMinimumTool(Enums.ToolLevel.IRON).create();
         new ChiselBlockDataBuilder(Material.DEEPSLATE_DIAMOND_ORE).setReplacement(Material.DEEPSLATE).setDrop(Material.DIAMOND).setMinimumTool(Enums.ToolLevel.IRON).create();
-
 
         new ChiselBlockDataBuilder(Material.BLACK_CONCRETE).setReplacement(Material.BLACK_CONCRETE_POWDER).create();
         new ChiselBlockDataBuilder(Material.BLUE_CONCRETE).setReplacement(Material.BLUE_CONCRETE_POWDER).create();
@@ -127,6 +125,46 @@ public class ChiselBlockData {
         new ChiselBlockDataBuilder(Material.OXIDIZED_CUT_COPPER).setReplacement(Material.WEATHERED_CUT_COPPER).create();
         new ChiselBlockDataBuilder(Material.OXIDIZED_CUT_COPPER_SLAB).setReplacement(Material.WEATHERED_CUT_COPPER_SLAB).create();
         new ChiselBlockDataBuilder(Material.OXIDIZED_CUT_COPPER_STAIRS).setReplacement(Material.WEATHERED_CUT_COPPER_STAIRS).create();
+
+        new ChiselBlockDataBuilder(Material.BOOKSHELF).setReplacement(Material.CHISELED_BOOKSHELF).setDrop(Material.BOOK, 3).create();
+
+        new ChiselBlockDataBuilder(Material.BLACK_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.BLACK_DYE).create();
+        new ChiselBlockDataBuilder(Material.BLUE_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.BLUE_DYE).create();
+        new ChiselBlockDataBuilder(Material.BROWN_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.BROWN_DYE).create();
+        new ChiselBlockDataBuilder(Material.CYAN_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.CYAN_DYE).create();
+        new ChiselBlockDataBuilder(Material.GRAY_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.GRAY_DYE).create();
+        new ChiselBlockDataBuilder(Material.GREEN_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.GREEN_DYE).create();
+        new ChiselBlockDataBuilder(Material.LIGHT_GRAY_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.LIGHT_GRAY_DYE).create();
+        new ChiselBlockDataBuilder(Material.LIGHT_BLUE_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.LIGHT_BLUE_DYE).create();
+        new ChiselBlockDataBuilder(Material.LIME_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.LIME_DYE).create();
+        new ChiselBlockDataBuilder(Material.MAGENTA_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.MAGENTA_DYE).create();
+        new ChiselBlockDataBuilder(Material.ORANGE_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.ORANGE_DYE).create();
+        new ChiselBlockDataBuilder(Material.PINK_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.PINK_DYE).create();
+        new ChiselBlockDataBuilder(Material.PURPLE_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.PURPLE_DYE).create();
+        new ChiselBlockDataBuilder(Material.RED_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.RED_DYE).create();
+        new ChiselBlockDataBuilder(Material.YELLOW_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.YELLOW_DYE).create();
+
+        new ChiselBlockDataBuilder(Material.OAK_LOG).setReplacement(Material.STRIPPED_OAK_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.ACACIA_LOG).setReplacement(Material.STRIPPED_ACACIA_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.BIRCH_LOG).setReplacement(Material.STRIPPED_BIRCH_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.CHERRY_LOG).setReplacement(Material.STRIPPED_CHERRY_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.DARK_OAK_LOG).setReplacement(Material.STRIPPED_DARK_OAK_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.JUNGLE_LOG).setReplacement(Material.STRIPPED_JUNGLE_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.MANGROVE_LOG).setReplacement(Material.STRIPPED_MANGROVE_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.SPRUCE_LOG).setReplacement(Material.STRIPPED_SPRUCE_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.WARPED_STEM).setReplacement(Material.STRIPPED_WARPED_STEM).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.CRIMSON_STEM).setReplacement(Material.STRIPPED_CRIMSON_STEM).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+
+        new ChiselBlockDataBuilder(Material.STRIPPED_OAK_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_ACACIA_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_BIRCH_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_CHERRY_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_DARK_OAK_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_JUNGLE_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_MANGROVE_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_SPRUCE_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_WARPED_STEM).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_CRIMSON_STEM).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
     }
 
     // chisel block data
@@ -135,19 +173,25 @@ public class ChiselBlockData {
     private final Material convertInto;
     private final ItemStack drop;
     private final float speedMultiplier;
+    private final Sound soundOverride;
+    private final Float pitchOverride;
 
     public ChiselBlockData(
             Enums.ToolLevel minimumToolLevel,
             Material block,
             Material convertInto,
             ItemStack drop,
-            float speedMultiplier
+            float speedMultiplier,
+            Sound soundOverride,
+            Float pitchOverride
     ) {
         this.minimumToolLevel = minimumToolLevel;
         this.block = block;
         this.convertInto = convertInto;
         this.drop = drop;
         this.speedMultiplier = speedMultiplier;
+        this.soundOverride = soundOverride;
+        this.pitchOverride = pitchOverride;
     }
 
     public Enums.ToolLevel getMinimumToolLevel() {
@@ -168,6 +212,24 @@ public class ChiselBlockData {
 
     public float getSpeedMultiplier() {
         return this.speedMultiplier;
+    }
+
+    public boolean hasSoundOverride() {
+        return this.soundOverride != null;
+    }
+
+    public boolean hasPitchOverride() {
+        return this.pitchOverride != null;
+    }
+
+    @Nullable
+    public Sound getSoundOverride() {
+        return this.soundOverride;
+    }
+
+    @Nullable
+    public Float getPitchOverride() {
+        return this.pitchOverride;
     }
 
     @Nullable
