@@ -360,11 +360,9 @@ public class DFMaterial {
     }
 
     public boolean isSimilar(ItemStack comparison) {
-
-        if (comparison.getType() != base) return false;
-
-        ItemMeta meta = comparison.getItemMeta();
-        return meta.hasCustomModelDataComponent() && Objects.equals(meta.getCustomModelDataComponent().toString(), namedId);
+        String comparisonDFMaterialName = DFItemUtils.getString(comparison, Keys.dfmaterial);
+        if (comparisonDFMaterialName == null) return false;
+        return Objects.equals(comparisonDFMaterialName, this.namedId);
     }
 
     public Material getType() {
