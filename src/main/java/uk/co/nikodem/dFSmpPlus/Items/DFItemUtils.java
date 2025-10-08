@@ -234,7 +234,8 @@ public class DFItemUtils {
                 || item.getType() == Material.WOODEN_AXE
                 || item.getType() == Material.WOODEN_PICKAXE
                 || item.getType() == Material.WOODEN_SHOVEL
-                || item.getType() == Material.WOODEN_HOE;
+                || item.getType() == Material.WOODEN_HOE
+                || DFMaterial.PointyStick.isSimilar(item);
     }
 
     public static boolean isStone(ItemStack item) {
@@ -242,7 +243,8 @@ public class DFItemUtils {
                 || item.getType() == Material.STONE_AXE
                 || item.getType() == Material.STONE_PICKAXE
                 || item.getType() == Material.STONE_SHOVEL
-                || item.getType() == Material.STONE_HOE;
+                || item.getType() == Material.STONE_HOE
+                || DFMaterial.SharpStone.isSimilar(item);
     }
 
     public static boolean isIron(ItemStack item) {
@@ -250,7 +252,8 @@ public class DFItemUtils {
                 || item.getType() == Material.IRON_AXE
                 || item.getType() == Material.IRON_PICKAXE
                 || item.getType() == Material.IRON_SHOVEL
-                || item.getType() == Material.IRON_HOE) && !isCopper(item);
+                || item.getType() == Material.IRON_HOE
+                || DFMaterial.IronChisel.isSimilar(item)) && !isCopper(item);
     }
 
     public static boolean isGolden(ItemStack item) {
@@ -266,7 +269,8 @@ public class DFItemUtils {
                 || item.getType() == Material.DIAMOND_AXE
                 || item.getType() == Material.DIAMOND_PICKAXE
                 || item.getType() == Material.DIAMOND_SHOVEL
-                || item.getType() == Material.DIAMOND_HOE;
+                || item.getType() == Material.DIAMOND_HOE
+                || DFMaterial.DiamondChisel.isSimilar(item);
     }
 
     public static boolean isNetherite(ItemStack item) {
@@ -330,6 +334,13 @@ public class DFItemUtils {
                 || item.getType() == Material.GOLDEN_HOE
                 || item.getType() == Material.DIAMOND_HOE
                 || item.getType() == Material.NETHERITE_HOE;
+    }
+
+    public static boolean isChisel(ItemStack item) {
+        return DFMaterial.PointyStick.isSimilar(item)
+                || DFMaterial.SharpStone.isSimilar(item)
+                || DFMaterial.IronChisel.isSimilar(item)
+                || DFMaterial.DiamondChisel.isSimilar(item);
     }
 
     public static boolean hasFireAspect(ItemStack item) {
