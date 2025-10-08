@@ -151,14 +151,20 @@ public class DFItemUtils {
         return true;
     }
 
-    public static boolean reduceDurability(ItemStack item, int damageAmount) {
+    public static boolean reduceDurability(ItemStack item, int damageAmount, boolean destructive) {
         if (item == null) return false;
         Damageable meta = (Damageable) item.getItemMeta();
         if (meta == null) return false;
-        if (meta.hasDamage()) meta.setDamage(meta.getDamage() + damageAmount);
-        else meta.setDamage(damageAmount);
+        if (meta.hasDamage()) {
+            if (meta.getMaxDamage() - meta.getDamage() <= damageAmount) item.setAmount(item.getAmount() - 1);
+            else meta.setDamage(meta.getDamage() + damageAmount);
+        } else meta.setDamage(damageAmount);
         item.setItemMeta(meta);
         return true;
+    }
+
+    public static boolean reduceDurability(ItemStack item, int damageAmount) {
+        return reduceDurability(item, damageAmount, true);
     }
 
     public static boolean isRealTool(ItemStack item) {
