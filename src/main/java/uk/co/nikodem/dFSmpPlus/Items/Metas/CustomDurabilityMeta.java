@@ -6,7 +6,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
 public class CustomDurabilityMeta implements DFMaterialMeta {
-    public int maxDamage = 0;
+    public final int maxDamage;
 
     public CustomDurabilityMeta(int maxDamage) {
         this.maxDamage = maxDamage;

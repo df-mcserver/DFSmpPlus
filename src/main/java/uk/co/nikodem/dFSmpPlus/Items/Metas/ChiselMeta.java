@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Items.Metas;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.Tool;
 import io.papermc.paper.event.block.BlockBreakProgressUpdateEvent;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -29,22 +30,30 @@ public class ChiselMeta implements DFMaterialMeta {
     public void ItemMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakEvent event) {
 
         Block block = event.getBlock();
-        Location loc = block.getLocation();
+        Location loc = block.getLocation().add(0.5, 0.5, 0.5);
 
         for (ChiselBlockData data : ChiselBlockData.ChiselBlockDataIndex) {
             if (data.getBlockMaterial() == block.getType()) {
                 event.setCancelled(true);
-                block.setType(data.getReplacingMaterial());
-                if (DFItemUtils.isLevelOrAbove(tool, data.getMinimumToolLevel())) block.getWorld().dropItemNaturally(loc.add(new Vector(0.5, 0.5, 0.5)), data.getDrop());
+                ItemStack drop = data.getDrop();
+                boolean autosmelt = DFItemUtils.containsMeta(material, AutoSmeltingMeta.class); // TODO: accessories
 
-                Sound sound = Sound.BLOCK_ANVIL_PLACE;
-                float pitch = 1.75F;
+                if (autosmelt) {
+                    Material autosmeltMat = AutoSmeltable.AutosmeltableChisel.get(drop.getType());
+                    if (autosmeltMat != null) {
+                        drop = ItemStack.of(autosmeltMat);
+                        Sounds.AutoSmelt.playSound(loc);
+                    }
+                }
 
-                if (data.hasSoundOverride()) sound = data.getSoundOverride();
-                if (data.hasPitchOverride()) pitch = data.getPitchOverride();
+                if (DFItemUtils.isLevelOrAbove(tool, data.getMinimumToolLevel())) {
+                    if (data.getReplacingMaterial() != Material.AIR) loc.add(0, 0.5, 0);
+                    block.getWorld().dropItemNaturally(loc, drop);
+                    block.setType(data.getReplacingMaterial());
+                }
 
                 data.getSoundData().playSound(loc);
-                DFItemUtils.reduceDurability(tool, 1);
+                DFItemUtils.reduceDurability(plr, tool, 1, true);
                 break;
             }
         }
@@ -53,7 +62,7 @@ public class ChiselMeta implements DFMaterialMeta {
     @Override
     public void ItemStartMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakProgressUpdateEvent event) {
 
-        //TODO: fix this on bedrock
+        // TODO: fix this on bedrock
         // (animations plays fine, but it doesn't actually break until it normally should
 
         Block block = event.getBlock();

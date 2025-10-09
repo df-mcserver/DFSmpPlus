@@ -20,6 +20,11 @@ public class ChiselBlockData {
     // Chisel Blocks
     public static void createChiselBlockData() {
         new ChiselBlockDataBuilder(Material.STONE).setReplacement(Material.GRAVEL).setDrop(DFMaterial.LooseStone).create();
+        new ChiselBlockDataBuilder(Material.COBBLESTONE).setReplacement(Material.GRAVEL).setDrop(DFMaterial.LooseStone).create();
+        new ChiselBlockDataBuilder(Material.DEEPSLATE).setReplacement(Material.GRAVEL).setDrop(DFMaterial.LooseStone).create();
+        new ChiselBlockDataBuilder(Material.COBBLED_DEEPSLATE).setReplacement(Material.GRAVEL).setDrop(DFMaterial.LooseStone).create();
+        new ChiselBlockDataBuilder(Material.MOSSY_COBBLESTONE).setReplacement(Material.COBBLESTONE).setDrop(Material.VINE).create();
+        new ChiselBlockDataBuilder(Material.COARSE_DIRT).setReplacement(Material.DIRT).setDrop(Material.GRAVEL).create();
         new ChiselBlockDataBuilder(Material.GRAVEL).setReplacement(Material.AIR).setDrop(Material.FLINT).setSpeedMultiplayer(0.25f).create();
 
         // TODO: autosmelt
@@ -145,27 +150,29 @@ public class ChiselBlockData {
         new ChiselBlockDataBuilder(Material.RED_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.RED_DYE).create();
         new ChiselBlockDataBuilder(Material.YELLOW_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.YELLOW_DYE).create();
 
-        new ChiselBlockDataBuilder(Material.OAK_LOG).setReplacement(Material.STRIPPED_OAK_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.ACACIA_LOG).setReplacement(Material.STRIPPED_ACACIA_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.BIRCH_LOG).setReplacement(Material.STRIPPED_BIRCH_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.CHERRY_LOG).setReplacement(Material.STRIPPED_CHERRY_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.DARK_OAK_LOG).setReplacement(Material.STRIPPED_DARK_OAK_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.JUNGLE_LOG).setReplacement(Material.STRIPPED_JUNGLE_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.MANGROVE_LOG).setReplacement(Material.STRIPPED_MANGROVE_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.SPRUCE_LOG).setReplacement(Material.STRIPPED_SPRUCE_LOG).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.WARPED_STEM).setReplacement(Material.STRIPPED_WARPED_STEM).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.CRIMSON_STEM).setReplacement(Material.STRIPPED_CRIMSON_STEM).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.OAK_LOG).setReplacement(Material.STRIPPED_OAK_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.ACACIA_LOG).setReplacement(Material.STRIPPED_ACACIA_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.BIRCH_LOG).setReplacement(Material.STRIPPED_BIRCH_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.CHERRY_LOG).setReplacement(Material.STRIPPED_CHERRY_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.DARK_OAK_LOG).setReplacement(Material.STRIPPED_DARK_OAK_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.JUNGLE_LOG).setReplacement(Material.STRIPPED_JUNGLE_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.MANGROVE_LOG).setReplacement(Material.STRIPPED_MANGROVE_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.SPRUCE_LOG).setReplacement(Material.STRIPPED_SPRUCE_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.PALE_OAK_LOG).setReplacement(Material.STRIPPED_PALE_OAK_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.WARPED_STEM).setReplacement(Material.STRIPPED_WARPED_STEM).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.CRIMSON_STEM).setReplacement(Material.STRIPPED_CRIMSON_STEM).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
 
-        new ChiselBlockDataBuilder(Material.STRIPPED_OAK_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.STRIPPED_ACACIA_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.STRIPPED_BIRCH_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.STRIPPED_CHERRY_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.STRIPPED_DARK_OAK_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.STRIPPED_JUNGLE_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.STRIPPED_MANGROVE_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.STRIPPED_SPRUCE_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.STRIPPED_WARPED_STEM).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
-        new ChiselBlockDataBuilder(Material.STRIPPED_CRIMSON_STEM).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSound(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR).setPitch(1f).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_OAK_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_ACACIA_LOG).setReplacement(Material.AIR).setDrop(Material.ACACIA_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_BIRCH_LOG).setReplacement(Material.AIR).setDrop(Material.BIRCH_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_CHERRY_LOG).setReplacement(Material.AIR).setDrop(Material.CHERRY_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_DARK_OAK_LOG).setReplacement(Material.AIR).setDrop(Material.DARK_OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_JUNGLE_LOG).setReplacement(Material.AIR).setDrop(Material.JUNGLE_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_MANGROVE_LOG).setReplacement(Material.AIR).setDrop(Material.MANGROVE_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_SPRUCE_LOG).setReplacement(Material.AIR).setDrop(Material.SPRUCE_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_PALE_OAK_LOG).setReplacement(Material.AIR).setDrop(Material.PALE_OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_WARPED_STEM).setReplacement(Material.AIR).setDrop(Material.WARPED_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new ChiselBlockDataBuilder(Material.STRIPPED_CRIMSON_STEM).setReplacement(Material.AIR).setDrop(Material.CRIMSON_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
     }
 
     // chisel block data

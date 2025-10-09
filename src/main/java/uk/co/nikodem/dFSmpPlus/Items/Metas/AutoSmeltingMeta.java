@@ -19,6 +19,9 @@ public class AutoSmeltingMeta implements DFMaterialMeta {
     public AutoSmeltingMeta(Map<Material, Material> list) {
         this.list = list;
     }
+    public AutoSmeltingMeta() {
+        this.list = Map.of();
+    }
 
     @Override
     public void ItemMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakEvent event) {

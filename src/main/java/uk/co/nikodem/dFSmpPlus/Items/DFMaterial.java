@@ -347,7 +347,7 @@ public class DFMaterial {
     public static DFMaterial FiridiumChisel = new DFMaterialBuilder(Material.STICK, "firidium_chisel", 1)
             .setDisplayName("Firidium Chisel")
             .addEnchantment(Enchantment.FIRE_ASPECT, 1)
-            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50))
+            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50), new AutoSmeltingMeta())
             .setMaxStack(1)
             .create();
 

@@ -53,4 +53,23 @@ public class AutoSmeltable {
             entry(Material.WARPED_STEM, Material.CHARCOAL),
             entry(Material.CRIMSON_STEM, Material.CHARCOAL)
     );
+
+    public final static Map<Material, Material> AutosmeltableChisel = Map.ofEntries(
+            entry(Material.RAW_IRON, Material.IRON_INGOT),
+            entry(Material.RAW_GOLD, Material.GOLD_INGOT),
+            entry(Material.RAW_COPPER, Material.COPPER_INGOT),
+
+            entry(Material.STICK, Material.CHARCOAL),
+            entry(Material.OAK_PLANKS, Material.CHARCOAL),
+            entry(Material.PALE_OAK_PLANKS, Material.CHARCOAL),
+            entry(Material.ACACIA_PLANKS, Material.CHARCOAL),
+            entry(Material.BIRCH_PLANKS, Material.CHARCOAL),
+            entry(Material.CHERRY_PLANKS, Material.CHARCOAL),
+            entry(Material.DARK_OAK_PLANKS, Material.CHARCOAL),
+            entry(Material.JUNGLE_PLANKS, Material.CHARCOAL),
+            entry(Material.MANGROVE_PLANKS, Material.CHARCOAL),
+            entry(Material.SPRUCE_PLANKS, Material.CHARCOAL),
+            entry(Material.WARPED_PLANKS, Material.CHARCOAL),
+            entry(Material.CRIMSON_PLANKS, Material.CHARCOAL)
+    );
 }

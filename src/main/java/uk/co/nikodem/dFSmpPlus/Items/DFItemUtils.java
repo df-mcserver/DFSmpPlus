@@ -1,12 +1,14 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -15,10 +17,7 @@ import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 
 import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class DFItemUtils {
     public static void addUUID(ItemStack item) {
@@ -151,21 +150,45 @@ public class DFItemUtils {
         return true;
     }
 
-    public static boolean reduceDurability(ItemStack item, int damageAmount, boolean destructive) {
+    public static boolean reduceDurability(Player plr, ItemStack item, int damageAmount, boolean destructive) {
+        // ItemStack::damage doesn't work for me for some reason
+        // cba to report it to paper so im just rewriting my own implementation :p
+        if (plr.getGameMode() == GameMode.CREATIVE) return false;
+
         if (item == null) return false;
         Damageable meta = (Damageable) item.getItemMeta();
         if (meta == null) return false;
         if (!meta.hasMaxDamage()) return false;
-        if (meta.hasDamage()) {
-            if (meta.getMaxDamage() - meta.getDamage() <= damageAmount) item.setAmount(item.getAmount() - 1);
-            else meta.setDamage(meta.getDamage() + damageAmount);
-        } else meta.setDamage(damageAmount);
-        item.setItemMeta(meta);
-        return true;
+
+        int unbreakingLevel = meta.getEnchantLevel(Enchantment.UNBREAKING);
+        float chance = (float) 100 / (unbreakingLevel+1);
+
+        float random_chance = new Random().nextFloat(100);
+
+        if (random_chance <= chance) {
+            if (meta.hasDamage()) {
+                if (meta.getMaxDamage() - meta.getDamage() <= damageAmount) {
+                    item.setAmount(item.getAmount() - 1);
+                    plr.broadcastSlotBreak(EquipmentSlot.HAND);
+                }
+                else meta.setDamage(meta.getDamage() + damageAmount);
+            } else meta.setDamage(damageAmount);
+            item.setItemMeta(meta);
+            return true;
+        }
+
+        return false;
     }
 
-    public static boolean reduceDurability(ItemStack item, int damageAmount) {
-        return reduceDurability(item, damageAmount, true);
+    public static boolean reduceDurability(Player plr, ItemStack item, int damageAmount) {
+        return reduceDurability(plr, item, damageAmount, true);
+    }
+
+    public static boolean containsMeta(DFMaterial material, Class<? extends DFMaterialMeta> clazz) {
+        for (DFMaterialMeta meta : material.getMeta()) {
+            if (meta.getClass() == clazz) return true;
+        }
+        return false;
     }
 
     public static boolean isRealTool(ItemStack item) {
