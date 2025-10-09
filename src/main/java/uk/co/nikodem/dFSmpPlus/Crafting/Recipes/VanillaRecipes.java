@@ -289,7 +289,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setOutput(Material.STONE_PICKAXE)
                         .setCategory(CraftingBookCategory.BUILDING)
                         .setGroup("StonePickaxeLS")
-                        .build(getInfo(), "LEFT")
+                        .build(getInfo(), "RIGHT")
                         .shape("XXX", " IS", " I ")
                         .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
                         .setIngredient('I', Material.STICK)
