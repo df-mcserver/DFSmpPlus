@@ -4,17 +4,19 @@ import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.Tool;
 import io.papermc.paper.event.block.BlockBreakProgressUpdateEvent;
 import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import org.bukkit.util.Vector;
+import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 public class ChiselMeta implements DFMaterialMeta {
     private final float miningSpeed;
@@ -41,7 +43,7 @@ public class ChiselMeta implements DFMaterialMeta {
                 if (data.hasSoundOverride()) sound = data.getSoundOverride();
                 if (data.hasPitchOverride()) pitch = data.getPitchOverride();
 
-                loc.getWorld().playSound(loc, sound, 1F, pitch);
+                data.getSoundData().playSound(loc);
                 DFItemUtils.reduceDurability(tool, 1);
                 break;
             }

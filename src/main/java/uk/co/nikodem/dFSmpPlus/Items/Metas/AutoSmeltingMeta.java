@@ -2,7 +2,6 @@ package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -10,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import java.util.Map;
 
@@ -31,7 +31,7 @@ public class AutoSmeltingMeta implements DFMaterialMeta {
 
             event.setDropItems(false);
 
-            b.getWorld().playSound(plr, Sound.BLOCK_FIRE_EXTINGUISH, 0.3F, 1F);
+            Sounds.AutoSmelt.playSound(plr);
 
             for (ItemStack a : b.getDrops(tool)) {
                 ItemStack newDrop = new ItemStack(drop);

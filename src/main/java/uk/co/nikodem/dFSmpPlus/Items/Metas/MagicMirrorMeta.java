@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import javax.annotation.Nullable;
 import java.util.Date;
@@ -79,7 +80,7 @@ public class MagicMirrorMeta implements DFMaterialMeta {
 
     public void playTeleportingEffect(Location loc) {
         World world = loc.getWorld();
-        world.playSound(loc, Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+        Sounds.Teleport.playSound(loc);
         world.spawnParticle(Particle.GLOW_SQUID_INK, loc, 15);
     }
 
@@ -93,16 +94,12 @@ public class MagicMirrorMeta implements DFMaterialMeta {
     }
 
     public void sendNoBedMessage(Player plr) {
-        PlayFailedSound(plr);
+        Sounds.FailedTeleport.playSoundLocally(plr);
         plr.sendMessage(mm.deserialize("<red>You don't have a bed!"));
     }
 
     public void sendCombatMessage(Player plr) {
-        PlayFailedSound(plr);
+        Sounds.FailedTeleport.playSoundLocally(plr);
         plr.sendMessage(mm.deserialize("<red>You're currently in combat!"));
-    }
-
-    public static void PlayFailedSound(Player plr) {
-        plr.playSound(plr.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 0.3F);
     }
 }

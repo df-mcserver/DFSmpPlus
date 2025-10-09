@@ -17,6 +17,7 @@ import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Constants.VeinMineable;
 import uk.co.nikodem.dFSmpPlus.Items.Metas.*;
 import org.bukkit.Material;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -317,7 +318,7 @@ public class DFMaterial {
 
     public static DFMaterial PointyStick = new DFMaterialBuilder(Material.STICK, "pointy_stick", 1)
             .setDisplayName("Pointy Stick")
-            .addMeta(new SoundOnCraftMeta(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR), new ChiselMeta(1f), new CustomDurabilityMeta(2))
+            .addMeta(new SoundOnCraftMeta(Sounds.WoodCrash), new ChiselMeta(1f), new CustomDurabilityMeta(2))
             .setMaxStack(1)
             .create();
 
@@ -327,7 +328,7 @@ public class DFMaterial {
 
     public static DFMaterial SharpStone = new DFMaterialBuilder(Material.STICK, "sharp_stone", 1)
             .setDisplayName("Sharp Stone")
-            .addMeta(new SoundOnCraftMeta(Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F), new ChiselMeta(3f), new CustomDurabilityMeta(8))
+            .addMeta(new SoundOnCraftMeta(Sounds.StoneClank), new ChiselMeta(3f), new CustomDurabilityMeta(8))
             .setMaxStack(1)
             .create();
 

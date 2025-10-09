@@ -1,6 +1,5 @@
 package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -11,6 +10,7 @@ import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import java.util.Date;
 
@@ -36,7 +36,7 @@ public class LifeCrystalMeta implements DFMaterialMeta {
                     LifeCrystalManager.updatePlayerLifeCrystalsModifier(plr);
 
                     item.setAmount(item.getAmount() - 1);
-                    plr.getWorld().playSound(plr, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1F, 1F);
+                    Sounds.UseLifeCrystal.playSound(plr);
                     plr.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 60, 3));
                 }
             }

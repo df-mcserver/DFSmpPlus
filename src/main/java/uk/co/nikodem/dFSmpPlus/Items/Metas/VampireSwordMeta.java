@@ -3,7 +3,6 @@ package uk.co.nikodem.dFSmpPlus.Items.Metas;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -15,6 +14,7 @@ import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -30,7 +30,7 @@ public class VampireSwordMeta implements DFMaterialMeta {
             ItemStack item = plr.getInventory().getItemInMainHand();
             Integer stage = incrementStage(item);
             if (stage == null) return;
-            playSnapSound(plr);
+            Sounds.WoodCrash.playSound(plr);
             updateLore(item, stage);
             updateModel(item, stage);
         }
@@ -68,10 +68,6 @@ public class VampireSwordMeta implements DFMaterialMeta {
     public void updateModel(ItemStack item, Integer stage) {
         if (stage == null) return;
         DFItemUtils.setModel(item, "vamp_stage"+stage);
-    }
-
-    public void playSnapSound(Player plr) {
-        plr.getWorld().playSound(plr, Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 0.3F, 1F);
     }
 
     public void updateLore(ItemStack item, Integer stage) {

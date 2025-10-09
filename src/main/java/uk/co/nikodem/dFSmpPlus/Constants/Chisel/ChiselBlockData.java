@@ -1,11 +1,12 @@
 package uk.co.nikodem.dFSmpPlus.Constants.Chisel;
 
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.PresetSoundData;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -173,8 +174,7 @@ public class ChiselBlockData {
     private final Material convertInto;
     private final ItemStack drop;
     private final float speedMultiplier;
-    private final Sound soundOverride;
-    private final Float pitchOverride;
+    private final PresetSoundData soundData;
 
     public ChiselBlockData(
             Enums.ToolLevel minimumToolLevel,
@@ -182,16 +182,14 @@ public class ChiselBlockData {
             Material convertInto,
             ItemStack drop,
             float speedMultiplier,
-            Sound soundOverride,
-            Float pitchOverride
+            PresetSoundData soundData
     ) {
         this.minimumToolLevel = minimumToolLevel;
         this.block = block;
         this.convertInto = convertInto;
         this.drop = drop;
         this.speedMultiplier = speedMultiplier;
-        this.soundOverride = soundOverride;
-        this.pitchOverride = pitchOverride;
+        this.soundData = soundData;
     }
 
     public Enums.ToolLevel getMinimumToolLevel() {
@@ -214,22 +212,8 @@ public class ChiselBlockData {
         return this.speedMultiplier;
     }
 
-    public boolean hasSoundOverride() {
-        return this.soundOverride != null;
-    }
-
-    public boolean hasPitchOverride() {
-        return this.pitchOverride != null;
-    }
-
-    @Nullable
-    public Sound getSoundOverride() {
-        return this.soundOverride;
-    }
-
-    @Nullable
-    public Float getPitchOverride() {
-        return this.pitchOverride;
+    public PresetSoundData getSoundData() {
+        return this.soundData;
     }
 
     @Nullable

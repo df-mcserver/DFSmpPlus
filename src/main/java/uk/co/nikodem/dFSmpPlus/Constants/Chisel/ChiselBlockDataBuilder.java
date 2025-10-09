@@ -1,10 +1,11 @@
 package uk.co.nikodem.dFSmpPlus.Constants.Chisel;
 
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.PresetSoundData;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData.ChiselBlockDataIndex;
 
@@ -15,8 +16,7 @@ public class ChiselBlockDataBuilder {
     private Material convertInto;
     private ItemStack drop;
     private Float speedMultiplier;
-    private Sound soundOverride;
-    private Float pitchOverride;
+    private PresetSoundData soundData;
 
     public ChiselBlockDataBuilder(Material block) {
         this.block = block;
@@ -57,19 +57,8 @@ public class ChiselBlockDataBuilder {
         return this;
     }
 
-    public ChiselBlockDataBuilder setSound(Sound sound, float pitch) {
-        this.soundOverride = sound;
-        this.pitchOverride = pitch;
-        return this;
-    }
-
-    public ChiselBlockDataBuilder setSound(Sound sound) {
-        this.soundOverride = sound;
-        return this;
-    }
-
-    public ChiselBlockDataBuilder setPitch(float pitch) {
-        this.pitchOverride = pitch;
+    public ChiselBlockDataBuilder setSoundData(PresetSoundData soundData) {
+        this.soundData = soundData;
         return this;
     }
 
@@ -80,8 +69,7 @@ public class ChiselBlockDataBuilder {
                 convertInto == null ? Material.AIR : convertInto,
                 drop == null ? ItemStack.of(Material.AIR) : drop,
                 speedMultiplier == null ? 1.5F : speedMultiplier,
-                soundOverride,
-                pitchOverride
+                soundData == null ? Sounds.StoneClank : soundData
         );
         ChiselBlockDataIndex.add(data);
         return data;

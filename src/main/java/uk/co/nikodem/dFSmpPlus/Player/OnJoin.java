@@ -3,7 +3,6 @@ package uk.co.nikodem.dFSmpPlus.Player;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +14,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialUpdater;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,13 +62,13 @@ public class OnJoin implements Listener {
         if (atleastOneUpdate) {
             Component msg = MiniMessage.miniMessage().deserialize("<aqua>Some items in your inventory have been updated!");
             plr.sendMessage(msg);
-            plr.playSound(plr, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1F, 1F);
+            Sounds.Notification.playSoundLocally(plr);
         }
 
         if (atleastOneDeletion) {
             Component msg = MiniMessage.miniMessage().deserialize("<red>Some items in your inventory have been removed due to invalid data!");
             plr.sendMessage(msg);
-            plr.playSound(plr, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1F, 1F);
+            Sounds.Notification.playSoundLocally(plr);
         }
     }
 }
