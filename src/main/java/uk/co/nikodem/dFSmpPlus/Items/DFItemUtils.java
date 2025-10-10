@@ -29,6 +29,7 @@ public class DFItemUtils {
                 PersistentDataType.STRING,
                 UUID.randomUUID().toString()
         );
+        item.setItemMeta(meta);
     }
 
     public static void addUUIDIfMarked(ItemStack item) {
