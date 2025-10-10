@@ -7,6 +7,9 @@ commands:
   givedf:
     description: "Gives DFMaterial."
     usage: /givedf {item}
+  dfmaterialview:
+    description: "used for GeyserMC Rainbow"
+    usage: /dfmaterialview
   test:
     description: "Test"
     usage: /test

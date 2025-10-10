@@ -3,7 +3,6 @@ package uk.co.nikodem.dFSmpPlus.Items.Metas;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.Tool;
 import io.papermc.paper.event.block.BlockBreakProgressUpdateEvent;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -11,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-import org.bukkit.util.Vector;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;

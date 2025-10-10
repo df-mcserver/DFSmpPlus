@@ -22,6 +22,8 @@ import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 import javax.annotation.Nullable;
 import java.util.*;
 
+import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createModelKey;
+
 public class DFMaterial {
     // please don't touch lol
     public final static List<DFMaterial> DFMaterialIndex = new ArrayList<>();
@@ -310,6 +312,7 @@ public class DFMaterial {
     public static DFMaterial VampireSword = new DFMaterialBuilder(Material.WOODEN_SWORD, "vampire_sword", 1)
             .setDisplayName("Vampire Sword")
             .overrideCustomModel("vamp_stage0")
+            .addPossibleModels("vamp_stage1", "vamp_stage2", "vamp_stage3", "vamp_stage4", "vamp_stage5", "vamp_stage6", "vamp_stage7", "vamp_stage8", "vamp_stage9")
             .addLore("<aqua>A powerful sword which grows in power with every kill.")
             .markForUUID()
             .addPersistentData(Keys.vampireSwordStage, PersistentDataType.INTEGER, 0)
@@ -384,6 +387,7 @@ public class DFMaterial {
     private final ItemStack item;
     private final int version;
     private final List<DFMaterialMeta> metas;
+    private final List<NamespacedKey> possibleModels;
 
     public ItemStack toItemStack() {
         return item.clone();
@@ -393,6 +397,28 @@ public class DFMaterial {
         ItemStack i = item.clone();
         i.setAmount(amount);
         return i;
+    }
+
+    public ItemStack toItemStack(NamespacedKey model) {
+        ItemStack i = item.clone();
+        ItemMeta meta = i.getItemMeta();
+        meta.setItemModel(model);
+        i.setItemMeta(meta);
+        return i;
+    }
+
+    public ItemStack toItemStack(NamespacedKey model, int amount) {
+        ItemStack i = toItemStack(model);
+        i.setAmount(amount);
+        return i;
+    }
+
+    public ItemStack toItemStack(String model, int amount) {
+        return toItemStack(createModelKey(model), amount);
+    }
+
+    public ItemStack toItemStack(String model) {
+        return toItemStack(createModelKey(model));
     }
 
     public boolean isSimilar(ItemStack comparison) {
@@ -429,7 +455,15 @@ public class DFMaterial {
         return this.metas;
     }
 
-    public Boolean hasMeta() {
+    public List<NamespacedKey> getPossibleModels() {
+        return this.possibleModels;
+    }
+
+    public boolean hasPossibleModels() {
+        return !this.possibleModels.isEmpty();
+    }
+
+    public boolean hasMeta() {
         return !this.metas.isEmpty();
     }
 
@@ -450,9 +484,11 @@ public class DFMaterial {
             List<DFMaterialMeta> dfmetas,
             boolean hasCustomModel,
             NamespacedKey customModel,
-            @Nullable Integer maxStack
+            @Nullable Integer maxStack,
+            List<NamespacedKey> possibleModels
     )
     {
+        this.possibleModels = possibleModels;
         this.version = version;
         this.markedForUuid = markedForUuid;
         this.namedId = namedId;

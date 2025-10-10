@@ -43,6 +43,8 @@ public class DFMaterialBuilder {
 
     private Integer maxStack = null;
 
+    private List<NamespacedKey> possibleModels = new ArrayList<>();
+
     public DFMaterialBuilder(Material base, String namedId, int version) {
         this.base = base;
         this.namedId = namedId;
@@ -164,6 +166,18 @@ public class DFMaterialBuilder {
         return this;
     }
 
+    public DFMaterialBuilder addPossibleModels(String... models) {
+        for (String model : models) {
+           this.possibleModels.add(createModelKey(model));
+        }
+        return this;
+    }
+
+    public DFMaterialBuilder addPossibleModels(NamespacedKey... models) {
+        this.possibleModels.addAll(Arrays.asList(models));
+        return this;
+    }
+
     public DFMaterial create() {
         DFMaterial newMaterial = new DFMaterial(
                 base,
@@ -182,7 +196,8 @@ public class DFMaterialBuilder {
                 metas,
                 hasCustomModel,
                 overrideModel == null ? createModelKey(namedId) : overrideModel,
-                maxStack
+                maxStack,
+                possibleModels
         );
         DFMaterial.DFMaterialIndex.add(newMaterial);
         return newMaterial;
