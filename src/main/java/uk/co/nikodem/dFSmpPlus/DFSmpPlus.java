@@ -12,6 +12,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipes.SmithingTable.SmithingTabl
 import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.*;
+import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Entities.OnEntityPickUpItem;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
 import uk.co.nikodem.dFSmpPlus.Player.*;
@@ -52,6 +53,7 @@ public final class DFSmpPlus extends JavaPlugin {
 
         RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove
         ChiselBlockData.createChiselBlockData();
+        DFCustomDrops.createCustomDropData();
 
         // Command initiation
         Objects.requireNonNull(getCommand("givedf")).setExecutor(new GiveDF());
@@ -70,6 +72,7 @@ public final class DFSmpPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnEntityPickUpItem(), this);
         getServer().getPluginManager().registerEvents(new SmithingTableEvents(), this);
         getServer().getPluginManager().registerEvents(new PopulateChests(), this);
+        getServer().getPluginManager().registerEvents(new uk.co.nikodem.dFSmpPlus.Entities.OnDeath(this), this);
 
         getServer().getPluginManager().registerEvents(new DFMaterialEvents(), this);
         getServer().getPluginManager().registerEvents(new DFArmourSetEvents(), this);
