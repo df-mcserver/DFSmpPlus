@@ -4,6 +4,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Constants.EntityBucketData;
@@ -31,5 +32,10 @@ public class EntityBucketMeta implements DFMaterialMeta {
                 plr.getInventory().setItemInMainHand(eggItem);
             }
         }
+    }
+
+    @Override
+    public void BucketUseEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {
+        event.setCancelled(true);
     }
 }

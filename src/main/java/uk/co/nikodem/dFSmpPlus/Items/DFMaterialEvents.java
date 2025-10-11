@@ -11,10 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 
 public class DFMaterialEvents implements Listener {
@@ -131,6 +128,23 @@ public class DFMaterialEvents implements Listener {
                 for (DFMaterialMeta meta : material.getMeta()) {
                     meta.ItemStartMine(plr, material, tool, e);
                 }
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void BucketUseEvent(PlayerBucketFillEvent e) {
+        Player plr = e.getPlayer();
+
+        ItemStack tool = plr.getInventory().getItemInMainHand();
+
+        DFMaterial material = DFItemUtils.getDFMaterial(tool);
+
+        if (material == null) return;
+
+        if (material.hasMeta()) {
+            for (DFMaterialMeta meta : material.getMeta()) {
+                meta.BucketUseEvent(plr, material, tool, e);
             }
         }
     }

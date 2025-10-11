@@ -7,10 +7,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
-import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 
@@ -25,6 +22,7 @@ public interface DFMaterialMeta {
     default void ItemCrafted(DFMaterial material, ItemStack item, CraftItemEvent event) {};
     default void ItemCreated(DFMaterial material, ItemStack item) {};
     default void ItemKilledEntity(Player plr, DFMaterial material, Entity target, EntityDeathEvent event) {};
+    default void BucketUseEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {};
 
     default Enums.UpdateResult ItemUpdated(DFMaterial material, ItemStack item) { return Enums.UpdateResult.NULL; };
 }
