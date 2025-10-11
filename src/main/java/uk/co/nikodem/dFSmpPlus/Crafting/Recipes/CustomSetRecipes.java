@@ -4,12 +4,12 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.recipe.CookingBookCategory;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipes.SmithingTable.SmithingTableItem;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.BlastFurnaceRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.FurnaceRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.SmithingTableRecipeBuilder;
@@ -157,6 +157,75 @@ public class CustomSetRecipes extends CraftingTemplate {
                         .setMaterial(DFMaterial.FiridiumIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumSword)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumAxe)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "Smelt")
+        );
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumPickaxe)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumShovel)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumHoe)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumHelmet)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumChestplate)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumLeggings)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumBoots)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumChisel)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "Smelt")
         );
     }
 
@@ -378,6 +447,75 @@ public class CustomSetRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .setGroup("CopperHoe")
                         .build(getInfo(), "Right")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.CopperSword)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.CopperAxe)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "Smelt")
+        );
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.CopperPickaxe)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.CopperHoe)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.CopperShovel)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.CopperHelmet)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.CopperChestplate)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.CopperLeggings)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.CopperBoots)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "Smelt")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(DFMaterial.CopperChisel)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "Smelt")
         );
     }
 
