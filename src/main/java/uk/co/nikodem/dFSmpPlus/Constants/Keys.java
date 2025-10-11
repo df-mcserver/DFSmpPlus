@@ -12,6 +12,8 @@ public class Keys {
     public static NamespacedKey vampireSwordDamage = createDefaultKey("vampire_sword_damage");
     public static NamespacedKey lifecrystal = createDefaultKey("lifecrystal");
 
+    public static NamespacedKey targetDummy = createDefaultKey("target_dummy");
+
     public static NamespacedKey createDefaultKey(String key) {
         return new NamespacedKey(
                 "dfsmpplus",
@@ -32,5 +34,12 @@ public class Keys {
 
     public static NamespacedKey createModelKey(String key) {
         return createResourceKey(key); // i thought this would be different, but im keeping it cuz im too lazy to revert that one line of code
+    }
+
+    public static NamespacedKey createMinecraftKey(String key) {
+        return new NamespacedKey(
+                "minecraft",
+                key
+        );
     }
 }

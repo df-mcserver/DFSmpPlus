@@ -151,6 +151,17 @@ public class DFItemUtils {
         return true;
     }
 
+    public static boolean setDamage(ItemStack item, int damage) {
+        if (item == null) return false;
+        Damageable meta = (Damageable) item.getItemMeta();
+        if (meta == null) return false;
+        if (!meta.hasMaxDamage()) return false;
+
+        meta.setDamage(damage);
+        item.setItemMeta(meta);
+        return true;
+    }
+
     public static boolean reduceDurability(Player plr, ItemStack item, int damageAmount, boolean destructive) {
         // ItemStack::damage doesn't work for me for some reason
         // cba to report it to paper so im just rewriting my own implementation :p

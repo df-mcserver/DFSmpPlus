@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.SetBonuses;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -10,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class DFArmourSetEvents implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerAttack(EntityDamageByEntityEvent e) {
         Entity damager = e.getDamager();
         Entity victim = e.getEntity();
@@ -39,7 +40,7 @@ public class DFArmourSetEvents implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void PlayerHunger(FoodLevelChangeEvent e) {
         Player plr = (Player) e.getEntity();
 

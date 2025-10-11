@@ -22,6 +22,7 @@ import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 import javax.annotation.Nullable;
 import java.util.*;
 
+import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createMinecraftKey;
 import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createModelKey;
 
 public class DFMaterial {
@@ -376,6 +377,14 @@ public class DFMaterial {
             .setDisplayName("Obsidian Chisel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianToolMeta())
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial TargetDummy = new DFMaterialBuilder(Material.STICK, "target_dummy", 1)
+            .setDisplayName("Target Dummy")
+            .addLore("<aqua>Allows you to check how much damage you're doing!")
+            .overrideCustomModel(createMinecraftKey("armor_stand"))
+            .addMeta(new TargetDummyMeta(), new CustomDurabilityMeta(5000))
             .setMaxStack(1)
             .create();
 

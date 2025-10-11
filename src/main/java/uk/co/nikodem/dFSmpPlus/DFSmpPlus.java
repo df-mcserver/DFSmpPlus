@@ -72,6 +72,8 @@ public final class DFSmpPlus extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnEntityPickUpItem(), this);
         getServer().getPluginManager().registerEvents(new SmithingTableEvents(), this);
         getServer().getPluginManager().registerEvents(new PopulateChests(), this);
+        getServer().getPluginManager().registerEvents(new uk.co.nikodem.dFSmpPlus.Entities.OnHit(), this);
+        getServer().getPluginManager().registerEvents(new uk.co.nikodem.dFSmpPlus.Entities.OnInteract(), this);
         getServer().getPluginManager().registerEvents(new uk.co.nikodem.dFSmpPlus.Entities.OnDeath(this), this);
 
         getServer().getPluginManager().registerEvents(new DFMaterialEvents(), this);
