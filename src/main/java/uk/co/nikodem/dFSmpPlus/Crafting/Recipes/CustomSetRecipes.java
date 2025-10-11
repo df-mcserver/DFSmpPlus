@@ -163,69 +163,69 @@ public class CustomSetRecipes extends CraftingTemplate {
                 new FurnaceRecipeBuilder()
                         .setSource(DFMaterial.FiridiumSword)
                         .setOutput(DFMaterial.FiridiumNugget)
-                        .build(getInfo(), "SmeltSword")
+                        .build(getInfo(), "FSmeltSword")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setSource(DFMaterial.FiridiumAxe)
                         .setOutput(DFMaterial.FiridiumNugget)
-                        .build(getInfo(), "SmeltAxe")
+                        .build(getInfo(), "FSmeltAxe")
         );
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setSource(DFMaterial.FiridiumPickaxe)
                         .setOutput(DFMaterial.FiridiumNugget)
-                        .build(getInfo(), "SmeltPickaxe")
+                        .build(getInfo(), "FSmeltPickaxe")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setSource(DFMaterial.FiridiumShovel)
                         .setOutput(DFMaterial.FiridiumNugget)
-                        .build(getInfo(), "SmeltShovel")
+                        .build(getInfo(), "FSmeltShovel")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setSource(DFMaterial.FiridiumHoe)
                         .setOutput(DFMaterial.FiridiumNugget)
-                        .build(getInfo(), "SmeltHoe")
+                        .build(getInfo(), "FSmeltHoe")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setSource(DFMaterial.FiridiumHelmet)
                         .setOutput(DFMaterial.FiridiumNugget)
-                        .build(getInfo(), "SmeltHelmet")
+                        .build(getInfo(), "FSmeltHelmet")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setSource(DFMaterial.FiridiumChestplate)
                         .setOutput(DFMaterial.FiridiumNugget)
-                        .build(getInfo(), "SmeltChestplate")
+                        .build(getInfo(), "FSmeltChestplate")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setSource(DFMaterial.FiridiumLeggings)
                         .setOutput(DFMaterial.FiridiumNugget)
-                        .build(getInfo(), "SmeltLeggings")
+                        .build(getInfo(), "FSmeltLeggings")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setSource(DFMaterial.FiridiumBoots)
                         .setOutput(DFMaterial.FiridiumNugget)
-                        .build(getInfo(), "SmeltBoots")
+                        .build(getInfo(), "FSmeltBoots")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setSource(DFMaterial.FiridiumChisel)
                         .setOutput(DFMaterial.FiridiumNugget)
-                        .build(getInfo(), "SmeltChisel")
+                        .build(getInfo(), "FSmeltChisel")
         );
     }
 
