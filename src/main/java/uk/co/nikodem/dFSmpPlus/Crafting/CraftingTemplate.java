@@ -8,6 +8,7 @@ import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public abstract class CraftingTemplate {
     public abstract List<Recipe> populateRecipes(); // the function where the recipes are made
@@ -23,15 +24,19 @@ public abstract class CraftingTemplate {
         this.info = new RecipeTemplateInfo(getRecipesID(), namespacedKeysToDiscover);
 
         List<Recipe> recipesToAdd = populateRecipes(); // add the recipes to the list
+        int amnt = 0;
 
         for (Recipe recipe : recipesToAdd) { // add the recipes from the list :)
             try {
                 Bukkit.addRecipe(recipe);
+                amnt++;
             } catch (IllegalStateException e) {
                 plugin.getLogger().severe("Duplicate recipe! Cannot add this recipe!");
                 plugin.getLogger().severe("Recipe "+recipe.toString()+" | Result: "+recipe.getResult());
             }
         }
+
+        plugin.getLogger().log(Level.INFO, "Added "+amnt+"/"+recipesToAdd.size()+" \""+this.getClass().getSimpleName()+"\" recipes");
     }
 
 

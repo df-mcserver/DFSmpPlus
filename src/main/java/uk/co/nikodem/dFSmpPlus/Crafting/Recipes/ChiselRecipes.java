@@ -82,7 +82,7 @@ public class ChiselRecipes extends CraftingTemplate {
 
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
-                        .setOutput(DFMaterial.IronChisel)
+                        .setOutput(DFMaterial.GoldChisel)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "GoldChisel")
                         .shape("XX", "XX")

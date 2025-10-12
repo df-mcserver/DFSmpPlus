@@ -12,6 +12,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipes.SmithingTable.SmithingTabl
 import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.*;
+import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets.*;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Entities.OnEntityPickUpItem;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
@@ -45,11 +46,19 @@ public final class DFSmpPlus extends JavaPlugin {
 
         craftingTemplateList = List.of(
                 new VanillaRecipes(this),
-                new CustomSetRecipes(this),
                 new OtherCustomItemRecipes(this),
                 new CoralRecipes(this),
-                new ChiselRecipes(this)
+                new ChiselRecipes(this),
+
+                // customset
+                new CopperRecipes(this),
+                new FiridiumRecipes(this),
+                new SculkRecipes(this),
+                new ObsidianRecipes(this),
+                new VeinRecipes(this)
         );
+
+        new HiddenRecipes(this);
 
         RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove
         ChiselBlockData.createChiselBlockData();
