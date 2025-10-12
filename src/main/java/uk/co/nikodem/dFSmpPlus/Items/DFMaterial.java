@@ -388,6 +388,12 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
+    public static DFMaterial ComicallyLargeShovel = new DFMaterialBuilder(Material.IRON_SHOVEL, "comically_large_shovel", 1)
+            .setDisplayName("Comically Large Shovel")
+            .addLore("<aqua>thank you kornel")
+            .addMeta(new CustomDurabilityMeta(1), new SoundOnCraftMeta(Sounds.VeryLoudShovel), new ComicallyLargeItemMeta())
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

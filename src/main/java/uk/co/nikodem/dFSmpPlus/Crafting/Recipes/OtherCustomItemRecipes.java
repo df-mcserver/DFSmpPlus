@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.Recipes;
 
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
@@ -62,6 +63,15 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "nwtonwb")
                         .shape("XXX", "XXX", "XXX")
                         .setIngredient('X', new RecipeChoice.ExactChoice(new ItemStack(Material.NETHER_WART)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.ComicallyLargeShovel)
+                        .build(getInfo(), "cls")
+                        .shape("X", "S", "S")
+                        .setIngredient('X', Material.IRON_BLOCK)
+                        .setIngredient('S', new RecipeChoice.MaterialChoice(Tag.PLANKS))
         );
     }
 

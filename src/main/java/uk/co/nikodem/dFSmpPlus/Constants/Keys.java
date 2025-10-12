@@ -13,6 +13,7 @@ public class Keys {
     public static NamespacedKey lifecrystal = createDefaultKey("lifecrystal");
 
     public static NamespacedKey targetDummy = createDefaultKey("target_dummy");
+    public static NamespacedKey comicallyLarge = createDefaultKey("comically_large");
 
     public static NamespacedKey createDefaultKey(String key) {
         return new NamespacedKey(
