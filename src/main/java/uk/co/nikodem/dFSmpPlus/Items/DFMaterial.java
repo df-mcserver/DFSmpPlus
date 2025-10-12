@@ -384,7 +384,7 @@ public class DFMaterial {
             .setDisplayName("Target Dummy")
             .addLore("<aqua>Allows you to check how much damage you're doing!")
             .overrideCustomModel(createMinecraftKey("armor_stand"))
-            .addMeta(new TargetDummyMeta(), new CustomDurabilityMeta(5000))
+            .addMeta(new TargetDummyMeta())
             .setMaxStack(1)
             .create();
 
