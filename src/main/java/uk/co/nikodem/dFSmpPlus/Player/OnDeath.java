@@ -12,7 +12,10 @@ public class OnDeath implements Listener {
     public void OnDeath(PlayerDeathEvent e) {
         if (e.getPlayer().getPersistentDataContainer().has(Keys.comicallyLarge)) {
             String blockName = e.getPlayer().getPersistentDataContainer().get(Keys.comicallyLarge, PersistentDataType.STRING);
-            e.deathMessage(Component.text(e.getPlayer().getName()+" had a heart attack whilst mining ").append(Component.translatable(blockName)));
+            if (blockName == null) e.deathMessage(Component.text(e.getPlayer().getName()+" had a heart attack whilst mining a block"));
+            else e.deathMessage(Component.text(e.getPlayer().getName()+" had a heart attack whilst mining ").append(Component.translatable(blockName)));
+
+            e.getPlayer().getPersistentDataContainer().remove(Keys.comicallyLarge);
         }
     }
 }
