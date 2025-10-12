@@ -394,6 +394,24 @@ public class DFMaterial {
             .addMeta(new CustomDurabilityMeta(1), new SoundOnCraftMeta(Sounds.VeryLoudShovel), new ComicallyLargeItemMeta())
             .create();
 
+    public static DFMaterial LocatorCompass = new DFMaterialBuilder(Material.COMPASS, "locator_compass", 1)
+            .setDisplayName("Locator Compass")
+            .addLore("<aqua>A compass which will try to point you to a destination")
+            .addMeta(new LocatorCompassMeta())
+            .setMaxStack(1)
+            // .addLore("<red>Please insert a module.")
+            .create();
+
+    public static DFMaterial LocatorCompassModule = new DFMaterialBuilder(Material.STICK, "locator_compass_module_base", 1)
+            .setDisplayName("Empty Compass Module")
+            .create();
+
+    public static DFMaterial EndLocatorCompassModule = new DFMaterialBuilder(Material.STICK, "locator_compass_end_module", 1)
+            .setDisplayName("End Locator Compass Module")
+            .addLore("<aqua>Holds the location of a nearby stronghold.")
+            .addMeta(new LocatorCompassModuleMeta())
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

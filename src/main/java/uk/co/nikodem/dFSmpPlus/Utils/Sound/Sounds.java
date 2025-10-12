@@ -13,4 +13,5 @@ public class Sounds {
     public static PresetSoundData Teleport = new PresetSoundData(Sound.ENTITY_ENDERMAN_TELEPORT, 1F, 1F);
     public static PresetSoundData FailedTeleport = new PresetSoundData(Sound.ENTITY_ENDERMAN_TELEPORT, 1F, 0.3F);
     public static PresetSoundData BrokenTool = new PresetSoundData(Sound.ENTITY_ITEM_BREAK, 1F, 1F);
+    public static PresetSoundData PutModuleIntoCompass = new PresetSoundData(Sound.ITEM_BUNDLE_INSERT, 1F, 1F);
 }
