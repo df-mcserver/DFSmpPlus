@@ -33,6 +33,9 @@ public abstract class CraftingTemplate {
             } catch (IllegalStateException e) {
                 plugin.getLogger().severe("Duplicate recipe! Cannot add this recipe!");
                 plugin.getLogger().severe("Recipe "+recipe.toString()+" | Result: "+recipe.getResult());
+            } catch (IllegalArgumentException e) {
+                plugin.getLogger().severe("Invalid recipe! Cannot add this recipe!");
+                e.printStackTrace();
             }
         }
 
