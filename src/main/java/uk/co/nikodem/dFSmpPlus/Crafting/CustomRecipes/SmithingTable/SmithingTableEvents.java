@@ -17,12 +17,11 @@ import java.util.Map;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.MagicNumbers.*;
 
-public class SmithingTableEvents implements Listener {
+public class SmithingTableEvents {
 
     public static List<SmithingTableRecipe> recipes = new ArrayList<>();
 
-    @EventHandler
-    void onSmithingTableEvent(PrepareSmithingEvent event) {
+    public static void onSmithingTableEvent(PrepareSmithingEvent event) {
         SmithingInventory inventory = event.getInventory();
 
         // use

@@ -1,8 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Entities;
 
 import org.bukkit.Material;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
@@ -15,9 +13,8 @@ import java.util.Objects;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Enums.UpdateResult.*;
 
-public class OnEntityPickUpItem implements Listener {
-    @EventHandler
-    public void OnEntityPickUpItem(EntityPickupItemEvent e) {
+public class OnEntityPickUpItem {
+    public static void OnEntityPickUpItem(EntityPickupItemEvent e) {
         ItemStack i = e.getItem().getItemStack();
 
         if (i.getType() == Material.BUNDLE) {

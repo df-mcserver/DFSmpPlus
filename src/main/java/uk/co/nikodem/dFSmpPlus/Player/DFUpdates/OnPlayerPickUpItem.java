@@ -15,9 +15,8 @@ import java.util.Objects;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Enums.UpdateResult.*;
 
-public class OnPlayerPickUpItem implements Listener {
-    @EventHandler
-    public void OnPlayerPickUpItem(PlayerAttemptPickupItemEvent e) {
+public class OnPlayerPickUpItem {
+    public static void OnPlayerPickUpItem(PlayerAttemptPickupItemEvent e) {
         ItemStack i = e.getItem().getItemStack();
 
         if (i.getType() == Material.BUNDLE) {

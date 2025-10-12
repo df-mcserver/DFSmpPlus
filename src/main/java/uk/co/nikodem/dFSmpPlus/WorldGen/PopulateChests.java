@@ -14,12 +14,11 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import java.util.List;
 import java.util.Random;
 
-public class PopulateChests implements Listener {
+public class PopulateChests {
 
-    private final Random rand = new Random();
+    private static final Random rand = new Random();
 
-    @EventHandler
-    public void PopulateChests(LootGenerateEvent e) {
+    public static void PopulateChests(LootGenerateEvent e) {
         InventoryHolder holder = e.getInventoryHolder();
         if (holder instanceof Chest chest) {
             // chest inv

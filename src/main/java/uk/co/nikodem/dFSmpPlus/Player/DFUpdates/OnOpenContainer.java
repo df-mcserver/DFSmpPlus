@@ -1,8 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Player.DFUpdates;
 
 import org.bukkit.Material;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -16,9 +14,8 @@ import java.util.Objects;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Enums.UpdateResult.*;
 
-public class OnOpenContainer implements Listener {
-    @EventHandler
-    public void OnOpenContainer(InventoryOpenEvent e) {
+public class OnOpenContainer {
+    public static void OnOpenContainer(InventoryOpenEvent e) {
         Inventory inv = e.getInventory();
 
         for (ItemStack i : inv) {

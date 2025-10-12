@@ -5,18 +5,14 @@ import org.bukkit.damage.DamageSource;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 
-public class DFMaterialEvents implements Listener {
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void ItemPickup(PlayerAttemptPickupItemEvent e) {
+public class DFMaterialEvents {
+    public static void ItemPickup(PlayerAttemptPickupItemEvent e) {
         Item itemEntity = e.getItem();
         ItemStack item = itemEntity.getItemStack();
 
@@ -31,8 +27,7 @@ public class DFMaterialEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void ItemAttack(EntityDamageByEntityEvent e) {
+    public static void ItemAttack(EntityDamageByEntityEvent e) {
         Entity damager = e.getDamager();
 
         if (damager instanceof Player plr) {
@@ -49,8 +44,7 @@ public class DFMaterialEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void ItemDrop(PlayerDropItemEvent e) {
+    public static void ItemDrop(PlayerDropItemEvent e) {
         Player plr = e.getPlayer();
 
         ItemStack item = e.getItemDrop().getItemStack();
@@ -65,8 +59,7 @@ public class DFMaterialEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void ItemUse(PlayerInteractEvent e) {
+    public static void ItemUse(PlayerInteractEvent e) {
         Player plr = e.getPlayer();
         ItemStack item = e.getItem();
 
@@ -81,8 +74,7 @@ public class DFMaterialEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void ItemUseOnEntity(PlayerInteractEntityEvent e) {
+    public static void ItemUseOnEntity(PlayerInteractEntityEvent e) {
         Player plr = e.getPlayer();
         ItemStack item = plr.getInventory().getItemInMainHand();
 
@@ -97,8 +89,7 @@ public class DFMaterialEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void ItemMine(BlockBreakEvent e) {
+    public static void ItemMine(BlockBreakEvent e) {
         Player plr = e.getPlayer();
         ItemStack tool = plr.getInventory().getItemInMainHand();
 
@@ -113,8 +104,7 @@ public class DFMaterialEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void ItemStartMining(BlockBreakProgressUpdateEvent e) {
+    public static void ItemStartMining(BlockBreakProgressUpdateEvent e) {
         Entity entity = e.getEntity();
 
         if (entity instanceof Player plr) {
@@ -132,8 +122,7 @@ public class DFMaterialEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void BucketUseEvent(PlayerBucketFillEvent e) {
+    public static void BucketUseEvent(PlayerBucketFillEvent e) {
         Player plr = e.getPlayer();
 
         ItemStack tool = plr.getInventory().getItemInMainHand();
@@ -149,8 +138,7 @@ public class DFMaterialEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void ItemKillEntity(EntityDeathEvent e) {
+    public static void ItemKillEntity(EntityDeathEvent e) {
         Entity target = e.getEntity();
         DamageSource source = e.getDamageSource();
 

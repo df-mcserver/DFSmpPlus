@@ -4,8 +4,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
@@ -22,10 +20,8 @@ import java.util.Objects;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Enums.UpdateResult.*;
 
-public class OnJoin implements Listener {
-
-    @EventHandler
-    public void OnJoin(PlayerJoinEvent e) {
+public class OnJoin {
+    public static void OnJoin(PlayerJoinEvent e) {
         Player plr = e.getPlayer();
 
         for (CraftingTemplate template : DFSmpPlus.craftingTemplateList) {

@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import uk.co.nikodem.dFSmpPlus.Commands.DFMaterialView;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
@@ -15,6 +16,16 @@ import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets.*;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Entities.OnEntityPickUpItem;
+import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDamageByEntityEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDeathEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityPickupItemEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Entity.Food.FoodLevelChangeEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Player.*;
+import uk.co.nikodem.dFSmpPlus.Events.Player.Block.BlockBreakEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Player.Block.BlockBreakProgressUpdateEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.CraftItemEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.InventoryOpenEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.PrepareSmithingEvent;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
 import uk.co.nikodem.dFSmpPlus.Player.*;
 import uk.co.nikodem.dFSmpPlus.Player.DFUpdates.OnOpenContainer;
@@ -69,25 +80,34 @@ public final class DFSmpPlus extends JavaPlugin {
         Objects.requireNonNull(getCommand("givedf")).setTabCompleter(new GiveDFTabCompleter());
         Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
 
+        List<Listener> eventListeners = List.of(
+                new FoodLevelChangeEvent(),
+                new EntityDamageByEntityEvent(),
+                new EntityPickupItemEvent(),
+                new EntityDeathEvent(this),
+
+                new BlockBreakEvent(),
+                new BlockBreakProgressUpdateEvent(),
+
+                new CraftItemEvent(),
+                new InventoryOpenEvent(),
+                new PrepareSmithingEvent(),
+
+                new PlayerAttemptPickupItemEvent(),
+                new PlayerBucketFillEvent(),
+                new PlayerDeathEvent(),
+                new PlayerDropItemEvent(),
+                new PlayerInteractAtEntityEvent(),
+                new PlayerInteractEntityEvent(),
+                new PlayerInteractEvent(),
+                new PlayerJoinEvent()
+        );
+
+        for (Listener listener : eventListeners) {
+            getServer().getPluginManager().registerEvents(listener, this);
+        }
+
         // Event initiation
-        getServer().getPluginManager().registerEvents(new OnCraft(), this);
-        getServer().getPluginManager().registerEvents(new OnJoin(), this);
-        getServer().getPluginManager().registerEvents(new OnMove(), this);
-        getServer().getPluginManager().registerEvents(new OnDeath(), this);
-        getServer().getPluginManager().registerEvents(new OnRespawn(), this);
-        getServer().getPluginManager().registerEvents(new OnPlayerPickUpItem(), this);
-        getServer().getPluginManager().registerEvents(new OnOpenContainer(), this);
-        getServer().getPluginManager().registerEvents(new OnEat(), this);
-        getServer().getPluginManager().registerEvents(new OnEntityPickUpItem(), this);
-        getServer().getPluginManager().registerEvents(new SmithingTableEvents(), this);
-        getServer().getPluginManager().registerEvents(new PopulateChests(), this);
-        getServer().getPluginManager().registerEvents(new uk.co.nikodem.dFSmpPlus.Entities.OnHit(), this);
-        getServer().getPluginManager().registerEvents(new uk.co.nikodem.dFSmpPlus.Entities.OnInteract(), this);
-        getServer().getPluginManager().registerEvents(new uk.co.nikodem.dFSmpPlus.Entities.OnDeath(this), this);
-
-        getServer().getPluginManager().registerEvents(new DFMaterialEvents(), this);
-        getServer().getPluginManager().registerEvents(new DFArmourSetEvents(), this);
-
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             for (Player plr : Bukkit.getOnlinePlayers()) {
                 DFArmourSetEvents.ApplyRunPerSecond(plr);

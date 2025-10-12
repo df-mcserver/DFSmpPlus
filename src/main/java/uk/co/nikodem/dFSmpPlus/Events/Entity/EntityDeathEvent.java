@@ -1,23 +1,25 @@
-package uk.co.nikodem.dFSmpPlus.Entities;
+package uk.co.nikodem.dFSmpPlus.Events.Entity;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
+import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
 
-public class OnDeath implements Listener {
-    private DFSmpPlus plugin;
+public class EntityDeathEvent implements Listener {
+    private final DFSmpPlus plugin;
 
-    public OnDeath(DFSmpPlus plugin) {
+    public EntityDeathEvent(DFSmpPlus plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
-    public void OnDeath(EntityDeathEvent event) {
+    public void EntityDeathEvent(org.bukkit.event.entity.EntityDeathEvent event) {
+        DFMaterialEvents.ItemKillEntity(event);
+
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             for (DFCustomDrops drops : DFCustomDrops.CustomDropsMap) {
                 LivingEntity entity = event.getEntity();

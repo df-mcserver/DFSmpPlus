@@ -9,10 +9,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class DFArmourSetEvents implements Listener {
-
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void PlayerAttack(EntityDamageByEntityEvent e) {
+public class DFArmourSetEvents {
+    public static void PlayerAttack(EntityDamageByEntityEvent e) {
         Entity damager = e.getDamager();
         Entity victim = e.getEntity();
 
@@ -40,8 +38,7 @@ public class DFArmourSetEvents implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void PlayerHunger(FoodLevelChangeEvent e) {
+    public static void PlayerHunger(FoodLevelChangeEvent e) {
         Player plr = (Player) e.getEntity();
 
         DFArmourSet armourSet = DFArmourSetUtils.getPlayersArmourSet(plr);
