@@ -8,11 +8,8 @@ import org.bukkit.inventory.recipe.CookingBookCategory;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipes.SmithingTable.SmithingTableItem;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.BlastFurnaceRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.FurnaceRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.*;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.SmithingTableRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithIngredientReplace;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
@@ -157,6 +154,13 @@ public class CustomSetRecipes extends CraftingTemplate {
                         .setMaterial(DFMaterial.FiridiumIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
+        );
+
+        recipesToAdd.add(
+                new BlastFurnaceRecipeBuilder()
+                        .setSource(DFMaterial.FiridiumIngot)
+                        .setOutput(DFMaterial.FiridiumNugget)
+                        .build(getInfo(), "FSmeltIngot")
         );
 
         recipesToAdd.add(
@@ -358,6 +362,23 @@ public class CustomSetRecipes extends CraftingTemplate {
 
     public void addCopper(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.CopperNugget)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "CopperNugget")
+                        .addIngredient(Material.COPPER_INGOT)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.COPPER_INGOT)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "CopperIngot")
+                        .shape("XXX", "XXX", "XXX")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.CopperNugget.toItemStack()))
+        );
+
+        recipesToAdd.add(
                 new StandardHelmetRecipeBuilder()
                         .setItem(DFMaterial.CopperHelmet)
                         .setMaterial(Material.COPPER_INGOT)
@@ -447,6 +468,13 @@ public class CustomSetRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .setGroup("CopperHoe")
                         .build(getInfo(), "Right")
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setSource(Material.COPPER_INGOT)
+                        .setOutput(DFMaterial.CopperNugget)
+                        .build(getInfo(), "SmeltIngot")
         );
 
         recipesToAdd.add(
