@@ -9,13 +9,10 @@ import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDFTabCompleter;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
-import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipes.SmithingTable.SmithingTableEvents;
-import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets.*;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
-import uk.co.nikodem.dFSmpPlus.Entities.OnEntityPickUpItem;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDamageByEntityEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDeathEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityPickupItemEvent;
@@ -26,15 +23,10 @@ import uk.co.nikodem.dFSmpPlus.Events.Player.Block.BlockBreakProgressUpdateEvent
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.CraftItemEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.InventoryOpenEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.PrepareSmithingEvent;
-import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
-import uk.co.nikodem.dFSmpPlus.Player.*;
-import uk.co.nikodem.dFSmpPlus.Player.DFUpdates.OnOpenContainer;
-import uk.co.nikodem.dFSmpPlus.Player.DFUpdates.OnPlayerPickUpItem;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.BungeeUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Storage.BlockData;
 import uk.co.nikodem.dFSmpPlus.Utils.Storage.PlayerData;
-import uk.co.nikodem.dFSmpPlus.WorldGen.PopulateChests;
 
 import java.util.List;
 import java.util.Objects;
@@ -66,7 +58,9 @@ public final class DFSmpPlus extends JavaPlugin {
                 new FiridiumRecipes(this),
                 new SculkRecipes(this),
                 new ObsidianRecipes(this),
-                new VeinRecipes(this)
+                new VeinRecipes(this),
+                new SilkRecipes(this),
+                new CalciteRecipes(this)
         );
 
         new HiddenRecipes(this);

@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
-import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipes.SmithingTable.SmithingTableItem;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.SmithingTableItem;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.SmithingTableRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;

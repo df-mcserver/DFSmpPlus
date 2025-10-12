@@ -380,6 +380,88 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
+    public static DFMaterial CalciteSword = new DFMaterialBuilder(Material.STONE_SWORD, "calcite_sword", 1)
+            .setDisplayName("Calcite Sword")
+            .addEnchantment(Enchantment.UNBREAKING, 1)
+            .create();
+
+    public static DFMaterial CalciteAxe = new DFMaterialBuilder(Material.IRON_AXE, "calcite_axe", 1)
+            .setDisplayName("Calcite Axe")
+            .addEnchantment(Enchantment.UNBREAKING, 1)
+            .create();
+
+    public static DFMaterial CalcitePickaxe = new DFMaterialBuilder(Material.IRON_PICKAXE, "calcite_pickaxe", 1)
+            .setDisplayName("Calcite Pickaxe")
+            .addEnchantment(Enchantment.UNBREAKING, 1)
+            .create();
+
+    public static DFMaterial CalciteShovel = new DFMaterialBuilder(Material.IRON_SHOVEL, "calcite_shovel", 1)
+            .setDisplayName("Calcite Shovel")
+            .addEnchantment(Enchantment.UNBREAKING, 1)
+            .create();
+
+    public static DFMaterial CalciteHoe = new DFMaterialBuilder(Material.IRON_HOE, "calcite_hoe", 1)
+            .setDisplayName("Calcite Hoe")
+            .addEnchantment(Enchantment.UNBREAKING, 1)
+            .create();
+
+    public static DFMaterial CalciteHelmet = new DFMaterialBuilder(Material.CHAINMAIL_HELMET, "calcite_helmet", 1)
+            .setDisplayName("Calcite Helmet")
+            .overrideCustomModel(createMinecraftKey("chainmail_helmet"))
+            .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.HEAD)
+            .addLore("<gray>(Equivalent to Chainmail Helmet)")
+            .addEnchantment(Enchantment.UNBREAKING, 1)
+            .create();
+
+    public static DFMaterial CalciteChestplate = new DFMaterialBuilder(Material.CHAINMAIL_CHESTPLATE, "calcite_chestplate", 1)
+            .setDisplayName("Calcite Chestplate")
+            .overrideCustomModel(createMinecraftKey("chainmail_chestplate"))
+            .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.CHEST)
+            .addLore("<gray>(Equivalent to Chainmail Chestplate)")
+            .addEnchantment(Enchantment.UNBREAKING, 1)
+            .create();
+
+    public static DFMaterial CalciteLeggings = new DFMaterialBuilder(Material.CHAINMAIL_LEGGINGS, "calcite_leggings", 1)
+            .setDisplayName("Calcite Leggings")
+            .overrideCustomModel(createMinecraftKey("chainmail_leggings"))
+            .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.LEGS)
+            .addLore("<gray>(Equivalent to Chainmail Leggings)")
+            .addEnchantment(Enchantment.UNBREAKING, 1)
+            .create();
+
+    public static DFMaterial CalciteBoots = new DFMaterialBuilder(Material.CHAINMAIL_BOOTS, "calcite_boots", 1)
+            .setDisplayName("Calcite Boots")
+            .overrideCustomModel(createMinecraftKey("chainmail_boots"))
+            .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.FEET)
+            .addLore("<gray>(Equivalent to Chainmail Boots)")
+            .addEnchantment(Enchantment.UNBREAKING, 1)
+            .create();
+
+    public static DFMaterial SilkSword = new DFMaterialBuilder(Material.WOODEN_SWORD, "silk_sword", 1)
+            .setDisplayName("Silk Sword")
+            .addEnchantment(Enchantment.SILK_TOUCH, 1)
+            .create();
+
+    public static DFMaterial SilkAxe = new DFMaterialBuilder(Material.WOODEN_AXE, "silk_axe", 1)
+            .setDisplayName("Silk Axe")
+            .addEnchantment(Enchantment.SILK_TOUCH, 1)
+            .create();
+
+    public static DFMaterial SilkPickaxe = new DFMaterialBuilder(Material.WOODEN_PICKAXE, "silk_pickaxe", 1)
+            .setDisplayName("Silk Pickaxe")
+            .addEnchantment(Enchantment.SILK_TOUCH, 1)
+            .create();
+
+    public static DFMaterial SilkShovel = new DFMaterialBuilder(Material.WOODEN_SHOVEL, "silk_shovel", 1)
+            .setDisplayName("Silk Shovel")
+            .addEnchantment(Enchantment.SILK_TOUCH, 1)
+            .create();
+
+    public static DFMaterial SilkHoe = new DFMaterialBuilder(Material.WOODEN_HOE, "silk_hoe", 1)
+            .setDisplayName("Silk Hoe")
+            .addEnchantment(Enchantment.SILK_TOUCH, 1)
+            .create();
+
     public static DFMaterial TargetDummy = new DFMaterialBuilder(Material.STICK, "target_dummy", 1)
             .setDisplayName("Target Dummy")
             .addLore("<aqua>Allows you to check how much damage you're doing!")

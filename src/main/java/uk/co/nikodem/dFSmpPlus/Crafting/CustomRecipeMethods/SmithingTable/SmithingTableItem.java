@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipes.SmithingTable;
+package uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
