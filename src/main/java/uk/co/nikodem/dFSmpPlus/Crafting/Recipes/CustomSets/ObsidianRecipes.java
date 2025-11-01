@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
-import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.SmithingTableItem;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.CustomItemRepresentation;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.SmithingTableRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
@@ -44,45 +44,45 @@ public class ObsidianRecipes extends CraftingTemplate {
     public void addTools(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(Material.NETHERITE_SWORD))
-                        .setTemplate(new SmithingTableItem(DFMaterial.ObsidianUpgradeTemplate))
-                        .setAddition(new SmithingTableItem(Material.CRYING_OBSIDIAN))
+                        .setBase(new CustomItemRepresentation(Material.NETHERITE_SWORD))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianSword)
                         .build(getInfo(), "ObsidianSword")
         );
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(Material.NETHERITE_AXE))
-                        .setTemplate(new SmithingTableItem(DFMaterial.ObsidianUpgradeTemplate))
-                        .setAddition(new SmithingTableItem(Material.CRYING_OBSIDIAN))
+                        .setBase(new CustomItemRepresentation(Material.NETHERITE_AXE))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianAxe)
                         .build(getInfo(), "ObsidianAxe")
         );
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(Material.NETHERITE_PICKAXE))
-                        .setTemplate(new SmithingTableItem(DFMaterial.ObsidianUpgradeTemplate))
-                        .setAddition(new SmithingTableItem(Material.CRYING_OBSIDIAN))
+                        .setBase(new CustomItemRepresentation(Material.NETHERITE_PICKAXE))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianPickaxe)
                         .build(getInfo(), "ObsidianPickaxe")
         );
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(Material.NETHERITE_SHOVEL))
-                        .setTemplate(new SmithingTableItem(DFMaterial.ObsidianUpgradeTemplate))
-                        .setAddition(new SmithingTableItem(Material.CRYING_OBSIDIAN))
+                        .setBase(new CustomItemRepresentation(Material.NETHERITE_SHOVEL))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianShovel)
                         .build(getInfo(), "ObsidianShovel")
         );
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(Material.NETHERITE_HOE))
-                        .setTemplate(new SmithingTableItem(DFMaterial.ObsidianUpgradeTemplate))
-                        .setAddition(new SmithingTableItem(Material.CRYING_OBSIDIAN))
+                        .setBase(new CustomItemRepresentation(Material.NETHERITE_HOE))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianHoe)
                         .build(getInfo(), "ObsidianHoe")
         );
@@ -91,36 +91,36 @@ public class ObsidianRecipes extends CraftingTemplate {
     public void addArmour(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(Material.NETHERITE_HELMET))
-                        .setTemplate(new SmithingTableItem(DFMaterial.ObsidianUpgradeTemplate))
-                        .setAddition(new SmithingTableItem(Material.CRYING_OBSIDIAN))
+                        .setBase(new CustomItemRepresentation(Material.NETHERITE_HELMET))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianHelmet)
                         .build(getInfo(), "ObsidianHelmet")
         );
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(Material.NETHERITE_CHESTPLATE))
-                        .setTemplate(new SmithingTableItem(DFMaterial.ObsidianUpgradeTemplate))
-                        .setAddition(new SmithingTableItem(Material.CRYING_OBSIDIAN))
+                        .setBase(new CustomItemRepresentation(Material.NETHERITE_CHESTPLATE))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianChestplate)
                         .build(getInfo(), "ObsidianChestplate")
         );
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(Material.NETHERITE_LEGGINGS))
-                        .setTemplate(new SmithingTableItem(DFMaterial.ObsidianUpgradeTemplate))
-                        .setAddition(new SmithingTableItem(Material.CRYING_OBSIDIAN))
+                        .setBase(new CustomItemRepresentation(Material.NETHERITE_LEGGINGS))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianLeggings)
                         .build(getInfo(), "ObsidianLeggings")
         );
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(Material.NETHERITE_BOOTS))
-                        .setTemplate(new SmithingTableItem(DFMaterial.ObsidianUpgradeTemplate))
-                        .setAddition(new SmithingTableItem(Material.CRYING_OBSIDIAN))
+                        .setBase(new CustomItemRepresentation(Material.NETHERITE_BOOTS))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianBoots)
                         .build(getInfo(), "ObsidianBoots")
         );

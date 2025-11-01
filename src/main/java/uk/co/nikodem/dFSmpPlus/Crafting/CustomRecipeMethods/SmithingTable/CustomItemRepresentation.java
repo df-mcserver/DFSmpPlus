@@ -9,29 +9,29 @@ import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import java.util.Objects;
 import java.util.function.Function;
 
-public class SmithingTableItem {
+public class CustomItemRepresentation {
     private final ItemStack item;
     private boolean strict = true;
     private Function<ItemStack, Boolean> check;
 
-    public SmithingTableItem(ItemStack item) {
+    public CustomItemRepresentation(ItemStack item) {
         this.item = item;
     }
 
-    public SmithingTableItem(Material item) {
+    public CustomItemRepresentation(Material item) {
         this.item = new ItemStack(item);
     }
 
-    public SmithingTableItem(DFMaterial item) {
+    public CustomItemRepresentation(DFMaterial item) {
         this.item = item.toItemStack();
     }
 
-    public SmithingTableItem setStrict(boolean strict) {
+    public CustomItemRepresentation setStrict(boolean strict) {
         this.strict = strict;
         return this;
     }
 
-    public SmithingTableItem setCheck(Function<ItemStack, Boolean> check) {
+    public CustomItemRepresentation setCheck(Function<ItemStack, Boolean> check) {
         this.check = check;
         return this;
     }

@@ -6,7 +6,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
-import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.SmithingTableItem;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.CustomItemRepresentation;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.SmithingTableRecipeBuilder;
@@ -99,18 +99,18 @@ public class ChiselRecipes extends CraftingTemplate {
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(DFMaterial.DiamondChisel))
-                        .setTemplate(new SmithingTableItem(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
-                        .setAddition(new SmithingTableItem(Material.NETHERITE_INGOT))
+                        .setBase(new CustomItemRepresentation(DFMaterial.DiamondChisel))
+                        .setTemplate(new CustomItemRepresentation(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
+                        .setAddition(new CustomItemRepresentation(Material.NETHERITE_INGOT))
                         .setResult(DFMaterial.NetheriteChisel)
                         .build(getInfo(), "NetheriteChisel")
         );
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new SmithingTableItem(DFMaterial.NetheriteChisel))
-                        .setTemplate(new SmithingTableItem(DFMaterial.ObsidianUpgradeTemplate))
-                        .setAddition(new SmithingTableItem(Material.CRYING_OBSIDIAN))
+                        .setBase(new CustomItemRepresentation(DFMaterial.NetheriteChisel))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianChisel)
                         .build(getInfo(), "ObsidianChisel")
         );

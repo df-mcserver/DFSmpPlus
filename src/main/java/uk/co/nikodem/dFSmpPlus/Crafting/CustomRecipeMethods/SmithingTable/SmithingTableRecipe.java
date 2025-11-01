@@ -7,13 +7,13 @@ import java.util.function.Function;
 public class SmithingTableRecipe {
 
     private final ItemStack result;
-    private final SmithingTableItem template;
-    private final SmithingTableItem base;
-    private final SmithingTableItem addition;
+    private final CustomItemRepresentation template;
+    private final CustomItemRepresentation base;
+    private final CustomItemRepresentation addition;
 
     private Function<SmithingTableRecipe, ItemStack> transformResult;
 
-    public SmithingTableRecipe(ItemStack result, SmithingTableItem template, SmithingTableItem base, SmithingTableItem addition, Function<SmithingTableRecipe, ItemStack> transformResult) {
+    public SmithingTableRecipe(ItemStack result, CustomItemRepresentation template, CustomItemRepresentation base, CustomItemRepresentation addition, Function<SmithingTableRecipe, ItemStack> transformResult) {
         this.result = result;
         this.template = template;
         this.base = base;
@@ -21,7 +21,7 @@ public class SmithingTableRecipe {
         this.transformResult = transformResult;
     }
 
-    public SmithingTableRecipe(ItemStack result, SmithingTableItem template, SmithingTableItem base, SmithingTableItem addition) {
+    public SmithingTableRecipe(ItemStack result, CustomItemRepresentation template, CustomItemRepresentation base, CustomItemRepresentation addition) {
         this.result = result;
         this.template = template;
         this.base = base;
@@ -40,15 +40,15 @@ public class SmithingTableRecipe {
         return this.result;
     }
 
-    public SmithingTableItem getTemplate() {
+    public CustomItemRepresentation getTemplate() {
         return this.template;
     }
 
-    public SmithingTableItem getBase() {
+    public CustomItemRepresentation getBase() {
         return this.base;
     }
 
-    public SmithingTableItem getAddition() {
+    public CustomItemRepresentation getAddition() {
         return this.addition;
     }
 }

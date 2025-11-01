@@ -52,7 +52,7 @@ public class ShapelessRecipeBuilder extends RecipeBuilder {
 
     @Override
     public ShapelessRecipe build(RecipeTemplateInfo info, String extra) {
-        ShapelessRecipe recipe =  new ShapelessRecipe(
+        ShapelessRecipe recipe = new ShapelessRecipe(
                 MakeNamespacedKey(
                         MakeId(info, output, extra)
                 ),

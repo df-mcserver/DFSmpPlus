@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.SmithingTransformRecipe;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.SmithingTableEvents;
-import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.SmithingTableItem;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.CustomItemRepresentation;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.SmithingTableRecipe;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeTemplateInfo;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -15,9 +15,9 @@ import java.util.function.Function;
 public class SmithingTableRecipeBuilder extends RecipeBuilder {
 
     private ItemStack result;
-    private SmithingTableItem base;
-    private SmithingTableItem template;
-    private SmithingTableItem addition;
+    private CustomItemRepresentation base;
+    private CustomItemRepresentation template;
+    private CustomItemRepresentation addition;
     private Function<SmithingTableRecipe, ItemStack> transformer;
 
     public SmithingTableRecipeBuilder setResult(ItemStack result) {
@@ -35,7 +35,7 @@ public class SmithingTableRecipeBuilder extends RecipeBuilder {
         return this;
     }
 
-    public SmithingTableRecipeBuilder setBase(SmithingTableItem base) {
+    public SmithingTableRecipeBuilder setBase(CustomItemRepresentation base) {
         this.base = base;
         return this;
     }
@@ -52,7 +52,22 @@ public class SmithingTableRecipeBuilder extends RecipeBuilder {
         return this;
     }
 
-    public SmithingTableRecipeBuilder setTemplate(SmithingTableItem template) {
+    public SmithingTableRecipeBuilder setTemplate(ItemStack template) {
+        this.template = new CustomItemRepresentation(template);
+        return this;
+    }
+
+    public SmithingTableRecipeBuilder setTemplate(Material template) {
+        this.template = new CustomItemRepresentation(template);
+        return this;
+    }
+
+    public SmithingTableRecipeBuilder setTemplate(DFMaterial template) {
+        this.template = new CustomItemRepresentation(template);
+        return this;
+    }
+
+    public SmithingTableRecipeBuilder setTemplate(CustomItemRepresentation template) {
         this.template = template;
         return this;
     }
@@ -69,7 +84,22 @@ public class SmithingTableRecipeBuilder extends RecipeBuilder {
         return this;
     }
 
-    public SmithingTableRecipeBuilder setAddition(SmithingTableItem addition) {
+    public SmithingTableRecipeBuilder setAddition(ItemStack addition) {
+        this.addition = new CustomItemRepresentation(addition);
+        return this;
+    }
+
+    public SmithingTableRecipeBuilder setAddition(Material addition) {
+        this.addition = new CustomItemRepresentation(addition);
+        return this;
+    }
+
+    public SmithingTableRecipeBuilder setAddition(DFMaterial addition) {
+        this.addition = new CustomItemRepresentation(addition);
+        return this;
+    }
+
+    public SmithingTableRecipeBuilder setAddition(CustomItemRepresentation addition) {
         this.addition = addition;
         return this;
     }
