@@ -123,6 +123,7 @@ public class DFMaterial {
             .setDisplayName("<light_purple>Bluebellsar Stick")
             .markForUUID()
             .addLore("<aqua>Using this item shrivels shrieks from past souls.")
+            .addLore("<red>Those souls politely request that you do not use this in your offhand")
             .addEnchantment(Enchantment.UNBREAKING, 25)
             .addEnchantment(Enchantment.LOOTING, 3)
             .addEnchantment(Enchantment.LUCK_OF_THE_SEA)

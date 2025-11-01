@@ -77,6 +77,7 @@ public final class DFSmpPlus extends JavaPlugin {
         List<Listener> eventListeners = List.of(
                 new FoodLevelChangeEvent(),
                 new EntityDamageByEntityEvent(),
+                new EntityDamageEvent(),
                 new EntityPickupItemEvent(),
                 new EntityDeathEvent(this),
 

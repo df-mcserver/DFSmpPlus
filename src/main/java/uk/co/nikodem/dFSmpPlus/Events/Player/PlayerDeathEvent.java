@@ -16,5 +16,10 @@ public class PlayerDeathEvent implements Listener {
 
             e.getPlayer().getPersistentDataContainer().remove(Keys.comicallyLarge);
         }
+        if (e.getPlayer().getPersistentDataContainer().has(Keys.bluebellsarDeath)) {
+            e.deathMessage(Component.text(e.getPlayer().getName()+" got a taste of their own medicine."));
+
+            e.getPlayer().getPersistentDataContainer().remove(Keys.bluebellsarDeath);
+        }
     }
 }

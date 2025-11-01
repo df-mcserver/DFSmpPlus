@@ -14,6 +14,8 @@ public class Keys {
 
     public static NamespacedKey targetDummy = createDefaultKey("target_dummy");
     public static NamespacedKey comicallyLarge = createDefaultKey("comically_large");
+    public static NamespacedKey bluebellsarDeath = createDefaultKey("bluebellsar_death");
+    public static NamespacedKey bullyBluebellsarStick = createDefaultKey("bully_bluebellsar_stick");
 
     public static NamespacedKey createDefaultKey(String key) {
         return new NamespacedKey(

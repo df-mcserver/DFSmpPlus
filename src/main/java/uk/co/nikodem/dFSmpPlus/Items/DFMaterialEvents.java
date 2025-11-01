@@ -27,20 +27,37 @@ public class DFMaterialEvents {
         }
     }
 
+    static void doOffhand(Player plr, EntityDamageByEntityEvent e) {
+        ItemStack offhandItem = plr.getInventory().getItemInOffHand();
+        DFMaterial material2 = DFItemUtils.getDFMaterial(offhandItem);
+
+        if (material2 == null) return;
+
+        if (material2.hasMeta()) {
+            for (DFMaterialMeta meta : material2.getMeta()) {
+                meta.ItemAttackWhileOffhand(plr, material2, offhandItem, e);
+            }
+        }
+    }
+
     public static void ItemAttack(EntityDamageByEntityEvent e) {
         Entity damager = e.getDamager();
-
         if (damager instanceof Player plr) {
             ItemStack weapon = plr.getInventory().getItemInMainHand();
             DFMaterial material = DFItemUtils.getDFMaterial(weapon);
 
-            if (material == null) return;
+            if (material == null) {
+                doOffhand(plr, e);
+                return;
+            }
 
             if (material.hasMeta()) {
                 for (DFMaterialMeta meta : material.getMeta()) {
                     meta.ItemAttack(plr, material, weapon, e);
                 }
             }
+
+            doOffhand(plr, e);
         }
     }
 
