@@ -1,5 +1,6 @@
 # DFSmpPlus
-A [PaperMC](https://papermc.io/) plugin (1.21.8) built to add various QoL additions and custom content.
+A [PaperMC](https://papermc.io/) plugin (1.21.8) built to add various QoL additions and custom content.  
+Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 
 > [!WARNING]
 > NOT INTENDED FOR PERSONAL USE  
