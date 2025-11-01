@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import uk.co.nikodem.dFSmpPlus.Commands.DFMaterialView;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDFTabCompleter;
+import uk.co.nikodem.dFSmpPlus.Commands.SpawnCommand;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
@@ -14,6 +15,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets.*;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDamageByEntityEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDamageEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDeathEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityPickupItemEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.Food.FoodLevelChangeEvent;
@@ -73,6 +75,7 @@ public final class DFSmpPlus extends JavaPlugin {
         Objects.requireNonNull(getCommand("givedf")).setExecutor(new GiveDF());
         Objects.requireNonNull(getCommand("givedf")).setTabCompleter(new GiveDFTabCompleter());
         Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
+        Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
 
         List<Listener> eventListeners = List.of(
                 new FoodLevelChangeEvent(),
