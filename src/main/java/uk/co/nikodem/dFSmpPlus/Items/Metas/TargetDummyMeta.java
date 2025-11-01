@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -22,6 +23,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import java.awt.*;
+import java.text.DecimalFormat;
 
 public class TargetDummyMeta implements DFMaterialMeta {
     public final static int maxdamage = 5000;
@@ -64,7 +66,7 @@ public class TargetDummyMeta implements DFMaterialMeta {
     public static void TargetDummyHit(EntityDamageByEntityEvent event) {
         double damage = event.getDamage();
         Entity damager = event.getDamager();
-        if (damager instanceof Player) {
+        if (damager instanceof Player plr) {
             int newDamage = event.getEntity().getPersistentDataContainer().has(Keys.targetDummy) ? event.getEntity().getPersistentDataContainer().get(
                     Keys.targetDummy,
                     PersistentDataType.INTEGER
@@ -90,7 +92,7 @@ public class TargetDummyMeta implements DFMaterialMeta {
                 event.getEntity().getWorld().spawnParticle(Particle.CRIT, event.getEntity().getLocation().add(0, 1.5, 0), 6, 0, 0, 0, 0.6);
             } else event.getEntity().getWorld().playSound(event.getEntity(), Sound.ENTITY_ARMOR_STAND_HIT, 1F, 1F);
 
-//            plr.sendMessage(MiniMessage.miniMessage().deserialize("<red>♥ <white>"+event.getDamage()));
+            plr.sendMessage(MiniMessage.miniMessage().deserialize("<red>-♥ <white>"+new DecimalFormat("#0.00").format(event.getDamage())));
         }
 
         event.setCancelled(true);
