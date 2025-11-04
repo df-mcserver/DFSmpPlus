@@ -71,6 +71,12 @@ public class FiridiumRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumSword)
+                        .build(getInfo(), "FiridiumSword")
+        );
+
+        recipesToAdd.add(
                 new LeftAxeRecipeBuilder()
                         .setItem(DFMaterial.FiridiumAxe)
                         .setMaterial(DFMaterial.FiridiumIngot)
@@ -91,6 +97,12 @@ public class FiridiumRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumAxe)
+                        .build(getInfo(), "FiridiumAxe")
+        );
+
+        recipesToAdd.add(
                 new PickaxeRecipeBuilder()
                         .setItem(DFMaterial.FiridiumPickaxe)
                         .setMaterial(DFMaterial.FiridiumIngot)
@@ -100,12 +112,24 @@ public class FiridiumRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumPickaxe)
+                        .build(getInfo(), "FiridiumPickaxe")
+        );
+
+        recipesToAdd.add(
                 new ShovelRecipeBuilder()
                         .setItem(DFMaterial.FiridiumShovel)
                         .setMaterial(DFMaterial.FiridiumIngot)
                         .setHandle(Material.IRON_BARS)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumShovel)
+                        .build(getInfo(), "FiridiumShovel")
         );
 
         recipesToAdd.add(
@@ -127,6 +151,12 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Right-Firidium")
         );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumHoe)
+                        .build(getInfo(), "FiridiumHoe")
+        );
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {
@@ -139,11 +169,23 @@ public class FiridiumRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumHelmet)
+                        .build(getInfo(), "FiridiumHelmet")
+        );
+
+        recipesToAdd.add(
                 new StandardChestplateRecipeBuilder()
                         .setItem(DFMaterial.FiridiumChestplate)
                         .setMaterial(DFMaterial.FiridiumIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumChestplate)
+                        .build(getInfo(), "FiridiumChestplate")
         );
 
         recipesToAdd.add(
@@ -155,11 +197,23 @@ public class FiridiumRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumLeggings)
+                        .build(getInfo(), "FiridiumLeggings")
+        );
+
+        recipesToAdd.add(
                 new StandardBootsRecipeBuilder()
                         .setItem(DFMaterial.FiridiumBoots)
                         .setMaterial(DFMaterial.FiridiumIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumBoots)
+                        .build(getInfo(), "FiridiumBoots")
         );
     }
 

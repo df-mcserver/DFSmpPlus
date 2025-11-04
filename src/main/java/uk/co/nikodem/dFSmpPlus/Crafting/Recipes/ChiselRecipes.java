@@ -7,6 +7,7 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.CustomItemRepresentation;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.ItemRepairCombineRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.SmithingTableRecipeBuilder;
@@ -46,11 +47,23 @@ public class ChiselRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.PointyStick)
+                        .build(getInfo(), "PointyStick")
+        );
+
+        recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.SharpStone)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "SharpStone")
                         .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.SharpStone)
+                        .build(getInfo(), "SharpStone")
         );
 
         recipesToAdd.add(
@@ -63,12 +76,24 @@ public class ChiselRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CopperChisel)
+                        .build(getInfo(), "CopperChisel")
+        );
+
+        recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.IronChisel)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "IronChisel")
                         .shape("XX", "XX")
                         .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.IronChisel)
+                        .build(getInfo(), "IronChisel")
         );
 
         recipesToAdd.add(
@@ -81,6 +106,12 @@ public class ChiselRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumChisel)
+                        .build(getInfo(), "FiridiumChisel")
+        );
+
+        recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.GoldChisel)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
@@ -90,11 +121,23 @@ public class ChiselRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.GoldChisel)
+                        .build(getInfo(), "GoldChisel")
+        );
+
+        recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.DiamondChisel)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "DiamondChisel")
                         .addIngredient(Material.DIAMOND)
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.DiamondChisel)
+                        .build(getInfo(), "DiamondChisel")
         );
 
         recipesToAdd.add(
@@ -107,11 +150,23 @@ public class ChiselRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.NetheriteChisel)
+                        .build(getInfo(), "NetheriteChisel")
+        );
+
+        recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
                         .setBase(new CustomItemRepresentation(DFMaterial.NetheriteChisel))
                         .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
                         .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianChisel)
+                        .build(getInfo(), "ObsidianChisel")
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.ObsidianChisel)
                         .build(getInfo(), "ObsidianChisel")
         );
     }

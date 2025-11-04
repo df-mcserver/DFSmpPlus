@@ -6,6 +6,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.ItemRepairCombineRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -39,6 +40,12 @@ public class SculkRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.SculkHelmet)
+                        .build(getInfo(), "SculkHelmet")
+        );
+
+        recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.SculkChestplate)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
@@ -46,6 +53,12 @@ public class SculkRecipes extends CraftingTemplate {
                         .shape("S S", "SES", "ESE")
                         .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.SculkFragment.toItemStack()))
                         .setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.ECHO_SHARD)))
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.SculkChestplate)
+                        .build(getInfo(), "SculkChestplate")
         );
 
         recipesToAdd.add(
@@ -59,6 +72,12 @@ public class SculkRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.SculkLeggings)
+                        .build(getInfo(), "SculkLeggings")
+        );
+
+        recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.SculkBoots)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
@@ -66,6 +85,12 @@ public class SculkRecipes extends CraftingTemplate {
                         .shape("S S", "E E")
                         .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.SculkFragment.toItemStack()))
                         .setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.ECHO_SHARD)))
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.SculkBoots)
+                        .build(getInfo(), "SculkBoots")
         );
     }
 

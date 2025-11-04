@@ -36,6 +36,12 @@ public class CalciteRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalciteSword)
+                        .build(getInfo(), "CalciteSword")
+        );
+
+        recipesToAdd.add(
                 new LeftAxeRecipeBuilder()
                         .setItem(DFMaterial.CalciteAxe)
                         .setMaterial(Material.CALCITE)
@@ -54,6 +60,12 @@ public class CalciteRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalciteAxe)
+                        .build(getInfo(), "CalciteAxe")
+        );
+
+        recipesToAdd.add(
                 new PickaxeRecipeBuilder()
                         .setItem(DFMaterial.CalcitePickaxe)
                         .setMaterial(Material.CALCITE)
@@ -62,11 +74,23 @@ public class CalciteRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalcitePickaxe)
+                        .build(getInfo(), "CalcitePickaxe")
+        );
+
+        recipesToAdd.add(
                 new ShovelRecipeBuilder()
                         .setItem(DFMaterial.CalciteShovel)
                         .setMaterial(Material.CALCITE)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalciteShovel)
+                        .build(getInfo(), "CalciteShovel")
         );
 
         recipesToAdd.add(
@@ -86,6 +110,12 @@ public class CalciteRecipes extends CraftingTemplate {
                         .setGroup("CalciteHoe")
                         .build(getInfo(), "Right")
         );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalciteHoe)
+                        .build(getInfo(), "CalciteHoe")
+        );
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {
@@ -98,11 +128,23 @@ public class CalciteRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalciteHelmet)
+                        .build(getInfo(), "CalciteHelmet")
+        );
+
+        recipesToAdd.add(
                 new StandardChestplateRecipeBuilder()
                         .setItem(DFMaterial.CalciteChestplate)
                         .setMaterial(Material.CALCITE)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalciteChestplate)
+                        .build(getInfo(), "CalciteChestplate")
         );
 
         recipesToAdd.add(
@@ -114,11 +156,23 @@ public class CalciteRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalciteLeggings)
+                        .build(getInfo(), "CalciteLeggings")
+        );
+
+        recipesToAdd.add(
                 new StandardBootsRecipeBuilder()
                         .setItem(DFMaterial.CalciteBoots)
                         .setMaterial(Material.CALCITE)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalciteBoots)
+                        .build(getInfo(), "CalciteBoots")
         );
     }
 

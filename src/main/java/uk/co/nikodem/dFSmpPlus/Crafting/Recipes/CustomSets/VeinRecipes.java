@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.ItemRepairCombineRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -32,6 +33,12 @@ public class VeinRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.VeinAxe)
+                        .build(getInfo(), "VeinAxe")
+        );
+
+        recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.VeinAxe)
                         .setGroup("VeinAxe")
@@ -50,6 +57,12 @@ public class VeinRecipes extends CraftingTemplate {
                         .shape("XXX", "XIX", " I ")
                         .setIngredient('X', Material.AMETHYST_SHARD)
                         .setIngredient('I', Material.STICK)
+        );
+
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.VeinPickaxe)
+                        .build(getInfo(), "VeinPickaxe")
         );
 
         return recipesToAdd;
