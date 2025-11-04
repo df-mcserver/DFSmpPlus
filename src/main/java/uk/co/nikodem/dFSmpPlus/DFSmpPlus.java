@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus;
 
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -30,6 +31,7 @@ import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.BungeeUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Storage.BlockData;
 import uk.co.nikodem.dFSmpPlus.Utils.Storage.PlayerData;
+import uk.co.nikodem.dFSmpPlus.World.SetDefaults;
 
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +49,8 @@ public final class DFSmpPlus extends JavaPlugin {
     @Override
     public void onEnable() {
         try {
+            SetDefaults.checkRecommendedSettings(this);
+
             DFSmpPlus.playerData = new PlayerData(this);
             DFSmpPlus.blockData = new BlockData(this);
 
@@ -127,6 +131,9 @@ public final class DFSmpPlus extends JavaPlugin {
             getLogger().severe("The game logic will stop during panic mode.");
 
             Bukkit.getServerTickManager().setFrozen(true);
+            for (World world : Bukkit.getWorlds()) {
+                Bukkit.unloadWorld(world, false);
+            }
             panicMode = true;
         }
 

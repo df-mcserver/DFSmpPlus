@@ -1,11 +1,9 @@
-package uk.co.nikodem.dFSmpPlus.WorldGen;
+package uk.co.nikodem.dFSmpPlus.World;
 
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
