@@ -17,3 +17,6 @@ commands:
     description: "Sends you to the spawn location of the server"
     usage: /spawn
     aliases: ["tptospawn", "tpspawn", "tospawn"]
+  dfdebug:
+    description: "debug commands"
+    usage: /dfdebug

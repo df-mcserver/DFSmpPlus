@@ -5,9 +5,11 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import uk.co.nikodem.dFSmpPlus.Commands.DFDebugCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.DFMaterialView;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
-import uk.co.nikodem.dFSmpPlus.Commands.GiveDFTabCompleter;
+import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.DFDebugTabCompleter;
+import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.GiveDFTabCompleter;
 import uk.co.nikodem.dFSmpPlus.Commands.SpawnCommand;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
@@ -89,6 +91,10 @@ public final class DFSmpPlus extends JavaPlugin {
             // Command initiation
             Objects.requireNonNull(getCommand("givedf")).setExecutor(new GiveDF());
             Objects.requireNonNull(getCommand("givedf")).setTabCompleter(new GiveDFTabCompleter());
+
+            Objects.requireNonNull(getCommand("dfdebug")).setExecutor(new DFDebugCommand());
+            Objects.requireNonNull(getCommand("dfdebug")).setTabCompleter(new DFDebugTabCompleter());
+
             Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
             Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
 

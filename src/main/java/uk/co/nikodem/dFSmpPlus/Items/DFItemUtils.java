@@ -155,7 +155,7 @@ public class DFItemUtils {
         if (item == null) return false;
         Damageable meta = (Damageable) item.getItemMeta();
         if (meta == null) return false;
-        if (!meta.hasMaxDamage()) return false;
+//        if (!meta.hasMaxDamage()) return false;
 
         meta.setDamage(damage);
         item.setItemMeta(meta);
