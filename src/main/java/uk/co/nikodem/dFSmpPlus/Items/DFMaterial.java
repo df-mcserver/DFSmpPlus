@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -21,6 +22,7 @@ import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.stream.Stream;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createMinecraftKey;
 import static uk.co.nikodem.dFSmpPlus.Constants.Keys.createModelKey;
@@ -605,14 +607,13 @@ public class DFMaterial {
             List<NamespacedKey> possibleModels
     )
     {
+        List<TextComponent> workingLore = lores == null ? List.of() : lores;
         this.possibleModels = possibleModels;
         this.version = version;
         this.markedForUuid = markedForUuid;
         this.namedId = namedId;
-        if (Name != null) this.displayName = Name;
-        else this.displayName = null;
+        this.displayName = Name;
         this.base = base;
-        this.lores = lores;
 
         if (dfmetas == null) this.metas = new ArrayList<>();
         else this.metas = dfmetas;
@@ -621,7 +622,6 @@ public class DFMaterial {
         this.item = newItem;
 
         ItemMeta meta = newItem.getItemMeta();
-        if (meta == null) return;
 
         if (hasCustomModel) {
             meta.setItemModel(customModel);
@@ -630,7 +630,6 @@ public class DFMaterial {
         if (maxStack != null) meta.setMaxStackSize(maxStack);
 
         if (Name != null) meta.displayName(Name);
-        if (lores != null && !lores.isEmpty()) meta.lore(lores);
         if (Enchantments != null && !Enchantments.isEmpty()) {
             for (Map.Entry<Enchantment, Integer> ench : Enchantments.entrySet()) {
                 meta.addEnchant(ench.getKey(), ench.getValue(), true);
@@ -682,6 +681,21 @@ public class DFMaterial {
                 meta.addItemFlags(flag);
             }
         }
+
+        if (this.hasMeta()) {
+            for (DFMaterialMeta createdmeta : this.getMeta()) {
+                List<TextComponent> additionalLore = createdmeta.AddAdditionalLore(this);
+
+                workingLore = Stream.concat(
+                        workingLore.stream(),
+                        additionalLore.stream()
+                ).toList();
+            }
+        }
+
+        this.lores = workingLore;
+        if (!this.lores.isEmpty()) meta.lore(this.lores);
+
         newItem.setItemMeta(meta);
 
         if (this.hasMeta()) {

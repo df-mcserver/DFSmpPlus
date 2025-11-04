@@ -1,6 +1,9 @@
 package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
 import io.papermc.paper.event.block.BlockBreakProgressUpdateEvent;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -9,8 +12,11 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import uk.co.nikodem.dFSmpPlus.Entities.EntityUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
+
+import java.util.List;
 
 public class ObsidianItemMeta implements DFMaterialMeta {
     public final boolean isTool;
@@ -20,7 +26,7 @@ public class ObsidianItemMeta implements DFMaterialMeta {
     }
 
     public void ItemAttack(Player plr, DFMaterial material, ItemStack weapon, EntityDamageByEntityEvent event) {
-        float mult = event.getEntity().getType() != EntityType.PLAYER ? 1.5f : 1.2f;
+        float mult = event.getEntity().getType() == EntityType.PLAYER || EntityUtils.isBoss(event.getEntityType()) ? 1.2f : 1.75f;
         event.setDamage(event.getDamage() * mult);
     }
 
@@ -50,5 +56,9 @@ public class ObsidianItemMeta implements DFMaterialMeta {
                     )
             );
         }
+    }
+
+    public List<TextComponent> AddAdditionalLore(DFMaterial material) {
+        return List.of((TextComponent) MiniMessage.miniMessage().deserialize("<dark_grey><i>Deals x1.75 damage to enemies, x1.2 otherwise."));
     }
 }

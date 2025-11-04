@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
-import uk.co.nikodem.dFSmpPlus.Constants.EntityBucketData;
+import uk.co.nikodem.dFSmpPlus.Entities.EntityUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
@@ -18,7 +18,7 @@ public class EntityBucketMeta implements DFMaterialMeta {
         event.setCancelled(true);
         Entity entity = event.getRightClicked();
 
-        Material egg = EntityBucketData.ConvertEntityToEgg(entity.getType());
+        Material egg = EntityUtils.ConvertEntityToEgg(entity.getType());
 
         if (egg != null) {
             Sounds.UseBucket.playSound(plr);

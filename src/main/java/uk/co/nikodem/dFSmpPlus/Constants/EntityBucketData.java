@@ -89,30 +89,4 @@ public class EntityBucketData {
             Map.entry(EntityType.TRADER_LLAMA, Material.TRADER_LLAMA_SPAWN_EGG),
             Map.entry(EntityType.BOGGED, Material.BOGGED_SPAWN_EGG)
     );
-
-    @Nullable
-    public static Material ConvertEntityToEgg(EntityType entity) {
-        for (Map.Entry<EntityType, Material> value : EntityEggIndex.entrySet()) {
-            EntityType entityValue = value.getKey();
-            if (Objects.equals(entity, entityValue)) return value.getValue();
-        }
-        return null;
-    }
-
-    @Nullable
-    public static EntityType ConvertEggToEntity(Material egg) {
-        for (Map.Entry<EntityType, Material> value : EntityEggIndex.entrySet()) {
-            Material eggValue = value.getValue();
-            if (Objects.equals(egg, eggValue)) return value.getKey();
-        }
-        return null;
-    }
-
-    public static Boolean IsConvertible(EntityType entity) {
-        return ConvertEntityToEgg(entity) != null;
-    }
-
-    public static Boolean IsConvertible(Material egg) {
-        return ConvertEggToEntity(egg) != null;
-    }
 }
