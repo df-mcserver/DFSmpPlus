@@ -12,12 +12,13 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 public class ControlledShapelessRecipeBuilder extends RecipeBuilder {
     private final List<CustomItemRepresentation> ingredients = new ArrayList<>();
     private ItemStack result;
-    private Function<ControlledShapelessRecipe, ItemStack> transformer;
+    private Function<Map.Entry<ControlledShapelessRecipe, ItemStack[]>, ItemStack> transformer;
 
     public ControlledShapelessRecipeBuilder addIngredient(CustomItemRepresentation item) {
         this.ingredients.add(item);
@@ -64,7 +65,7 @@ public class ControlledShapelessRecipeBuilder extends RecipeBuilder {
         return this;
     }
 
-    public ControlledShapelessRecipeBuilder setTransformer(Function<ControlledShapelessRecipe, ItemStack> transformer) {
+    public ControlledShapelessRecipeBuilder setTransformer(Function<Map.Entry<ControlledShapelessRecipe, ItemStack[]>, ItemStack> transformer) {
         this.transformer = transformer;
         return this;
     }

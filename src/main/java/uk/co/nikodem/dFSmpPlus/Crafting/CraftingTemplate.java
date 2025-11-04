@@ -8,7 +8,6 @@ import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 public abstract class CraftingTemplate {
     public abstract List<Recipe> populateRecipes(); // the function where the recipes are made

@@ -4,22 +4,19 @@ import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.CustomItemRepresentation;
-import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
-import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CraftingTableEvents {
     public static List<ControlledShapelessRecipe> recipes = new ArrayList<>();
 
     public static void onCraftingTableEvent(PrepareItemCraftEvent event) {
         CraftingInventory inventory = event.getInventory();
-        ItemStack[] items = inventory.getMatrix();
+        ItemStack[] matrix = inventory.getMatrix();
 
         for (ControlledShapelessRecipe recipe : recipes) {
-            if (doesCraftingInventoryMatchRecipe(items, recipe)) {
-                ItemStack result = recipe.getResult();
+            if (doesCraftingInventoryMatchRecipe(matrix, recipe)) {
+                ItemStack result = recipe.getTransformer() == null ? recipe.getResult() : recipe.getTransformer().apply(Map.entry(recipe, matrix));
                 inventory.setResult(result);
             }
         }
@@ -58,17 +55,21 @@ public class CraftingTableEvents {
     }
 
     public static boolean doesCraftingInventoryMatchRecipe(ItemStack[] matrix, ControlledShapelessRecipe recipe) {
+        List<CustomItemRepresentation> reprs = new ArrayList<>(Arrays.stream(recipe.getIngredients()).toList());
 
-        int matches = 0;
-        for (CustomItemRepresentation representation : recipe.getIngredients()) {
-            if (representation == null) continue;
-            for (ItemStack item : matrix) {
-                if (item == null) continue;
-                if (representation.runCheck(item)) matches++;
+        if (reprs.isEmpty()) return false;
+
+        for (ItemStack item : matrix) {
+            if (item == null) continue;
+            Iterator<CustomItemRepresentation> it = reprs.iterator();
+            while (it.hasNext()) {
+                CustomItemRepresentation repr = it.next();
+                if (repr.runCheck(item)) {
+                    it.remove();
+                    break;
+                }
             }
         }
-
-        if (matches == recipe.getIngredients().length) return true;
-        return false;
+        return reprs.isEmpty();
     }
 }

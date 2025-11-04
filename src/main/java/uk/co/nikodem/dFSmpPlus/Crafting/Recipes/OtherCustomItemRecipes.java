@@ -5,8 +5,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.MergingCraftingTable.ControlledShapelessRecipe;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.CustomItemRepresentation;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ControlledShapelessRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.ItemRepairCombineRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithResultRemoval;
@@ -113,6 +119,15 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setIngredient('B', Material.BREEZE_ROD)
                         .setIngredient('F', Material.FLINT)
                         .setIngredient('S', Material.STICK)
+        );
+
+        recipesToAdd.add(
+                new ControlledShapelessRecipeBuilder()
+                        .addIngredient(DFMaterial.VampireSword)
+                        .addIngredient(DFMaterial.VampireSword)
+                        .setResult(Material.STICK)
+                        .setTransformer((data) -> ItemStack.of(Material.AIR))
+                        .build(getInfo(), "VampSwordCombine")
         );
     }
 
