@@ -3,7 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.MergingCraftingTabl
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
-import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.CustomItemRepresentation;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 
 import java.util.*;
 

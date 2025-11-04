@@ -1,7 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.MergingCraftingTable;
 
 import org.bukkit.inventory.ItemStack;
-import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.CustomItemRepresentation;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 
 import java.util.Map;
 import java.util.function.Function;

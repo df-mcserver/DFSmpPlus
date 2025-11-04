@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable;
 
 import org.bukkit.inventory.ItemStack;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 
 import java.util.function.Function;
 
