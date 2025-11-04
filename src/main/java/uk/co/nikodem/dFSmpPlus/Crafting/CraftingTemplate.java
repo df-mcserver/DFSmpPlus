@@ -26,9 +26,11 @@ public abstract class CraftingTemplate {
         int amnt = 0;
 
         for (Recipe recipe : recipesToAdd) { // add the recipes from the list :)
+            DFSmpPlus.totalRecipes++;
             try {
                 Bukkit.addRecipe(recipe);
                 amnt++;
+                DFSmpPlus.totalSuccessfulRecipes++;
             } catch (IllegalStateException e) {
                 plugin.getLogger().severe("Duplicate recipe! Cannot add this recipe!");
                 plugin.getLogger().severe("Recipe "+recipe.toString()+" | Result: "+recipe.getResult());

@@ -45,6 +45,8 @@ public final class DFSmpPlus extends JavaPlugin {
     public static BlockData blockData;
 
     public static boolean panicMode = false;
+    public static int totalSuccessfulRecipes;
+    public static int totalRecipes;
 
     @Override
     public void onEnable() {
@@ -77,6 +79,8 @@ public final class DFSmpPlus extends JavaPlugin {
             );
 
             new HiddenRecipes(this);
+
+            getLogger().info("Added "+totalSuccessfulRecipes+"/"+totalRecipes+" recipes in total!");
 
             RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove
             ChiselBlockData.createChiselBlockData();
