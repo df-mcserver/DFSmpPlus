@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Events.Player.Inventory;
+package uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
