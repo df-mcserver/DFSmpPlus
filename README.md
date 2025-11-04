@@ -7,6 +7,12 @@ Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 > This plugin is built for a very specific use case, and you may need to modify the source code in order to make the plugin work.  
 > I will not help you if you try to use this plugin. The code here is provided as-is.
 
+> [!WARNING]
+> This plugin may be incredibly inefficient, and may lead to a noticeable drop in performance, due to overhead.  
+> As of now, this performance penalty is not measured but is expected to be noticeable.  
+> At the moment, the priority is not on performance, but rather content instead.  
+> I do not recommend running this plugin on a weak server.
+
 ## Dependencies
 - [PaperMC](https://papermc.io/)
    - This is a plugin using the Paper API. Any Minecraft server software which implements the Paper API (whether that be Paper, or forks like [Purpur](https://purpurmc.org/)) should support this plugin.
