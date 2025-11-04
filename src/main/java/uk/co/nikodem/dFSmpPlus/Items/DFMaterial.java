@@ -218,31 +218,31 @@ public class DFMaterial {
     public static DFMaterial ObsidianSword = new DFMaterialBuilder(Material.NETHERITE_SWORD, "obsidian_sword", 1)
             .setDisplayName("Obsidian Sword")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianSwordMeta())
+            .addMeta(new ObsidianItemMeta(false))
             .create();
 
     public static DFMaterial ObsidianAxe = new DFMaterialBuilder(Material.NETHERITE_AXE, "obsidian_axe", 1)
             .setDisplayName("Obsidian Axe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianToolMeta(), new ObsidianSwordMeta())
+            .addMeta(new ObsidianItemMeta(true))
             .create();
 
     public static DFMaterial ObsidianPickaxe = new DFMaterialBuilder(Material.NETHERITE_PICKAXE, "obsidian_pickaxe", 1)
             .setDisplayName("Obsidian Pickaxe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianToolMeta())
+            .addMeta(new ObsidianItemMeta(true))
             .create();
 
     public static DFMaterial ObsidianShovel = new DFMaterialBuilder(Material.NETHERITE_SHOVEL, "obsidian_shovel", 1)
             .setDisplayName("Obsidian Shovel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianToolMeta())
+            .addMeta(new ObsidianItemMeta(true))
             .create();
 
     public static DFMaterial ObsidianHoe = new DFMaterialBuilder(Material.NETHERITE_HOE, "obsidian_hoe", 1)
             .setDisplayName("Obsidian Hoe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianToolMeta())
+            .addMeta(new ObsidianItemMeta(true))
             .create();
 
     public static DFMaterial ObsidianHelmet = new DFMaterialBuilder(Material.NETHERITE_HELMET, "obsidian_helmet", 1)
@@ -377,7 +377,7 @@ public class DFMaterial {
     public static DFMaterial ObsidianChisel = new DFMaterialBuilder(Material.STICK, "obsidian_chisel", 1)
             .setDisplayName("Obsidian Chisel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianToolMeta())
+            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true))
             .setMaxStack(1)
             .create();
 
@@ -466,6 +466,7 @@ public class DFMaterial {
     public static DFMaterial TargetDummy = new DFMaterialBuilder(Material.STICK, "target_dummy", 1)
             .setDisplayName("Target Dummy")
             .addLore("<aqua>Allows you to check how much damage you're doing!")
+            .addLore("<grey>Note: Shows you the damage that a normal enemy would take, not a player.")
             .overrideCustomModel(createMinecraftKey("armor_stand"))
             .addMeta(new TargetDummyMeta())
             .setMaxStack(1)
