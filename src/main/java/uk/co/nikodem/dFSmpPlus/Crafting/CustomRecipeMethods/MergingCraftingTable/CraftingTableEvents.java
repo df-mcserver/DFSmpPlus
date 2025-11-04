@@ -20,38 +20,6 @@ public class CraftingTableEvents {
                 inventory.setResult(result);
             }
         }
-
-//        System.out.println("PREPARING");
-//
-//        ItemStack i1 = null;
-//        ItemStack i2 = null;
-//
-//        for (ItemStack i : items) {
-//            System.out.println("A ");
-//            if (i != null) {
-//                System.out.println("B "+i.getType());
-//                if (i1 == null) i1 = i;
-//                else if (i2 == null) i2 = i;
-//                else return;
-//            }
-//        }
-//
-//        if (i1 == null || i2 == null) return;
-//
-//        System.out.println("BOTH NOT NULL");
-//
-//        DFMaterial m1 = DFItemUtils.getDFMaterial(i1);
-//        DFMaterial m2 = DFItemUtils.getDFMaterial(i2);
-//
-//        if (m1 == null || m2 == null) return;
-//
-//        System.out.println("BOTH NOT NULL");
-//
-//        if (m1.equals(DFMaterial.LocatorCompass) && m2.equals(DFMaterial.EndLocatorCompassModule)
-//        || m2.equals(DFMaterial.LocatorCompass) && m1.equals(DFMaterial.EndLocatorCompassModule)) {
-//            inventory.setResult(DFMaterial.ComicallyLargeShovel.toItemStack());
-//            System.out.println("SET RESULT");
-//        }
     }
 
     public static boolean doesCraftingInventoryMatchRecipe(ItemStack[] matrix, ControlledShapelessRecipe recipe) {
