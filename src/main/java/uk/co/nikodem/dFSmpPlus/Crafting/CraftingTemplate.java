@@ -39,7 +39,7 @@ public abstract class CraftingTemplate {
             }
         }
 
-        plugin.getLogger().log(Level.INFO, "Added "+amnt+"/"+recipesToAdd.size()+" \""+this.getClass().getSimpleName()+"\" recipes");
+        plugin.getLogger().info("Added "+amnt+"/"+recipesToAdd.size()+" \""+this.getClass().getSimpleName()+"\" recipes");
     }
 
 

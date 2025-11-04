@@ -19,10 +19,16 @@ import java.util.List;
 import java.util.Objects;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Enums.UpdateResult.*;
+import static uk.co.nikodem.dFSmpPlus.DFSmpPlus.panicMode;
 
 public class OnJoin {
     public static void OnJoin(PlayerJoinEvent e) {
         Player plr = e.getPlayer();
+
+        if (panicMode) {
+            plr.kick(MiniMessage.miniMessage().deserialize("<red>Server is in panic mode! You will be unable to join the server until manual intervention."));
+            return;
+        }
 
         for (CraftingTemplate template : DFSmpPlus.craftingTemplateList) {
             template.discoverRecipes(plr);

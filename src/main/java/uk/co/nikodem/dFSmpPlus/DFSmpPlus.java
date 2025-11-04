@@ -42,80 +42,95 @@ public final class DFSmpPlus extends JavaPlugin {
     public static PlayerData playerData;
     public static BlockData blockData;
 
+    public static boolean panicMode = false;
+
     @Override
     public void onEnable() {
-        DFSmpPlus.playerData = new PlayerData(this);
-        DFSmpPlus.blockData = new BlockData(this);
+        try {
+            DFSmpPlus.playerData = new PlayerData(this);
+            DFSmpPlus.blockData = new BlockData(this);
 
-        bungeeUtils = new BungeeUtils(this);
-        bungeeUtils.initiateBungeeCordChannel();
+            bungeeUtils = new BungeeUtils(this);
+            bungeeUtils.initiateBungeeCordChannel();
 
-        craftingTemplateList = List.of(
-                new VanillaRecipes(this),
-                new OtherCustomItemRecipes(this),
-                new CoralRecipes(this),
-                new ChiselRecipes(this),
+            craftingTemplateList = List.of(
+                    new VanillaRecipes(this),
+                    new OtherCustomItemRecipes(this),
+                    new CoralRecipes(this),
+                    new ChiselRecipes(this),
 
-                // lets hope this works :p
-                new CompassRecipes(this),
+                    // lets hope this works :p
+                    new CompassRecipes(this),
 
-                // customset
-                new CopperRecipes(this),
-                new FiridiumRecipes(this),
-                new SculkRecipes(this),
-                new ObsidianRecipes(this),
-                new VeinRecipes(this),
-                new SilkRecipes(this),
-                new CalciteRecipes(this)
-        );
+                    // customset
+                    new CopperRecipes(this),
+                    new FiridiumRecipes(this),
+                    new SculkRecipes(this),
+                    new ObsidianRecipes(this),
+                    new VeinRecipes(this),
+                    new SilkRecipes(this),
+                    new CalciteRecipes(this)
+            );
 
-        new HiddenRecipes(this);
+            new HiddenRecipes(this);
 
-        RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove
-        ChiselBlockData.createChiselBlockData();
-        DFCustomDrops.createCustomDropData();
+            RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove
+            ChiselBlockData.createChiselBlockData();
+            DFCustomDrops.createCustomDropData();
 
-        // Command initiation
-        Objects.requireNonNull(getCommand("givedf")).setExecutor(new GiveDF());
-        Objects.requireNonNull(getCommand("givedf")).setTabCompleter(new GiveDFTabCompleter());
-        Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
-        Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
+            // Command initiation
+            Objects.requireNonNull(getCommand("givedf")).setExecutor(new GiveDF());
+            Objects.requireNonNull(getCommand("givedf")).setTabCompleter(new GiveDFTabCompleter());
+            Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
+            Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
 
-        List<Listener> eventListeners = List.of(
-                new FoodLevelChangeEvent(),
-                new EntityDamageByEntityEvent(),
-                new EntityDamageEvent(),
-                new EntityPickupItemEvent(),
-                new EntityDeathEvent(this),
+            List<Listener> eventListeners = List.of(
+                    new FoodLevelChangeEvent(),
+                    new EntityDamageByEntityEvent(),
+                    new EntityDamageEvent(),
+                    new EntityPickupItemEvent(),
+                    new EntityDeathEvent(this),
 
-                new BlockBreakEvent(),
-                new BlockBreakProgressUpdateEvent(),
+                    new BlockBreakEvent(),
+                    new BlockBreakProgressUpdateEvent(),
 
-                new CraftItemEvent(),
-                new InventoryOpenEvent(),
-                new PrepareItemCraftEvent(),
-                new PrepareSmithingEvent(),
+                    new CraftItemEvent(),
+                    new InventoryOpenEvent(),
+                    new PrepareItemCraftEvent(),
+                    new PrepareSmithingEvent(),
 
-                new PlayerAttemptPickupItemEvent(),
-                new PlayerBucketFillEvent(),
-                new PlayerDeathEvent(),
-                new PlayerDropItemEvent(),
-                new PlayerInteractAtEntityEvent(),
-                new PlayerInteractEntityEvent(),
-                new PlayerInteractEvent(),
-                new PlayerJoinEvent()
-        );
+                    new PlayerAttemptPickupItemEvent(),
+                    new PlayerBucketFillEvent(),
+                    new PlayerDeathEvent(),
+                    new PlayerDropItemEvent(),
+                    new PlayerInteractAtEntityEvent(),
+                    new PlayerInteractEntityEvent(),
+                    new PlayerInteractEvent(),
+                    new PlayerJoinEvent()
+            );
 
-        for (Listener listener : eventListeners) {
-            getServer().getPluginManager().registerEvents(listener, this);
+            for (Listener listener : eventListeners) {
+                getServer().getPluginManager().registerEvents(listener, this);
+            }
+
+            // Event initiation
+            Bukkit.getScheduler().runTaskTimer(this, () -> {
+                for (Player plr : Bukkit.getOnlinePlayers()) {
+                    DFArmourSetEvents.ApplyRunPerSecond(plr);
+                }
+            }, 0, 20);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            getLogger().severe("DFSmpPlus failed to initialise! Entering panic mode!");
+            getLogger().severe("During panic mode, the server will stay active, however disallow any players from joining!");
+            getLogger().severe("The game logic will stop during panic mode.");
+
+            Bukkit.getServerTickManager().setFrozen(true);
+            panicMode = true;
         }
 
-        // Event initiation
-        Bukkit.getScheduler().runTaskTimer(this, () -> {
-            for (Player plr : Bukkit.getOnlinePlayers()) {
-                DFArmourSetEvents.ApplyRunPerSecond(plr);
-            }
-        }, 0, 20);
+        if (!panicMode) Bukkit.getServerTickManager().setFrozen(false);
     }
 
     @Override
