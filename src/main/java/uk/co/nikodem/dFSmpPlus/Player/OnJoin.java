@@ -10,6 +10,7 @@ import org.bukkit.inventory.meta.BundleMeta;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
+import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialUpdater;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
@@ -19,16 +20,10 @@ import java.util.List;
 import java.util.Objects;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Enums.UpdateResult.*;
-import static uk.co.nikodem.dFSmpPlus.DFSmpPlus.panicMode;
 
 public class OnJoin {
     public static void OnJoin(PlayerJoinEvent e) {
         Player plr = e.getPlayer();
-
-        if (panicMode) {
-            plr.kick(MiniMessage.miniMessage().deserialize("<red>Server is in panic mode! You will be unable to join the server until manual intervention."));
-            return;
-        }
 
         for (CraftingTemplate template : DFSmpPlus.craftingTemplateList) {
             template.discoverRecipes(plr);

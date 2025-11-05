@@ -6,16 +6,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import javax.annotation.Nullable;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class MagicMirrorMeta implements DFMaterialMeta {
     public final MiniMessage mm;
+    public static HashMap<UUID, Long> magicMirrorCooldowns = new HashMap<>();
 
     public MagicMirrorMeta() {
         mm = MiniMessage.miniMessage();
@@ -59,7 +61,7 @@ public class MagicMirrorMeta implements DFMaterialMeta {
     }
 
     public boolean onMagicMirrorCooldown(Player plr) {
-        Long timestamp = DFSmpPlus.playerData.getTemporaryLong(plr, "LastMagicMirror");
+        Long timestamp = magicMirrorCooldowns.get(plr.getUniqueId());
         if (timestamp == null) {
             return false;
         } else {
@@ -70,7 +72,9 @@ public class MagicMirrorMeta implements DFMaterialMeta {
     }
 
     public void setMagicMirrorCooldown(Player plr) {
-        DFSmpPlus.playerData.setTemporaryData(plr, "LastMagicMirror", new Date().getTime());
+        if (magicMirrorCooldowns.containsKey(plr.getUniqueId())) {
+            magicMirrorCooldowns.replace(plr.getUniqueId(), new Date().getTime());
+        } else magicMirrorCooldowns.put(plr.getUniqueId(), new Date().getTime());
     }
 
     public boolean inCombat(Player plr) {

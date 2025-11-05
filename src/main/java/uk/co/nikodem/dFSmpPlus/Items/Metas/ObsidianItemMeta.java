@@ -1,7 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
 import io.papermc.paper.event.block.BlockBreakProgressUpdateEvent;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.EntityType;

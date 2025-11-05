@@ -6,24 +6,29 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class LifeCrystalMeta implements DFMaterialMeta {
+    public static HashMap<UUID, Long> lifeCrystalCooldowns = new HashMap<>();
+
     public void ItemUse(Player plr, DFMaterial material, ItemStack item, PlayerInteractEvent event) {
         Action action = event.getAction();
         if (action == Action.RIGHT_CLICK_BLOCK || action == Action.RIGHT_CLICK_AIR) {
             // use LifeCrystal
 
-            Long lastUsed = DFSmpPlus.playerData.getTemporaryLong(plr, "lifeCrystalLastUsed");
+            Long lastUsed = lifeCrystalCooldowns.get(plr.getUniqueId());
 
             if (lastUsed == null || lastUsed+500 < new Date().getTime()) {
-                DFSmpPlus.playerData.setTemporaryData(plr, "lifeCrystalLastUsed", new Date().getTime());
+                if (lifeCrystalCooldowns.containsKey(plr.getUniqueId())) {
+                    lifeCrystalCooldowns.replace(plr.getUniqueId(), new Date().getTime());
+                } else lifeCrystalCooldowns.put(plr.getUniqueId(), new Date().getTime());
 
                 Integer amount = LifeCrystalManager.getPlayerLifeCrystals(plr);
                 if (amount == null) amount = 0;

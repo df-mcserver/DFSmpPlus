@@ -1,7 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil;
 
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.Nullable;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 
 import java.util.Map;
