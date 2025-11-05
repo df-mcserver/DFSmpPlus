@@ -27,6 +27,7 @@ import uk.co.nikodem.dFSmpPlus.Events.Player.Block.BlockBreakEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Block.BlockBreakProgressUpdateEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.CraftItemEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareAnvilEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.InventoryClickEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.InventoryOpenEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareItemCraftEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareSmithingEvent;
@@ -111,6 +112,8 @@ public final class DFSmpPlus extends JavaPlugin {
 
                     new CraftItemEvent(),
                     new InventoryOpenEvent(),
+                    new InventoryClickEvent(),
+
                     new PrepareItemCraftEvent(),
                     new PrepareSmithingEvent(),
                     new PrepareAnvilEvent(),
