@@ -7,6 +7,7 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Etc.DirectConversionRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.SmithingTableRecipeBuilder;
@@ -37,20 +38,21 @@ public class ChiselRecipes extends CraftingTemplate {
                 .setReplacementIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.STICK)))
                 .setIngredient(Material.STICK));
 
+
         recipesToAdd.add(
-                new ShapelessRecipeBuilder()
+                new DirectConversionRecipeBuilder()
+                        .setSource(new RecipeChoice.ExactChoice(ItemStack.of(Material.STICK)))
                         .setOutput(DFMaterial.PointyStick)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "PointyStick")
-                        .addIngredient(new RecipeChoice.ExactChoice(ItemStack.of(Material.STICK)))
         );
 
         recipesToAdd.add(
-                new ShapelessRecipeBuilder()
+                new DirectConversionRecipeBuilder()
+                        .setSource(DFMaterial.LooseStone)
                         .setOutput(DFMaterial.SharpStone)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "SharpStone")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -90,11 +92,11 @@ public class ChiselRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
-                new ShapelessRecipeBuilder()
+                new DirectConversionRecipeBuilder()
+                        .setSource(Material.DIAMOND)
                         .setOutput(DFMaterial.DiamondChisel)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "DiamondChisel")
-                        .addIngredient(Material.DIAMOND)
         );
 
         recipesToAdd.add(
