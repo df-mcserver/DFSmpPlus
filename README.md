@@ -4,7 +4,7 @@ Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 
 > [!WARNING]
 > NOT INTENDED FOR PERSONAL USE  
-> This plugin is built for a very specific use case, and you may need to modify the source code in order to make the plugin work.  
+> This plugin is built for a very specific use case, and you may need to modify the source code in order to make the plugin work for you.  
 > I will not help you if you try to use this plugin. The code here is provided as-is.
 
 > [!WARNING]
@@ -18,6 +18,9 @@ Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
    - This is a plugin using the Paper API. Any Minecraft server software which implements the Paper API (whether that be Paper, or forks like [Purpur](https://purpurmc.org/)) should support this plugin.
    - Note: This plugin is only tested on [LeafMC](https://www.leafmc.one/), a PaperMC fork.
    - Spigot / Spigot forks will NOT work.
+- [UltimateAdvancementAPI](https://github.com/frengor/UltimateAdvancementAPI) (2.7.1)
+    - Used for making custom advancements
+    - UltimateAdvancementAPI plugin must also be present in order for this plugin to work.
 - DFJavaResources
    - The resource pack which adds the textures and resources required in order to display custom content.
    - Not strictly required, however recommended.
