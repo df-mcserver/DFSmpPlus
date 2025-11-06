@@ -19,10 +19,9 @@ public class MusicDiscRecipes extends CraftingTemplate {
         List<Recipe> recipesToAdd = new ArrayList<>();
 
         List<Material> allMusicDiscs = List.of(
-                Material.MUSIC_DISC_11,
-                Material.MUSIC_DISC_OTHERSIDE,
-                Material.MUSIC_DISC_13,
                 Material.MUSIC_DISC_5,
+                Material.MUSIC_DISC_11,
+                Material.MUSIC_DISC_13,
                 Material.MUSIC_DISC_BLOCKS,
                 Material.MUSIC_DISC_CAT,
                 Material.MUSIC_DISC_CHIRP,
@@ -50,7 +49,7 @@ public class MusicDiscRecipes extends CraftingTemplate {
                         new StonecutterRecipeBuilder()
                                 .setSource(musicDisc)
                                 .setOutput(subMusicDisc)
-                                .build(getInfo(), "music"+Integer.toString(i))
+                                .build(getInfo(), "music"+i)
                 );
                 i++;
             }
