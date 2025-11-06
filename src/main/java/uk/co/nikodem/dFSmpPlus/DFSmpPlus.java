@@ -20,6 +20,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets.*;
+import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.Interchangable.MusicDiscRecipes;
 import uk.co.nikodem.dFSmpPlus.Data.Global.GlobalDataHandler;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDamageByEntityEvent;
@@ -71,6 +72,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new OtherCustomItemRecipes(this),
                     new CoralRecipes(this),
                     new ChiselRecipes(this),
+
+                    new MusicDiscRecipes(this),
 
                     // lets hope this works :p
                     new CompassRecipes(this),
