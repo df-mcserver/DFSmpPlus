@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.MagicMirror;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
@@ -92,6 +94,7 @@ public class MagicMirrorMeta implements DFMaterialMeta {
         int random = (int )(Math.random() * 4096 + 1);
         if (random == 69) {
             plr.sendMessage(mm.deserialize("<dark_purple>You wake up in your bed in a cold sweat.."));
+            DFAdvancementsHandler.grantAdvancement(plr, MagicMirror.class);
         } else {
             plr.sendMessage(mm.deserialize("<dark_purple>Teleported to your bed!"));
         }

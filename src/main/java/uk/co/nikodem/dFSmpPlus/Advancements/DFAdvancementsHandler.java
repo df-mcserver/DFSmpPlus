@@ -48,36 +48,36 @@ public class DFAdvancementsHandler {
         new IITNIG(newWorld); // TODO
         new NetheriteTech(newWorld); // TODO
 
-        SoItBegins soItBegins = new SoItBegins(main); // TODO
+        SoItBegins soItBegins = new SoItBegins(main);
         new OSFTSB(soItBegins); // TODO
-        Stage1 stage1 = new Stage1(soItBegins); // TODO
-        Stage2 stage2 = new Stage2(stage1); // TODO
-        Stage6 stage6 = new Stage6(stage2); // TODO
-        Stage9 stage9 = new Stage9(stage6); // TODO
-        new Stage10(stage9); // TODO
+        Stage1 stage1 = new Stage1(soItBegins);
+        Stage2 stage2 = new Stage2(stage1);
+        Stage6 stage6 = new Stage6(stage2);
+        Stage9 stage9 = new Stage9(stage6);
+        new Stage10(stage9);
 
-        Bluebellsar bluebellsar = new Bluebellsar(main); // TODO
-        BulliedByBluebellsar bulliedByBluebellsar = new BulliedByBluebellsar(bluebellsar); // TODO
-        BullyBluebellsar bullyBluebellsar = new BullyBluebellsar(bulliedByBluebellsar); // TODO
-        new BluebellsarRun(bullyBluebellsar); // TODO
+        Bluebellsar bluebellsar = new Bluebellsar(main);
+        BulliedByBluebellsar bulliedByBluebellsar = new BulliedByBluebellsar(bluebellsar);
+        BullyBluebellsar bullyBluebellsar = new BullyBluebellsar(bulliedByBluebellsar);
+        new BluebellsarRun(bullyBluebellsar);
 
         new NotEvenCloseBaby(main); // TODO
-        new MagicMirror(main); // TODO
+        new MagicMirror(main);
         new DoublingDown(main); // TODO
         new ITTDDTA(main); // TODO
         new WorldRecord(main); // TODO
         new WhatYouEgg(main); // TODO
         new I3Rocks(main); // TODO
-        new BreakTargetDummy(main); // TODO
+        new BreakTargetDummy(main);
         new ConsciousWarden(main); // TODO
         new IYCBTJT(main); // TODO
-        new VeinTool(main); // TODO
-        new FiridiumTool(main); // TODO
+        new VeinTool(main);
+        new FiridiumTool(main);
 
-        ObsidianItem obsidianItem = new ObsidianItem(main); // TODO
+        ObsidianItem obsidianItem = new ObsidianItem(main);
         new ObsidianArmour(obsidianItem); // TODO
 
-        CompassCraft compassCraft = new CompassCraft(main); // TODO
+        CompassCraft compassCraft = new CompassCraft(main);
         new CompassUse(compassCraft); // TODO
 
         EquipAccessory equipAccessory = new EquipAccessory(main); // TODO

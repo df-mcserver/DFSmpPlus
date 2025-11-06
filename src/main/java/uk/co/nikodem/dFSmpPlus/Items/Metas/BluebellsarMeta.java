@@ -2,12 +2,17 @@ package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BluebellsarRun;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BullyBluebellsar;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
@@ -24,10 +29,20 @@ public class BluebellsarMeta implements DFMaterialMeta {
         }
     }
 
+    public void ItemKilledEntity(Player plr, DFMaterial material, Entity target, EntityDeathEvent event) {
+        if (target instanceof Player) {
+            // i know this isn't possible but if SOMEHOW someone does it, congrats
+            DFAdvancementsHandler.grantAdvancement(plr, BluebellsarRun.class);
+        }
+    }
+
     public void ItemAttackWhileOffhand(Player plr, DFMaterial material, ItemStack weapon, EntityDamageByEntityEvent event) {
         if (plr.getPersistentDataContainer().has(Keys.bullyBluebellsarStick)) {
-            if (plr.getPersistentDataContainer().get(Keys.bullyBluebellsarStick, PersistentDataType.INTEGER) < 0) {
+            Integer val = plr.getPersistentDataContainer().get(Keys.bullyBluebellsarStick, PersistentDataType.INTEGER);
+            if (val == null) plr.getPersistentDataContainer().remove(Keys.bullyBluebellsarStick);
+            else if (val < 0) {
                 plr.sendMessage(MiniMessage.miniMessage().deserialize("<i><grey>Bluebellsar Stick whispers to you: we're not doing this again"));
+                DFAdvancementsHandler.grantAdvancement(plr, BullyBluebellsar.class);
 
                 plr.getInventory().setItemInOffHand(ItemStack.of(Material.AIR));
                 plr.broadcastSlotBreak(EquipmentSlot.OFF_HAND);
@@ -91,6 +106,7 @@ public class BluebellsarMeta implements DFMaterialMeta {
                     plr.getInventory().setItemInOffHand(ItemStack.of(Material.AIR));
                     plr.broadcastSlotBreak(EquipmentSlot.OFF_HAND);
                     plr.getPersistentDataContainer().set(Keys.bullyBluebellsarStick, PersistentDataType.INTEGER, -100);
+                    DFAdvancementsHandler.grantAdvancement(plr, BullyBluebellsar.class);
                 }
             }
         }

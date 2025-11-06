@@ -16,6 +16,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.persistence.PersistentDataType;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.BreakTargetDummy;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -82,6 +84,8 @@ public class TargetDummyMeta implements DFMaterialMeta {
                 Sounds.BrokenTool.playSound(event.getEntity());
                 event.getEntity().getWorld().spawnParticle(Particle.CRIT, event.getEntity().getLocation().add(0, 1.5, 0), 25, 0, 0, 0, 0.6);
                 event.getEntity().remove();
+
+                DFAdvancementsHandler.grantAdvancement(plr, BreakTargetDummy.class);
                 return;
             }
 

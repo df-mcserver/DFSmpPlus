@@ -12,6 +12,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.persistence.PersistentDataType;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.Bluebellsar;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.*;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.SoItBegins;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Constants.VeinMineable;
@@ -47,41 +50,43 @@ public class DFMaterial {
     public static DFMaterial VeinPickaxe = new DFMaterialBuilder(Material.IRON_PICKAXE, "vein_pickaxe", 1)
             .setDisplayName("<light_purple>Vein Miner's Pickaxe")
             .addLore("<aqua>A powerful pickaxe from a well-respected miner.")
-            .addMeta(new VeinMiningMeta(VeinMineable.VeinOres))
+            .addMeta(new VeinMiningMeta(VeinMineable.VeinOres), new AdvancementOnCraftMeta(VeinTool.class))
             .create();
 
     public static DFMaterial VeinAxe = new DFMaterialBuilder(Material.IRON_AXE, "vein_axe", 1)
             .setDisplayName("<light_purple>Vein Miner's Axe")
             .addLore("<aqua>A powerful axe from a well-respected miner.")
-            .addMeta(new VeinMiningMeta(VeinMineable.VeinLogs))
+            .addMeta(new VeinMiningMeta(VeinMineable.VeinLogs), new AdvancementOnCraftMeta(VeinTool.class))
             .create();
 
     public static DFMaterial FiridiumSword = new DFMaterialBuilder(Material.IRON_SWORD, "firidium_sword", 1)
             .setDisplayName("<red>Firidium Sword")
             .addEnchantment(Enchantment.FIRE_ASPECT)
+            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumPickaxe = new DFMaterialBuilder(Material.IRON_PICKAXE, "firidium_pickaxe", 1)
             .setDisplayName("<red>Firidium Pickaxe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AutoSmeltingMeta(AutoSmeltable.AutosmeltablePickaxe))
+            .addMeta(new AutoSmeltingMeta(AutoSmeltable.AutosmeltablePickaxe), new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumAxe = new DFMaterialBuilder(Material.IRON_AXE, "firidium_axe", 1)
             .setDisplayName("<red>Firidium Axe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AutoSmeltingMeta(AutoSmeltable.AutosmeltableAxe))
+            .addMeta(new AutoSmeltingMeta(AutoSmeltable.AutosmeltableAxe), new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumShovel = new DFMaterialBuilder(Material.IRON_SHOVEL, "firidium_shovel", 1)
             .setDisplayName("<red>Firidium Shovel")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AutoSmeltingMeta(AutoSmeltable.AutosmeltableShovel))
+            .addMeta(new AutoSmeltingMeta(AutoSmeltable.AutosmeltableShovel), new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumHoe = new DFMaterialBuilder(Material.IRON_HOE, "firidium_hoe", 1)
             .setDisplayName("<red>Firidium Hoe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
+            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumIngot = new DFMaterialBuilder(Material.IRON_INGOT, "firidium_ingot", 1)
@@ -97,6 +102,7 @@ public class DFMaterial {
             .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.HEAD)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Helmet)")
+            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumChestplate = new DFMaterialBuilder(Material.IRON_CHESTPLATE, "firidium_chestplate", 1)
@@ -104,6 +110,7 @@ public class DFMaterial {
             .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.CHEST)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Chestplate)")
+            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumLeggings = new DFMaterialBuilder(Material.IRON_LEGGINGS, "firidium_leggings", 1)
@@ -111,6 +118,7 @@ public class DFMaterial {
             .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.LEGS)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Leggings)")
+            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumBoots = new DFMaterialBuilder(Material.IRON_BOOTS, "firidium_boots", 1)
@@ -118,6 +126,7 @@ public class DFMaterial {
             .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.FEET)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Boots)")
+            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial BluebellsarStick = new DFMaterialBuilder(Material.STICK, "bluebellsar_stick", 1)
@@ -130,7 +139,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.LUCK_OF_THE_SEA)
             .addEnchantment(Enchantment.AQUA_AFFINITY)
             .addEnchantment(Enchantment.MENDING)
-            .addMeta(new BluebellsarMeta())
+            .addMeta(new BluebellsarMeta(), new AdvancementOnCraftMeta(Bluebellsar.class))
             .removeCustomModel()
             .create();
 
@@ -219,31 +228,31 @@ public class DFMaterial {
     public static DFMaterial ObsidianSword = new DFMaterialBuilder(Material.NETHERITE_SWORD, "obsidian_sword", 1)
             .setDisplayName("Obsidian Sword")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianItemMeta(false))
+            .addMeta(new ObsidianItemMeta(false), new AdvancementOnCraftMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianAxe = new DFMaterialBuilder(Material.NETHERITE_AXE, "obsidian_axe", 1)
             .setDisplayName("Obsidian Axe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianItemMeta(true))
+            .addMeta(new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianPickaxe = new DFMaterialBuilder(Material.NETHERITE_PICKAXE, "obsidian_pickaxe", 1)
             .setDisplayName("Obsidian Pickaxe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianItemMeta(true))
+            .addMeta(new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianShovel = new DFMaterialBuilder(Material.NETHERITE_SHOVEL, "obsidian_shovel", 1)
             .setDisplayName("Obsidian Shovel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianItemMeta(true))
+            .addMeta(new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianHoe = new DFMaterialBuilder(Material.NETHERITE_HOE, "obsidian_hoe", 1)
             .setDisplayName("Obsidian Hoe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianItemMeta(true))
+            .addMeta(new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianHelmet = new DFMaterialBuilder(Material.NETHERITE_HELMET, "obsidian_helmet", 1)
@@ -251,6 +260,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.HEAD)
             .addLore("<gray>(Equivalent to Netherite Helmet)")
+            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianChestplate = new DFMaterialBuilder(Material.NETHERITE_CHESTPLATE, "obsidian_chestplate", 1)
@@ -258,6 +268,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.CHEST)
             .addLore("<gray>(Equivalent to Netherite Chestplate)")
+            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianLeggings = new DFMaterialBuilder(Material.NETHERITE_LEGGINGS, "obsidian_leggings", 1)
@@ -265,6 +276,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.LEGS)
             .addLore("<gray>(Equivalent to Netherite Leggings)")
+            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianBoots = new DFMaterialBuilder(Material.NETHERITE_BOOTS, "obsidian_boots", 1)
@@ -272,6 +284,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.FEET)
             .addLore("<gray>(Equivalent to Netherite Boots)")
+            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial LifeCrystal = new DFMaterialBuilder(Material.FIREWORK_STAR, "life_crystal", 1)
@@ -319,7 +332,7 @@ public class DFMaterial {
             .addLore("<aqua>A powerful sword which grows in power with every kill.")
             .markForUUID()
             .addPersistentData(Keys.vampireSwordStage, PersistentDataType.INTEGER, 0)
-            .addMeta(new VampireSwordMeta())
+            .addMeta(new VampireSwordMeta(), new AdvancementOnCraftMeta(SoItBegins.class))
             .create();
 
     public static DFMaterial PointyStick = new DFMaterialBuilder(Material.STICK, "pointy_stick", 1)
@@ -353,7 +366,7 @@ public class DFMaterial {
     public static DFMaterial FiridiumChisel = new DFMaterialBuilder(Material.STICK, "firidium_chisel", 1)
             .setDisplayName("Firidium Chisel")
             .addEnchantment(Enchantment.FIRE_ASPECT, 1)
-            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50), new AutoSmeltingMeta())
+            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50), new AutoSmeltingMeta(), new AdvancementOnCraftMeta(FiridiumTool.class))
             .setMaxStack(1)
             .create();
 
@@ -378,7 +391,7 @@ public class DFMaterial {
     public static DFMaterial ObsidianChisel = new DFMaterialBuilder(Material.STICK, "obsidian_chisel", 1)
             .setDisplayName("Obsidian Chisel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new ObsidianChiselMeta())
+            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class), new AdvancementOnCraftMeta(UselessFlex.class))
             .setMaxStack(1)
             .create();
 
@@ -482,7 +495,7 @@ public class DFMaterial {
     public static DFMaterial LocatorCompass = new DFMaterialBuilder(Material.COMPASS, "locator_compass", 1)
             .setDisplayName("Locator Compass")
             .addLore("<aqua>A compass which will try to point you to a destination")
-            .addMeta(new LocatorCompassMeta())
+            .addMeta(new LocatorCompassMeta(), new AdvancementOnCraftMeta(CompassCraft.class))
             .setMaxStack(1)
             // .addLore("<red>Please insert a module.")
             .create();

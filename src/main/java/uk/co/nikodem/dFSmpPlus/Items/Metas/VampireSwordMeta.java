@@ -10,6 +10,8 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.*;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Global.Data.GlobalData;
@@ -37,12 +39,30 @@ public class VampireSwordMeta implements DFMaterialMeta {
 
             if (!canUpgradeFromTarget(plr, item)) return;
 
-            Integer stage = incrementStage(item);
+            Integer stage = incrementStage(plr, item);
             if (stage == null) return;
             Sounds.WoodCrash.playSound(plr);
             updateLore(item, stage);
             updateModel(item, stage);
             TelemetryUtils.updateVampireStage(stage);
+
+            switch (stage) {
+                case 1:
+                    DFAdvancementsHandler.grantAdvancement(plr, Stage1.class);
+                    break;
+
+                case 2:
+                    DFAdvancementsHandler.grantAdvancement(plr, Stage2.class);
+                    break;
+
+                case 6:
+                    DFAdvancementsHandler.grantAdvancement(plr, Stage6.class);
+                    break;
+
+                case 9:
+                    DFAdvancementsHandler.grantAdvancement(plr, Stage9.class);
+                    break;
+            }
         }
     };
 
@@ -61,9 +81,10 @@ public class VampireSwordMeta implements DFMaterialMeta {
     }
 
     @Nullable
-    public Integer incrementStage(ItemStack item) {
+    public Integer incrementStage(Player plr, ItemStack item) {
         Integer currentStage = getStage(item);
         if (currentStage == null) return null;
+        if (currentStage == MAX_STAGE) DFAdvancementsHandler.grantAdvancement(plr, Stage10.class);
         if (currentStage + 1 > MAX_STAGE) return null;
         DFItemUtils.set(
                 item,
