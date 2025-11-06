@@ -10,6 +10,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Nullable;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface DFMaterialMeta {
     default void ItemMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakEvent event) {};
     default void ItemStartMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakProgressUpdateEvent event) {};
     default void ItemDrop(Player plr, DFMaterial material, ItemStack item, PlayerDropItemEvent event) {};
-    default void ItemCrafted(DFMaterial material, ItemStack item, CraftItemEvent event) {};
+    default void ItemCrafted(DFMaterial material, ItemStack item, Player plr, @Nullable CraftItemEvent event) {};
     default void ItemCreated(DFMaterial material, ItemStack item) {};
     default void ItemKilledEntity(Player plr, DFMaterial material, Entity target, EntityDeathEvent event) {};
     default void BucketUseEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {};

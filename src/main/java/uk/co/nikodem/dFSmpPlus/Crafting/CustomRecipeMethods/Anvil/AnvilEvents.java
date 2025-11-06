@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
@@ -14,6 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.view.AnvilView;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.Transformer.AnvilTransformData;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.Transformer.AnvilTransformResponse;
+import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
 
 import java.util.*;
 
@@ -99,8 +101,11 @@ public class AnvilEvents {
                     result.setItemMeta(meta);
                 }
 
+                OnCraft.OnCraft(result, (Player) plr, null);
+
                 if (event.isShiftClick()) plr.getInventory().addItem(result);
                 else plr.setItemOnCursor(result);
+
                 inventory.setFirstItem(ItemStack.of(Material.AIR));
                 inventory.setSecondItem(additionResult == null ? ItemStack.of(Material.AIR) : additionResult);
                 inventory.setResult(ItemStack.of(Material.AIR));

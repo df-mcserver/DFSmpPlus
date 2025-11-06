@@ -2,11 +2,17 @@ package uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareSmithingEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.SmithingInventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 
 import java.util.ArrayList;
@@ -88,5 +94,20 @@ public class SmithingTableEvents {
                 }
             }
         }
+    }
+
+    public static void onSmithingTableCraft(InventoryClickEvent event) {
+        Inventory inv = event.getClickedInventory();
+        if (inv == null) return;
+        if (inv.getType() != InventoryType.SMITHING) return;
+
+        SmithingInventory inventory = (SmithingInventory) inv;
+        if (event.getRawSlot() != 3) return;
+
+        HumanEntity plr = event.getWhoClicked();
+
+        ItemStack item = inventory.getResult();
+
+        OnCraft.OnCraft(item, (Player) plr, null);
     }
 }

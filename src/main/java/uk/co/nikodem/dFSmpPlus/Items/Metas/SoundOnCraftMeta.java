@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -15,8 +16,8 @@ public class SoundOnCraftMeta implements DFMaterialMeta {
     }
 
     @Override
-    public void ItemCrafted(DFMaterial material, ItemStack item, CraftItemEvent event) {
-        Location loc = event.getWhoClicked().getLocation();
+    public void ItemCrafted(DFMaterial material, ItemStack item, Player plr, CraftItemEvent event) {
+        Location loc = plr.getLocation();
         soundData.playSound(loc);
     };
 }
