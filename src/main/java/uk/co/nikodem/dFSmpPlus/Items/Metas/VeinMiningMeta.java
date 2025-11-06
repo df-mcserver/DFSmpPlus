@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
+import uk.co.nikodem.dFSmpPlus.Constants.VeinMineable;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
@@ -24,19 +25,11 @@ public class VeinMiningMeta implements DFMaterialMeta {
     public void ItemMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakEvent event) {
         Block b = event.getBlock();
 
-        Boolean isVeinable = false;
-        for (Material potential : list) {
-            if (potential == b.getType()) {
-                isVeinable = true;
-                break;
-            }
-        }
+        if (!VeinMineable.isInArray(b.getType(), list)) return;
 
-        if (!isVeinable) return;
-
-        List<Block> veinLogs = new ArrayList<>();
-        veinLogs.add(b);
-        findVeinLogs(b, b.getType(), veinLogs);
+        List<Block> veinBlocks = new ArrayList<>();
+        veinBlocks.add(b);
+        findVeinBlocks(b, b.getType(), veinBlocks);
 
         Damageable im = (Damageable) tool.getItemMeta();
         if (im == null) return;
@@ -44,21 +37,21 @@ public class VeinMiningMeta implements DFMaterialMeta {
         im.setDamage(damage);
         tool.setItemMeta(im);
 
-        for (Block block : veinLogs) {
+        for (Block block : veinBlocks) {
             block.breakNaturally(tool);
         }
     };
 
-    private static void findVeinLogs(Block origin, Material type, List<Block> veinLogs) {
+    private static void findVeinBlocks(Block origin, Material type, List<Block> veinBlocks) {
         BlockFace[] var4 = BlockFace.values();
         int var5 = var4.length;
 
         for (int var6 = 0; var6 < var5; ++var6) {
             BlockFace face = var4[var6];
             Block relative = origin.getRelative(face);
-            if (relative.getType() == type && !veinLogs.contains(relative)) {
-                veinLogs.add(relative);
-                findVeinLogs(relative, type, veinLogs);
+            if (relative.getType() == type && !veinBlocks.contains(relative)) {
+                veinBlocks.add(relative);
+                findVeinBlocks(relative, type, veinBlocks);
             }
         }
 

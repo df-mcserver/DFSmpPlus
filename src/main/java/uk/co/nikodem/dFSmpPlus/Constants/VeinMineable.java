@@ -47,4 +47,31 @@ public class VeinMineable {
             Material.STRIPPED_WARPED_STEM,
             Material.STRIPPED_CRIMSON_STEM
     };
+
+    public static boolean isVeinOre(Material material) {
+        for (Material potential : VeinOres) {
+            if (potential == material) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isVeinLog(Material material) {
+        for (Material potential : VeinLogs) {
+            if (potential == material) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isInArray(Material material, Material[] array) {
+        for (Material potential : array) {
+            if (potential == material) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
