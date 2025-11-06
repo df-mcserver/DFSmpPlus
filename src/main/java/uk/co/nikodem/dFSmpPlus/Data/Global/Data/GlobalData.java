@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Data.Global;
+package uk.co.nikodem.dFSmpPlus.Data.Global.Data;
 
 import java.util.HashMap;
 import java.util.Map;

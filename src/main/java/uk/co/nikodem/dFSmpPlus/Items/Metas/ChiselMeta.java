@@ -20,6 +20,7 @@ import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
+import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import java.util.Collections;
@@ -60,6 +61,7 @@ public class ChiselMeta implements DFMaterialMeta {
 
                 data.getSoundData().playSound(loc);
                 DFItemUtils.reduceDurability(plr, tool, 1, true);
+                TelemetryUtils.increaseChiselUses(1);
                 break;
             }
         }

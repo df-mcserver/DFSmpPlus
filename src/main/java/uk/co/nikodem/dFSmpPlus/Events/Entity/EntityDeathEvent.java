@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
+import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 
 public class EntityDeathEvent implements Listener {
     private final DFSmpPlus plugin;
@@ -19,6 +20,7 @@ public class EntityDeathEvent implements Listener {
     @EventHandler
     public void EntityDeathEvent(org.bukkit.event.entity.EntityDeathEvent event) {
         DFMaterialEvents.ItemKillEntity(event);
+        TelemetryUtils.increaseDeath(event.getEntity(), event.getDamageSource().getCausingEntity());
 
         Bukkit.getScheduler().runTaskLater(plugin, () -> {
             for (DFCustomDrops drops : DFCustomDrops.CustomDropsMap) {

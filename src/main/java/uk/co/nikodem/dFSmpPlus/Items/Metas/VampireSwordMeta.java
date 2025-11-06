@@ -12,14 +12,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
-import uk.co.nikodem.dFSmpPlus.Data.Global.GlobalData;
+import uk.co.nikodem.dFSmpPlus.Data.Global.Data.GlobalData;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
+import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,6 +42,7 @@ public class VampireSwordMeta implements DFMaterialMeta {
             Sounds.WoodCrash.playSound(plr);
             updateLore(item, stage);
             updateModel(item, stage);
+            TelemetryUtils.updateVampireStage(stage);
         }
     };
 

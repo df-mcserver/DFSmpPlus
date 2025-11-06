@@ -13,6 +13,7 @@ import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialUpdater;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
+import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class OnJoin {
         for (CraftingTemplate template : DFSmpPlus.craftingTemplateList) {
             template.discoverRecipes(plr);
         }
+
+        TelemetryUtils.increasePlayerJoins(1);
 
         LifeCrystalManager.updatePlayerLifeCrystalsModifier(plr);
 
