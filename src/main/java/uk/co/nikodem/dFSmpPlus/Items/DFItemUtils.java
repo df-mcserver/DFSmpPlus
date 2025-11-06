@@ -104,16 +104,18 @@ public class DFItemUtils {
         return integer;
     }
 
-    public static boolean setModel(ItemStack item, NamespacedKey key) {
-        if (item == null) return false;
+    @Nullable
+    public static ItemStack setModel(ItemStack item, NamespacedKey key) {
+        if (item == null) return null;
         ItemMeta meta = item.getItemMeta();
-        if (meta == null) return false;
+        if (meta == null) return null;
         meta.setItemModel(key);
         item.setItemMeta(meta);
-        return true;
+        return item;
     }
 
-    public static boolean setModel(ItemStack item, String key) {
+    @Nullable
+    public static ItemStack setModel(ItemStack item, String key) {
         return setModel(item, Keys.createModelKey(key));
     }
 

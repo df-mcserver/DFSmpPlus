@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Commands.DFDebugCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.DFMaterialView;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
@@ -61,6 +62,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
     public static PlayerDataHandler playerDataHandler;
     public static GlobalDataHandler globalDataHandler;
 
+    public static DFAdvancementsHandler advancements;
+
     @Override
     public void onEnable() {
         try {
@@ -92,6 +95,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
             new HiddenRecipes(this);
             new HiddenRepairRecipes(this);
+
+            advancements = new DFAdvancementsHandler(this);
 
             playerDataHandler = new PlayerDataHandler(this);
             globalDataHandler = new GlobalDataHandler(this);

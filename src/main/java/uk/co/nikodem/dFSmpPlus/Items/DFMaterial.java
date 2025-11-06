@@ -1,6 +1,5 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -325,7 +324,7 @@ public class DFMaterial {
 
     public static DFMaterial PointyStick = new DFMaterialBuilder(Material.STICK, "pointy_stick", 1)
             .setDisplayName("Pointy Stick")
-            .addMeta(new SoundOnCraftMeta(Sounds.WoodCrash), new ChiselMeta(1f), new CustomDurabilityMeta(2))
+            .addMeta(new SoundOnCraftMeta(Sounds.WoodCrash), new ChiselMeta(1f), new CustomDurabilityMeta(2), new PointyStickMeta())
             .setMaxStack(1)
             .create();
 
@@ -379,7 +378,7 @@ public class DFMaterial {
     public static DFMaterial ObsidianChisel = new DFMaterialBuilder(Material.STICK, "obsidian_chisel", 1)
             .setDisplayName("Obsidian Chisel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true))
+            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new ObsidianChiselMeta())
             .setMaxStack(1)
             .create();
 

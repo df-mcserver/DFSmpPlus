@@ -92,7 +92,7 @@ public class TargetDummyMeta implements DFMaterialMeta {
                 event.getEntity().getWorld().spawnParticle(Particle.CRIT, event.getEntity().getLocation().add(0, 1.5, 0), 6, 0, 0, 0, 0.6);
             } else event.getEntity().getWorld().playSound(event.getEntity(), Sound.ENTITY_ARMOR_STAND_HIT, 1F, 1F);
 
-            plr.sendMessage(MiniMessage.miniMessage().deserialize("<red>-♥ <white>"+new DecimalFormat("#0.00").format(event.getDamage())));
+            plr.sendActionBar(MiniMessage.miniMessage().deserialize("<red>-♥ <white>"+new DecimalFormat("#0.00").format(event.getDamage())));
         }
 
         event.setCancelled(true);
