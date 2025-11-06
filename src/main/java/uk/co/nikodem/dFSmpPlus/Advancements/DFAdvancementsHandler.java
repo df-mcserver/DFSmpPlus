@@ -45,7 +45,7 @@ public class DFAdvancementsHandler {
         NewWorld newWorld = new NewWorld(main);
         new UsedSpear(newWorld);
         new UselessFlex(newWorld);
-        new IITNIG(newWorld); // TODO
+        new IITNIG(newWorld);
         new NetheriteTech(newWorld); // TODO
 
         SoItBegins soItBegins = new SoItBegins(main);
@@ -70,7 +70,7 @@ public class DFAdvancementsHandler {
         new I3Rocks(main); // TODO
         new BreakTargetDummy(main);
         new ConsciousWarden(main); // TODO
-        new IYCBTJT(main); // TODO
+        new IYCBTJT(main);
         new VeinTool(main);
         new FiridiumTool(main);
 

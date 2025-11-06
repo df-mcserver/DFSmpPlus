@@ -15,6 +15,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.IITNIG;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
@@ -43,6 +45,8 @@ public class ChiselMeta implements DFMaterialMeta {
                 event.setCancelled(true);
                 ItemStack drop = data.getDrop();
                 boolean autosmelt = DFItemUtils.containsMeta(material, AutoSmeltingMeta.class); // TODO: accessories
+
+                if (block.getType().equals(Material.BOOKSHELF)) DFAdvancementsHandler.grantAdvancement(plr, IITNIG.class);
 
                 if (autosmelt) {
                     Material autosmeltMat = AutoSmeltable.AutosmeltableChisel.get(drop.getType());
