@@ -3,6 +3,7 @@ version: '1.0.0'
 main: uk.co.nikodem.dFSmpPlus.DFSmpPlus
 api-version: '1.21.3'
 author: 'deadfry42'
+depend: [UltimateAdvancementAPI]
 commands:
   givedf:
     description: "Gives DFMaterial."
