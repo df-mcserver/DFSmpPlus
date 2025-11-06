@@ -12,7 +12,7 @@ public class CopperMeta implements DFArmourSetMeta {
     @Override
     public void PlayerAttack(Player plr, DFArmourSet armourSet, ItemStack weapon, EntityDamageByEntityEvent event) {
         if (event.isCritical() && !plr.getWorld().isClearWeather()) {
-            int random = DFItemUtils.isCopper(weapon) ? (int) (Math.random() * 3 + 1) : (int) (Math.random() * 5 + 1);
+            int random = DFItemUtils.isCopper(weapon) ? (int) (Math.random() * 10 + 1) : (int) (Math.random() * 25 + 1);
             if (random == 2) {
                 Entity target = event.getEntity();
                 plr.getWorld().strikeLightning(target.getLocation());
