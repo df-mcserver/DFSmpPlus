@@ -4,17 +4,18 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.AnvilEvents;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.AnvilRecipe;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.Transformer.AnvilTransformData;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.Transformer.AnvilTransformResponse;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
-import java.util.Map;
 import java.util.function.Function;
 
 public class AnvilRecipeBuilder {
     private CustomItemRepresentation base;
     private CustomItemRepresentation addition;
     private ItemStack result;
-    private Function<Map.Entry<AnvilRecipe, Map.Entry<ItemStack, ItemStack>>, Map.Entry<ItemStack, ItemStack>> transformer;
+    private Function<AnvilTransformData, AnvilTransformResponse> transformer;
 
     public AnvilRecipeBuilder setResult(CustomItemRepresentation item) {
         this.result = item.getItem();
@@ -91,7 +92,7 @@ public class AnvilRecipeBuilder {
         return this;
     }
 
-    public AnvilRecipeBuilder setTransformer(Function<Map.Entry<AnvilRecipe, Map.Entry<ItemStack, ItemStack>>, Map.Entry<ItemStack, ItemStack>> transformer) {
+    public AnvilRecipeBuilder setTransformer(Function<AnvilTransformData, AnvilTransformResponse> transformer) {
         this.transformer = transformer;
         return this;
     }

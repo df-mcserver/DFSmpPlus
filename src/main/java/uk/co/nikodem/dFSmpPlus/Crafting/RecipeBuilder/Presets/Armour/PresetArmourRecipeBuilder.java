@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets;
+package uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

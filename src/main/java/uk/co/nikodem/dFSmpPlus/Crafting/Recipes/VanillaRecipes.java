@@ -8,12 +8,13 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.recipe.CookingBookCategory;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
-import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.AnvilRecipe;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.AnvilRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.BlastFurnaceRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.*;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.*;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardBootsRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardChestplateRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardHelmetRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardLeggingsRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Etc.DirectConversionRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithResultRemoval;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
@@ -21,7 +22,6 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class VanillaRecipes extends CraftingTemplate {
 
@@ -148,11 +148,9 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setIngredient('I', Material.IRON_NUGGET)
         );
 
-        new AnvilRecipeBuilder()
-                .setBase(Material.TRIDENT)
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(Material.TRIDENT)
                 .setAddition(Material.DIAMOND)
-                .setResult(Material.TRIDENT)
-                .setTransformer((data) -> Map.entry(data.getValue().getKey(), ItemStack.of(Material.AIR)))
                 .assign();
     }
 
