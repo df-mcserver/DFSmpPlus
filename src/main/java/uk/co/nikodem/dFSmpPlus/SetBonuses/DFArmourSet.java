@@ -72,6 +72,16 @@ public class DFArmourSet {
             .create();
 
     // Custom armour sets
+    public static final DFArmourSet Calcite = new DFArmourSetBuilder("Calcite")
+            .setBase(DFArmourSet.Native_Chainmail)
+            .setHelmet(DFMaterial.CalciteHelmet)
+            .setChestplate(DFMaterial.CalciteChestplate)
+            .setLeggings(DFMaterial.CalciteLeggings)
+            .setBoots(DFMaterial.CalciteBoots)
+            .setSetBonus("Gives you speed and a few extra hearts")
+            .addMeta(new CalciteMeta())
+            .create();
+
     public static final DFArmourSet Copper = new DFArmourSetBuilder("Copper")
             .setBase(DFArmourSet.Native_Iron)
             .setHelmet(DFMaterial.CopperHelmet)
