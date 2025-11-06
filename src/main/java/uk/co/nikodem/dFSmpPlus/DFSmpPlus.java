@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uk.co.nikodem.dFSmpPlus.Commands.DFDebugCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.DFMaterialView;
 import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
@@ -44,6 +46,7 @@ import java.util.Objects;
 
 public final class DFSmpPlus extends JavaPlugin implements Listener {
 
+    private static final Logger log = LoggerFactory.getLogger(DFSmpPlus.class);
     public static BungeeUtils bungeeUtils;
 
     public static List<? extends CraftingTemplate> craftingTemplateList;
@@ -83,6 +86,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             );
 
             new HiddenRecipes(this);
+            new HiddenRepairRecipes(this);
 
             playerDataHandler = new PlayerDataHandler(this);
             globalDataHandler = new GlobalDataHandler(this);
@@ -143,7 +147,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             }, 0, 20);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error occured whilst initialising DFSmpPlugin!", e);
             getLogger().severe("DFSmpPlus failed to initialise! Entering panic mode!");
             getLogger().severe("During panic mode, the server will stay active, however disallow any players from joining!");
             getLogger().severe("The game logic will stop during panic mode.");

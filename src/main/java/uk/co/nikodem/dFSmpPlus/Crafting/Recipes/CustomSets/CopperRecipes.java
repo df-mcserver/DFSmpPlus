@@ -62,12 +62,6 @@ public class CopperRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperSword)
-                        .build(getInfo(), "CopperSword")
-        );
-
-        recipesToAdd.add(
                 new LeftAxeRecipeBuilder()
                         .setItem(DFMaterial.CopperAxe)
                         .setMaterial(Material.COPPER_INGOT)
@@ -86,12 +80,6 @@ public class CopperRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperAxe)
-                        .build(getInfo(), "CopperAxe")
-        );
-
-        recipesToAdd.add(
                 new PickaxeRecipeBuilder()
                         .setItem(DFMaterial.CopperPickaxe)
                         .setMaterial(Material.COPPER_INGOT)
@@ -100,23 +88,11 @@ public class CopperRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperPickaxe)
-                        .build(getInfo(), "CopperPickaxe")
-        );
-
-        recipesToAdd.add(
                 new ShovelRecipeBuilder()
                         .setItem(DFMaterial.CopperShovel)
                         .setMaterial(Material.COPPER_INGOT)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
-        );
-
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperShovel)
-                        .build(getInfo(), "CopperShovel")
         );
 
         recipesToAdd.add(
@@ -136,12 +112,6 @@ public class CopperRecipes extends CraftingTemplate {
                         .setGroup("CopperHoe")
                         .build(getInfo(), "Right")
         );
-
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperHoe)
-                        .build(getInfo(), "CopperHoe")
-        );
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {
@@ -154,23 +124,11 @@ public class CopperRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperHelmet)
-                        .build(getInfo(), "CopperHelmet")
-        );
-
-        recipesToAdd.add(
                 new StandardChestplateRecipeBuilder()
                         .setItem(DFMaterial.CopperChestplate)
                         .setMaterial(Material.COPPER_INGOT)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
-        );
-
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperChestplate)
-                        .build(getInfo(), "CopperChestplate")
         );
 
         recipesToAdd.add(
@@ -182,23 +140,11 @@ public class CopperRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperLeggings)
-                        .build(getInfo(), "CopperLeggings")
-        );
-
-        recipesToAdd.add(
                 new StandardBootsRecipeBuilder()
                         .setItem(DFMaterial.CopperBoots)
                         .setMaterial(Material.COPPER_INGOT)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
-        );
-
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperBoots)
-                        .build(getInfo(), "CopperBoots")
         );
     }
 

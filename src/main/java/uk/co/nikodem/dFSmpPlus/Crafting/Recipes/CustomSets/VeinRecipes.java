@@ -33,12 +33,6 @@ public class VeinRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.VeinAxe)
-                        .build(getInfo(), "VeinAxe")
-        );
-
-        recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.VeinAxe)
                         .setGroup("VeinAxe")
@@ -57,12 +51,6 @@ public class VeinRecipes extends CraftingTemplate {
                         .shape("XXX", "XIX", " I ")
                         .setIngredient('X', Material.AMETHYST_SHARD)
                         .setIngredient('I', Material.STICK)
-        );
-
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.VeinPickaxe)
-                        .build(getInfo(), "VeinPickaxe")
         );
 
         return recipesToAdd;

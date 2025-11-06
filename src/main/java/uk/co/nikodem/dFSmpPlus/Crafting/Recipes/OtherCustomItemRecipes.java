@@ -114,15 +114,6 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setIngredient('F', Material.FLINT)
                         .setIngredient('S', Material.STICK)
         );
-
-        recipesToAdd.add(
-                new ControlledShapelessRecipeBuilder()
-                        .addIngredient(DFMaterial.VampireSword)
-                        .addIngredient(DFMaterial.VampireSword)
-                        .setResult(Material.STICK)
-                        .setTransformer((data) -> ItemStack.of(Material.AIR))
-                        .build(getInfo(), "VampSwordCombine")
-        );
     }
 
     public void addLocatorCompassAndModules(List<Recipe> recipesToAdd) {

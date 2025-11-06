@@ -92,11 +92,13 @@ public class CustomItemRepresentation {
         // this is the same check as the dummy check
         // this makes sure that the recipe is recognised
         // and removed if invalid
+        if (item == null) return false;
         return item.getType() == this.item.getType();
     }
 
     public boolean runCheck(ItemStack item) {
         boolean result = false;
+        if (item == null) return false;
 
         if (getStrict()) {
 //            result = item.isSimilar(this.item);

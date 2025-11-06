@@ -29,12 +29,6 @@ public class SilkRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.SilkSword)
-                        .build(getInfo(), "SilkSword")
-        );
-
-        recipesToAdd.add(
                 new LeftAxeRecipeBuilder()
                         .setItem(DFMaterial.SilkAxe)
                         .setMaterial(Material.STRING)
@@ -53,12 +47,6 @@ public class SilkRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.SilkAxe)
-                        .build(getInfo(), "SilkAxe")
-        );
-
-        recipesToAdd.add(
                 new PickaxeRecipeBuilder()
                         .setItem(DFMaterial.SilkPickaxe)
                         .setMaterial(Material.STRING)
@@ -67,23 +55,11 @@ public class SilkRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.SilkPickaxe)
-                        .build(getInfo(), "SilkPickaxe")
-        );
-
-        recipesToAdd.add(
                 new ShovelRecipeBuilder()
                         .setItem(DFMaterial.SilkShovel)
                         .setMaterial(Material.STRING)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
-        );
-
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.SilkShovel)
-                        .build(getInfo(), "SilkShovel")
         );
 
         recipesToAdd.add(
@@ -102,12 +78,6 @@ public class SilkRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .setGroup("SilkHoe")
                         .build(getInfo(), "Right")
-        );
-
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.SilkHoe)
-                        .build(getInfo(), "SilkHoe")
         );
 
         return recipesToAdd;
