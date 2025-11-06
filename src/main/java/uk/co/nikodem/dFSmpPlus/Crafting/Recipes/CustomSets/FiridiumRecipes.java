@@ -13,6 +13,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardBoo
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardChestplateRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardHelmetRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardLeggingsRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Tools.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithIngredientReplace;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
@@ -74,6 +75,11 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .build(getInfo(), "Firidium")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumSword)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
+
         recipesToAdd.add(
                 new LeftAxeRecipeBuilder()
                         .setItem(DFMaterial.FiridiumAxe)
@@ -94,6 +100,11 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .build(getInfo(), "Right-Firidium")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumAxe)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
+
         recipesToAdd.add(
                 new PickaxeRecipeBuilder()
                         .setItem(DFMaterial.FiridiumPickaxe)
@@ -103,6 +114,11 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .build(getInfo(), "Firidium")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumPickaxe)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
+
         recipesToAdd.add(
                 new ShovelRecipeBuilder()
                         .setItem(DFMaterial.FiridiumShovel)
@@ -111,6 +127,11 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumShovel)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
 
         recipesToAdd.add(
                 new LeftHoeRecipeBuilder()
@@ -131,6 +152,11 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Right-Firidium")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumHoe)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {
@@ -142,6 +168,11 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .build(getInfo(), "Firidium")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumHelmet)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
+
         recipesToAdd.add(
                 new StandardChestplateRecipeBuilder()
                         .setItem(DFMaterial.FiridiumChestplate)
@@ -149,6 +180,11 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumChestplate)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
 
         recipesToAdd.add(
                 new StandardLeggingsRecipeBuilder()
@@ -158,6 +194,11 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .build(getInfo(), "Firidium")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumLeggings)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
+
         recipesToAdd.add(
                 new StandardBootsRecipeBuilder()
                         .setItem(DFMaterial.FiridiumBoots)
@@ -165,6 +206,11 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumBoots)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
     }
 
     public void addFurnaceRecipes(List<Recipe> recipesToAdd) {

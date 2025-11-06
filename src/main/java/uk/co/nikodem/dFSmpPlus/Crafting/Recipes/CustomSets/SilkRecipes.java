@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Tools.*;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -28,6 +29,11 @@ public class SilkRecipes extends CraftingTemplate {
                         .build(getInfo())
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.SilkSword)
+                .setAddition(Material.STRING)
+                .assign();
+
         recipesToAdd.add(
                 new LeftAxeRecipeBuilder()
                         .setItem(DFMaterial.SilkAxe)
@@ -46,6 +52,11 @@ public class SilkRecipes extends CraftingTemplate {
                         .build(getInfo(), "Right")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.SilkAxe)
+                .setAddition(Material.STRING)
+                .assign();
+
         recipesToAdd.add(
                 new PickaxeRecipeBuilder()
                         .setItem(DFMaterial.SilkPickaxe)
@@ -54,6 +65,11 @@ public class SilkRecipes extends CraftingTemplate {
                         .build(getInfo())
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.SilkPickaxe)
+                .setAddition(Material.STRING)
+                .assign();
+
         recipesToAdd.add(
                 new ShovelRecipeBuilder()
                         .setItem(DFMaterial.SilkShovel)
@@ -61,6 +77,11 @@ public class SilkRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.SilkShovel)
+                .setAddition(Material.STRING)
+                .assign();
 
         recipesToAdd.add(
                 new LeftHoeRecipeBuilder()
@@ -79,6 +100,11 @@ public class SilkRecipes extends CraftingTemplate {
                         .setGroup("SilkHoe")
                         .build(getInfo(), "Right")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.SilkHoe)
+                .setAddition(Material.STRING)
+                .assign();
 
         return recipesToAdd;
     }

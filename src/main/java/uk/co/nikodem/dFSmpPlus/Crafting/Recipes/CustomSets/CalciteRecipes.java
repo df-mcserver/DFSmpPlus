@@ -8,6 +8,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardBoo
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardChestplateRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardHelmetRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardLeggingsRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Tools.*;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -39,6 +40,11 @@ public class CalciteRecipes extends CraftingTemplate {
                         .build(getInfo())
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteSword)
+                .setAddition(Material.CALCITE)
+                .assign();
+
         recipesToAdd.add(
                 new LeftAxeRecipeBuilder()
                         .setItem(DFMaterial.CalciteAxe)
@@ -57,6 +63,11 @@ public class CalciteRecipes extends CraftingTemplate {
                         .build(getInfo(), "Right")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteAxe)
+                .setAddition(Material.CALCITE)
+                .assign();
+
         recipesToAdd.add(
                 new PickaxeRecipeBuilder()
                         .setItem(DFMaterial.CalcitePickaxe)
@@ -65,6 +76,11 @@ public class CalciteRecipes extends CraftingTemplate {
                         .build(getInfo())
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalcitePickaxe)
+                .setAddition(Material.CALCITE)
+                .assign();
+
         recipesToAdd.add(
                 new ShovelRecipeBuilder()
                         .setItem(DFMaterial.CalciteShovel)
@@ -72,6 +88,11 @@ public class CalciteRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteShovel)
+                .setAddition(Material.CALCITE)
+                .assign();
 
         recipesToAdd.add(
                 new LeftHoeRecipeBuilder()
@@ -90,6 +111,11 @@ public class CalciteRecipes extends CraftingTemplate {
                         .setGroup("CalciteHoe")
                         .build(getInfo(), "Right")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteHoe)
+                .setAddition(Material.CALCITE)
+                .assign();
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {
@@ -101,6 +127,11 @@ public class CalciteRecipes extends CraftingTemplate {
                         .build(getInfo())
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteHelmet)
+                .setAddition(Material.CALCITE)
+                .assign();
+
         recipesToAdd.add(
                 new StandardChestplateRecipeBuilder()
                         .setItem(DFMaterial.CalciteChestplate)
@@ -108,6 +139,11 @@ public class CalciteRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteChestplate)
+                .setAddition(Material.CALCITE)
+                .assign();
 
         recipesToAdd.add(
                 new StandardLeggingsRecipeBuilder()
@@ -117,6 +153,11 @@ public class CalciteRecipes extends CraftingTemplate {
                         .build(getInfo())
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteLeggings)
+                .setAddition(Material.CALCITE)
+                .assign();
+
         recipesToAdd.add(
                 new StandardBootsRecipeBuilder()
                         .setItem(DFMaterial.CalciteBoots)
@@ -124,6 +165,11 @@ public class CalciteRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteLeggings)
+                .setAddition(Material.CALCITE)
+                .assign();
     }
 
     @Override

@@ -5,6 +5,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.SmithingTableRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
@@ -51,6 +52,11 @@ public class ObsidianRecipes extends CraftingTemplate {
                         .build(getInfo(), "ObsidianSword")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianSword)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
+
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
                         .setBase(new CustomItemRepresentation(Material.NETHERITE_AXE))
@@ -59,6 +65,11 @@ public class ObsidianRecipes extends CraftingTemplate {
                         .setResult(DFMaterial.ObsidianAxe)
                         .build(getInfo(), "ObsidianAxe")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianAxe)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
@@ -69,6 +80,11 @@ public class ObsidianRecipes extends CraftingTemplate {
                         .build(getInfo(), "ObsidianPickaxe")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianPickaxe)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
+
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
                         .setBase(new CustomItemRepresentation(Material.NETHERITE_SHOVEL))
@@ -78,6 +94,11 @@ public class ObsidianRecipes extends CraftingTemplate {
                         .build(getInfo(), "ObsidianShovel")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianShovel)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
+
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
                         .setBase(new CustomItemRepresentation(Material.NETHERITE_HOE))
@@ -86,6 +107,11 @@ public class ObsidianRecipes extends CraftingTemplate {
                         .setResult(DFMaterial.ObsidianHoe)
                         .build(getInfo(), "ObsidianHoe")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianHoe)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {
@@ -98,6 +124,11 @@ public class ObsidianRecipes extends CraftingTemplate {
                         .build(getInfo(), "ObsidianHelmet")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianHelmet)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
+
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
                         .setBase(new CustomItemRepresentation(Material.NETHERITE_CHESTPLATE))
@@ -106,6 +137,11 @@ public class ObsidianRecipes extends CraftingTemplate {
                         .setResult(DFMaterial.ObsidianChestplate)
                         .build(getInfo(), "ObsidianChestplate")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianChestplate)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
@@ -116,6 +152,11 @@ public class ObsidianRecipes extends CraftingTemplate {
                         .build(getInfo(), "ObsidianLeggings")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianLeggings)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
+
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
                         .setBase(new CustomItemRepresentation(Material.NETHERITE_BOOTS))
@@ -124,6 +165,11 @@ public class ObsidianRecipes extends CraftingTemplate {
                         .setResult(DFMaterial.ObsidianBoots)
                         .build(getInfo(), "ObsidianBoots")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianBoots)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
     }
 
     @Override

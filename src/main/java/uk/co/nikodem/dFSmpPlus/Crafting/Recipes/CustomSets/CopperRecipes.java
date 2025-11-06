@@ -11,6 +11,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardBoo
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardChestplateRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardHelmetRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardLeggingsRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Tools.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
@@ -65,6 +66,11 @@ public class CopperRecipes extends CraftingTemplate {
                         .build(getInfo())
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperSword)
+                .setAddition(Material.COPPER_INGOT)
+                .assign();
+
         recipesToAdd.add(
                 new LeftAxeRecipeBuilder()
                         .setItem(DFMaterial.CopperAxe)
@@ -83,6 +89,11 @@ public class CopperRecipes extends CraftingTemplate {
                         .build(getInfo(), "Right")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperAxe)
+                .setAddition(Material.COPPER_INGOT)
+                .assign();
+
         recipesToAdd.add(
                 new PickaxeRecipeBuilder()
                         .setItem(DFMaterial.CopperPickaxe)
@@ -91,6 +102,11 @@ public class CopperRecipes extends CraftingTemplate {
                         .build(getInfo())
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperPickaxe)
+                .setAddition(Material.COPPER_INGOT)
+                .assign();
+
         recipesToAdd.add(
                 new ShovelRecipeBuilder()
                         .setItem(DFMaterial.CopperShovel)
@@ -98,6 +114,11 @@ public class CopperRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperShovel)
+                .setAddition(Material.COPPER_INGOT)
+                .assign();
 
         recipesToAdd.add(
                 new LeftHoeRecipeBuilder()
@@ -116,6 +137,11 @@ public class CopperRecipes extends CraftingTemplate {
                         .setGroup("CopperHoe")
                         .build(getInfo(), "Right")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperHoe)
+                .setAddition(Material.COPPER_INGOT)
+                .assign();
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {
@@ -127,6 +153,11 @@ public class CopperRecipes extends CraftingTemplate {
                         .build(getInfo())
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperHelmet)
+                .setAddition(Material.COPPER_INGOT)
+                .assign();
+
         recipesToAdd.add(
                 new StandardChestplateRecipeBuilder()
                         .setItem(DFMaterial.CopperChestplate)
@@ -134,6 +165,11 @@ public class CopperRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperChestplate)
+                .setAddition(Material.COPPER_INGOT)
+                .assign();
 
         recipesToAdd.add(
                 new StandardLeggingsRecipeBuilder()
@@ -143,6 +179,11 @@ public class CopperRecipes extends CraftingTemplate {
                         .build(getInfo())
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperLeggings)
+                .setAddition(Material.COPPER_INGOT)
+                .assign();
+
         recipesToAdd.add(
                 new StandardBootsRecipeBuilder()
                         .setItem(DFMaterial.CopperBoots)
@@ -150,6 +191,11 @@ public class CopperRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperBoots)
+                .setAddition(Material.COPPER_INGOT)
+                .assign();
     }
 
     public void addFurnaceRecipes(List<Recipe> recipesToAdd) {

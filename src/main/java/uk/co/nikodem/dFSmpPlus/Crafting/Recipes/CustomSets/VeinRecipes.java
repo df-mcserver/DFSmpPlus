@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -31,6 +32,11 @@ public class VeinRecipes extends CraftingTemplate {
                         .setIngredient('I', Material.STICK)
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.VeinAxe)
+                .setAddition(Material.AMETHYST_SHARD)
+                .assign();
+
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.VeinAxe)
@@ -51,6 +57,11 @@ public class VeinRecipes extends CraftingTemplate {
                         .setIngredient('X', Material.AMETHYST_SHARD)
                         .setIngredient('I', Material.STICK)
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.VeinPickaxe)
+                .setAddition(Material.AMETHYST_SHARD)
+                .assign();
 
         return recipesToAdd;
     }

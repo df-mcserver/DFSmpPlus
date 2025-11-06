@@ -8,6 +8,7 @@ import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Etc.DirectConversionRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.SmithingTableRecipeBuilder;
@@ -47,6 +48,11 @@ public class ChiselRecipes extends CraftingTemplate {
                         .build(getInfo(), "PointyStick")
         );
 
+        new ItemRepairAnvilRecipeBuilder() // idk why you'd ever want this
+                .setItem(DFMaterial.PointyStick)
+                .setAddition(Material.STICK)
+                .assign();
+
         recipesToAdd.add(
                 new DirectConversionRecipeBuilder()
                         .setSource(DFMaterial.LooseStone)
@@ -54,6 +60,11 @@ public class ChiselRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "SharpStone")
         );
+
+        new ItemRepairAnvilRecipeBuilder() // idk why you'd ever want this
+                .setItem(DFMaterial.SharpStone)
+                .setAddition(DFMaterial.LooseStone)
+                .assign();
 
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
@@ -64,6 +75,11 @@ public class ChiselRecipes extends CraftingTemplate {
                         .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.CopperNugget.toItemStack()))
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperChisel)
+                .setAddition(DFMaterial.CopperNugget)
+                .assign();
+
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.IronChisel)
@@ -72,6 +88,11 @@ public class ChiselRecipes extends CraftingTemplate {
                         .shape("XX", "XX")
                         .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.IronChisel)
+                .setAddition(Material.IRON_NUGGET)
+                .assign();
 
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
@@ -82,6 +103,11 @@ public class ChiselRecipes extends CraftingTemplate {
                         .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FiridiumNugget.toItemStack()))
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumChisel)
+                .setAddition(DFMaterial.FiridiumNugget)
+                .assign();
+
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.GoldChisel)
@@ -91,6 +117,11 @@ public class ChiselRecipes extends CraftingTemplate {
                         .setIngredient('X', Material.GOLD_NUGGET)
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.GoldChisel)
+                .setAddition(Material.GOLD_NUGGET)
+                .assign();
+
         recipesToAdd.add(
                 new DirectConversionRecipeBuilder()
                         .setSource(Material.DIAMOND)
@@ -98,6 +129,11 @@ public class ChiselRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "DiamondChisel")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.DiamondChisel)
+                .setAddition(Material.DIAMOND)
+                .assign();
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
@@ -108,6 +144,11 @@ public class ChiselRecipes extends CraftingTemplate {
                         .build(getInfo(), "NetheriteChisel")
         );
 
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.NetheriteChisel)
+                .setAddition(Material.NETHERITE_SCRAP)
+                .assign();
+
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
                         .setBase(new CustomItemRepresentation(DFMaterial.NetheriteChisel))
@@ -116,6 +157,11 @@ public class ChiselRecipes extends CraftingTemplate {
                         .setResult(DFMaterial.ObsidianChisel)
                         .build(getInfo(), "ObsidianChisel")
         );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianChisel)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
     }
 
     @Override
