@@ -19,6 +19,8 @@ import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
 
 import java.util.*;
 
+import static uk.co.nikodem.dFSmpPlus.Constants.MagicNumbers.Anvil_Result;
+
 public class AnvilEvents {
     public static List<AnvilRecipe> recipes = new ArrayList<>();
 
@@ -60,7 +62,7 @@ public class AnvilEvents {
         Inventory inv = event.getClickedInventory();
         if (inv == null) return;
         if (inv.getType() != InventoryType.ANVIL) return;
-        if (event.getRawSlot() != 2) return;
+        if (event.getRawSlot() != Anvil_Result) return;
 
         AnvilInventory inventory = (AnvilInventory) inv;
 

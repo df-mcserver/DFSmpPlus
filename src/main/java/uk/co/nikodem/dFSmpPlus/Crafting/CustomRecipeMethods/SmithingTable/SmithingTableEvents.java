@@ -102,7 +102,7 @@ public class SmithingTableEvents {
         if (inv.getType() != InventoryType.SMITHING) return;
 
         SmithingInventory inventory = (SmithingInventory) inv;
-        if (event.getRawSlot() != 3) return;
+        if (event.getRawSlot() != SmithingTable_Result) return;
 
         HumanEntity plr = event.getWhoClicked();
 
