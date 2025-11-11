@@ -30,7 +30,7 @@ public class HidingUtils {
         this.exclusiveEntities.replace(plr, list);
 
         for (Player other : Bukkit.getOnlinePlayers()) {
-            HideEntity(other, entity);
+            if (!plr.equals(other)) HideEntity(other, entity);
         }
     }
 

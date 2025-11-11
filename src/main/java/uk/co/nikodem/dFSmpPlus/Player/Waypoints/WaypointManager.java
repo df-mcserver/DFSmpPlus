@@ -51,6 +51,7 @@ public class WaypointManager {
         if (transmit_range != null) transmit_range.setBaseValue(5000D);
 
         WaypointInformation info = new WaypointInformation();
+        info.worldName = location.getWorld().getName();
         info.x = location.getX();
         info.y = location.getY();
         info.z = location.getZ();

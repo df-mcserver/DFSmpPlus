@@ -104,6 +104,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             playerDataHandler = new PlayerDataHandler(this);
             globalDataHandler = new GlobalDataHandler(this);
 
+            hidingUtils = new HidingUtils(this);
+
             getLogger().info("Added "+totalSuccessfulRecipes+"/"+totalRecipes+" recipes in total!");
 
             RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove

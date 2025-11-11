@@ -22,7 +22,7 @@ public class DFDebugCommand implements CommandExecutor {
         } else if (cmd.equals("waypointtest")) {
             sender.sendMessage("waypointtest command");
             Player plr = (Player) sender;
-            WaypointManager.CreateWaypoint(plr, plr.getLocation(), "TEST");
+            plr.sendMessage(WaypointManager.CreateWaypoint(plr, plr.getLocation(), "AAA").toString());
         }
         return true;
     }
