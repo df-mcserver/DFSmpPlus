@@ -10,9 +10,9 @@ import org.bukkit.inventory.meta.BundleMeta;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
-import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialUpdater;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.DefaultWaypointAttributes;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
@@ -25,6 +25,8 @@ import static uk.co.nikodem.dFSmpPlus.Constants.Enums.UpdateResult.*;
 public class OnJoin {
     public static void OnJoin(PlayerJoinEvent e) {
         Player plr = e.getPlayer();
+
+        DefaultWaypointAttributes.applyDefaults(plr);
 
         for (CraftingTemplate template : DFSmpPlus.craftingTemplateList) {
             template.discoverRecipes(plr);
