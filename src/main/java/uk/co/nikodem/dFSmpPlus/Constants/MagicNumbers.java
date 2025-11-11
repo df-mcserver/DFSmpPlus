@@ -7,4 +7,9 @@ public class MagicNumbers {
     public static int SmithingTable_Result = 3;
 
     public static int Anvil_Result = 2;
+
+    public static int Player_Head = 40;
+    public static int Player_Chest = 39;
+    public static int Player_Legs = 38;
+    public static int Player_Feet = 37;
 }
