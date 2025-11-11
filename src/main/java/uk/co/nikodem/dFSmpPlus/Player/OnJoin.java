@@ -13,6 +13,7 @@ import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialUpdater;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.DefaultWaypointAttributes;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
@@ -27,6 +28,7 @@ public class OnJoin {
         Player plr = e.getPlayer();
 
         DefaultWaypointAttributes.applyDefaults(plr);
+        WaypointManager.CreateOnJoin(plr);
 
         for (CraftingTemplate template : DFSmpPlus.craftingTemplateList) {
             template.discoverRecipes(plr);

@@ -43,6 +43,7 @@ import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareSmithingE
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerDataHandler;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.BungeeUtils;
+import uk.co.nikodem.dFSmpPlus.Utils.Server.HidingUtils;
 import uk.co.nikodem.dFSmpPlus.World.SetDefaults;
 
 import java.util.List;
@@ -51,7 +52,9 @@ import java.util.Objects;
 public final class DFSmpPlus extends JavaPlugin implements Listener {
 
     private static final Logger log = LoggerFactory.getLogger(DFSmpPlus.class);
+
     public static BungeeUtils bungeeUtils;
+    public static HidingUtils hidingUtils;
 
     public static List<? extends CraftingTemplate> craftingTemplateList;
 
