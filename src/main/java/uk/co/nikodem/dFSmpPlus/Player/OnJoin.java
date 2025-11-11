@@ -27,6 +27,7 @@ public class OnJoin {
     public static void OnJoin(PlayerJoinEvent e) {
         Player plr = e.getPlayer();
 
+        DFSmpPlus.hidingUtils.hideAllExclusiveEntitiesOnJoin(plr);
         DefaultWaypointAttributes.applyDefaults(plr);
         WaypointManager.CreateOnJoin(plr);
 
