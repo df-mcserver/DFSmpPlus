@@ -42,6 +42,11 @@ public class WaypointManager {
 
     @Nullable
     public static ArmorStand CreateWaypoint(Player plr, long colour, Location location) {
+
+        if (!location.isChunkLoaded()) {
+            location.getChunk().load();// make sure to load the chunk so that the waypoint can spawn
+        }
+
         Entity e = location.getWorld().spawnEntity(
                 location, EntityType.ARMOR_STAND
         );
