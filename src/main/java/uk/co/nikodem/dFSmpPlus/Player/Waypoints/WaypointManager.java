@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public class WaypointManager {
-    public static final int MAX_WAYPOINTS = 10;
+    public static final int MAX_WAYPOINTS = 5;
 
     public static final HashMap<UUID, List<ArmorStand>> activeWaypoints = new HashMap<>();
 
@@ -43,8 +43,12 @@ public class WaypointManager {
     @Nullable
     public static ArmorStand CreateWaypoint(Player plr, long colour, Location location) {
 
+        // TODO: if a waypoint api comes out, adapt this code to use that
+        // this is quite possibly the hackiest code ever
+
         if (!location.isChunkLoaded()) {
-            location.getChunk().load();// make sure to load the chunk so that the waypoint can spawn
+            location.getChunk().setForceLoaded(true); // make sure the player gets sent the chunk or whatever
+            location.getChunk().load(); // make sure to load the chunk so that the waypoint can spawn
         }
 
         Entity e = location.getWorld().spawnEntity(
@@ -57,6 +61,8 @@ public class WaypointManager {
             waypointEntity.setInvulnerable(true);
             waypointEntity.setMarker(true);
             waypointEntity.setInvisible(true);
+
+            waypointEntity.addScoreboardTag("waypoint");
 
             DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
 
@@ -82,6 +88,22 @@ public class WaypointManager {
         } else return null;
     }
 
+    public static void CleanupOnShutdown() {
+        for (Map.Entry<UUID, List<ArmorStand>> entry : activeWaypoints.entrySet()) {
+            List<ArmorStand> waypoints = entry.getValue();
+            if (waypoints == null) return;
+            for (ArmorStand waypointEntity : waypoints) {
+                waypointEntity.remove();
+            }
+        }
+
+        // just in case of desync lol
+        Bukkit.getServer().dispatchCommand(
+                Bukkit.getConsoleSender(),
+                "kill @e[tag=waypoint]"
+        );
+    }
+
     public static void CleanupOnLeave(Player plr) {
         List<ArmorStand> waypoints = activeWaypoints.get(plr.getUniqueId());
         if (waypoints == null) return;
@@ -99,7 +121,7 @@ public class WaypointManager {
 
             WaypointInformation info = waypointEntry.getValue();
             Location location = new Location(Bukkit.getWorld(info.worldName), info.x, info.y, info.z, info.yaw, info.pitch);
-            DFSmpPlus.getProvidingPlugin(DFSmpPlus.class).getLogger().info(Objects.requireNonNull(CreateWaypoint(plr, info.colour, location)).toString());
+            CreateWaypoint(plr, info.colour, location);
         }
     }
 }

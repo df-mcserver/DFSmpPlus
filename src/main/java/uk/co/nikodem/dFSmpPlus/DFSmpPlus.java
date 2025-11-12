@@ -41,6 +41,7 @@ import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.InventoryOpenEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareItemCraftEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareSmithingEvent;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerDataHandler;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.BungeeUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.HidingUtils;
@@ -189,5 +190,6 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        WaypointManager.CleanupOnShutdown();
     }
 }
