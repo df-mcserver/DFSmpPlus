@@ -149,7 +149,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PlayerInteractAtEntityEvent(),
                     new PlayerInteractEntityEvent(),
                     new PlayerInteractEvent(),
-                    new PlayerJoinEvent()
+                    new PlayerJoinEvent(),
+                    new PlayerQuitEvent()
             );
 
             for (Listener listener : eventListeners) {
