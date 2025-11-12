@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.*;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
@@ -37,7 +38,7 @@ public class WaypointManager {
         } else return null;
     }
 
-    public static WaypointCreationResult CreateWaypoint(Player plr, Location location, String id) {
+    public static WaypointCreationResult CreateWaypoint(Player plr, Location location, String id, long colour) {
         PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
         if (data.waypoints.containsKey(id)) return WaypointCreationResult.FAILED_ALREADY_EXISTS;
         if (data.waypoints.size() >= MAX_WAYPOINTS) return WaypointCreationResult.FAILED_REACHED_MAXIMUM;
@@ -49,6 +50,16 @@ public class WaypointManager {
         // make sure that the waypoint transmission is set after is invisible to other players
         AttributeInstance transmit_range = waypointEntity.getAttribute(Attribute.WAYPOINT_TRANSMIT_RANGE);
         if (transmit_range != null) transmit_range.setBaseValue(5000D);
+
+        // set colour of waypoint
+        // this puts a message in the console, but tbh i cba to fix it
+        // nor does it really impact anything
+        // but there's no other way to change waypoint colours yet on paper
+        // TODO: https://github.com/PaperMC/Paper/pull/12964
+        Bukkit.getServer().dispatchCommand(
+                Bukkit.getConsoleSender(),
+                String.format("waypoint modify %s color hex %s", waypointEntity.getUniqueId(), Long.toHexString(colour))
+        );
 
         WaypointInformation info = new WaypointInformation();
         info.worldName = location.getWorld().getName();
@@ -85,7 +96,7 @@ public class WaypointManager {
             WaypointInformation info = waypointEntry.getValue();
 
             Location location = new Location(Bukkit.getWorld(info.worldName), info.x, info.y, info.z, info.yaw, info.pitch);
-            CreateWaypoint(plr, location, id);
+            CreateWaypoint(plr, location, id, info.colour);
         }
     }
 }

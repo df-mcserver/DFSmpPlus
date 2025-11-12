@@ -9,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 
+import java.util.UUID;
+
 public class DFDebugCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
@@ -22,7 +24,7 @@ public class DFDebugCommand implements CommandExecutor {
         } else if (cmd.equals("waypointtest")) {
             sender.sendMessage("waypointtest command");
             Player plr = (Player) sender;
-            plr.sendMessage(WaypointManager.CreateWaypoint(plr, plr.getLocation(), "AAA").toString());
+            plr.sendMessage(WaypointManager.CreateWaypoint(plr, plr.getLocation(), UUID.randomUUID().toString(), 0xff0000).toString());
         }
         return true;
     }

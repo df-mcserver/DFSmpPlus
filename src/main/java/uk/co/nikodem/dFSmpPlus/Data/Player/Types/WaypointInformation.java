@@ -6,6 +6,6 @@ public class WaypointInformation {
     public double z;
     public float yaw;
     public float pitch;
-    public long colourName;
+    public long colour;
     public String worldName;
 }
