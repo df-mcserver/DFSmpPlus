@@ -34,7 +34,7 @@ public class WaypointManager {
 
         DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
 
-        ArmorStand waypointEntity = CreateWaypoint(plr, info);
+        ArmorStand waypointEntity = CreateWaypoint(plr, info.colour, location);
         if (waypointEntity == null) return WaypointCreationResult.FAILED_CREATING_WAYPOINT;
 
         List<ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr.getUniqueId(), k -> new ArrayList<>());
@@ -45,9 +45,7 @@ public class WaypointManager {
     }
 
     @Nullable
-    public static ArmorStand CreateWaypoint(Player plr, WaypointInformation info) {
-        Location location = new Location(Bukkit.getWorld(info.worldName), info.x, info.y, info.z, info.yaw, info.pitch);
-
+    public static ArmorStand CreateWaypoint(Player plr, long colour, Location location) {
         Entity e = location.getWorld().spawnEntity(
                 location, EntityType.ARMOR_STAND
         );
@@ -72,7 +70,7 @@ public class WaypointManager {
             // TODO: https://github.com/PaperMC/Paper/pull/12964
             Bukkit.getServer().dispatchCommand(
                     Bukkit.getConsoleSender(),
-                    String.format("waypoint modify %s color hex %s", waypointEntity.getUniqueId(), String.format("%06X", info.colour))
+                    String.format("waypoint modify %s color hex %s", waypointEntity.getUniqueId(), String.format("%06X", colour))
             );
 
             return waypointEntity;
@@ -93,8 +91,10 @@ public class WaypointManager {
         PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
         for (Map.Entry<String, WaypointInformation> waypointEntry : data.waypoints.entrySet()) {
             String id = waypointEntry.getKey();
+
             WaypointInformation info = waypointEntry.getValue();
-            DFSmpPlus.getProvidingPlugin(DFSmpPlus.class).getLogger().info(Objects.requireNonNull(CreateWaypoint(plr, info)).toString());
+            Location location = new Location(Bukkit.getWorld(info.worldName), info.x, info.y, info.z, info.yaw, info.pitch);
+            DFSmpPlus.getProvidingPlugin(DFSmpPlus.class).getLogger().info(Objects.requireNonNull(CreateWaypoint(plr, info.colour, location)).toString());
         }
     }
 }
