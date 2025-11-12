@@ -37,10 +37,6 @@ public class WaypointManager {
         ArmorStand waypointEntity = CreateWaypoint(plr, info.colour, location);
         if (waypointEntity == null) return WaypointCreationResult.FAILED_CREATING_WAYPOINT;
 
-        List<ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr.getUniqueId(), k -> new ArrayList<>());
-        waypoints.add(waypointEntity);
-        activeWaypoints.replace(plr.getUniqueId(), waypoints);
-
         return WaypointCreationResult.SUCCESS;
     }
 
@@ -72,6 +68,10 @@ public class WaypointManager {
                     Bukkit.getConsoleSender(),
                     String.format("waypoint modify %s color hex %s", waypointEntity.getUniqueId(), String.format("%06X", colour))
             );
+
+            List<ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr.getUniqueId(), k -> new ArrayList<>());
+            waypoints.add(waypointEntity);
+            activeWaypoints.replace(plr.getUniqueId(), waypoints);
 
             return waypointEntity;
         } else return null;
