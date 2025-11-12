@@ -15,7 +15,7 @@ import java.util.*;
 public class WaypointManager {
     public static final int MAX_WAYPOINTS = 10;
 
-    public static final HashMap<Player, List<ArmorStand>> activeWaypoints = new HashMap<>();
+    public static final HashMap<UUID, List<ArmorStand>> activeWaypoints = new HashMap<>();
 
     public static WaypointCreationResult CreateNewWaypoint(Player plr, Location location, String id, long colour) {
         PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
@@ -37,9 +37,9 @@ public class WaypointManager {
         ArmorStand waypointEntity = CreateWaypoint(plr, info);
         if (waypointEntity == null) return WaypointCreationResult.FAILED_CREATING_WAYPOINT;
 
-        List<ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr, k -> new ArrayList<>());
+        List<ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr.getUniqueId(), k -> new ArrayList<>());
         waypoints.add(waypointEntity);
-        activeWaypoints.replace(plr, waypoints);
+        activeWaypoints.replace(plr.getUniqueId(), waypoints);
 
         return WaypointCreationResult.SUCCESS;
     }
@@ -80,13 +80,13 @@ public class WaypointManager {
     }
 
     public static void CleanupOnLeave(Player plr) {
-        List<ArmorStand> waypoints = activeWaypoints.get(plr);
+        List<ArmorStand> waypoints = activeWaypoints.get(plr.getUniqueId());
         if (waypoints == null) return;
         for (ArmorStand waypointEntity : waypoints) {
             waypointEntity.remove();
         }
 
-        activeWaypoints.remove(plr);
+        activeWaypoints.remove(plr.getUniqueId());
     }
 
     public static void CreateOnJoin(Player plr) {

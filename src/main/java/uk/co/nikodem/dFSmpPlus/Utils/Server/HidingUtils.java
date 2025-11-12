@@ -5,15 +5,12 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class HidingUtils {
     private final Plugin plugin;
 
-    private HashMap<Player, List<Entity>> exclusiveEntities = new HashMap<>();
+    private final HashMap<UUID, List<Entity>> exclusiveEntities = new HashMap<>();
 
     public HidingUtils(Plugin plugin) {
         this.plugin = plugin;
@@ -24,10 +21,10 @@ public class HidingUtils {
     }
 
     public void MakeEntityExclusiveToPlayer(Player plr, Entity entity) {
-        List<Entity> list = this.exclusiveEntities.get(plr);
+        List<Entity> list = this.exclusiveEntities.get(plr.getUniqueId());
         if (list == null) list = new ArrayList<>();
         list.add(entity);
-        this.exclusiveEntities.replace(plr, list);
+        this.exclusiveEntities.replace(plr.getUniqueId(), list);
 
         for (Player other : Bukkit.getOnlinePlayers()) {
             if (!plr.equals(other)) HideEntity(other, entity);
@@ -35,14 +32,14 @@ public class HidingUtils {
     }
 
     public boolean isEntityExclusiveToPlayer(Player plr, Entity entity) {
-        List<Entity> entities = this.exclusiveEntities.get(plr);
+        List<Entity> entities = this.exclusiveEntities.get(plr.getUniqueId());
         if (entities == null) return false;
         return entities.contains(entity);
     }
 
     public void hideAllExclusiveEntitiesOnJoin(Player plr) {
-        for (Map.Entry<Player, List<Entity>> entry : exclusiveEntities.entrySet()) {
-            if (entry.getKey() != plr) {
+        for (Map.Entry<UUID, List<Entity>> entry : exclusiveEntities.entrySet()) {
+            if (entry.getKey() != plr.getUniqueId()) {
                 List<Entity> entitiesToHide = entry.getValue();
                 for (Entity entity : entitiesToHide) {
                     HideEntity(plr, entity);
