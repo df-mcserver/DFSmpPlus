@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.DefaultWaypointAttributes;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointCreationResult;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 
@@ -30,10 +31,20 @@ public class DFWaypointCommand {
         return Commands.literal("waypoint")
                 .then(
                     Commands.literal("locatorbar")
-                        .then(Commands.argument("toggle", BoolArgumentType.bool()).executes(ctx -> {
-                                ctx.getSource().getSender().sendMessage(String.valueOf(BoolArgumentType.getBool(ctx, "toggle")));
+                        .then(Commands.argument("enabled", BoolArgumentType.bool()).executes(ctx -> {
+                            Player plr = (Player) ctx.getSource().getExecutor();
+                            if (plr == null) return 0;
+                            final Boolean toggle = ctx.getArgument("enabled", Boolean.class);
+                            if (toggle == null) return 0;
 
-                                return Command.SINGLE_SUCCESS;
+                            setPlayerLocatorBar(plr, toggle);
+                            if (toggle) {
+                                plr.sendMessage("Enabled locator bar!");
+                            } else {
+                                plr.sendMessage("Disabled locator bar!");
+                            }
+
+                            return Command.SINGLE_SUCCESS;
                             })
                         )
                 ).then(
@@ -137,12 +148,22 @@ public class DFWaypointCommand {
         WaypointCreationResult result = WaypointManager.CreateNewWaypoint(plr, plr.getLocation(), id, Long.decode(hex.toLowerCase()));
 
         switch (result) {
-            case SUCCESS -> plr.sendMessage("Successfully created "+id+"!");
+            case SUCCESS -> {
+                plr.sendMessage("Successfully created " + id + "!");
+                setPlayerLocatorBar(plr, true);
+            }
             case FAILED_CREATING_WAYPOINT -> plr.sendMessage("Error creating "+id+"!");
             case FAILED_ALREADY_EXISTS -> plr.sendMessage("Waypoint "+id+" already exists!");
             case FAILED_REACHED_MAXIMUM -> plr.sendMessage("You cannot make more than "+WaypointManager.MAX_WAYPOINTS+" waypoints!");
         }
 
         return Command.SINGLE_SUCCESS;
+    }
+
+    public static void setPlayerLocatorBar(Player plr, boolean bool) {
+        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+        data.locatorBarEnabled = bool;
+        DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
+        DefaultWaypointAttributes.updateLocatorBar(plr);
     }
 }

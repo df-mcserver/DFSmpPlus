@@ -8,6 +8,7 @@ import java.util.List;
 
 public class PlayerData {
     public List<String> equippedAccessories = new ArrayList<>();
+    public boolean locatorBarEnabled = false;
     public Integer lifeCrystals;
 
     // id, information
