@@ -47,6 +47,7 @@ public class WaypointManager {
         // this is quite possibly the hackiest code ever
 
         if (!location.isChunkLoaded()) {
+            // TODO: manage these chunks so that we don't end up with force loaded chunks with no waypoints
             location.getChunk().setForceLoaded(true); // make sure the player gets sent the chunk or whatever
             location.getChunk().load(); // make sure to load the chunk so that the waypoint can spawn
         }
@@ -55,37 +56,43 @@ public class WaypointManager {
                 location, EntityType.ARMOR_STAND
         );
 
-        if (e instanceof ArmorStand waypointEntity) {
-            waypointEntity.setGravity(false);
-            waypointEntity.setCustomNameVisible(false);
-            waypointEntity.setInvulnerable(true);
-            waypointEntity.setMarker(true);
-            waypointEntity.setInvisible(true);
+        try {
+            if (e instanceof ArmorStand waypointEntity) {
+                waypointEntity.setGravity(false);
+                waypointEntity.setCustomNameVisible(false);
+                waypointEntity.setInvulnerable(true);
+                waypointEntity.setMarker(true);
+                waypointEntity.setInvisible(true);
 
-            waypointEntity.addScoreboardTag("waypoint");
+                waypointEntity.addScoreboardTag("waypoint");
 
-            DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
+                DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
 
-            // make sure that the waypoint transmission is set after is invisible to other players
-            AttributeInstance transmit_range = waypointEntity.getAttribute(Attribute.WAYPOINT_TRANSMIT_RANGE);
-            if (transmit_range != null) transmit_range.setBaseValue(5000D);
+                // set colour of waypoint
+                // this puts a message in the console, but tbh i cba to fix it
+                // nor does it really impact anything
+                // but there's no other way to change waypoint colours yet on paper
+                // TODO: https://github.com/PaperMC/Paper/pull/12964
+                Bukkit.getServer().dispatchCommand(
+                        Bukkit.getConsoleSender(),
+                        String.format("minecraft:waypoint modify %s color hex %s", waypointEntity.getUniqueId(), String.format("%06X", colour))
+                );
 
-            // set colour of waypoint
-            // this puts a message in the console, but tbh i cba to fix it
-            // nor does it really impact anything
-            // but there's no other way to change waypoint colours yet on paper
-            // TODO: https://github.com/PaperMC/Paper/pull/12964
-            Bukkit.getServer().dispatchCommand(
-                    Bukkit.getConsoleSender(),
-                    String.format("waypoint modify %s color hex %s", waypointEntity.getUniqueId(), String.format("%06X", colour))
-            );
+                // make sure that the waypoint transmission is set after is invisible to other players
+                AttributeInstance transmit_range = waypointEntity.getAttribute(Attribute.WAYPOINT_TRANSMIT_RANGE);
+                if (transmit_range != null) transmit_range.setBaseValue(5000D);
 
-            List<ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr.getUniqueId(), k -> new ArrayList<>());
-            waypoints.add(waypointEntity);
-            activeWaypoints.replace(plr.getUniqueId(), waypoints);
+                List<ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr.getUniqueId(), k -> new ArrayList<>());
+                waypoints.add(waypointEntity);
+                activeWaypoints.replace(plr.getUniqueId(), waypoints);
 
-            return waypointEntity;
-        } else return null;
+                return waypointEntity;
+            } else return null;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            e.remove();
+            return null;
+        }
     }
 
     public static void CleanupOnShutdown() {
