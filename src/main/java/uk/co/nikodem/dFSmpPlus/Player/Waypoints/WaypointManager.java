@@ -15,6 +15,7 @@ import java.util.*;
 public class WaypointManager {
     public static final int MAX_WAYPOINTS = 5;
     public static final double MAX_DISTANCE = 65535D;
+    public static final String tag = "waypoint";
 
     public static final HashMap<UUID, List<ArmorStand>> activeWaypoints = new HashMap<>();
 
@@ -65,7 +66,7 @@ public class WaypointManager {
                 waypointEntity.setMarker(true);
                 waypointEntity.setInvisible(true);
 
-                waypointEntity.addScoreboardTag("waypoint");
+                waypointEntity.addScoreboardTag(tag);
 
                 DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
 
@@ -94,6 +95,24 @@ public class WaypointManager {
             e.remove();
             return null;
         }
+    }
+
+    @Nullable
+    public static Boolean RemoveWaypoint(Player plr, String id) {
+        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+        if (data.waypoints.containsKey(id)) return null;
+
+        data.waypoints.remove(id);
+        DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
+
+        List<ArmorStand> spawnedWaypoints = activeWaypoints.get(plr.getUniqueId());
+        for (ArmorStand waypointEntity : spawnedWaypoints) {
+            if (waypointEntity.getScoreboardTags().contains(tag)) {
+                waypointEntity.remove();
+            }
+        }
+
+        return true;
     }
 
     public static void CleanupOnShutdown() {

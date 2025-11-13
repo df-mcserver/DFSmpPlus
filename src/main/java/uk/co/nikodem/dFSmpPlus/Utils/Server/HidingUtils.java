@@ -10,6 +10,7 @@ import java.util.*;
 public class HidingUtils {
     private final Plugin plugin;
 
+    // TODO: fix potential memory leak with null entities
     private final HashMap<UUID, List<Entity>> exclusiveEntities = new HashMap<>();
 
     public HidingUtils(Plugin plugin) {
@@ -17,6 +18,7 @@ public class HidingUtils {
     }
 
     public void HideEntity(Player plr, Entity entity) {
+        if (entity == null) return;
         plr.hideEntity(plugin, entity);
     }
 
