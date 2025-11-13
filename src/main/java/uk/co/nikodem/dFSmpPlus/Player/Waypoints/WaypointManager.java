@@ -14,6 +14,7 @@ import java.util.*;
 
 public class WaypointManager {
     public static final int MAX_WAYPOINTS = 5;
+    public static final double MAX_DISTANCE = 65535D;
 
     public static final HashMap<UUID, List<ArmorStand>> activeWaypoints = new HashMap<>();
 
@@ -80,7 +81,7 @@ public class WaypointManager {
 
                 // make sure that the waypoint transmission is set after is invisible to other players
                 AttributeInstance transmit_range = waypointEntity.getAttribute(Attribute.WAYPOINT_TRANSMIT_RANGE);
-                if (transmit_range != null) transmit_range.setBaseValue(5000D);
+                if (transmit_range != null) transmit_range.setBaseValue(MAX_DISTANCE);
 
                 List<ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr.getUniqueId(), k -> new ArrayList<>());
                 waypoints.add(waypointEntity);

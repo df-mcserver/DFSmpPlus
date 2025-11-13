@@ -10,6 +10,6 @@ public class DefaultWaypointAttributes {
         if (transmitRange != null) transmitRange.setBaseValue(0D); // doesn't broadcast a waypoint on the locator bar
 
         AttributeInstance receiveRange = plr.getAttribute(Attribute.WAYPOINT_RECEIVE_RANGE);
-        if (receiveRange != null) receiveRange.setBaseValue(5000D);
+        if (receiveRange != null) receiveRange.setBaseValue(WaypointManager.MAX_DISTANCE);
     }
 }
