@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Player.Waypoints;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.*;
@@ -90,7 +91,9 @@ public class WaypointManager {
                 activeWaypoints.replace(plr.getUniqueId(), waypoints);
 
                 return waypointEntity;
-            } else return null;
+            } else {
+                return null;
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
             e.remove();
@@ -123,6 +126,14 @@ public class WaypointManager {
             for (ArmorStand waypointEntity : waypoints) {
                 waypointEntity.remove();
             }
+        }
+
+        for (World world : Bukkit.getServer().getWorlds()) {
+            world.getForceLoadedChunks().forEach((chunk -> {
+                // remove all force loaded chunks
+                // in an attempt to stop too many force loaded chunks
+                chunk.setForceLoaded(false);
+            }));
         }
 
         // just in case of desync lol
