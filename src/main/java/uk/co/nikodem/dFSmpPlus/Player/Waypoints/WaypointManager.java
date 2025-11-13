@@ -14,7 +14,7 @@ import java.util.*;
 
 public class WaypointManager {
     public static final int MAX_WAYPOINTS = 5;
-    public static final double MAX_DISTANCE = 65535D;
+    public static final double MAX_DISTANCE = 60000000D;
     public static final String tag = "waypoint";
 
     public static final HashMap<UUID, List<ArmorStand>> activeWaypoints = new HashMap<>();
