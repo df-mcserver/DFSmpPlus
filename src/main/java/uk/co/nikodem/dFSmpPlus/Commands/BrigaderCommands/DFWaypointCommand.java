@@ -16,6 +16,7 @@ import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
+import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointCreationResult;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
@@ -115,8 +116,14 @@ public class DFWaypointCommand {
                                 .executes(ctx -> {
                                     Player plr = (Player) ctx.getSource().getExecutor();
                                     if (plr == null) return 0;
-                                    for (Map.Entry<String, WaypointInformation> info : DFSmpPlus.playerDataHandler.getPlayerData(plr).waypoints.entrySet()) {
-                                        plr.sendMessage(info.getKey());
+                                    PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+                                    if (data.waypoints.isEmpty()) {
+                                        plr.sendMessage("You have no waypoints set!");
+                                        return Command.SINGLE_SUCCESS;
+                                    }
+                                    plr.sendMessage("All waypoints:");
+                                    for (Map.Entry<String, WaypointInformation> info : data.waypoints.entrySet()) {
+                                        plr.sendMessage("- "+info.getKey());
                                     }
                                     return Command.SINGLE_SUCCESS;
                                 })
