@@ -36,14 +36,14 @@ public class WaypointManager {
 
         DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
 
-        ArmorStand waypointEntity = CreateWaypoint(plr, info.colour, location);
+        ArmorStand waypointEntity = CreateWaypoint(plr, id, info.colour, location);
         if (waypointEntity == null) return WaypointCreationResult.FAILED_CREATING_WAYPOINT;
 
         return WaypointCreationResult.SUCCESS;
     }
 
     @Nullable
-    public static ArmorStand CreateWaypoint(Player plr, long colour, Location location) {
+    public static ArmorStand CreateWaypoint(Player plr, String id, long colour, Location location) {
 
         // TODO: if a waypoint api comes out, adapt this code to use that
         // this is quite possibly the hackiest code ever
@@ -67,6 +67,7 @@ public class WaypointManager {
                 waypointEntity.setInvisible(true);
 
                 waypointEntity.addScoreboardTag(tag);
+                waypointEntity.addScoreboardTag(id);
 
                 DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
 
@@ -100,14 +101,14 @@ public class WaypointManager {
     @Nullable
     public static Boolean RemoveWaypoint(Player plr, String id) {
         PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
-        if (data.waypoints.containsKey(id)) return null;
+        if (!data.waypoints.containsKey(id)) return null;
 
         data.waypoints.remove(id);
         DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
 
         List<ArmorStand> spawnedWaypoints = activeWaypoints.get(plr.getUniqueId());
         for (ArmorStand waypointEntity : spawnedWaypoints) {
-            if (waypointEntity.getScoreboardTags().contains(tag)) {
+            if (waypointEntity.getScoreboardTags().contains(id)) {
                 waypointEntity.remove();
             }
         }
@@ -148,7 +149,7 @@ public class WaypointManager {
 
             WaypointInformation info = waypointEntry.getValue();
             Location location = new Location(Bukkit.getWorld(info.worldName), info.x, info.y, info.z, info.yaw, info.pitch);
-            CreateWaypoint(plr, info.colour, location);
+            CreateWaypoint(plr, id, info.colour, location);
         }
     }
 }

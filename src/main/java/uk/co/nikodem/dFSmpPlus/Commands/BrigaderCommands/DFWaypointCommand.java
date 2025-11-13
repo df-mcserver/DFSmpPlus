@@ -68,6 +68,13 @@ public class DFWaypointCommand {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return 0;
 
+                                            Boolean removal = WaypointManager.RemoveWaypoint(plr, name);
+                                            if (removal == null) {
+                                                plr.sendMessage("Waypoint \""+name+"\" does not exist!");
+                                                return Command.SINGLE_SUCCESS;
+                                            }
+
+                                            plr.sendMessage("Waypoint \""+name+"\" successfully deleted!");
                                             return Command.SINGLE_SUCCESS;
                                 })
                             )
