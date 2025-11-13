@@ -21,7 +21,3 @@ commands:
   dfdebug:
     description: "debug commands"
     usage: /dfdebug
-  waypoint:
-    description: "Manage your waypoints! (Seen on the locator bar) (Java only)"
-    usage: /waypoint
-    aliases: ["waypoints", "w"]

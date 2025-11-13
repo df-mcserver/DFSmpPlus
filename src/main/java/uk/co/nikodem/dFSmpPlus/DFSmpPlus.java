@@ -11,8 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Commands.*;
+import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFWaypointCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.DFDebugTabCompleter;
-import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.DFWaypointTabCompleter;
 import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.GiveDFTabCompleter;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
@@ -118,11 +118,10 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             Objects.requireNonNull(getCommand("dfdebug")).setExecutor(new DFDebugCommand());
             Objects.requireNonNull(getCommand("dfdebug")).setTabCompleter(new DFDebugTabCompleter());
 
-            Objects.requireNonNull(getCommand("waypoint")).setExecutor(new DFWaypoints());
-            Objects.requireNonNull(getCommand("waypoint")).setTabCompleter(new DFWaypointTabCompleter());
-
             Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
             Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
+
+            registerCommand("waypoint", new DFWaypointCommand());
 
             List<Listener> eventListeners = List.of(
                     new FoodLevelChangeEvent(),
