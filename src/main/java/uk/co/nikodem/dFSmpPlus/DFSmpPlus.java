@@ -1,5 +1,7 @@
 package uk.co.nikodem.dFSmpPlus;
 
+import io.papermc.paper.plugin.lifecycle.event.LifecycleEvent;
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -121,7 +123,9 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
             Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
 
-            registerCommand("waypoint", new DFWaypointCommand());
+            this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
+                commands.registrar().register(DFWaypointCommand.createCommand().build());
+            });
 
             List<Listener> eventListeners = List.of(
                     new FoodLevelChangeEvent(),
