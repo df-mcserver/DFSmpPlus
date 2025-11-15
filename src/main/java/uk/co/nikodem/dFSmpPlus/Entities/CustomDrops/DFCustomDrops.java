@@ -1,8 +1,10 @@
 package uk.co.nikodem.dFSmpPlus.Entities.CustomDrops;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Ageable;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Frog;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -30,8 +32,8 @@ public class DFCustomDrops {
         new DFCustomDropsBuilder(EntityType.WARDEN).setItem(DFMaterial.SculkFragment).setRandomRange(1, 5).create();
         new DFCustomDropsBuilder(EntityType.WARDEN).setItem(Material.ECHO_SHARD).setRandomRange(1, 3).create();
 
-        new DFCustomDropsBuilder(EntityType.GOAT).setItem(Material.MUTTON).setRandomRange(1, 2).setCheck((e) -> e.getEntity().getFireTicks() == 0).create();
-        new DFCustomDropsBuilder(EntityType.GOAT).setItem(Material.COOKED_MUTTON).setRandomRange(1, 2).setCheck(e -> e.getEntity().getFireTicks() > 0).create();
+        new DFCustomDropsBuilder(EntityType.GOAT).setItem(Material.MUTTON).setRandomRange(1, 2).setCheck((e) -> e.getEntity().getFireTicks() == 0 && ((Ageable) e.getEntity()).isAdult()).create();
+        new DFCustomDropsBuilder(EntityType.GOAT).setItem(Material.COOKED_MUTTON).setRandomRange(1, 2).setCheck(e -> e.getEntity().getFireTicks() > 0 && ((Ageable) e.getEntity()).isAdult()).create();
 
         new DFCustomDropsBuilder(EntityType.SNIFFER).setItem(Material.MOSS_BLOCK).setRandomRange(1, 2).create();
     }
