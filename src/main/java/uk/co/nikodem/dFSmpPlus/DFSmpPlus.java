@@ -10,12 +10,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
-import uk.co.nikodem.dFSmpPlus.Commands.DFDebugCommand;
-import uk.co.nikodem.dFSmpPlus.Commands.DFMaterialView;
-import uk.co.nikodem.dFSmpPlus.Commands.GiveDF;
+import uk.co.nikodem.dFSmpPlus.Commands.*;
 import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.DFDebugTabCompleter;
 import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.GiveDFTabCompleter;
-import uk.co.nikodem.dFSmpPlus.Commands.SpawnCommand;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
@@ -116,6 +113,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
             Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
             Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
+            Objects.requireNonNull(getCommand("bin")).setExecutor(new BinCommand());
 
             List<Listener> eventListeners = List.of(
                     new FoodLevelChangeEvent(),
