@@ -9,6 +9,9 @@ import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
@@ -19,6 +22,7 @@ import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointCreationResult;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 
 import java.awt.*;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -122,9 +126,26 @@ public class DFWaypointCommand {
 
                                             String hex = String.format("#%06X", info.colour);
 
+                                            double blocksAway = plr.getWorld().getName().equals(info.worldName) ? plr.getLocation().distance(new Location(plr.getWorld(), info.x, info.y, info.z)) : -1L;
+
+                                            String distanceString;
+                                            if (blocksAway > -1L) distanceString = (int) blocksAway +" blocks away";
+                                            else {
+                                                World world = Bukkit.getWorld(info.worldName);
+                                                if (world == null) distanceString = "Unknown location";
+                                                else {
+                                                    switch (world.getEnvironment()) {
+                                                        case NORMAL -> distanceString = "In the Overworld";
+                                                        case NETHER -> distanceString = "In the Nether";
+                                                        case THE_END -> distanceString = "In The End";
+                                                        default -> distanceString = "Unknown location";
+                                                    }
+                                                }
+                                            }
+
                                             plr.sendMessage(
                                                     MiniMessage.miniMessage().deserialize(
-                                                            String.format("<color:%s>Waypoint %s:</color:%s>\n- X: %g\n- Y: %g\n- Z: %g", hex, waypointname, hex, info.x, info.y, info.z)
+                                                            String.format("<color:%s>Waypoint %s:</color:%s>\n- X: %g\n- Y: %g\n- Z: %g\n- Distance: %s", hex, waypointname, hex, info.x, info.y, info.z, distanceString)
                                                     )
                                             );
                                             return Command.SINGLE_SUCCESS;

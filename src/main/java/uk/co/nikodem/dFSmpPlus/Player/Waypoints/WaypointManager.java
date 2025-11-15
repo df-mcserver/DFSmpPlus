@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public class WaypointManager {
-    public static final int MAX_WAYPOINTS = 5;
+    public static final int MAX_WAYPOINTS = 10;
     public static final double MAX_DISTANCE = 60000000D;
     public static final String tag = "waypoint";
 
