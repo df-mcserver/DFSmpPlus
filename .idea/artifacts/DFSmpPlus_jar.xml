@@ -2,8 +2,9 @@
   <artifact type="jar" name="DFSmpPlus:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/DFSmpPlus_jar</output-path>
     <root id="archive" name="DFSmpPlus.jar">
-      <element id="module-output" name="DFSmpPlus" />
       <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
+      <element id="module-output" name="DFSmpPlus.main" />
+      <element id="library" level="project" name="Gradle: com.google.code.gson:gson:2.13.2" />
     </root>
   </artifact>
 </component>
