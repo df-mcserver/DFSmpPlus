@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Commands.*;
-import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFWaypointCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.DFDebugTabCompleter;
 import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.GiveDFTabCompleter;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
@@ -122,6 +121,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
             Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
             Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
+            Objects.requireNonNull(getCommand("bin")).setExecutor(new BinCommand());
 
             this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
                 commands.registrar().register(DFWaypointCommand.createCommand().build());

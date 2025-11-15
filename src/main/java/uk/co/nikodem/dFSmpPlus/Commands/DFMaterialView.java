@@ -32,7 +32,7 @@ public class DFMaterialView implements CommandExecutor {
                 if (args.length != 1) return false;
                 Integer givenPage = Integer.parseInt(args[0]);
 
-                Inventory inv = Bukkit.createInventory((InventoryHolder) null, 54, "DFMaterialView");
+                Inventory inv = Bukkit.createInventory(null, 54, "DFMaterialView");
 
                 List<ItemStack> items = new ArrayList<>();
                 for (DFMaterial material : DFMaterial.DFMaterialIndex) {
