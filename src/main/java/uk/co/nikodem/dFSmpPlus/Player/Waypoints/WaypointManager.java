@@ -26,7 +26,7 @@ public class WaypointManager {
         if (data.waypoints.size() >= MAX_WAYPOINTS) return WaypointCreationResult.FAILED_REACHED_MAXIMUM;
 
         WaypointInformation info = new WaypointInformation();
-        info.worldName = location.getWorld().getName();
+        info.worldUUID = location.getWorld().getUID().toString();
         info.x = location.getX();
         info.y = location.getY();
         info.z = location.getZ();
@@ -159,7 +159,7 @@ public class WaypointManager {
             String id = waypointEntry.getKey();
 
             WaypointInformation info = waypointEntry.getValue();
-            Location location = new Location(Bukkit.getWorld(info.worldName), info.x, info.y, info.z, info.yaw, info.pitch);
+            Location location = new Location(Bukkit.getWorld(info.worldUUID), info.x, info.y, info.z, info.yaw, info.pitch);
             CreateWaypoint(plr, id, info.colour, location);
         }
     }

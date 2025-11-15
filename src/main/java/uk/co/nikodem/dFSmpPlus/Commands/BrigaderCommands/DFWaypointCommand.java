@@ -126,12 +126,12 @@ public class DFWaypointCommand {
 
                                             String hex = String.format("#%06X", info.colour);
 
-                                            double blocksAway = plr.getWorld().getName().equals(info.worldName) ? plr.getLocation().distance(new Location(plr.getWorld(), info.x, info.y, info.z)) : -1L;
+                                            double blocksAway = plr.getWorld().getUID().toString().equals(info.worldUUID) ? plr.getLocation().distance(new Location(plr.getWorld(), info.x, info.y, info.z)) : -1L;
 
                                             String distanceString;
                                             if (blocksAway > -1L) distanceString = (int) blocksAway +" blocks away";
                                             else {
-                                                World world = Bukkit.getWorld(info.worldName);
+                                                World world = Bukkit.getWorld(info.worldUUID);
                                                 if (world == null) distanceString = "Unknown location";
                                                 else {
                                                     switch (world.getEnvironment()) {

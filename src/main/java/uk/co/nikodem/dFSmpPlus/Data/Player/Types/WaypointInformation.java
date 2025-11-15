@@ -7,5 +7,5 @@ public class WaypointInformation {
     public float yaw;
     public float pitch;
     public long colour;
-    public String worldName;
+    public String worldUUID;
 }
