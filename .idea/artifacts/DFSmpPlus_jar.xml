@@ -3,8 +3,8 @@
     <output-path>$PROJECT_DIR$/out/artifacts/DFSmpPlus_jar</output-path>
     <root id="archive" name="DFSmpPlus.jar">
       <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
-      <element id="module-output" name="DFSmpPlus.main" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.13.2/48b8230771e573b54ce6e867a9001e75977fe78e/gson-2.13.2.jar" path-in-jar="/" />
+      <element id="module-output" name="dfsmpplus.main" />
     </root>
   </artifact>
 </component>
