@@ -4,20 +4,16 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.mojang.brigadier.suggestion.Suggestion;
-import com.mojang.brigadier.suggestion.Suggestions;
-import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
+import uk.co.nikodem.dFSmpPlus.Player.BedrockPlayers;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.DefaultWaypointAttributes;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointCreationResult;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
@@ -34,6 +30,7 @@ public class DFWaypointCommand {
                         .then(Commands.argument("enabled", BoolArgumentType.bool()).executes(ctx -> {
                             Player plr = (Player) ctx.getSource().getExecutor();
                             if (plr == null) return 0;
+                            if (BedrockPlayers.isBedrock(plr)) return 0;
                             final Boolean toggle = ctx.getArgument("enabled", Boolean.class);
                             if (toggle == null) return 0;
 
@@ -50,18 +47,22 @@ public class DFWaypointCommand {
                 ).then(
                         Commands.literal("add")
                                 .then(Commands.argument("name", StringArgumentType.string()).executes(ctx -> {
-                                            final String name = ctx.getArgument("name", String.class);
-                                            Random random = new Random();
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return 0;
+                                            if (BedrockPlayers.isBedrock(plr)) return 0;
+
+                                            final String name = ctx.getArgument("name", String.class);
+                                            Random random = new Random();
 
                                             return doPlaceWaypointCommand(plr, random.nextInt(128)+127, random.nextInt(128)+127, random.nextInt(128)+127, name);
                                         })
                                         .then(Commands.argument("colour", ArgumentTypes.namedColor()).executes(ctx -> {
-                                            final String name = ctx.getArgument("name", String.class);
-                                            final NamedTextColor colour = ctx.getArgument("colour", NamedTextColor.class);
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return 0;
+                                            if (BedrockPlayers.isBedrock(plr)) return 0;
+
+                                            final String name = ctx.getArgument("name", String.class);
+                                            final NamedTextColor colour = ctx.getArgument("colour", NamedTextColor.class);
 
                                             return doPlaceWaypointCommand(plr, colour.red(), colour.green(), colour.blue(), name);
                                         })))
@@ -71,14 +72,18 @@ public class DFWaypointCommand {
                                         .suggests((ctx, builder) -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return builder.buildFuture();
+                                            if (BedrockPlayers.isBedrock(plr)) return builder.buildFuture();
+
                                             for (Map.Entry<String, WaypointInformation> info : DFSmpPlus.playerDataHandler.getPlayerData(plr).waypoints.entrySet()) {
                                                 builder.suggest(info.getKey());
                                             }
                                             return builder.buildFuture();
                                         }).executes(ctx -> {
-                                            final String name = ctx.getArgument("name", String.class);
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return 0;
+                                            if (BedrockPlayers.isBedrock(plr)) return 0;
+
+                                            final String name = ctx.getArgument("name", String.class);
 
                                             Boolean removal = WaypointManager.RemoveWaypoint(plr, name);
                                             if (removal == null) {
@@ -96,15 +101,18 @@ public class DFWaypointCommand {
                                         .suggests((ctx, builder) -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return builder.buildFuture();
+                                            if (BedrockPlayers.isBedrock(plr)) return builder.buildFuture();
+
                                             for (Map.Entry<String, WaypointInformation> info : DFSmpPlus.playerDataHandler.getPlayerData(plr).waypoints.entrySet()) {
                                                 builder.suggest(info.getKey());
                                             }
                                             return builder.buildFuture();
                                         }).executes(ctx -> {
-                                            final String waypointname = StringArgumentType.getString(ctx, "waypoint");
-
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return 0;
+                                            if (BedrockPlayers.isBedrock(plr)) return 0;
+
+                                            final String waypointname = StringArgumentType.getString(ctx, "waypoint");
 
                                             WaypointInformation info = DFSmpPlus.playerDataHandler.getPlayerData(plr).waypoints.get(waypointname);
                                             if (info == null) {
@@ -127,6 +135,8 @@ public class DFWaypointCommand {
                                 .executes(ctx -> {
                                     Player plr = (Player) ctx.getSource().getExecutor();
                                     if (plr == null) return 0;
+                                    if (BedrockPlayers.isBedrock(plr)) return 0;
+
                                     PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
                                     if (data.waypoints.isEmpty()) {
                                         plr.sendMessage("You have no waypoints set!");
