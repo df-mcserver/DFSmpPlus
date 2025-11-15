@@ -159,7 +159,7 @@ public class WaypointManager {
             String id = waypointEntry.getKey();
 
             WaypointInformation info = waypointEntry.getValue();
-            Location location = new Location(Bukkit.getWorld(info.worldUUID), info.x, info.y, info.z, info.yaw, info.pitch);
+            Location location = new Location(Bukkit.getWorld(UUID.fromString(info.worldUUID)), info.x, info.y, info.z, info.yaw, info.pitch);
             CreateWaypoint(plr, id, info.colour, location);
         }
     }
