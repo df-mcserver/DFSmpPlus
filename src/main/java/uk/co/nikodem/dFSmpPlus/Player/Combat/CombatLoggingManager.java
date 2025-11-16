@@ -6,9 +6,7 @@ import org.bukkit.entity.Player;
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 public class CombatLoggingManager {
     public static final int COMBAT_LENGTH = 600; // in ticks

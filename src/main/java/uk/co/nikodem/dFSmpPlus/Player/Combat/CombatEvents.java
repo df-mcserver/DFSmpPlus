@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Player.Combat;
 
+import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -12,14 +13,26 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.DoublingDown;
+import uk.co.nikodem.dFSmpPlus.Player.BedrockPlayers;
+
+import java.util.HashMap;
 
 import static uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager.COMBAT_LENGTH;
 
 public class CombatEvents {
+
+    public static final HashMap<Player, BossBar> combatBar = new HashMap<>();
+
     public static void onAttack(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player victim && event.getDamager() instanceof Player attacker) {
             formallyAnnounceCombat(victim, attacker);
             CombatLoggingManager.combatUpdate(victim, attacker);
+
+            Integer startTickVictim = CombatLoggingManager.getLastTimestamp(victim);
+            if (startTickVictim != null) updateCombatBar(startTickVictim, victim);
+
+            Integer startTickAttacker = CombatLoggingManager.getLastTimestamp(attacker);
+            if (startTickAttacker != null) updateCombatBar(startTickAttacker, attacker);
         }
     }
 
@@ -28,7 +41,6 @@ public class CombatEvents {
 
         Player attacker = CombatLoggingManager.getLastAttackerPlayer(victim);
         if (attacker != null) {
-            victim.sendMessage(attacker.displayName());
             Component deathMessage = event.deathMessage();
             if (deathMessage != null) {
                 if (!PlainTextComponentSerializer.plainText().serialize(deathMessage).contains(PlainTextComponentSerializer.plainText().serialize(attacker.displayName())))
@@ -52,6 +64,11 @@ public class CombatEvents {
         }
 
         CombatLoggingManager.removeCombat(victim);
+        BossBar bar = combatBar.get(victim);
+        if (bar != null) {
+            victim.hideBossBar(bar);
+            combatBar.remove(victim);
+        }
     }
 
     public static void perSecond(Player plr) {
@@ -59,20 +76,51 @@ public class CombatEvents {
             Integer startTick = CombatLoggingManager.getLastTimestamp(plr);
             if (startTick == null) return;
 
+            updateCombatBar(startTick, plr);
+
             if (startTick + COMBAT_LENGTH < Bukkit.getCurrentTick()) {
                 formallyRemoveCombat(plr);
             }
         }
     }
 
+    public static void updateCombatBar(Integer startTick, Player plr) {
+        BossBar bar = combatBar.get(plr);
+        if (bar != null) {
+            float progress = 1f - (float) (Bukkit.getCurrentTick() - startTick) / COMBAT_LENGTH;
+            bar.progress(Math.clamp(progress, 0f, 1f));
+        }
+    }
+
     public static void formallyRemoveCombat(Player plr) {
         CombatLoggingManager.removeCombat(plr);
-        plr.sendMessage(MiniMessage.miniMessage().deserialize("<green>You are no longer in combat!"));
+        plr.sendActionBar(MiniMessage.miniMessage().deserialize("<green>You are no longer in combat!"));
+
+        BossBar bar = combatBar.get(plr);
+        if (bar != null) {
+            plr.hideBossBar(bar);
+            combatBar.remove(plr);
+        }
     }
 
     public static void formallyAnnounceCombat(Player victim, Player attacker) {
-        Component msg = MiniMessage.miniMessage().deserialize("<red>You are now in combat!<newline>Leaving the server in combat will instantly kill you!");
-        if (!CombatLoggingManager.isInCombat(victim)) victim.sendMessage(msg);
-        if (!CombatLoggingManager.isInCombat(victim)) attacker.sendMessage(msg);
+        // java doesn't support new lines in action bars, it looks nicer, so if possible use a new line.
+        Component msg = MiniMessage.miniMessage().deserialize("<red>You are now in combat! Leaving the server in combat will instantly kill you!");
+        Component bedrockMsg = MiniMessage.miniMessage().deserialize("<red>You are now in combat!<newline>Leaving the server in combat will instantly kill you!");
+
+        BossBar bar = BossBar.bossBar(MiniMessage.miniMessage().deserialize("<red>Combat"), 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS);
+
+        if (!CombatLoggingManager.isInCombat(victim)) {
+            Boolean bedrock = BedrockPlayers.isBedrock(victim);
+            victim.sendActionBar((bedrock == null || !bedrock) ? msg : bedrockMsg);
+            if (!combatBar.containsKey(victim)) combatBar.put(victim, bar);
+            victim.showBossBar(bar);
+        }
+        if (!CombatLoggingManager.isInCombat(attacker)) {
+            Boolean bedrock = BedrockPlayers.isBedrock(attacker);
+            attacker.sendActionBar((bedrock == null || !bedrock) ? msg : bedrockMsg);
+            if (!combatBar.containsKey(attacker)) combatBar.put(attacker, bar);
+            attacker.showBossBar(bar);
+        }
     }
 }
