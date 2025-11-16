@@ -15,32 +15,23 @@ import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.DoublingDown;
 import uk.co.nikodem.dFSmpPlus.Player.BedrockPlayers;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager.COMBAT_LENGTH;
 
 public class CombatEvents {
-
-    public static final HashMap<Player, Map.Entry<BossBar, Integer>> combatBar = new HashMap<>();
-
     public static void onAttack(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player victim && event.getDamageSource().getCausingEntity() instanceof Player attacker) {
             formallyAnnounceCombat(victim, attacker);
             CombatLoggingManager.combatUpdate(victim, attacker);
 
-            Integer startTickVictim = CombatLoggingManager.getLastTimestamp(victim);
-            if (startTickVictim != null) updateCombatBar(startTickVictim, victim);
-
-            Integer startTickAttacker = CombatLoggingManager.getLastTimestamp(attacker);
-            if (startTickAttacker != null) updateCombatBar(startTickAttacker, attacker);
+            updateCombatBar(victim);
+            updateCombatBar(attacker);
         }
     }
 
     public static void onDeath(PlayerDeathEvent event) {
         Player victim = event.getEntity();
 
-        Player attacker = CombatLoggingManager.getLastAttackerPlayer(victim);
+        Player attacker = CombatLoggingManager.getCombatInformation(victim).getLastAttackerPlayer();
         if (attacker != null) {
             Component deathMessage = event.deathMessage();
             if (deathMessage != null) {
@@ -49,10 +40,7 @@ public class CombatEvents {
             }
 
             incrementKills(attacker);
-            Integer startTick = CombatLoggingManager.getLastTimestamp(attacker);
-            if (startTick == null) return;
-
-            updateCombatBar(startTick, attacker);
+            updateCombatBar(attacker);
         }
 
         if (event.getDamageSource().getDamageType() == DamageType.OUT_OF_WORLD) {
@@ -76,10 +64,15 @@ public class CombatEvents {
 
     public static void perSecond(Player plr) {
         if (CombatLoggingManager.isInCombat(plr)) {
-            Integer startTick = CombatLoggingManager.getLastTimestamp(plr);
-            if (startTick == null) return;
+            Integer startTick = CombatLoggingManager.getCombatInformation(plr).getStartTick();
+            if (startTick == null) {
+                CombatLoggingManager.getCombatInformation(plr).reset();
+                return;
+            }
 
-            updateCombatBar(startTick, plr);
+            updateCombatBar(plr);
+            plr.sendMessage(String.valueOf(startTick));
+            plr.sendMessage(String.valueOf(CombatLoggingManager.getCombatInformation(plr).getLastAttackerUUID()));
 
             if (startTick + COMBAT_LENGTH < Bukkit.getCurrentTick()) {
                 formallyRemoveCombat(plr);
@@ -104,40 +97,40 @@ public class CombatEvents {
         if (!CombatLoggingManager.isInCombat(victim)) {
             Boolean bedrock = BedrockPlayers.isBedrock(victim);
             victim.sendActionBar((bedrock == null || !bedrock) ? msg : bedrockMsg);
-            if (!combatBar.containsKey(victim)) combatBar.put(victim, Map.entry(bar, 0));
+            CombatLoggingManager.getCombatInformation(victim).setBar(bar);
             victim.showBossBar(bar);
         }
         if (!CombatLoggingManager.isInCombat(attacker)) {
             Boolean bedrock = BedrockPlayers.isBedrock(attacker);
             attacker.sendActionBar((bedrock == null || !bedrock) ? msg : bedrockMsg);
-            if (!combatBar.containsKey(attacker)) combatBar.put(attacker, Map.entry(bar, 0));
+            CombatLoggingManager.getCombatInformation(attacker).setBar(bar);
             attacker.showBossBar(bar);
         }
     }
 
     public static void hideCombatBar(Player plr) {
-        Map.Entry<BossBar, Integer> bar = combatBar.get(plr);
-        if (bar != null) {
-            plr.hideBossBar(bar.getKey());
-            combatBar.remove(plr);
+        CombatInformation info = CombatLoggingManager.getCombatInformation(plr);
+        if (info.getBar() != null) {
+            plr.hideBossBar(info.getBar());
+            info.setBar(null);
         }
     }
 
-    public static void updateCombatBar(Integer startTick, Player plr) {
-        Map.Entry<BossBar, Integer> bar = combatBar.get(plr);
-        if (bar != null) {
+    public static void updateCombatBar(Player plr) {
+        CombatInformation info = CombatLoggingManager.getCombatInformation(plr);
+        if (info.getBar() != null) {
+            Integer startTick = info.getStartTick();
+            if (startTick == null) return;
             float progress = 1f - (float) (Bukkit.getCurrentTick() - startTick) / COMBAT_LENGTH;
-            int kills = bar.getValue() == null ? 0 : bar.getValue();
-            bar.getKey().progress(Math.clamp(progress, 0f, 1f));
-            bar.getKey().name(MiniMessage.miniMessage().deserialize("<red>Combat"+(kills > 0 ? " ("+kills+")" : "")));
+            int kills = info.getKills() == null ? 0 : info.getKills();
+            info.getBar().progress(Math.clamp(progress, 0f, 1f));
+            info.getBar().name(MiniMessage.miniMessage().deserialize("<red>Combat"+(kills > 0 ? " ("+kills+")" : "")));
         }
     }
 
     public static void incrementKills(Player plr) {
-        Map.Entry<BossBar, Integer> bar = combatBar.get(plr);
-        if (bar != null) {
-            int kills = (bar.getValue() == null ? 0 : bar.getValue()) + 1;
-            combatBar.replace(plr, Map.entry(bar.getKey(), kills));
-        }
+        CombatInformation info = CombatLoggingManager.getCombatInformation(plr);
+        if (info.getKills() != null) info.setKills(info.getKills() + 1);
+        else info.setKills(1);
     }
 }

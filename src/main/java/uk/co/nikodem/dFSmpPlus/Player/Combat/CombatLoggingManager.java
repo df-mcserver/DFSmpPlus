@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class CombatLoggingManager {
     public static final int COMBAT_LENGTH = 600; // in ticks
-    public static final HashMap<UUID, Map.Entry<Integer, String>> combatInformation = new HashMap<>();
+    public static final HashMap<UUID, CombatInformation> combatInformation = new HashMap<>();
 
     public static void combatUpdate(Player victim, Player attacker) {
         combatUpdate(victim.getUniqueId(), attacker.getUniqueId());
@@ -19,74 +19,39 @@ public class CombatLoggingManager {
     public static void combatUpdate(UUID victim, UUID attacker) {
         int currentTick = Bukkit.getCurrentTick();
 
-        Map.Entry<Integer, String> victimNewInformation = Map.entry(currentTick, attacker.toString());
-        if (!combatInformation.containsKey(victim)) combatInformation.put(victim, victimNewInformation);
-        else combatInformation.replace(victim, victimNewInformation);
+        CombatInformation victimInfo = getCombatInformation(victim);
+        victimInfo.setLastAttacker(attacker);
+        victimInfo.setStartTick(currentTick);
 
-        Map.Entry<Integer, String> attackerCurrentInformation = combatInformation.get(attacker);
-        if (attackerCurrentInformation != null) combatInformation.replace(attacker, Map.entry(currentTick, attackerCurrentInformation.getValue()));
-        else combatInformation.put(attacker, Map.entry(currentTick, ""));
+        CombatInformation attackerInfo = getCombatInformation(attacker);
+        attackerInfo.setStartTick(currentTick);
     }
 
-    @Nullable
-    public static UUID getLastAttackerUUID(Player victim) {
-        return getLastAttackerUUID(victim.getUniqueId());
+    public static CombatInformation getCombatInformation(Player plr) {
+        return getCombatInformation(plr.getUniqueId());
     }
 
-    @Nullable
-    public static UUID getLastAttackerUUID(UUID victim) {
-        Map.Entry<Integer, String> info = combatInformation.get(victim);
-        if (info == null) return null;
-
-        String uuidString = info.getValue();
-        try {
-            return UUID.fromString(uuidString);
-        } catch (IllegalArgumentException ex) {
-            return null;
+    public static CombatInformation getCombatInformation(UUID plr) {
+        if (combatInformation.containsKey(plr)) return combatInformation.get(plr);
+        else {
+            CombatInformation info = new CombatInformation();
+            combatInformation.put(plr, info);
+            return info;
         }
     }
 
-    @Nullable
-    public static Player getLastAttackerPlayer(Player victim) {
-        return getLastAttackerPlayer(victim.getUniqueId());
+    public static void removeCombat(Player plr) {
+        removeCombat(plr.getUniqueId());
+    }
+    public static void removeCombat(UUID plr) {
+        getCombatInformation(plr).setStartTick(null);
     }
 
-    @Nullable
-    public static Player getLastAttackerPlayer(UUID victim) {
-        UUID uuid = getLastAttackerUUID(victim);
-        if (uuid == null) return null;
-
-        return Bukkit.getOnlinePlayers().stream().filter(player -> player.getUniqueId().equals(uuid)).findFirst().orElse(null);
+    public static boolean isInCombat(Player plr) {
+        return isInCombat(plr.getUniqueId());
     }
-
-    @Nullable
-    public static Integer getLastTimestamp(Player victim) {
-        return getLastTimestamp(victim.getUniqueId());
-    }
-
-    @Nullable
-    public static Integer getLastTimestamp(UUID victim) {
-        Map.Entry<Integer, String> info = combatInformation.get(victim);
-        if (info == null) return null;
-
-        return info.getKey();
-    }
-
-    @Nullable
-    public static void removeCombat(Player victim) {
-        removeCombat(victim.getUniqueId());
-    }
-
-    @Nullable
-    public static void removeCombat(UUID victim) {
-        combatInformation.remove(victim);
-    }
-
-    public static boolean isInCombat(Player victim) {
-        return isInCombat(victim.getUniqueId());
-    }
-
-    public static boolean isInCombat(UUID victim) {
-        return combatInformation.containsKey(victim);
+    public static boolean isInCombat(UUID plr) {
+        if (!combatInformation.containsKey(plr)) return false;
+        return getCombatInformation(plr).getStartTick() != null;
     }
 }
