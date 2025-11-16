@@ -58,8 +58,8 @@ public class CombatEvents {
             }
         }
 
-        CombatLoggingManager.removeCombat(victim);
         hideCombatBar(victim);
+        CombatLoggingManager.removeCombat(victim);
     }
 
     public static void perSecond(Player plr) {
@@ -71,8 +71,6 @@ public class CombatEvents {
             }
 
             updateCombatBar(plr);
-            plr.sendMessage(String.valueOf(startTick));
-            plr.sendMessage(String.valueOf(CombatLoggingManager.getCombatInformation(plr).getLastAttackerUUID()));
 
             if (startTick + COMBAT_LENGTH < Bukkit.getCurrentTick()) {
                 formallyRemoveCombat(plr);
@@ -81,10 +79,9 @@ public class CombatEvents {
     }
 
     public static void formallyRemoveCombat(Player plr) {
+        hideCombatBar(plr);
         CombatLoggingManager.removeCombat(plr);
         plr.sendActionBar(MiniMessage.miniMessage().deserialize("<green>You are no longer in combat!"));
-
-        hideCombatBar(plr);
     }
 
     public static void formallyAnnounceCombat(Player victim, Player attacker) {

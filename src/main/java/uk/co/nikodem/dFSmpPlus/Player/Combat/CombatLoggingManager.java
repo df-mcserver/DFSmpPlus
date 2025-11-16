@@ -44,7 +44,7 @@ public class CombatLoggingManager {
         removeCombat(plr.getUniqueId());
     }
     public static void removeCombat(UUID plr) {
-        getCombatInformation(plr).setStartTick(null);
+        getCombatInformation(plr).reset();
     }
 
     public static boolean isInCombat(Player plr) {
