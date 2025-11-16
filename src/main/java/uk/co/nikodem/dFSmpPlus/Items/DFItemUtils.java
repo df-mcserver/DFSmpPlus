@@ -116,7 +116,7 @@ public class DFItemUtils {
 
     @Nullable
     public static ItemStack setModel(ItemStack item, String key) {
-        return setModel(item, Keys.createModelKey(key));
+        return setModel(item, key == null ? null : Keys.createModelKey(key));
     }
 
     public static boolean removeAttributes(ItemStack item) {

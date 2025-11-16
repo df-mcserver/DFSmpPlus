@@ -510,6 +510,14 @@ public class DFMaterial {
             .addMeta(new LocatorCompassModuleMeta())
             .create();
 
+    public static DFMaterial CustomTotem = new DFMaterialBuilder(Material.TOTEM_OF_UNDYING, "custom_totem", 1)
+            .setDisplayName("Totem of Undying")
+            .addLore("for bedrock resource pack auto generation")
+            .addLore("don't actually use this item")
+            .addPossibleModels("totem_legacy", "totem_creeper", "totem_amongus", "totem_dantdm", "totem_techno", "totem_herobrine")
+            .removeCustomModel()
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

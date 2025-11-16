@@ -60,6 +60,6 @@ public class MusicDiscRecipes extends CraftingTemplate {
 
     @Override
     public String getRecipesID() {
-        return "musicdiscs-interchangable";
+        return "musicdiscs-interchangeable";
     }
 }
