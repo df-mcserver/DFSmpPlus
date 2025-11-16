@@ -90,7 +90,7 @@ public class SetBonusText {
                 updateItem(plr, piece);
             }
 
-            updateItem(plr, inv.getItemInMainHand());
+            removeSetBonusText(inv.getItemInMainHand());
         }, 1L);
     }
 
