@@ -24,6 +24,7 @@ import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 import java.awt.*;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 public class DFWaypointCommand {
     public static LiteralArgumentBuilder<CommandSourceStack> createCommand() {
@@ -130,7 +131,7 @@ public class DFWaypointCommand {
                                             String distanceString;
                                             if (blocksAway > -1L) distanceString = (int) blocksAway +" blocks away";
                                             else {
-                                                World world = Bukkit.getWorld(info.worldUUID);
+                                                World world = Bukkit.getWorld(UUID.fromString(info.worldUUID));
                                                 if (world == null) distanceString = "Unknown location";
                                                 else {
                                                     switch (world.getEnvironment()) {
