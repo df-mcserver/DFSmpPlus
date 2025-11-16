@@ -4,9 +4,15 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
+import org.bukkit.Material;
+import org.bukkit.damage.DamageType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.inventory.ItemStack;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.DoublingDown;
 
 import static uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager.COMBAT_LENGTH;
 
@@ -28,6 +34,21 @@ public class CombatEvents {
             if (deathMessage != null) {
                 if (!PlainTextComponentSerializer.plainText().serialize(deathMessage).contains(PlainTextComponentSerializer.plainText().serialize(attacker.displayName())))
                     event.deathMessage(deathMessage.append(Component.text(" whilst in combat with ").append(attacker.name())));
+            }
+        }
+
+        if (event.getDamageSource().getDamageType() == DamageType.OUT_OF_WORLD) {
+            if (victim.getInventory().getItemInMainHand().getType() == Material.TOTEM_OF_UNDYING
+                    || victim.getInventory().getItemInOffHand().getType() == Material.TOTEM_OF_UNDYING) {
+                DFAdvancementsHandler.grantAdvancement(victim, DoublingDown.class);
+            }
+
+            if (attacker != null) {
+                for (ItemStack item : victim.getInventory().getContents()) {
+                    if (item != null) attacker.getWorld().dropItem(attacker.getLocation(), item);
+                }
+            } else {
+                event.setKeepInventory(true);
             }
         }
 
