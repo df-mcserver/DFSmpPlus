@@ -13,7 +13,7 @@ public class OnLeave {
         BedrockPlayers.onLeave(plr);
 
         if (CombatLoggingManager.isInCombat(plr)) {
-            plr.setHealth(0D);
+            if (!plr.getGameMode().isInvulnerable()) plr.setHealth(0D);
         }
     }
 }
