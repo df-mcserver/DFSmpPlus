@@ -24,7 +24,7 @@ public class CombatEvents {
     public static final HashMap<Player, BossBar> combatBar = new HashMap<>();
 
     public static void onAttack(EntityDamageByEntityEvent event) {
-        if (event.getEntity() instanceof Player victim && event.getDamager() instanceof Player attacker) {
+        if (event.getEntity() instanceof Player victim && event.getDamageSource().getCausingEntity() instanceof Player attacker) {
             formallyAnnounceCombat(victim, attacker);
             CombatLoggingManager.combatUpdate(victim, attacker);
 
