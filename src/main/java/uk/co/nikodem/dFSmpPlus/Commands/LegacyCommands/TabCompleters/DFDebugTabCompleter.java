@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Commands.TabCompleters;
+package uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands.TabCompleters;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Commands;
+package uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;

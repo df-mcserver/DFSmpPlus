@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Commands;
+package uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
