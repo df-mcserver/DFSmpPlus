@@ -3,11 +3,17 @@ package uk.co.nikodem.dFSmpPlus.SetBonuses;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockDispenseArmorEvent;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -30,21 +36,65 @@ public class SetBonusText {
         PlayerInventory inv = (PlayerInventory) event.getClickedInventory();
         Player plr = (Player) event.getWhoClicked();
 
-        DFArmourSet set = DFArmourSet.getArmourSetEquipped(plr);
-        boolean equipped = set != null;
-
         // run task 1 tick later to let all changes apply
         Bukkit.getScheduler().runTaskLater(DFSmpPlus.getProvidingPlugin(DFSmpPlus.class), () -> {
+            boolean allArmourEquipped = true;
             for (ItemStack piece : inv.getArmorContents()) {
-                updateItem(plr, piece, equipped);
+                if (piece == null || piece.getType() == Material.AIR) allArmourEquipped = false;
+                updateItem(plr, piece);
             }
 
-            updateItem(plr, plr.getItemOnCursor(), equipped);
-            updateItem(plr, event.getCurrentItem(), equipped);
+            updateItem(plr, plr.getItemOnCursor());
+            updateItem(plr, event.getCurrentItem());
+
+            if (event.getClick().isShiftClick()) {
+                // the shift clicking is pretty weird
+                // looping through them and removing the set bonus is probably
+                // the easiest method
+                if (!allArmourEquipped && (event.getCurrentItem() == null || event.getCurrentItem().getType().equals(Material.AIR))) {
+                    for (ItemStack item : inv.getContents()) {
+                        removeSetBonusText(item);
+                    }
+                }
+            }
         }, 1L);
     }
 
-    public static void updateItem(Player plr, ItemStack item, boolean isEquipped) {
+    public static void onArmourDispensed(BlockDispenseArmorEvent event) {
+        if (event.getTargetEntity().getType() != EntityType.PLAYER) return;
+        Player plr = (Player) event.getTargetEntity();
+
+        Bukkit.getScheduler().runTaskLater(DFSmpPlus.getProvidingPlugin(DFSmpPlus.class), () -> {
+            PlayerInventory inv = plr.getInventory();
+
+            for (ItemStack piece : inv.getArmorContents()) {
+                updateItem(plr, piece);
+            }
+        }, 1L);
+    }
+
+    public static void onItemUsed(PlayerInteractEvent event) {
+        if (event.getAction() == Action.PHYSICAL || event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) return;
+        if (!event.hasItem() || event.getItem() == null) return;
+
+        ItemStack item = event.getItem();
+        EquipmentSlot equipmentSlot = item.getType().getEquipmentSlot();
+        if (equipmentSlot.ordinal() < 2) return;
+
+        Player plr = event.getPlayer();
+
+        Bukkit.getScheduler().runTaskLater(DFSmpPlus.getProvidingPlugin(DFSmpPlus.class), () -> {
+            PlayerInventory inv = plr.getInventory();
+
+            for (ItemStack piece : inv.getArmorContents()) {
+                updateItem(plr, piece);
+            }
+
+            updateItem(plr, inv.getItemInMainHand());
+        }, 1L);
+    }
+
+    public static void updateItem(Player plr, ItemStack item) {
         DFArmourSet set = DFArmourSet.getArmourSetEquipped(plr);
         if (set == null) {
             removeSetBonusText(item);

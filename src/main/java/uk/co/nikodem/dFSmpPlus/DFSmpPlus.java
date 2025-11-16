@@ -23,15 +23,16 @@ import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.Interchangable.MusicDiscRecipes;
 import uk.co.nikodem.dFSmpPlus.Data.Global.GlobalDataHandler;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
+import uk.co.nikodem.dFSmpPlus.Events.Block.BlockDispenseArmorEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDamageByEntityEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDamageEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDeathEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityPickupItemEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.Food.FoodLevelChangeEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.*;
-import uk.co.nikodem.dFSmpPlus.Events.Player.Block.BlockBreakEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Player.Block.BlockBreakProgressUpdateEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Player.Block.BlockPlaceEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Block.BlockBreakEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Block.BlockBreakProgressUpdateEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Block.BlockPlaceEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.CraftItemEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareAnvilEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.FurnaceSmeltEvent;
@@ -141,6 +142,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
                     new BlockBreakEvent(),
                     new BlockBreakProgressUpdateEvent(),
+                    new BlockDispenseArmorEvent(),
                     new BlockPlaceEvent(),
 
                     new CraftItemEvent(),
