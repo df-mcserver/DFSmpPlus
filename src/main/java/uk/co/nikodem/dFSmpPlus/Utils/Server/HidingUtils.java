@@ -22,6 +22,17 @@ public class HidingUtils {
         plr.hideEntity(plugin, entity);
     }
 
+    public void removeExclusiveEntitiesOnLeave(Player plr) {
+        this.exclusiveEntities.remove(plr.getUniqueId());
+    }
+
+    public void removeExclusiveEntitiesOnEntityRemoval(Player plr, Entity entity) {
+        List<Entity> list = this.exclusiveEntities.get(plr.getUniqueId());
+        if (list == null) return;
+
+        list.remove(entity);
+    }
+
     public void MakeEntityExclusiveToPlayer(Player plr, Entity entity) {
         List<Entity> list = this.exclusiveEntities.get(plr.getUniqueId());
         if (list == null) list = new ArrayList<>();

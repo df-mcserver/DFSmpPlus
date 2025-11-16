@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Player.Waypoints;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
@@ -16,7 +17,7 @@ import java.util.*;
 public class WaypointManager {
     public static final int MAX_WAYPOINTS = 10;
     public static final double MAX_DISTANCE = 60000000D;
-    public static final String tag = "waypoint";
+    public static final String TAG = "waypoint";
 
     public static final HashMap<UUID, List<ArmorStand>> activeWaypoints = new HashMap<>();
 
@@ -67,7 +68,7 @@ public class WaypointManager {
                 waypointEntity.setMarker(true);
                 waypointEntity.setInvisible(true);
 
-                waypointEntity.addScoreboardTag(tag);
+                waypointEntity.addScoreboardTag(TAG);
                 waypointEntity.addScoreboardTag(id);
 
                 DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
@@ -112,7 +113,14 @@ public class WaypointManager {
         List<ArmorStand> spawnedWaypoints = activeWaypoints.get(plr.getUniqueId());
         for (ArmorStand waypointEntity : spawnedWaypoints) {
             if (waypointEntity.getScoreboardTags().contains(id)) {
+                DFSmpPlus.hidingUtils.removeExclusiveEntitiesOnEntityRemoval(plr, waypointEntity);
+                Chunk chunk = waypointEntity.getChunk();
                 waypointEntity.remove();
+                int waypointEntityCount = 0;
+                for (Entity entity : chunk.getEntities()) {
+                    if (entity.getScoreboardTags().contains(TAG)) waypointEntityCount++;
+                }
+                if (waypointEntityCount <= 0) chunk.setForceLoaded(false);
             }
         }
 
@@ -145,6 +153,7 @@ public class WaypointManager {
 
     public static void CleanupOnLeave(Player plr) {
         List<ArmorStand> waypoints = activeWaypoints.get(plr.getUniqueId());
+        DFSmpPlus.hidingUtils.removeExclusiveEntitiesOnLeave(plr);
         if (waypoints == null) return;
         for (ArmorStand waypointEntity : waypoints) {
             waypointEntity.remove();
