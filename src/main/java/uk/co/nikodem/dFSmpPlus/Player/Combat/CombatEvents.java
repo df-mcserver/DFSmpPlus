@@ -18,6 +18,22 @@ public class CombatEvents {
         }
     }
 
+    public static void onDeath(PlayerDeathEvent event) {
+        Player victim = event.getEntity();
+
+        Player attacker = CombatLoggingManager.getLastAttackerPlayer(victim);
+        if (attacker != null) {
+            victim.sendMessage(attacker.displayName());
+            Component deathMessage = event.deathMessage();
+            if (deathMessage != null) {
+                if (!PlainTextComponentSerializer.plainText().serialize(deathMessage).contains(PlainTextComponentSerializer.plainText().serialize(attacker.displayName())))
+                    event.deathMessage(deathMessage.append(Component.text(" whilst in combat with ").append(attacker.name())));
+            }
+        }
+
+        CombatLoggingManager.removeCombat(victim);
+    }
+
     public static void perSecond(Player plr) {
         if (CombatLoggingManager.isInCombat(plr)) {
             Integer startTick = CombatLoggingManager.getLastTimestamp(plr);
@@ -38,21 +54,5 @@ public class CombatEvents {
         Component msg = MiniMessage.miniMessage().deserialize("<red>You are now in combat!<newline>Leaving the server in combat will instantly kill you!");
         if (!CombatLoggingManager.isInCombat(victim)) victim.sendMessage(msg);
         if (!CombatLoggingManager.isInCombat(victim)) attacker.sendMessage(msg);
-    }
-
-    public static void onDeath(PlayerDeathEvent event) {
-        Player victim = event.getEntity();
-
-        // TODO: fix
-        Player attacker = CombatLoggingManager.getLastAttackerPlayer(victim);
-        if (attacker != null) {
-            Component deathMessage = event.deathMessage();
-            if (deathMessage != null) {
-                if (!PlainTextComponentSerializer.plainText().serialize(deathMessage).contains(PlainTextComponentSerializer.plainText().serialize(victim.displayName())))
-                    event.deathMessage(deathMessage.append(Component.text(" whilst in combat with ").append(attacker.name())));
-            }
-        }
-
-        CombatLoggingManager.removeCombat(victim);
     }
 }
