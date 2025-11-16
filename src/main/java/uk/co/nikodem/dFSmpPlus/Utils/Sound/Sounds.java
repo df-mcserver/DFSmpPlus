@@ -14,6 +14,7 @@ public class Sounds {
     public static PresetSoundData FailedTeleport = new PresetSoundData(Sound.ENTITY_ENDERMAN_TELEPORT, 1F, 0.3F);
     public static PresetSoundData BrokenTool = new PresetSoundData(Sound.ENTITY_ITEM_BREAK, 1F, 1F);
     public static PresetSoundData PutModuleIntoCompass = new PresetSoundData(Sound.ITEM_BUNDLE_INSERT, 1F, 1F);
+    public static PresetSoundData SculkArmourActivate = new PresetSoundData(Sound.BLOCK_SCULK_SHRIEKER_SHRIEK, 1F, 1F);
 
     public static PresetSoundData PlaceTargetDummy = new PresetSoundData(Sound.ENTITY_ARMOR_STAND_PLACE, 1F, 1F);
     public static PresetSoundData PickupTargetDummy = new PresetSoundData(Sound.ENTITY_ARMOR_STAND_BREAK, 1F, 1F);
