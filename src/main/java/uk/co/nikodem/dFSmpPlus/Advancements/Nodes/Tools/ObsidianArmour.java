@@ -16,10 +16,10 @@ public class ObsidianArmour extends BaseAdvancement {
     public ObsidianArmour(@NotNull Advancement parent) {
         super(KEY.getKey(),
                 new AdvancementDisplay.Builder(
-                        DFMaterial.ObsidianPickaxe.toItemStack(),
+                        DFMaterial.ObsidianChestplate.toItemStack(),
                         "Crying on the Outside")
                         .description("Wear a full set of Obsidian Armour.")
-                        .taskFrame()
+                        .challengeFrame()
                         .coords(2f, 12f)
                         .showToast()
                         .announceChat()

@@ -19,7 +19,7 @@ public class BreakTargetDummy extends BaseAdvancement {
                         DFMaterial.TargetDummy.toItemStack(),
                         "Took out my anger")
                         .description("Break a target dummy.")
-                        .taskFrame()
+                        .challengeFrame()
                         .coords(1f, 14f)
                         .showToast()
                         .announceChat()

@@ -19,7 +19,7 @@ public class ConsciousWarden extends BaseAdvancement {
                         DFMaterial.SculkChestplate.toItemStack(),
                         "Conscious Warden")
                         .description("Wear a full set of Sculk Armour.")
-                        .taskFrame()
+                        .challengeFrame()
                         .coords(1f, 15f)
                         .showToast()
                         .announceChat()

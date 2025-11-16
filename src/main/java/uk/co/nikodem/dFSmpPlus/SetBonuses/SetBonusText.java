@@ -101,6 +101,11 @@ public class SetBonusText {
         }
         if (set.itemInSet(item)) {
             applySetBonusText(item, getSetBonusText(item));
+            if (set.hasMeta()) {
+                for (DFArmourSetMeta meta : set.getMeta()) {
+                    meta.OnUpdateSetBonus(plr, item, set);
+                }
+            }
         } else {
             removeSetBonusText(item);
         }

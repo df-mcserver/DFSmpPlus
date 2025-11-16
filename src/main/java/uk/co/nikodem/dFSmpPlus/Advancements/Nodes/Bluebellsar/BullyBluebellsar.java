@@ -20,7 +20,7 @@ public class BullyBluebellsar extends BaseAdvancement implements HiddenVisibilit
                         DFMaterial.BluebellsarStick.toItemStack(),
                         "meanie...")
                         .description("Defeat the Bluebellsar Stick.")
-                        .taskFrame()
+                        .challengeFrame()
                         .coords(3f, 5f)
                         .showToast()
                         .announceChat()

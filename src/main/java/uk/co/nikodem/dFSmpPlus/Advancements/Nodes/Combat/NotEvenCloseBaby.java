@@ -19,7 +19,7 @@ public class NotEvenCloseBaby extends BaseAdvancement {
                         Material.SHIELD,
                         "Not even close, baby!")
                         .description("Get out of combat with only 1 heart or less remaining.")
-                        .taskFrame()
+                        .challengeFrame()
                         .coords(1f, 6f)
                         .showToast()
                         .announceChat()

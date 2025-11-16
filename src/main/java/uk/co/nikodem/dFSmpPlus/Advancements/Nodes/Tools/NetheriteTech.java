@@ -19,7 +19,7 @@ public class NetheriteTech extends BaseAdvancement {
                         Material.ANCIENT_DEBRIS,
                         "Netherite Tech")
                         .description("Chisel ancient debris.")
-                        .taskFrame()
+                        .challengeFrame()
                         .coords(3f, 2f)
                         .showToast()
                         .announceChat()

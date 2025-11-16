@@ -118,7 +118,7 @@ public class DFArmourSet {
             .setLeggings(DFMaterial.ObsidianLeggings)
             .setBoots(DFMaterial.ObsidianBoots)
             .setSetBonus("Resistance I")
-            .addMeta(new ResistanceMeta())
+            .addMeta(new ObsidianMeta())
             .create();
 
     public static boolean hasArmourSetEquipped(Player plr, DFArmourSet set) {

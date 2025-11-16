@@ -11,4 +11,5 @@ public interface DFArmourSetMeta {
     public default void PlayerHit(Player plr, DFArmourSet armourSet, EntityDamageByEntityEvent event) {};
     public default boolean AdditionalQualification(Player plr, DFArmourSet armourSet, ItemStack equippedHelmet, ItemStack equippedChestplate, ItemStack equippedLeggings, ItemStack equippedBoots) {return true;};
     public default void RunPerSecond(Player plr, DFArmourSet armourSet) {};
+    public default void OnUpdateSetBonus(Player plr, ItemStack itemUpdated, DFArmourSet armourSet) {};
 }

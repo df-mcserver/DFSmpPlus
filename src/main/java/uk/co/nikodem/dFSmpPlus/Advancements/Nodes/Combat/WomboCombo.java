@@ -19,7 +19,7 @@ public class WomboCombo extends BaseAdvancement {
                         Material.DIAMOND_SWORD,
                         "WOMBO COMBO!")
                         .description("Get a kill streak of 5.")
-                        .taskFrame()
+                        .challengeFrame()
                         .coords(2f, 6f)
                         .showToast()
                         .announceChat()

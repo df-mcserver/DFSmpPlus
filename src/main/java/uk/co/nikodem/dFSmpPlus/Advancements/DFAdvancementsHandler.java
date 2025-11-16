@@ -65,11 +65,11 @@ public class DFAdvancementsHandler {
         new MagicMirror(main);
         new DoublingDown(main);
         new ITTDDTA(main); // TODO
-        new WorldRecord(main); // TODO
+        new WorldRecord(main);
         new WhatYouEgg(main);
         new I3Rocks(main); // TODO
         new BreakTargetDummy(main);
-        new ConsciousWarden(main); // TODO
+        new ConsciousWarden(main);
         new IYCBTJT(main);
         new VeinTool(main);
         new FiridiumTool(main);

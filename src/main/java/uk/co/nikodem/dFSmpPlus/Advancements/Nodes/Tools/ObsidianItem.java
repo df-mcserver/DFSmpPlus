@@ -19,7 +19,7 @@ public class ObsidianItem extends BaseAdvancement {
                         DFMaterial.ObsidianPickaxe.toItemStack(),
                         "Cry about it")
                         .description("Craft any Obsidian Item.")
-                        .taskFrame()
+                        .challengeFrame()
                         .coords(1f, 12f)
                         .showToast()
                         .announceChat()
