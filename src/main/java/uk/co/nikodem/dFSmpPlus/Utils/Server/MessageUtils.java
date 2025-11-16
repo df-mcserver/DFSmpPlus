@@ -22,25 +22,19 @@ public class MessageUtils {
 
     public void initiateChannels() {
         this.plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, CUSTOM_PROXY_CHANNEL);
-        Bukkit.getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
+//        this.plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
     }
 
     public void sendGeyserRequest(Player player) {
-        System.out.println("SENT IsGeyser");
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("IsGeyser");
         player.sendPluginMessage(this.plugin, CUSTOM_PROXY_CHANNEL, out.toByteArray());
     }
 
-    public void sendPlayerToServer(Player player, String server) {
-        ByteArrayOutputStream b = new ByteArrayOutputStream();
-        DataOutputStream out = new DataOutputStream(b);
-        try {
-            out.writeUTF("Connect");
-            out.writeUTF(server);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        player.sendPluginMessage(this.plugin, "BungeeCord", b.toByteArray());
-    }
+//    public void sendPlayerToServer(Player player, String server) {
+//        ByteArrayDataOutput out = ByteStreams.newDataOutput();
+//        out.writeUTF("Connect");
+//        out.writeUTF(server);
+//        player.sendPluginMessage(this.plugin, "BungeeCord", out.toByteArray());
+//    }
 }

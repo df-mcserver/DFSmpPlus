@@ -12,7 +12,6 @@ public class IsGeyser implements DFPluginMessageHandler {
     public void run(@NotNull String channel, @NotNull Player plr, ByteArrayDataInput in) {
         // TODO use out.writeBoolean() and in.readBoolean() instead
         String val = StringHelper.SanitiseString(in.readUTF().toLowerCase().split(" ")[0]);
-        System.out.println(val);
 
         if (val.equals("true")) BedrockPlayers.doCheck(plr, true);
         else if (val.equals("false")) BedrockPlayers.doCheck(plr, false);
