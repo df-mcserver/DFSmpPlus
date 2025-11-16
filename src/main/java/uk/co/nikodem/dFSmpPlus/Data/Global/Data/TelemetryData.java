@@ -20,6 +20,7 @@ public class TelemetryData {
     public int telemetry_playersKilledBySeb = 0;
     public int telemetry_sebDeathCount = 0;
     public int telemetry_enemiesKilled = 0;
+    public int telemetry_highestKillStreak = 0;
 
     // custom item usage
     public int telemetry_highestVampireStage = 0;

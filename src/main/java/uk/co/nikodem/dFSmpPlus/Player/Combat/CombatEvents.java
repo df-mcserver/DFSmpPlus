@@ -16,6 +16,7 @@ import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.DoublingDown;
 import uk.co.nikodem.dFSmpPlus.Player.BedrockPlayers;
 
 import static uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager.COMBAT_LENGTH;
+import static uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils.updateKillStreak;
 
 public class CombatEvents {
     public static void onAttack(EntityDamageByEntityEvent event) {
@@ -127,7 +128,10 @@ public class CombatEvents {
 
     public static void incrementKills(Player plr) {
         CombatInformation info = CombatLoggingManager.getCombatInformation(plr);
-        if (info.getKills() != null) info.setKills(info.getKills() + 1);
-        else info.setKills(1);
+        int newKills = 1;
+        if (info.getKills() != null) newKills = info.getKills() + 1;
+
+        info.setKills(newKills);
+        updateKillStreak(newKills);
     }
 }

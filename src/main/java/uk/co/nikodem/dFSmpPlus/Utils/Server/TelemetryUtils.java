@@ -88,6 +88,12 @@ public class TelemetryUtils {
         DFSmpPlus.globalDataHandler.writeTelemetryData(data);
     }
 
+    public static void updateKillStreak(int killstreak) {
+        TelemetryData data = DFSmpPlus.globalDataHandler.getTelemetryData();
+        if (killstreak > data.telemetry_highestKillStreak) data.telemetry_highestKillStreak = killstreak;
+        DFSmpPlus.globalDataHandler.writeTelemetryData(data);
+    }
+
     public static void increaseChiselUses(int amnt) {
         TelemetryData data = DFSmpPlus.globalDataHandler.getTelemetryData();
         data.telemetry_timesChiselUsed += amnt;
