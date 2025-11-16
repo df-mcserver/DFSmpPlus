@@ -9,8 +9,6 @@ import org.jetbrains.annotations.NotNull;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import static java.lang.Integer.parseInt;

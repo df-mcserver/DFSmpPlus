@@ -2,15 +2,8 @@ package uk.co.nikodem.dFSmpPlus.Utils.Server;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import uk.co.nikodem.dFSmpPlus.Utils.Serialisation.StringHelper;
-
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.Arrays;
 
 public class MessageUtils {
     public static final String CUSTOM_PROXY_CHANNEL = "df:proxy";

@@ -2,14 +2,12 @@ package uk.co.nikodem.dFSmpPlus.Player;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerChannelEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
-import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
@@ -17,7 +15,6 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterialUpdater;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.DefaultWaypointAttributes;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
-import uk.co.nikodem.dFSmpPlus.Utils.Server.MessageUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 

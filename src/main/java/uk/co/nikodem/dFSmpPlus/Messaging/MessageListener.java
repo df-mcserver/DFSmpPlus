@@ -10,7 +10,6 @@ import uk.co.nikodem.dFSmpPlus.Messaging.Messages.IsGeyser;
 import uk.co.nikodem.dFSmpPlus.Utils.Serialisation.StringHelper;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static uk.co.nikodem.dFSmpPlus.Utils.Server.MessageUtils.CUSTOM_PROXY_CHANNEL;
 
