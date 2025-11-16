@@ -22,10 +22,10 @@ Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 - [UltimateAdvancementAPI](https://github.com/frengor/UltimateAdvancementAPI) (2.7.1+)
     - Used for making custom advancements, and putting those advancement in the vanilla advancement menu.
     - UltimateAdvancementAPI plugin must also be present in order for this plugin to work.
-- DFJavaResources
+- [DFJavaResourcesPlus](https://github.com/df-mcserver/DFJavaResourcesPlus)
    - The resource pack which adds the textures and resources required in order to display custom content.
    - Not strictly required, however recommended for the proper experience.
-   - A bedrock equivalent (DFBedrockResources) with respective mappings is available, for Geyser users.
+   - A bedrock equivalent (DFBedrockResourcesPlus, wip) with respective mappings is available, for Geyser users.
 - [Velocity](https://papermc.io/software/velocity) w/ DFProxyPlugin
    - This plugin may communicate with a proxy server via BungeeCord's messaging channel.
    - Additionally, certain messages which may be sent and received are through a custom channel, which only DFProxyPlugin is built to handle.
