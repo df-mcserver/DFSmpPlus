@@ -4,15 +4,17 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerChannelEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
-import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialUpdater;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.DefaultWaypointAttributes;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
@@ -21,10 +23,15 @@ import java.util.List;
 import java.util.Objects;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Enums.UpdateResult.*;
+import static uk.co.nikodem.dFSmpPlus.Utils.Server.MessageUtils.CUSTOM_PROXY_CHANNEL;
 
 public class OnJoin {
     public static void OnJoin(PlayerJoinEvent e) {
         Player plr = e.getPlayer();
+
+        DFSmpPlus.hidingUtils.hideAllExclusiveEntitiesOnJoin(plr);
+        DefaultWaypointAttributes.applyDefaults(plr);
+        WaypointManager.CreateOnJoin(plr);
 
         for (CraftingTemplate template : DFSmpPlus.craftingTemplateList) {
             template.discoverRecipes(plr);
@@ -70,5 +77,10 @@ public class OnJoin {
             plr.sendMessage(msg);
             Sounds.Notification.playSoundLocally(plr);
         }
+    }
+
+    public static void OnInitChannels(PlayerChannelEvent event) {
+        Player plr = event.getPlayer();
+        if (event.getChannel().equals(CUSTOM_PROXY_CHANNEL)) DFSmpPlus.messageUtils.sendGeyserRequest(plr);
     }
 }

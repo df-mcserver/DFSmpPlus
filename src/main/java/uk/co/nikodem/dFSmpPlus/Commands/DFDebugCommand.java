@@ -7,6 +7,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
+
+import java.util.Random;
+import java.util.UUID;
 
 public class DFDebugCommand implements CommandExecutor {
     @Override
@@ -18,6 +22,10 @@ public class DFDebugCommand implements CommandExecutor {
             ItemStack item = ((Player) sender).getInventory().getItemInMainHand();
             DFItemUtils.setDamage(item, damage);
             sender.sendMessage("applied "+damage+" damage");
+        } else if (cmd.equals("waypointtest")) {
+            sender.sendMessage("waypointtest command");
+            Player plr = (Player) sender;
+            plr.sendMessage(WaypointManager.CreateNewWaypoint(plr, plr.getLocation(), UUID.randomUUID().toString(), new Random().nextLong(65535)).toString());
         }
         return true;
     }

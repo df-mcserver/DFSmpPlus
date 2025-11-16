@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus;
 
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Commands.*;
+import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFWaypointCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.DFDebugTabCompleter;
 import uk.co.nikodem.dFSmpPlus.Commands.TabCompleters.GiveDFTabCompleter;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
@@ -38,8 +40,11 @@ import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.InventoryOpenEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareItemCraftEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareSmithingEvent;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerDataHandler;
+import uk.co.nikodem.dFSmpPlus.Messaging.MessageListener;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
-import uk.co.nikodem.dFSmpPlus.Utils.Server.BungeeUtils;
+import uk.co.nikodem.dFSmpPlus.Utils.Server.MessageUtils;
+import uk.co.nikodem.dFSmpPlus.Utils.Server.HidingUtils;
 import uk.co.nikodem.dFSmpPlus.World.SetDefaults;
 
 import java.util.List;
@@ -48,7 +53,10 @@ import java.util.Objects;
 public final class DFSmpPlus extends JavaPlugin implements Listener {
 
     private static final Logger log = LoggerFactory.getLogger(DFSmpPlus.class);
-    public static BungeeUtils bungeeUtils;
+
+    public static MessageListener messageListener;
+    public static MessageUtils messageUtils;
+    public static HidingUtils hidingUtils;
 
     public static List<? extends CraftingTemplate> craftingTemplateList;
 
@@ -66,8 +74,11 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
         try {
             SetDefaults.checkRecommendedSettings(this);
 
-            bungeeUtils = new BungeeUtils(this);
-            bungeeUtils.initiateBungeeCordChannel();
+            messageUtils = new MessageUtils(this);
+            messageUtils.initiateChannels();
+
+            messageListener = new MessageListener(this);
+            messageListener.initialiseMessageHandlers();
 
             craftingTemplateList = List.of(
                     new VanillaRecipes(this),
@@ -98,6 +109,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             playerDataHandler = new PlayerDataHandler(this);
             globalDataHandler = new GlobalDataHandler(this);
 
+            hidingUtils = new HidingUtils(this);
+
             getLogger().info("Added "+totalSuccessfulRecipes+"/"+totalRecipes+" recipes in total!");
 
             RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove
@@ -114,6 +127,10 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
             Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
             Objects.requireNonNull(getCommand("bin")).setExecutor(new BinCommand());
+
+            this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
+                commands.registrar().register(DFWaypointCommand.createCommand().build());
+            });
 
             List<Listener> eventListeners = List.of(
                     new FoodLevelChangeEvent(),
@@ -142,7 +159,9 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PlayerInteractAtEntityEvent(),
                     new PlayerInteractEntityEvent(),
                     new PlayerInteractEvent(),
-                    new PlayerJoinEvent()
+                    new PlayerJoinEvent(),
+                    new PlayerChannelEvent(),
+                    new PlayerQuitEvent()
             );
 
             for (Listener listener : eventListeners) {
@@ -181,5 +200,6 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        WaypointManager.CleanupOnShutdown();
     }
 }

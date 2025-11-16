@@ -10,7 +10,8 @@ import java.util.List;
 
 public class DFDebugTabCompleter implements TabCompleter {
     private final List<String> subcommands = List.of(
-            "damage"
+            "damage",
+            "waypointtest"
     );
 
     @Override
