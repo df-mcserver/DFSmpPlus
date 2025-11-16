@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc;
+package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat;
 
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
@@ -10,17 +10,17 @@ import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 
 import static uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler.ADVANCEMENT_NAMESPACE;
 
-public class NotEvenCloseBaby extends BaseAdvancement {
-    public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "not-even-close-baby");
+public class WhatYouEgg extends BaseAdvancement {
+    public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "what-you-egg");
 
-    public NotEvenCloseBaby(@NotNull Advancement parent) {
+    public WhatYouEgg(@NotNull Advancement parent) {
         super(KEY.getKey(),
                 new AdvancementDisplay.Builder(
-                        Material.SHIELD,
-                        "Not even close, baby!")
-                        .description("Get out of combat with only 1 heart or less remaining.")
+                        Material.EGG,
+                        "What, you egg!")
+                        .description("Kill some whilst holding an egg.")
                         .taskFrame()
-                        .coords(1f, 6f)
+                        .coords(1f, 8f)
                         .showToast()
                         .announceChat()
                         .build()

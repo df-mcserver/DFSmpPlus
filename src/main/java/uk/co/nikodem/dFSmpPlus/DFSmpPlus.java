@@ -25,10 +25,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.Interchangable.TotemRecipes;
 import uk.co.nikodem.dFSmpPlus.Data.Global.GlobalDataHandler;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Events.Block.BlockDispenseArmorEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDamageByEntityEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDamageEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityDeathEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Entity.EntityPickupItemEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Entity.*;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.Food.FoodLevelChangeEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.*;
 import uk.co.nikodem.dFSmpPlus.Events.Block.BlockBreakEvent;
@@ -169,6 +166,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PlayerJoinEvent(),
                     new PlayerChannelEvent(),
                     new PlayerQuitEvent(),
+                    new PlayerRespawnEvent(),
 
                     new LootGenerateEvent()
             );

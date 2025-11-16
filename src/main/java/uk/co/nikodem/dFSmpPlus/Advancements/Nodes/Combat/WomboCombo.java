@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc;
+package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat;
 
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
@@ -10,17 +10,17 @@ import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 
 import static uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler.ADVANCEMENT_NAMESPACE;
 
-public class WhatYouEgg extends BaseAdvancement {
-    public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "what-you-egg");
+public class WomboCombo extends BaseAdvancement {
+    public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "wombo-combo");
 
-    public WhatYouEgg(@NotNull Advancement parent) {
+    public WomboCombo(@NotNull Advancement parent) {
         super(KEY.getKey(),
                 new AdvancementDisplay.Builder(
-                        Material.EGG,
-                        "What, you egg!")
-                        .description("Kill some whilst holding an egg.")
+                        Material.DIAMOND_SWORD,
+                        "WOMBO COMBO!")
+                        .description("Get a kill streak of 5.")
                         .taskFrame()
-                        .coords(1f, 8f)
+                        .coords(2f, 6f)
                         .showToast()
                         .announceChat()
                         .build()

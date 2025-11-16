@@ -16,6 +16,9 @@ import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.Bluebellsar;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BluebellsarRun;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BulliedByBluebellsar;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BullyBluebellsar;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat.NotEvenCloseBaby;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat.WhatYouEgg;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat.WomboCombo;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.*;
@@ -50,23 +53,20 @@ public class DFAdvancementsHandler {
 
         SoItBegins soItBegins = new SoItBegins(main);
         new OSFTSB(soItBegins); // TODO
-        Stage1 stage1 = new Stage1(soItBegins);
-        Stage2 stage2 = new Stage2(stage1);
-        Stage6 stage6 = new Stage6(stage2);
-        Stage9 stage9 = new Stage9(stage6);
-        new Stage10(stage9);
+        new Stage10(new Stage9(new Stage6(new Stage2(new Stage1(soItBegins)))));
 
         Bluebellsar bluebellsar = new Bluebellsar(main);
         BulliedByBluebellsar bulliedByBluebellsar = new BulliedByBluebellsar(bluebellsar);
         BullyBluebellsar bullyBluebellsar = new BullyBluebellsar(bulliedByBluebellsar);
         new BluebellsarRun(bullyBluebellsar);
 
-        new NotEvenCloseBaby(main); // TODO
+        new WomboCombo(new NotEvenCloseBaby(main));
+
         new MagicMirror(main);
-        new DoublingDown(main); // TODO
+        new DoublingDown(main);
         new ITTDDTA(main); // TODO
         new WorldRecord(main); // TODO
-        new WhatYouEgg(main); // TODO
+        new WhatYouEgg(main);
         new I3Rocks(main); // TODO
         new BreakTargetDummy(main);
         new ConsciousWarden(main); // TODO

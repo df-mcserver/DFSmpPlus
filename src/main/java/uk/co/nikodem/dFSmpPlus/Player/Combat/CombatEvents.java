@@ -12,9 +12,13 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat.WhatYouEgg;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat.WomboCombo;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.DoublingDown;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat.NotEvenCloseBaby;
 import uk.co.nikodem.dFSmpPlus.Player.BedrockPlayers;
 
+import static org.bukkit.Tag.ITEMS_EGGS;
 import static uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager.COMBAT_LENGTH;
 import static uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils.updateKillStreak;
 
@@ -39,6 +43,8 @@ public class CombatEvents {
                 if (!PlainTextComponentSerializer.plainText().serialize(deathMessage).contains(PlainTextComponentSerializer.plainText().serialize(attacker.displayName())))
                     event.deathMessage(deathMessage.append(Component.text(" whilst in combat with ").append(attacker.name())));
             }
+
+            if (ITEMS_EGGS.isTagged(attacker.getInventory().getItemInMainHand().getType())) DFAdvancementsHandler.grantAdvancement(attacker, WhatYouEgg.class);
 
             incrementKills(attacker);
             updateCombatBar(attacker);
@@ -83,6 +89,8 @@ public class CombatEvents {
         hideCombatBar(plr);
         CombatLoggingManager.removeCombat(plr);
         plr.sendActionBar(MiniMessage.miniMessage().deserialize("<green>You are no longer in combat!"));
+
+        if (plr.getHealth() <= 2D) DFAdvancementsHandler.grantAdvancement(plr, NotEvenCloseBaby.class);
     }
 
     public static void formallyAnnounceCombat(Player victim, Player attacker) {
@@ -133,5 +141,7 @@ public class CombatEvents {
 
         info.setKills(newKills);
         updateKillStreak(newKills);
+
+        if (newKills >= 5) DFAdvancementsHandler.grantAdvancement(plr, WomboCombo.class);
     }
 }

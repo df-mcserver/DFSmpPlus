@@ -8,11 +8,13 @@ import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BulliedByBluebellsar;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatEvents;
+import uk.co.nikodem.dFSmpPlus.Player.Combat.WorldRecordAdvancementHandler;
 
 public class PlayerDeathEvent implements Listener {
     @EventHandler
     public void PlayerDeathEvent(org.bukkit.event.entity.PlayerDeathEvent event) {
         CombatEvents.onDeath(event);
+        WorldRecordAdvancementHandler.onDeath(event);
 
         if (event.getPlayer().getPersistentDataContainer().has(Keys.comicallyLarge)) {
             String blockName = event.getPlayer().getPersistentDataContainer().get(Keys.comicallyLarge, PersistentDataType.STRING);

@@ -12,6 +12,7 @@ import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialUpdater;
+import uk.co.nikodem.dFSmpPlus.Player.Combat.WorldRecordAdvancementHandler;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.DefaultWaypointAttributes;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
@@ -28,6 +29,8 @@ import static uk.co.nikodem.dFSmpPlus.Utils.Server.MessageUtils.CUSTOM_PROXY_CHA
 public class OnJoin {
     public static void OnJoin(PlayerJoinEvent e) {
         Player plr = e.getPlayer();
+
+        WorldRecordAdvancementHandler.onJoin(e);
 
         DFSmpPlus.hidingUtils.hideAllExclusiveEntitiesOnJoin(plr);
         DefaultWaypointAttributes.applyDefaults(plr);
