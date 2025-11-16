@@ -1,6 +1,5 @@
 package uk.co.nikodem.dFSmpPlus;
 
-import io.papermc.paper.plugin.lifecycle.event.LifecycleEvent;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -41,9 +40,10 @@ import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.InventoryOpenEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareItemCraftEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareSmithingEvent;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerDataHandler;
+import uk.co.nikodem.dFSmpPlus.Messaging.MessageListener;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
-import uk.co.nikodem.dFSmpPlus.Utils.Server.BungeeUtils;
+import uk.co.nikodem.dFSmpPlus.Utils.Server.MessageUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.HidingUtils;
 import uk.co.nikodem.dFSmpPlus.World.SetDefaults;
 
@@ -54,7 +54,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
     private static final Logger log = LoggerFactory.getLogger(DFSmpPlus.class);
 
-    public static BungeeUtils bungeeUtils;
+    public static MessageListener messageListener;
+    public static MessageUtils messageUtils;
     public static HidingUtils hidingUtils;
 
     public static List<? extends CraftingTemplate> craftingTemplateList;
@@ -73,8 +74,11 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
         try {
             SetDefaults.checkRecommendedSettings(this);
 
-            bungeeUtils = new BungeeUtils(this);
-            bungeeUtils.initiateBungeeCordChannel();
+            messageUtils = new MessageUtils(this);
+            messageUtils.initiateChannels();
+
+            messageListener = new MessageListener(this);
+            messageListener.initialiseMessageHandlers();
 
             craftingTemplateList = List.of(
                     new VanillaRecipes(this),
@@ -156,6 +160,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PlayerInteractEntityEvent(),
                     new PlayerInteractEvent(),
                     new PlayerJoinEvent(),
+                    new PlayerChannelEvent(),
                     new PlayerQuitEvent()
             );
 

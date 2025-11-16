@@ -8,5 +8,7 @@ public class OnLeave {
     public static void OnLeave(PlayerQuitEvent e) {
         Player plr = e.getPlayer();
         WaypointManager.CleanupOnLeave(plr);
+
+        BedrockPlayers.onLeave(plr);
     }
 }

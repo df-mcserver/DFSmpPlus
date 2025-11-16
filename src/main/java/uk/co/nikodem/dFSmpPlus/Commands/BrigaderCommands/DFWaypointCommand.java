@@ -22,7 +22,6 @@ import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointCreationResult;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 
 import java.awt.*;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -34,7 +33,7 @@ public class DFWaypointCommand {
                         .then(Commands.argument("enabled", BoolArgumentType.bool()).executes(ctx -> {
                             Player plr = (Player) ctx.getSource().getExecutor();
                             if (plr == null) return 0;
-                            if (BedrockPlayers.isBedrock(plr)) return 0;
+                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
                             final Boolean toggle = ctx.getArgument("enabled", Boolean.class);
                             if (toggle == null) return 0;
 
@@ -53,7 +52,7 @@ public class DFWaypointCommand {
                                 .then(Commands.argument("name", StringArgumentType.string()).executes(ctx -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return 0;
-                                            if (BedrockPlayers.isBedrock(plr)) return 0;
+                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
                                             final String name = ctx.getArgument("name", String.class);
                                             Random random = new Random();
@@ -63,7 +62,7 @@ public class DFWaypointCommand {
                                         .then(Commands.argument("colour", ArgumentTypes.namedColor()).executes(ctx -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return 0;
-                                            if (BedrockPlayers.isBedrock(plr)) return 0;
+                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
                                             final String name = ctx.getArgument("name", String.class);
                                             final NamedTextColor colour = ctx.getArgument("colour", NamedTextColor.class);
@@ -76,7 +75,7 @@ public class DFWaypointCommand {
                                         .suggests((ctx, builder) -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return builder.buildFuture();
-                                            if (BedrockPlayers.isBedrock(plr)) return builder.buildFuture();
+                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return builder.buildFuture();
 
                                             for (Map.Entry<String, WaypointInformation> info : DFSmpPlus.playerDataHandler.getPlayerData(plr).waypoints.entrySet()) {
                                                 builder.suggest(info.getKey());
@@ -85,7 +84,7 @@ public class DFWaypointCommand {
                                         }).executes(ctx -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return 0;
-                                            if (BedrockPlayers.isBedrock(plr)) return 0;
+                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
                                             final String name = ctx.getArgument("name", String.class);
 
@@ -105,7 +104,7 @@ public class DFWaypointCommand {
                                         .suggests((ctx, builder) -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return builder.buildFuture();
-                                            if (BedrockPlayers.isBedrock(plr)) return builder.buildFuture();
+                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return builder.buildFuture();
 
                                             for (Map.Entry<String, WaypointInformation> info : DFSmpPlus.playerDataHandler.getPlayerData(plr).waypoints.entrySet()) {
                                                 builder.suggest(info.getKey());
@@ -114,7 +113,7 @@ public class DFWaypointCommand {
                                         }).executes(ctx -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return 0;
-                                            if (BedrockPlayers.isBedrock(plr)) return 0;
+                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
                                             final String waypointname = StringArgumentType.getString(ctx, "waypoint");
 
@@ -156,7 +155,7 @@ public class DFWaypointCommand {
                                 .executes(ctx -> {
                                     Player plr = (Player) ctx.getSource().getExecutor();
                                     if (plr == null) return 0;
-                                    if (BedrockPlayers.isBedrock(plr)) return 0;
+                                    if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
                                     PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
                                     if (data.waypoints.isEmpty()) {
