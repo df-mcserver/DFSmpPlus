@@ -10,6 +10,7 @@ import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.MagicMirror;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
+import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import javax.annotation.Nullable;
@@ -80,8 +81,7 @@ public class MagicMirrorMeta implements DFMaterialMeta {
     }
 
     public boolean inCombat(Player plr) {
-        // TODO do this
-        return false;
+         return CombatLoggingManager.isInCombat(plr);
     }
 
     public void playTeleportingEffect(Location loc) {

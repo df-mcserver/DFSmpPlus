@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 
@@ -34,8 +35,7 @@ public class SpawnCommand implements CommandExecutor {
     }
 
     public boolean inCombat(Player plr) {
-        // TODO do this
-        return false;
+        return CombatLoggingManager.isInCombat(plr);
     }
 
     public void sendSuccessMessage(Player plr) {

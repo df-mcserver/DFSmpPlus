@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
+import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 
 public class EntityDeathEvent implements Listener {

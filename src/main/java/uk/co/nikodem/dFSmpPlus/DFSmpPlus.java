@@ -42,6 +42,8 @@ import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareItemCraft
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareSmithingEvent;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerDataHandler;
 import uk.co.nikodem.dFSmpPlus.Messaging.MessageListener;
+import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatEvents;
+import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.MessageUtils;
@@ -174,6 +176,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             Bukkit.getScheduler().runTaskTimer(this, () -> {
                 for (Player plr : Bukkit.getOnlinePlayers()) {
                     DFArmourSetEvents.ApplyRunPerSecond(plr);
+                    CombatEvents.perSecond(plr);
                 }
             }, 0, 20);
 

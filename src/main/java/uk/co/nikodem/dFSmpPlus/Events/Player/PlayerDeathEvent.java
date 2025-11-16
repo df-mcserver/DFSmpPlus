@@ -7,22 +7,25 @@ import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BulliedByBluebellsar;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
+import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatEvents;
 
 public class PlayerDeathEvent implements Listener {
     @EventHandler
-    public void PlayerDeathEvent(org.bukkit.event.entity.PlayerDeathEvent e) {
-        if (e.getPlayer().getPersistentDataContainer().has(Keys.comicallyLarge)) {
-            String blockName = e.getPlayer().getPersistentDataContainer().get(Keys.comicallyLarge, PersistentDataType.STRING);
-            if (blockName == null) e.deathMessage(Component.text(e.getPlayer().getName()+" had a heart attack whilst mining a block"));
-            else e.deathMessage(Component.text(e.getPlayer().getName()+" had a heart attack whilst mining ").append(Component.translatable(blockName)));
+    public void PlayerDeathEvent(org.bukkit.event.entity.PlayerDeathEvent event) {
+        CombatEvents.onDeath(event);
 
-            e.getPlayer().getPersistentDataContainer().remove(Keys.comicallyLarge);
+        if (event.getPlayer().getPersistentDataContainer().has(Keys.comicallyLarge)) {
+            String blockName = event.getPlayer().getPersistentDataContainer().get(Keys.comicallyLarge, PersistentDataType.STRING);
+            if (blockName == null) event.deathMessage(Component.text(event.getPlayer().getName()+" had a heart attack whilst mining a block"));
+            else event.deathMessage(Component.text(event.getPlayer().getName()+" had a heart attack whilst mining ").append(Component.translatable(blockName)));
+
+            event.getPlayer().getPersistentDataContainer().remove(Keys.comicallyLarge);
         }
-        if (e.getPlayer().getPersistentDataContainer().has(Keys.bluebellsarDeath)) {
-            e.deathMessage(Component.text(e.getPlayer().getName()+" got a taste of their own medicine."));
-            DFAdvancementsHandler.grantAdvancement(e.getPlayer(), BulliedByBluebellsar.class);
+        if (event.getPlayer().getPersistentDataContainer().has(Keys.bluebellsarDeath)) {
+            event.deathMessage(Component.text(event.getPlayer().getName()+" got a taste of their own medicine."));
+            DFAdvancementsHandler.grantAdvancement(event.getPlayer(), BulliedByBluebellsar.class);
 
-            e.getPlayer().getPersistentDataContainer().remove(Keys.bluebellsarDeath);
+            event.getPlayer().getPersistentDataContainer().remove(Keys.bluebellsarDeath);
         }
     }
 }

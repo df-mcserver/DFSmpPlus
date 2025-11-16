@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/dfsmpplus.main.iml" filepath="$PROJECT_DIR$/.idea/modules/dfsmpplus.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dfsmpplus.test.iml" filepath="$PROJECT_DIR$/.idea/modules/dfsmpplus.test.iml" />
     </modules>
   </component>
 </project>
