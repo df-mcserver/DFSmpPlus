@@ -42,6 +42,7 @@ import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.InventoryOpenEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareItemCraftEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareSmithingEvent;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerDataHandler;
+import uk.co.nikodem.dFSmpPlus.Events.World.LootGenerateEvent;
 import uk.co.nikodem.dFSmpPlus.Messaging.MessageListener;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatEvents;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager;
@@ -167,7 +168,9 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PlayerInteractEvent(),
                     new PlayerJoinEvent(),
                     new PlayerChannelEvent(),
-                    new PlayerQuitEvent()
+                    new PlayerQuitEvent(),
+
+                    new LootGenerateEvent()
             );
 
             for (Listener listener : eventListeners) {
