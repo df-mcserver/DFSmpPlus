@@ -2,20 +2,22 @@ package uk.co.nikodem.dFSmpPlus.SetBonuses;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
+import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class SetBonusText {
+    // TODO: Use plain serialiser (adventure API)
     public static final String SET_BONUS_PREFIX = "<underlined><dark_gray>Set Bonus: ";
 
     public static void onItemDrop(PlayerDropItemEvent event) {
@@ -23,28 +25,26 @@ public class SetBonusText {
     }
 
     public static void onInventoryClick(InventoryClickEvent event) {
-//        nuclearUpdateInventory((Player) event.getWhoClicked());
-
         if (event.getClickedInventory() == null) return;
         if (event.getClickedInventory().getType() != InventoryType.PLAYER) return;
         PlayerInventory inv = (PlayerInventory) event.getClickedInventory();
         Player plr = (Player) event.getWhoClicked();
 
-        for (ItemStack piece : inv.getArmorContents()) {
-            updateItem(plr, piece);
-        }
-        updateItem(plr, event.getCursor());
-        updateItem(plr, event.getCurrentItem());
+        DFArmourSet set = DFArmourSet.getArmourSetEquipped(plr);
+        boolean equipped = set != null;
+
+        // run task 1 tick later to let all changes apply
+        Bukkit.getScheduler().runTaskLater(DFSmpPlus.getProvidingPlugin(DFSmpPlus.class), () -> {
+            for (ItemStack piece : inv.getArmorContents()) {
+                updateItem(plr, piece, equipped);
+            }
+
+            updateItem(plr, plr.getItemOnCursor(), equipped);
+            updateItem(plr, event.getCurrentItem(), equipped);
+        }, 1L);
     }
 
-    public static void nuclearUpdateInventory(Player plr) {
-        // just scan the inventory cuz im lazy
-        for (var i : plr.getInventory().getContents()) {
-            if (i != null) updateItem(plr, i);
-        }
-    }
-
-    public static void updateItem(Player plr, ItemStack item) {
+    public static void updateItem(Player plr, ItemStack item, boolean isEquipped) {
         DFArmourSet set = DFArmourSet.getArmourSetEquipped(plr);
         if (set == null) {
             removeSetBonusText(item);
@@ -62,6 +62,12 @@ public class SetBonusText {
         ItemMeta meta = item.getItemMeta();
         List<Component> lore = meta.hasLore() ? meta.lore() : new ArrayList<>();
         assert lore != null;
+
+        for (Component line : lore) {
+            MiniMessage mm = MiniMessage.miniMessage();
+            String string = mm.serialize(line);
+            if (string.startsWith(SET_BONUS_PREFIX)) return;
+        }
 
         lore.add(MiniMessage.miniMessage().deserialize(SET_BONUS_PREFIX+setBonus));
         meta.lore(lore);
