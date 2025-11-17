@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
+import com.google.common.collect.Multimap;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -7,6 +8,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -260,7 +262,10 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.HEAD)
             .addLore("<gray>(Equivalent to Netherite Helmet)")
-            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class))
+            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(450))
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianHelmet, 4D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
+            .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianHelmet, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
+            .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianHelmet, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .create();
 
     public static DFMaterial ObsidianChestplate = new DFMaterialBuilder(Material.NETHERITE_CHESTPLATE, "obsidian_chestplate", 1)
@@ -268,7 +273,10 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.CHEST)
             .addLore("<gray>(Equivalent to Netherite Chestplate)")
-            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class))
+            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(600))
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianChestplate, 9D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
+            .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianChestplate, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
+            .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianChestplate, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .create();
 
     public static DFMaterial ObsidianLeggings = new DFMaterialBuilder(Material.NETHERITE_LEGGINGS, "obsidian_leggings", 1)
@@ -276,7 +284,10 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.LEGS)
             .addLore("<gray>(Equivalent to Netherite Leggings)")
-            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class))
+            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(575))
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianLeggings, 7D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
+            .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianLeggings, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
+            .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianLeggings, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
             .create();
 
     public static DFMaterial ObsidianBoots = new DFMaterialBuilder(Material.NETHERITE_BOOTS, "obsidian_boots", 1)
@@ -284,7 +295,10 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.FEET)
             .addLore("<gray>(Equivalent to Netherite Boots)")
-            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class))
+            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(500))
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianBoots, 4D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
+            .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
+            .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianBoots, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .create();
 
     public static DFMaterial LifeCrystal = new DFMaterialBuilder(Material.FIREWORK_STAR, "life_crystal", 1)
@@ -301,24 +315,28 @@ public class DFMaterial {
             .setDisplayName("Sculk Helmet")
             .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.HEAD)
             .addLore("<gray>(Equivalent to Diamond Helmet)")
+            .addMeta(new CustomDurabilityMeta(950))
             .create();
 
     public static DFMaterial SculkChestplate = new DFMaterialBuilder(Material.DIAMOND_CHESTPLATE, "sculk_chestplate", 1)
             .setDisplayName("Sculk Chestplate")
             .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.CHEST)
             .addLore("<gray>(Equivalent to Diamond Chestplate)")
+            .addMeta(new CustomDurabilityMeta(1250))
             .create();
 
     public static DFMaterial SculkLeggings = new DFMaterialBuilder(Material.DIAMOND_LEGGINGS, "sculk_leggings", 1)
             .setDisplayName("Sculk Leggings")
             .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.LEGS)
             .addLore("<gray>(Equivalent to Diamond Leggings)")
+            .addMeta(new CustomDurabilityMeta(1100))
             .create();
 
     public static DFMaterial SculkBoots = new DFMaterialBuilder(Material.DIAMOND_BOOTS, "sculk_boots", 1)
             .setDisplayName("Sculk Boots")
             .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.FEET)
             .addLore("<gray>(Equivalent to Diamond Boots)")
+            .addMeta(new CustomDurabilityMeta(1000))
             .create();
 
     public static DFMaterial SculkFragment = new DFMaterialBuilder(Material.ECHO_SHARD, "sculk_fragment", 1)
@@ -426,6 +444,8 @@ public class DFMaterial {
             .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.HEAD)
             .addLore("<gray>(Equivalent to Chainmail Helmet)")
             .addEnchantment(Enchantment.UNBREAKING, 1)
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.calciteHelmet, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
+            .addMeta(new CustomDurabilityMeta(205))
             .create();
 
     public static DFMaterial CalciteChestplate = new DFMaterialBuilder(Material.CHAINMAIL_CHESTPLATE, "calcite_chestplate", 1)
@@ -434,6 +454,8 @@ public class DFMaterial {
             .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.CHEST)
             .addLore("<gray>(Equivalent to Chainmail Chestplate)")
             .addEnchantment(Enchantment.UNBREAKING, 1)
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.calciteChestplate, 5D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
+            .addMeta(new CustomDurabilityMeta(295))
             .create();
 
     public static DFMaterial CalciteLeggings = new DFMaterialBuilder(Material.CHAINMAIL_LEGGINGS, "calcite_leggings", 1)
@@ -442,6 +464,8 @@ public class DFMaterial {
             .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.LEGS)
             .addLore("<gray>(Equivalent to Chainmail Leggings)")
             .addEnchantment(Enchantment.UNBREAKING, 1)
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.calciteLeggings, 4D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
+            .addMeta(new CustomDurabilityMeta(240))
             .create();
 
     public static DFMaterial CalciteBoots = new DFMaterialBuilder(Material.CHAINMAIL_BOOTS, "calcite_boots", 1)
@@ -450,6 +474,8 @@ public class DFMaterial {
             .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.FEET)
             .addLore("<gray>(Equivalent to Chainmail Boots)")
             .addEnchantment(Enchantment.UNBREAKING, 1)
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.calciteBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
+            .addMeta(new CustomDurabilityMeta(225))
             .create();
 
     public static DFMaterial SilkSword = new DFMaterialBuilder(Material.WOODEN_SWORD, "silk_sword", 1)
