@@ -42,7 +42,6 @@ import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerDataHandler;
 import uk.co.nikodem.dFSmpPlus.Events.World.LootGenerateEvent;
 import uk.co.nikodem.dFSmpPlus.Messaging.MessageListener;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatEvents;
-import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.MessageUtils;

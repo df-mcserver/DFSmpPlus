@@ -1,7 +1,7 @@
 name: DFSmpPlus
-version: '1.0.0'
+version: '3.0.0-INDEV'
 main: uk.co.nikodem.dFSmpPlus.DFSmpPlus
-api-version: '1.21.3'
+api-version: '1.21.8'
 author: 'deadfry42'
 depend: [UltimateAdvancementAPI]
 commands:
