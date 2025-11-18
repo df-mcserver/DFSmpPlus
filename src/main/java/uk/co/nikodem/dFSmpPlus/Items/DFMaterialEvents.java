@@ -155,6 +155,22 @@ public class DFMaterialEvents {
         }
     }
 
+    public static void ItemConsumed(PlayerItemConsumeEvent e) {
+        Player plr = e.getPlayer();
+
+        ItemStack tool = plr.getInventory().getItemInMainHand();
+
+        DFMaterial material = DFItemUtils.getDFMaterial(tool);
+
+        if (material == null) return;
+
+        if (material.hasMeta()) {
+            for (DFMaterialMeta meta : material.getMeta()) {
+                meta.ItemConsumed(plr, material, tool, e);
+            }
+        }
+    }
+
     public static void ItemKillEntity(EntityDeathEvent e) {
         Entity target = e.getEntity();
         DamageSource source = e.getDamageSource();

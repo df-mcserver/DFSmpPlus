@@ -27,6 +27,7 @@ public interface DFMaterialMeta {
     default void ItemCrafted(DFMaterial material, ItemStack item, Player plr, @Nullable CraftItemEvent event) {};
     default void ItemCreated(DFMaterial material, ItemStack item) {};
     default void ItemKilledEntity(Player plr, DFMaterial material, Entity target, EntityDeathEvent event) {};
+    default void ItemConsumed(Player plr, DFMaterial material, ItemStack item, PlayerItemConsumeEvent event) {};
     default void BucketUseEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {};
 
     default List<TextComponent> AddAdditionalLore(DFMaterial material) {return List.of();};

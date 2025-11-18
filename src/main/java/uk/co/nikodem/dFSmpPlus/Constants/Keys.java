@@ -26,6 +26,11 @@ public class Keys {
     public static NamespacedKey obsidianLeggings = createDefaultKey("obsidian_leggings");
     public static NamespacedKey obsidianBoots = createDefaultKey("obsidian_boots");
 
+    public static NamespacedKey floralHelmet = createDefaultKey("floral_helmet");
+    public static NamespacedKey floralChestplate = createDefaultKey("floral_chestplate");
+    public static NamespacedKey floralLeggings = createDefaultKey("floral_leggings");
+    public static NamespacedKey floralBoots = createDefaultKey("floral_boots");
+
     public static NamespacedKey createDefaultKey(String key) {
         return new NamespacedKey(
                 "dfsmpplus",

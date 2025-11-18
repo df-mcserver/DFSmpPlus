@@ -100,7 +100,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new ObsidianRecipes(this),
                     new VeinRecipes(this),
                     new SilkRecipes(this),
-                    new CalciteRecipes(this)
+                    new CalciteRecipes(this),
+                    new FloralRecipes(this)
             );
 
             new HiddenRecipes(this);
@@ -162,6 +163,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PlayerInteractAtEntityEvent(),
                     new PlayerInteractEntityEvent(),
                     new PlayerInteractEvent(),
+                    new PlayerItemConsumeEvent(),
                     new PlayerJoinEvent(),
                     new PlayerChannelEvent(),
                     new PlayerQuitEvent(),

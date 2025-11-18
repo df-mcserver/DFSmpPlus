@@ -91,6 +91,15 @@ public class DFArmourSet {
             .addMeta(new CopperMeta())
             .create();
 
+    public static final DFArmourSet Floral = new DFArmourSetBuilder("Floral")
+            .setBase(DFArmourSet.Native_Iron)
+            .setHelmet(DFMaterial.FloralHelmet)
+            .setChestplate(DFMaterial.FloralChestplate)
+            .setLeggings(DFMaterial.FloralLeggings)
+            .setBoots(DFMaterial.FloralBoots)
+            .setSetBonus("TBD.")
+            .create();
+
     public static final DFArmourSet Sculk = new DFArmourSetBuilder("Sculk")
             .setBase(DFArmourSet.Native_Diamond)
             .setHelmet(DFMaterial.SculkHelmet)

@@ -1,8 +1,11 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets;
 
 import org.bukkit.Material;
+import org.bukkit.Tag;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.BlastFurnaceRecipeBuilder;
@@ -21,8 +24,8 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CopperRecipes extends CraftingTemplate {
-    public CopperRecipes(DFSmpPlus plugin) {
+public class FloralRecipes extends CraftingTemplate {
+    public FloralRecipes(DFSmpPlus plugin) {
         super(plugin);
     }
 
@@ -30,7 +33,8 @@ public class CopperRecipes extends CraftingTemplate {
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();
 
-        addIngotRecipes(recipesToAdd);
+        addPestleAndMortarRecipes(recipesToAdd);
+        addIngredientRecipes(recipesToAdd);
         addTools(recipesToAdd);
         addArmour(recipesToAdd);
         addFurnaceRecipes(recipesToAdd);
@@ -38,322 +42,339 @@ public class CopperRecipes extends CraftingTemplate {
         return recipesToAdd;
     }
 
-    public void addIngotRecipes(List<Recipe> recipesToAdd) {
+    public void addPestleAndMortarRecipes(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.EmptyPestleAndMortar)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "EmptyPM")
+                        .shape("XIX", " X ")
+                        .setIngredient('X', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
+                        .setIngredient('I', new RecipeChoice.ExactChoice(DFMaterial.PointyStick.toItemStack()))
+        );
+
         recipesToAdd.add(
                 new ShapelessRecipeBuilder()
-                        .setOutput(DFMaterial.CopperNugget, 9)
+                        .setOutput(DFMaterial.FlowerPestleAndMortar)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "FlowerPM")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
+                        .addIngredient(new RecipeChoice.MaterialChoice(Tag.ITEMS_FLOWERS))
+        );
+    }
+
+    public void addIngredientRecipes(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.MISC)
-                        .build(getInfo(), "CopperNugget")
-                        .addIngredient(Material.COPPER_INGOT)
+                        .build(getInfo(), "FloralIngot-Powder")
+                        .shape("XO", "OX")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FlowerPowder.toItemStack()))
+                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_INGOT)))
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.FloralNugget, 9)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "FloralNugget")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FloralIngot.toItemStack()))
         );
 
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
-                        .setOutput(Material.COPPER_INGOT)
+                        .setOutput(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.MISC)
-                        .build(getInfo(), "CopperIngot")
+                        .build(getInfo(), "FloralIngot")
                         .shape("XXX", "XXX", "XXX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.CopperNugget.toItemStack()))
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FloralNugget.toItemStack()))
         );
     }
 
     public void addTools(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new SwordRecipeBuilder()
-                        .setItem(DFMaterial.CopperSword)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralSword)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
 
         new ItemRepairAnvilRecipeBuilder()
-                .setItem(DFMaterial.CopperSword)
-                .setAddition(Material.COPPER_INGOT)
+                .setItem(DFMaterial.FloralSword)
+                .setAddition(DFMaterial.FloralIngot)
                 .assign();
 
         recipesToAdd.add(
                 new LeftAxeRecipeBuilder()
-                        .setItem(DFMaterial.CopperAxe)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralAxe)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .setGroup("CopperAxe")
+                        .setGroup("FloralAxe")
                         .build(getInfo(), "Left")
         );
 
         recipesToAdd.add(
                 new RightAxeRecipeBuilder()
-                        .setItem(DFMaterial.CopperAxe)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralAxe)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .setGroup("CopperAxe")
+                        .setGroup("FloralAxe")
                         .build(getInfo(), "Right")
         );
 
         new ItemRepairAnvilRecipeBuilder()
-                .setItem(DFMaterial.CopperAxe)
-                .setAddition(Material.COPPER_INGOT)
+                .setItem(DFMaterial.FloralAxe)
+                .setAddition(DFMaterial.FloralIngot)
                 .assign();
 
         recipesToAdd.add(
                 new PickaxeRecipeBuilder()
-                        .setItem(DFMaterial.CopperPickaxe)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralPickaxe)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
 
         new ItemRepairAnvilRecipeBuilder()
-                .setItem(DFMaterial.CopperPickaxe)
-                .setAddition(Material.COPPER_INGOT)
+                .setItem(DFMaterial.FloralPickaxe)
+                .setAddition(DFMaterial.FloralIngot)
                 .assign();
 
         recipesToAdd.add(
                 new ShovelRecipeBuilder()
-                        .setItem(DFMaterial.CopperShovel)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralShovel)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
 
         new ItemRepairAnvilRecipeBuilder()
-                .setItem(DFMaterial.CopperShovel)
-                .setAddition(Material.COPPER_INGOT)
+                .setItem(DFMaterial.FloralShovel)
+                .setAddition(DFMaterial.FloralIngot)
                 .assign();
 
         recipesToAdd.add(
                 new LeftHoeRecipeBuilder()
-                        .setItem(DFMaterial.CopperHoe)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralHoe)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .setGroup("CopperHoe")
+                        .setGroup("FloralHoe")
                         .build(getInfo(), "Left")
         );
 
         recipesToAdd.add(
                 new RightHoeRecipeBuilder()
-                        .setItem(DFMaterial.CopperHoe)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralHoe)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .setGroup("CopperHoe")
+                        .setGroup("FloralHoe")
                         .build(getInfo(), "Right")
         );
 
         new ItemRepairAnvilRecipeBuilder()
-                .setItem(DFMaterial.CopperHoe)
-                .setAddition(Material.COPPER_INGOT)
+                .setItem(DFMaterial.FloralHoe)
+                .setAddition(DFMaterial.FloralIngot)
                 .assign();
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new StandardHelmetRecipeBuilder()
-                        .setItem(DFMaterial.CopperHelmet)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralHelmet)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
 
         new ItemRepairAnvilRecipeBuilder()
-                .setItem(DFMaterial.CopperHelmet)
-                .setAddition(Material.COPPER_INGOT)
+                .setItem(DFMaterial.FloralHelmet)
+                .setAddition(DFMaterial.FloralIngot)
                 .assign();
 
         recipesToAdd.add(
                 new StandardChestplateRecipeBuilder()
-                        .setItem(DFMaterial.CopperChestplate)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralChestplate)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
 
         new ItemRepairAnvilRecipeBuilder()
-                .setItem(DFMaterial.CopperChestplate)
-                .setAddition(Material.COPPER_INGOT)
+                .setItem(DFMaterial.FloralChestplate)
+                .setAddition(DFMaterial.FloralIngot)
                 .assign();
 
         recipesToAdd.add(
                 new StandardLeggingsRecipeBuilder()
-                        .setItem(DFMaterial.CopperLeggings)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralLeggings)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
 
         new ItemRepairAnvilRecipeBuilder()
-                .setItem(DFMaterial.CopperLeggings)
-                .setAddition(Material.COPPER_INGOT)
+                .setItem(DFMaterial.FloralLeggings)
+                .setAddition(DFMaterial.FloralIngot)
                 .assign();
 
         recipesToAdd.add(
                 new StandardBootsRecipeBuilder()
-                        .setItem(DFMaterial.CopperBoots)
-                        .setMaterial(Material.COPPER_INGOT)
+                        .setItem(DFMaterial.FloralBoots)
+                        .setMaterial(DFMaterial.FloralIngot)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
 
         new ItemRepairAnvilRecipeBuilder()
-                .setItem(DFMaterial.CopperBoots)
-                .setAddition(Material.COPPER_INGOT)
+                .setItem(DFMaterial.FloralBoots)
+                .setAddition(DFMaterial.FloralIngot)
                 .assign();
     }
 
     public void addFurnaceRecipes(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
-                        .setSource(Material.COPPER_INGOT)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralIngot)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltIngot")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperSword)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralSword)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltSword")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperAxe)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralAxe)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltAxe")
         );
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperPickaxe)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralPickaxe)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltPickaxe")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperHoe)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralHoe)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltHoe")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperShovel)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralShovel)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltShovel")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperHelmet)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralHelmet)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltHelmet")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperChestplate)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralChestplate)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltChestplate")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperLeggings)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralLeggings)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltLeggings")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperBoots)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralBoots)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltBoots")
         );
 
         recipesToAdd.add(
-                new FurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperChisel)
-                        .setOutput(DFMaterial.CopperNugget)
-                        .build(getInfo(), "SmeltChisel")
-        );
-
-        recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
-                        .setSource(Material.COPPER_INGOT)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralIngot)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltIngotBlast")
         );
 
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperSword)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralSword)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltSwordBlast")
         );
 
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperAxe)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralAxe)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltAxeBlast")
         );
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperPickaxe)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralPickaxe)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltPickaxeBlast")
         );
 
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperHoe)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralHoe)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltHoeBlast")
         );
 
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperShovel)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralShovel)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltShovelBlast")
         );
 
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperHelmet)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralHelmet)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltHelmetBlast")
         );
 
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperChestplate)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralChestplate)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltChestplateBlast")
         );
 
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperLeggings)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralLeggings)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltLeggingsBlast")
         );
 
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperBoots)
-                        .setOutput(DFMaterial.CopperNugget)
+                        .setSource(DFMaterial.FloralBoots)
+                        .setOutput(DFMaterial.FlowerPowder)
                         .build(getInfo(), "SmeltBootsBlast")
-        );
-
-        recipesToAdd.add(
-                new BlastFurnaceRecipeBuilder()
-                        .setSource(DFMaterial.CopperChisel)
-                        .setOutput(DFMaterial.CopperNugget)
-                        .build(getInfo(), "SmeltChiselBlast")
         );
     }
 
     @Override
     public String getRecipesID() {
-        return "copper-customset";
+        return "floral-customset";
     }
 }

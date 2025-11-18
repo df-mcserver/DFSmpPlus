@@ -1,6 +1,10 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
 import com.google.common.collect.Multimap;
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.Consumable;
+import io.papermc.paper.datacomponent.item.consumable.ItemUseAnimation;
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
@@ -20,6 +24,7 @@ import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.SoItBegins;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Constants.VeinMineable;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 import uk.co.nikodem.dFSmpPlus.Items.Metas.*;
 import org.bukkit.Material;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
@@ -261,7 +266,6 @@ public class DFMaterial {
             .setDisplayName("Obsidian Helmet")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.HEAD)
-            .addLore("<gray>(Equivalent to Netherite Helmet)")
             .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(450))
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianHelmet, 4D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianHelmet, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
@@ -272,7 +276,6 @@ public class DFMaterial {
             .setDisplayName("Obsidian Chestplate")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.CHEST)
-            .addLore("<gray>(Equivalent to Netherite Chestplate)")
             .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(600))
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianChestplate, 9D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianChestplate, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
@@ -283,7 +286,6 @@ public class DFMaterial {
             .setDisplayName("Obsidian Leggings")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.LEGS)
-            .addLore("<gray>(Equivalent to Netherite Leggings)")
             .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(575))
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianLeggings, 7D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianLeggings, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
@@ -294,7 +296,6 @@ public class DFMaterial {
             .setDisplayName("Obsidian Boots")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.FEET)
-            .addLore("<gray>(Equivalent to Netherite Boots)")
             .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(500))
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianBoots, 4D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
@@ -442,7 +443,6 @@ public class DFMaterial {
             .setDisplayName("Calcite Helmet")
             .overrideCustomModel(createMinecraftKey("chainmail_helmet"))
             .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.HEAD)
-            .addLore("<gray>(Equivalent to Chainmail Helmet)")
             .addEnchantment(Enchantment.UNBREAKING, 1)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.calciteHelmet, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .addMeta(new CustomDurabilityMeta(205))
@@ -452,7 +452,6 @@ public class DFMaterial {
             .setDisplayName("Calcite Chestplate")
             .overrideCustomModel(createMinecraftKey("chainmail_chestplate"))
             .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.CHEST)
-            .addLore("<gray>(Equivalent to Chainmail Chestplate)")
             .addEnchantment(Enchantment.UNBREAKING, 1)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.calciteChestplate, 5D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .addMeta(new CustomDurabilityMeta(295))
@@ -462,7 +461,6 @@ public class DFMaterial {
             .setDisplayName("Calcite Leggings")
             .overrideCustomModel(createMinecraftKey("chainmail_leggings"))
             .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.LEGS)
-            .addLore("<gray>(Equivalent to Chainmail Leggings)")
             .addEnchantment(Enchantment.UNBREAKING, 1)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.calciteLeggings, 4D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
             .addMeta(new CustomDurabilityMeta(240))
@@ -472,7 +470,6 @@ public class DFMaterial {
             .setDisplayName("Calcite Boots")
             .overrideCustomModel(createMinecraftKey("chainmail_boots"))
             .setEquippable(createMinecraftKey("chainmail"), Sound.ITEM_ARMOR_EQUIP_CHAIN, EquipmentSlot.FEET)
-            .addLore("<gray>(Equivalent to Chainmail Boots)")
             .addEnchantment(Enchantment.UNBREAKING, 1)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.calciteBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addMeta(new CustomDurabilityMeta(225))
@@ -542,6 +539,80 @@ public class DFMaterial {
             .addLore("don't actually use this item")
             .addPossibleModels("totem_legacy", "totem_creeper", "totem_amongus", "totem_dantdm", "totem_techno", "totem_herobrine")
             .removeCustomModel()
+            .create();
+
+    public static DFMaterial EmptyPestleAndMortar = new DFMaterialBuilder(Material.STICK, "empty_pestle_and_mortar", 1)
+            .setDisplayName("Empty Pestle and Mortar")
+            .overrideCustomModel("pestle_and_mortar")
+            .create();
+
+    public static DFMaterial FlowerPestleAndMortar = new DFMaterialBuilder(Material.STICK, "flower_pestle_and_mortar", 1)
+            .setDisplayName("Pestle and Mortar")
+            .addLore("<light_purple>Contains flowers")
+            .overrideCustomModel("pestle_and_mortar")
+            .addMeta(new ConvertingItem("flower_powder", "empty_pestle_and_mortar"), new CustomDurabilityMeta(5))
+            .setConsumable(Consumable.consumable().consumeSeconds(1f).hasConsumeParticles(false).animation(ItemUseAnimation.EAT).sound(Key.key("minecraft", "block.stone.break")).build())
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial FlowerPowder = new DFMaterialBuilder(Material.STICK, "flower_powder", 1)
+            .setDisplayName("<light_purple>Flower Powder")
+            .create();
+
+    public static DFMaterial FloralIngot = new DFMaterialBuilder(Material.STICK, "floral_ingot", 1)
+            .setDisplayName("<light_purple>Floral Ingot")
+            .create();
+
+    public static DFMaterial FloralNugget = new DFMaterialBuilder(Material.STICK, "floral_nugget", 1)
+            .setDisplayName("<light_purple>Floral Nugget")
+            .create();
+
+    public static DFMaterial FloralSword = new DFMaterialBuilder(Material.IRON_SWORD, "floral_sword", 1)
+            .setDisplayName("<light_purple>Floral Sword")
+            .create();
+
+    public static DFMaterial FloralAxe = new DFMaterialBuilder(Material.IRON_AXE, "floral_axe", 1)
+            .setDisplayName("<light_purple>Floral Axe")
+            .create();
+
+    public static DFMaterial FloralPickaxe = new DFMaterialBuilder(Material.IRON_PICKAXE, "floral_pickaxe", 1)
+            .setDisplayName("<light_purple>Floral Pickaxe")
+            .create();
+
+    public static DFMaterial FloralShovel = new DFMaterialBuilder(Material.IRON_SHOVEL, "floral_shovel", 1)
+            .setDisplayName("<light_purple>Floral Shovel")
+            .create();
+
+    public static DFMaterial FloralHoe = new DFMaterialBuilder(Material.IRON_HOE, "floral_hoe", 1)
+            .setDisplayName("<light_purple>Floral Hoe")
+            .create();
+
+    public static DFMaterial FloralHelmet = new DFMaterialBuilder(Material.IRON_HELMET, "floral_helmet", 1)
+            .setDisplayName("<light_purple>Floral Helmet")
+            .setEquippable(createMinecraftKey("floral"), Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.HEAD)
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralHelmet, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
+            .addMeta(new CustomDurabilityMeta(280))
+            .create();
+
+    public static DFMaterial FloralChestplate = new DFMaterialBuilder(Material.IRON_CHESTPLATE, "floral_chestplate", 1)
+            .setDisplayName("<light_purple>Floral Chestplate")
+            .setEquippable(createMinecraftKey("floral"), Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.CHEST)
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralChestplate, 8D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
+            .addMeta(new CustomDurabilityMeta(345))
+            .create();
+
+    public static DFMaterial FloralLeggings = new DFMaterialBuilder(Material.IRON_LEGGINGS, "floral_leggings", 1)
+            .setDisplayName("<light_purple>Floral Leggings")
+            .setEquippable(createMinecraftKey("floral"), Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.LEGS)
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralLeggings, 6D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
+            .addMeta(new CustomDurabilityMeta(320))
+            .create();
+
+    public static DFMaterial FloralBoots = new DFMaterialBuilder(Material.IRON_BOOTS, "floral_boots", 1)
+            .setDisplayName("<light_purple>Floral Boots")
+            .setEquippable(createMinecraftKey("floral"), Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.FEET)
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
+            .addMeta(new CustomDurabilityMeta(300))
             .create();
 
     private final String namedId;
@@ -650,8 +721,9 @@ public class DFMaterial {
             boolean hasCustomModel,
             NamespacedKey customModel,
             @Nullable Integer maxStack,
-            List<NamespacedKey> possibleModels
-    )
+            List<NamespacedKey> possibleModels,
+            @Nullable Consumable consumable
+            )
     {
         List<TextComponent> workingLore = lores == null ? List.of() : lores;
         this.possibleModels = possibleModels;
@@ -743,6 +815,7 @@ public class DFMaterial {
         if (!this.lores.isEmpty()) meta.lore(this.lores);
 
         newItem.setItemMeta(meta);
+        if (consumable != null) item.setData(DataComponentTypes.CONSUMABLE, consumable);
 
         if (this.hasMeta()) {
             for (DFMaterialMeta createdmeta : this.getMeta()) {

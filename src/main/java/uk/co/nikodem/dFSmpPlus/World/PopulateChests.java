@@ -45,6 +45,22 @@ public class PopulateChests {
                 }
             }
 
+            if (
+                // target bastions, nether fortresses and ruined portals
+                // and probably some other stuff
+                    lootContains(loot,
+                            Material.MOSS_BLOCK,
+                            Material.COAST_ARMOR_TRIM_SMITHING_TEMPLATE,
+                            Material.ENDER_PEARL)
+            ) {
+
+                int chance = rand.nextInt(0, 2);
+
+                if (chance == 0) {
+                    loot.add(DFMaterial.FlowerPowder.toItemStack());
+                }
+            }
+
             // if biome is warped forest
             // and nether wart is in the chest
             // use warped wart instead
