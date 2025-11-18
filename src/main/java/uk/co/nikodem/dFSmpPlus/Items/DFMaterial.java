@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Items;
 import com.google.common.collect.Multimap;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.Consumable;
+import io.papermc.paper.datacomponent.item.Tool;
 import io.papermc.paper.datacomponent.item.consumable.ItemUseAnimation;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.TextComponent;
@@ -569,22 +570,32 @@ public class DFMaterial {
 
     public static DFMaterial FloralSword = new DFMaterialBuilder(Material.IRON_SWORD, "floral_sword", 1)
             .setDisplayName("<light_purple>Floral Sword")
+            .addMeta(new CustomDurabilityMeta(750))
+            .setTool(Material.DIAMOND_SWORD.getDefaultData(DataComponentTypes.TOOL))
             .create();
 
     public static DFMaterial FloralAxe = new DFMaterialBuilder(Material.IRON_AXE, "floral_axe", 1)
             .setDisplayName("<light_purple>Floral Axe")
+            .addMeta(new CustomDurabilityMeta(750))
+            .setTool(Material.DIAMOND_AXE.getDefaultData(DataComponentTypes.TOOL))
             .create();
 
     public static DFMaterial FloralPickaxe = new DFMaterialBuilder(Material.IRON_PICKAXE, "floral_pickaxe", 1)
             .setDisplayName("<light_purple>Floral Pickaxe")
+            .addMeta(new CustomDurabilityMeta(750))
+            .setTool(Material.DIAMOND_PICKAXE.getDefaultData(DataComponentTypes.TOOL))
             .create();
 
     public static DFMaterial FloralShovel = new DFMaterialBuilder(Material.IRON_SHOVEL, "floral_shovel", 1)
             .setDisplayName("<light_purple>Floral Shovel")
+            .addMeta(new CustomDurabilityMeta(750))
+            .setTool(Material.DIAMOND_SHOVEL.getDefaultData(DataComponentTypes.TOOL))
             .create();
 
     public static DFMaterial FloralHoe = new DFMaterialBuilder(Material.IRON_HOE, "floral_hoe", 1)
             .setDisplayName("<light_purple>Floral Hoe")
+            .addMeta(new CustomDurabilityMeta(750))
+            .setTool(Material.DIAMOND_HOE.getDefaultData(DataComponentTypes.TOOL))
             .create();
 
     public static DFMaterial FloralHelmet = new DFMaterialBuilder(Material.IRON_HELMET, "floral_helmet", 1)
@@ -722,7 +733,8 @@ public class DFMaterial {
             NamespacedKey customModel,
             @Nullable Integer maxStack,
             List<NamespacedKey> possibleModels,
-            @Nullable Consumable consumable
+            @Nullable Consumable consumable,
+            @Nullable Tool tool
             )
     {
         List<TextComponent> workingLore = lores == null ? List.of() : lores;
@@ -816,6 +828,7 @@ public class DFMaterial {
 
         newItem.setItemMeta(meta);
         if (consumable != null) item.setData(DataComponentTypes.CONSUMABLE, consumable);
+        if (tool != null) item.setData(DataComponentTypes.TOOL, tool);
 
         if (this.hasMeta()) {
             for (DFMaterialMeta createdmeta : this.getMeta()) {

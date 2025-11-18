@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
 import io.papermc.paper.datacomponent.item.Consumable;
+import io.papermc.paper.datacomponent.item.Tool;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
@@ -45,6 +46,7 @@ public class DFMaterialBuilder {
     private Integer maxStack = null;
 
     private Consumable consumable = null;
+    private Tool tool = null;
 
     private List<NamespacedKey> possibleModels = new ArrayList<>();
 
@@ -181,6 +183,11 @@ public class DFMaterialBuilder {
         return this;
     }
 
+    public DFMaterialBuilder setTool(Tool tool) {
+        this.tool = tool;
+        return this;
+    }
+
     public DFMaterialBuilder addPossibleModels(NamespacedKey... models) {
         this.possibleModels.addAll(Arrays.asList(models));
         return this;
@@ -206,7 +213,8 @@ public class DFMaterialBuilder {
                 overrideModel == null ? createModelKey(namedId) : overrideModel,
                 maxStack,
                 possibleModels,
-                consumable
+                consumable,
+                tool
         );
         DFMaterial.DFMaterialIndex.add(newMaterial);
         return newMaterial;
