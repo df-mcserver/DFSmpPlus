@@ -7,16 +7,19 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.PresetSoundData;
 
 import java.util.Objects;
 
 public class ConvertingItem implements DFMaterialMeta {
     public final String convertsToId;
     public final String residueItemId;
+    public final PresetSoundData completionSound;
 
-    public ConvertingItem(String convertsTo, String residueDFMaterial) {
+    public ConvertingItem(String convertsTo, String residueDFMaterial, PresetSoundData completionSound) {
         this.convertsToId = convertsTo;
         this.residueItemId = residueDFMaterial;
+        this.completionSound = completionSound;
     }
 
     public void ItemConsumed(Player plr, DFMaterial material, ItemStack item, PlayerItemConsumeEvent event) {
@@ -41,6 +44,7 @@ public class ConvertingItem implements DFMaterialMeta {
                 return;
             }
 
+            this.completionSound.playSound(plr);
             plr.getInventory().setItemInMainHand(residue.toItemStack());
             plr.getInventory().addItem(convertedTo.toItemStack());
         } else {

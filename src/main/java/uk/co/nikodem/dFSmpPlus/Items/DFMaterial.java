@@ -1,6 +1,5 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
-import com.google.common.collect.Multimap;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.Consumable;
 import io.papermc.paper.datacomponent.item.Tool;
@@ -25,7 +24,6 @@ import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.SoItBegins;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Constants.VeinMineable;
-import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 import uk.co.nikodem.dFSmpPlus.Items.Metas.*;
 import org.bukkit.Material;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
@@ -544,14 +542,12 @@ public class DFMaterial {
 
     public static DFMaterial EmptyPestleAndMortar = new DFMaterialBuilder(Material.STICK, "empty_pestle_and_mortar", 1)
             .setDisplayName("Empty Pestle and Mortar")
-            .overrideCustomModel("pestle_and_mortar")
             .create();
 
     public static DFMaterial FlowerPestleAndMortar = new DFMaterialBuilder(Material.STICK, "flower_pestle_and_mortar", 1)
             .setDisplayName("Pestle and Mortar")
             .addLore("<light_purple>Contains flowers")
-            .overrideCustomModel("pestle_and_mortar")
-            .addMeta(new ConvertingItem("flower_powder", "empty_pestle_and_mortar"), new CustomDurabilityMeta(5))
+            .addMeta(new ConvertingItem("flower_powder", "empty_pestle_and_mortar", Sounds.PestleAndMortarFinish), new CustomDurabilityMeta(5))
             .setConsumable(Consumable.consumable().consumeSeconds(1f).hasConsumeParticles(false).animation(ItemUseAnimation.EAT).sound(Key.key("minecraft", "block.stone.break")).build())
             .setMaxStack(1)
             .create();
