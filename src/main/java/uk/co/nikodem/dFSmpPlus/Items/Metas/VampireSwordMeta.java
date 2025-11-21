@@ -37,7 +37,7 @@ public class VampireSwordMeta implements DFMaterialMeta {
         if (entity instanceof Player target) {
             ItemStack item = plr.getInventory().getItemInMainHand();
 
-            if (!canUpgradeFromTarget(plr, item)) return;
+            if (!canUpgradeFromTarget(target, item)) return;
 
             Integer stage = incrementStage(plr, item);
             if (stage == null) return;
@@ -118,18 +118,18 @@ public class VampireSwordMeta implements DFMaterialMeta {
         DFSmpPlus.globalDataHandler.writeGlobalData(data);
     }
 
-    public boolean canUpgradeFromTarget(Player plr, ItemStack item) {
+    public boolean canUpgradeFromTarget(Player target, ItemStack item) {
         String itemUUID = DFItemUtils.getUUID(item);
-        String playerUUID = plr.getUniqueId().toString();
+        String targetUUID = target.getUniqueId().toString();
         Map<String, Map<String, Long>> mappings = DFSmpPlus.globalDataHandler.getGlobalData().vampireSwordMappings;
         if (mappings.containsKey(itemUUID)) {
             // check if has been long enough
             Map<String, Long> kills = mappings.get(itemUUID);
-            if (kills.containsKey(playerUUID)) {
-                long timestamp = kills.get(playerUUID);
+            if (kills.containsKey(targetUUID)) {
+                long timestamp = kills.get(targetUUID);
                 if (new Date().getTime() > timestamp + KILL_COOLDOWN) {
                     // it's been a day
-                    kills.replace(playerUUID, new Date().getTime());
+                    kills.replace(targetUUID, new Date().getTime());
                     mappings.replace(itemUUID, kills);
                     updateMappings(mappings);
                     return true;
@@ -138,14 +138,14 @@ public class VampireSwordMeta implements DFMaterialMeta {
                 }
             } else {
                 // player hasn't been killed with this sword yet
-                kills.put(playerUUID, new Date().getTime());
+                kills.put(targetUUID, new Date().getTime());
                 mappings.replace(itemUUID, kills);
                 updateMappings(mappings);
                 return true;
             }
         } else {
             // first kill on the sword
-            mappings.put(itemUUID, Map.of(playerUUID, new Date().getTime()));
+            mappings.put(itemUUID, Map.of(targetUUID, new Date().getTime()));
             updateMappings(mappings);
             return true;
         }
