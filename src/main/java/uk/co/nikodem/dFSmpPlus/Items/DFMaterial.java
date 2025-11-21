@@ -547,7 +547,7 @@ public class DFMaterial {
     public static DFMaterial RottenFleshPestleAndMortar = new DFMaterialBuilder(Material.STICK, "rotten_flesh_pestle_and_mortar", 1)
             .setDisplayName("Pestle and Mortar")
             .addLore("<light_purple>Contains rotten flesh")
-            .addMeta(new ConvertingItem(ItemStack.of(Material.ROTTEN_FLESH), "empty_pestle_and_mortar", Sounds.RottenFleshPestleAndMortarFinish), new CustomDurabilityMeta(10))
+            .addMeta(new ConvertingItem(ItemStack.of(Material.LEATHER), "empty_pestle_and_mortar", Sounds.RottenFleshPestleAndMortarFinish), new CustomDurabilityMeta(10))
             .setConsumable(Consumable.consumable().consumeSeconds(1f).hasConsumeParticles(false).animation(ItemUseAnimation.EAT).sound(Key.key("minecraft", "block.stone.break")).build())
             .setMaxStack(1)
             .create();
