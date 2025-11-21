@@ -44,16 +44,6 @@ public class FloralRecipes extends CraftingTemplate {
 
     public void addPestleAndMortarRecipes(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
-                new ShapedRecipeBuilder()
-                        .setOutput(DFMaterial.EmptyPestleAndMortar)
-                        .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo(), "EmptyPM")
-                        .shape("XIX", " X ")
-                        .setIngredient('X', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
-                        .setIngredient('I', new RecipeChoice.ExactChoice(DFMaterial.PointyStick.toItemStack()))
-        );
-
-        recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.FlowerPestleAndMortar)
                         .setCategory(CraftingBookCategory.EQUIPMENT)

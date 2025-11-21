@@ -13,11 +13,20 @@ import java.util.Objects;
 
 public class ConvertingItem implements DFMaterialMeta {
     public final String convertsToId;
+    public final ItemStack convertsToItemStack;
     public final String residueItemId;
     public final PresetSoundData completionSound;
 
     public ConvertingItem(String convertsTo, String residueDFMaterial, PresetSoundData completionSound) {
         this.convertsToId = convertsTo;
+        this.convertsToItemStack = null;
+        this.residueItemId = residueDFMaterial;
+        this.completionSound = completionSound;
+    }
+
+    public ConvertingItem(ItemStack convertsTo, String residueDFMaterial, PresetSoundData completionSound) {
+        this.convertsToId = null;
+        this.convertsToItemStack = convertsTo;
         this.residueItemId = residueDFMaterial;
         this.completionSound = completionSound;
     }
@@ -39,14 +48,14 @@ public class ConvertingItem implements DFMaterialMeta {
                 if (convertedTo != null && residue != null) break;
             }
 
-            if (convertedTo == null || residue == null) {
+            if ((convertedTo == null && convertsToItemStack == null) || residue == null) {
                 item.setAmount(0);
                 return;
             }
 
             this.completionSound.playSound(plr);
             plr.getInventory().setItemInMainHand(residue.toItemStack());
-            plr.getInventory().addItem(convertedTo.toItemStack());
+            plr.getInventory().addItem(convertedTo == null ? convertsToItemStack : convertedTo.toItemStack());
         } else {
             damageable.setDamage(damage);
             item.setItemMeta(damageable);

@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.Recipes;
 
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
@@ -32,6 +33,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         addBluebellsarStick(recipesToAdd);
         addVampireSword(recipesToAdd);
         addLocatorCompassAndModules(recipesToAdd);
+        addPestleAndMortar(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -147,6 +149,18 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .shape("XXX", "XOX", "XXX")
                         .setIngredient('O', new RecipeChoice.ExactChoice(DFMaterial.LocatorCompassModule.toItemStack()))
                         .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.ENDER_EYE)))
+        );
+    }
+
+    public void addPestleAndMortar(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.EmptyPestleAndMortar)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "EmptyPM")
+                        .shape("XIX", " X ")
+                        .setIngredient('X', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
+                        .setIngredient('I', new RecipeChoice.ExactChoice(DFMaterial.PointyStick.toItemStack()))
         );
     }
 

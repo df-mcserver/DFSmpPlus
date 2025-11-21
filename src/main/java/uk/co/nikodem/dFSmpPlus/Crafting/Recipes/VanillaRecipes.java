@@ -43,6 +43,8 @@ public class VanillaRecipes extends CraftingTemplate {
 
         addLooseStoneRecipes(recipesToAdd);
 
+        addStonecuttingRecipes(recipesToAdd);
+
         return recipesToAdd;
     }
 
@@ -301,6 +303,53 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setIngredient('I', Material.STICK)
                         .setIngredient('S', Material.STRING)
         );
+    }
+
+    private void addStonecuttingRecipes(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new StonecutterRecipeBuilder()
+                        .setOutput(Material.LEATHER)
+                        .setSource(Material.RABBIT_HIDE)
+                        .build(getInfo(), "h-l")
+        );
+
+        recipesToAdd.add(
+                new StonecutterRecipeBuilder()
+                        .setOutput(Material.RABBIT_HIDE)
+                        .setSource(Material.LEATHER)
+                        .build(getInfo(), "l-h")
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.RottenFleshPestleAndMortar)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "RottenPM")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
+                        .addIngredient(Material.ROTTEN_FLESH)
+        );
+
+        List<Material> allStones = List.of(
+                Material.COBBLESTONE,
+                Material.COBBLED_DEEPSLATE,
+                Material.ANDESITE,
+                Material.DIORITE,
+                Material.GRANITE,
+                Material.NETHERRACK // this one doesn't make sense but its for qol
+        );
+
+        int i = 0;
+        for (Material musicDisc : allStones) {
+            for (Material subMusicDisc : allStones) {
+                recipesToAdd.add(
+                        new StonecutterRecipeBuilder()
+                                .setSource(musicDisc)
+                                .setOutput(subMusicDisc)
+                                .build(getInfo(), "stones"+i)
+                );
+                i++;
+            }
+        }
     }
 
     @Override
