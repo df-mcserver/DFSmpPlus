@@ -1,5 +1,5 @@
 # DFSmpPlus
-A [PaperMC](https://papermc.io/) plugin (1.21.8+) built to add various QoL additions and custom content.  
+A [PaperMC](https://papermc.io/) plugin (1.21.8) built to add various QoL additions and custom content.  
 Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 
 > [!WARNING]
@@ -15,9 +15,10 @@ Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 > I do not recommend running this plugin on a weak server.
 
 ## Dependencies
-- [PaperMC](https://papermc.io/)
+- [PaperMC](https://papermc.io/) (1.21.8)
    - This is a plugin using the Paper API. Any Minecraft server software which implements the Paper API (whether that be Paper, or forks like [Purpur](https://purpurmc.org/) etc.) should support this plugin.
    - Note: This plugin is only tested on [LeafMC](https://www.leafmc.one/), a PaperMC fork.
+   - Please note that this plugin will likely only work with 1.21.8, as it may have incompatibilities with 1.21.9 and above.
    - Spigot / Spigot forks will NOT work, as this plugin relies on the Paper API.
 - [UltimateAdvancementAPI](https://github.com/frengor/UltimateAdvancementAPI) (2.7.1+)
     - Used for making custom advancements, and putting those advancement in the vanilla advancement menu.
