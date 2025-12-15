@@ -16,7 +16,6 @@ public class SculkArmourMeta implements DFArmourSetMeta {
         if (event.getDamager() instanceof Player attacker) {
             Sounds.SculkArmourActivate.playSound(victim);
             attacker.addPotionEffect(new PotionEffect(PotionEffectType.DARKNESS, 20*10, 2));
-            attacker.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20*3, 0));
             attacker.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, 20*3, 0));
             victim.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20*5, 0));
             victim.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20*5, 0));
@@ -26,5 +25,5 @@ public class SculkArmourMeta implements DFArmourSetMeta {
     @Override
     public void OnUpdateSetBonus(Player plr, ItemStack itemUpdated, DFArmourSet armourSet) {
         DFAdvancementsHandler.grantAdvancement(plr, ConsciousWarden.class);
-    };
+    }
 }
