@@ -37,7 +37,8 @@ public class HidingUtils {
         List<Entity> list = this.exclusiveEntities.get(plr.getUniqueId());
         if (list == null) list = new ArrayList<>();
         list.add(entity);
-        this.exclusiveEntities.replace(plr.getUniqueId(), list);
+        if (this.exclusiveEntities.containsKey(plr.getUniqueId())) this.exclusiveEntities.replace(plr.getUniqueId(), list);
+        else this.exclusiveEntities.put(plr.getUniqueId(), list);
 
         for (Player other : Bukkit.getOnlinePlayers()) {
             if (!plr.equals(other)) HideEntity(other, entity);
@@ -51,6 +52,7 @@ public class HidingUtils {
     }
 
     public void hideAllExclusiveEntitiesOnJoin(Player plr) {
+        System.out.println(exclusiveEntities.entrySet());
         for (Map.Entry<UUID, List<Entity>> entry : exclusiveEntities.entrySet()) {
             if (entry.getKey() != plr.getUniqueId()) {
                 List<Entity> entitiesToHide = entry.getValue();
