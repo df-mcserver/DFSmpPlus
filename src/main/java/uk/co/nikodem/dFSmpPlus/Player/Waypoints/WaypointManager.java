@@ -73,11 +73,8 @@ public class WaypointManager {
 
                 DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
 
-                // set colour of waypoint
-                // this puts a message in the console, but tbh i cba to fix it
-                // nor does it really impact anything
-                // but there's no other way to change waypoint colours yet on paper
-                // TODO: https://github.com/PaperMC/Paper/pull/12964
+                // TODO: if ever ported to 1.21.11, use Waypoint Styling API (https://github.com/PaperMC/Paper/commit/8e5e54f5664c19096ec1a3040dc038bab4fb306b)
+                // for now, this will do.
                 Bukkit.getServer().dispatchCommand(
                         Bukkit.getConsoleSender(),
                         String.format("minecraft:waypoint modify %s color hex %s", waypointEntity.getUniqueId(), String.format("%06X", colour))
