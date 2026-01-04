@@ -40,14 +40,24 @@ public class DFWaypointCommand {
 
                             setPlayerLocatorBar(plr, toggle);
                             if (toggle) {
-                                plr.sendMessage("Enabled locator bar!");
+                                plr.sendMessage(MiniMessage.miniMessage().deserialize("<green>Enabled <reset>locator bar!"));
                             } else {
-                                plr.sendMessage("Disabled locator bar!");
+                                plr.sendMessage(MiniMessage.miniMessage().deserialize("<red>Disabled <reset>locator bar!"));
                             }
 
                             return Command.SINGLE_SUCCESS;
                             })
                         )
+                            .executes(ctx -> {
+                                Player plr = (Player) ctx.getSource().getExecutor();
+                                if (plr == null) return 0;
+
+                                boolean res = getPlayerLocatorBar(plr);
+
+                                plr.sendMessage(MiniMessage.miniMessage().deserialize("Your locator bar is currently "+(res ? "<green>enabled" : "<red>disabled")));
+
+                                return Command.SINGLE_SUCCESS;
+                            })
                 ).then(
                         Commands.literal("add")
                                 .then(Commands.argument("name", StringArgumentType.string()).executes(ctx -> {
@@ -196,5 +206,10 @@ public class DFWaypointCommand {
         data.locatorBarEnabled = bool;
         DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
         DefaultWaypointAttributes.updateLocatorBar(plr);
+    }
+
+    public static boolean getPlayerLocatorBar(Player plr) {
+        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+        return data.locatorBarEnabled;
     }
 }

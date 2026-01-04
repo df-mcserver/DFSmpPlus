@@ -11,9 +11,6 @@ commands:
   dfmaterialview:
     description: "used for GeyserMC Rainbow"
     usage: /dfmaterialview
-  test:
-    description: "Test"
-    usage: /test
   spawn:
     description: "Sends you to the spawn location of the server"
     usage: /spawn
@@ -25,3 +22,6 @@ commands:
   dfdebug:
     description: "debug commands"
     usage: /dfdebug
+  waypoint:
+    aliases: ["waypoints"]
+    description: "Manages the waypoints that you see on the locator bar. Allows you to toggle the locator bar"
