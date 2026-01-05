@@ -2,8 +2,10 @@ package uk.co.nikodem.dFSmpPlus.Data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.bukkit.Location;
 import org.jetbrains.annotations.Nullable;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
+import uk.co.nikodem.dFSmpPlus.Data.TypeAdapters.LocationAdapter;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -11,7 +13,9 @@ import java.nio.file.Path;
 public abstract class DataHandler {
     public abstract String getFolderName();
 
-    public final Gson gson = new GsonBuilder().create();
+    public final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(Location.class, new LocationAdapter())
+            .create();
     public final DFSmpPlus plugin;
 
     public DataHandler(DFSmpPlus plugin) {
