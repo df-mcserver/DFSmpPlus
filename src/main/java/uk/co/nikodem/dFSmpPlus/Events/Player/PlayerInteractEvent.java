@@ -11,6 +11,5 @@ public class PlayerInteractEvent implements Listener {
     public void PlayerInteractEvent(org.bukkit.event.player.PlayerInteractEvent event) {
         SetBonusText.onItemUsed(event);
         DFMaterialEvents.ItemUse(event);
-        VanillaItems.onItemUse(event);
     }
 }
