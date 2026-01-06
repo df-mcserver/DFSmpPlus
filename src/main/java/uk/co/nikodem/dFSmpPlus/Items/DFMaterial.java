@@ -58,7 +58,7 @@ public class DFMaterial {
             .setDisplayName("Cleaning Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
             .addLore("<red>Does not store entity data.")
-            .addMeta(new EntityBucketMeta(false))
+            .addMeta(new EntityBucketMeta(false, Sounds.UseCleaningEntityBucket))
             .setMaxStack(1)
             .create();
 
@@ -66,7 +66,7 @@ public class DFMaterial {
             .setDisplayName("Storing Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
             .addLore("<green>Stores entity data.")
-            .addMeta(new EntityBucketMeta(true))
+            .addMeta(new EntityBucketMeta(true, Sounds.UseStoringEntityBucket))
             .setMaxStack(1)
             .create();
 
