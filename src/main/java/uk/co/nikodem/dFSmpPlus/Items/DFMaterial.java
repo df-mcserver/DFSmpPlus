@@ -54,7 +54,7 @@ public class DFMaterial {
             .addMeta(new EmptyEntityBucketMeta())
             .create();
 
-    public static DFMaterial CleaningEntityBucket = new DFMaterialBuilder(Material.WATER_BUCKET, "cleaning_entity_bucket", 1)
+    public static DFMaterial CleaningEntityBucket = new DFMaterialBuilder(Material.STICK, "cleaning_entity_bucket", 1)
             .setDisplayName("Cleaning Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
             .addLore("<red>Does not store entity data.")
@@ -62,7 +62,7 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial StoringEntityBucket = new DFMaterialBuilder(Material.LAVA_BUCKET, "storing_entity_bucket", 1)
+    public static DFMaterial StoringEntityBucket = new DFMaterialBuilder(Material.STICK, "storing_entity_bucket", 1)
             .setDisplayName("Storing Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
             .addLore("<green>Stores entity data.")

@@ -4,9 +4,11 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
@@ -104,6 +106,8 @@ public class EntityBucketMeta implements DFMaterialMeta {
                 eggItem.setItemMeta(meta);
             }
 
+            plr.setCooldown(eggItem, 20);
+
             if (item.getAmount() == 1 && plr.getGameMode() != GameMode.CREATIVE) {
                 plr.getInventory().setItemInMainHand(eggItem);
             } else {
@@ -115,6 +119,11 @@ public class EntityBucketMeta implements DFMaterialMeta {
 
     @Override
     public void BucketEmptyEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketEmptyEvent event) {
-        event.setItemStack(DFMaterial.EntityBucket.toItemStack());
+        event.setCancelled(true);
+    }
+
+    @Override
+    public void BucketFillEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {
+        event.setCancelled(true);
     }
 }
