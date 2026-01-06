@@ -9,6 +9,7 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.*;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
+import uk.co.nikodem.dFSmpPlus.Data.Player.Types.SerialisedLocation;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
 
 import javax.annotation.Nullable;
@@ -27,12 +28,7 @@ public class WaypointManager {
         if (data.waypoints.size() >= MAX_WAYPOINTS) return WaypointCreationResult.FAILED_REACHED_MAXIMUM;
 
         WaypointInformation info = new WaypointInformation();
-        info.worldUUID = location.getWorld().getUID().toString();
-        info.x = location.getX();
-        info.y = location.getY();
-        info.z = location.getZ();
-        info.yaw = location.getYaw();
-        info.pitch = location.getPitch();
+        info.location = new SerialisedLocation(location);
         info.colour = colour;
         data.waypoints.put(id, info);
 
@@ -46,10 +42,6 @@ public class WaypointManager {
 
     @Nullable
     public static ArmorStand CreateWaypoint(Player plr, String id, long colour, Location location) {
-
-        // TODO: if a waypoint api comes out, adapt this code to use that
-        // this is quite possibly the hackiest code ever
-
         if (!location.isChunkLoaded()) {
             // TODO: manage these chunks so that we don't end up with force loaded chunks with no waypoints
             location.getChunk().setForceLoaded(true); // make sure the player gets sent the chunk or whatever
@@ -165,8 +157,7 @@ public class WaypointManager {
             String id = waypointEntry.getKey();
 
             WaypointInformation info = waypointEntry.getValue();
-            Location location = new Location(Bukkit.getWorld(UUID.fromString(info.worldUUID)), info.x, info.y, info.z, info.yaw, info.pitch);
-            CreateWaypoint(plr, id, info.colour, location);
+            CreateWaypoint(plr, id, info.colour, info.location.getLocation());
         }
     }
 }
