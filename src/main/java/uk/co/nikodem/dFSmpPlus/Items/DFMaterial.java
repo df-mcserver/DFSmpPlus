@@ -50,6 +50,7 @@ public class DFMaterial {
 
     public static DFMaterial EntityBucket = new DFMaterialBuilder(Material.BUCKET, "entity_bucket", 1)
             .setDisplayName("Entity Bucket")
+            .addLore("<light_purple>Stores an entire entity within a bucket.")
             .addMeta(new EntityBucketMeta())
             .create();
 
