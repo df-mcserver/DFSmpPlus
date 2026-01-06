@@ -31,11 +31,8 @@ import uk.co.nikodem.dFSmpPlus.Events.Player.*;
 import uk.co.nikodem.dFSmpPlus.Events.Block.BlockBreakEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Block.BlockBreakProgressUpdateEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Block.BlockPlaceEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.CraftItemEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.*;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareAnvilEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.FurnaceSmeltEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.InventoryClickEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.InventoryOpenEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareItemCraftEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareSmithingEvent;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerDataHandler;
@@ -152,6 +149,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new FurnaceSmeltEvent(),
                     new InventoryOpenEvent(),
                     new InventoryClickEvent(),
+                    new InventoryDragEvent(),
+                    new InventoryPickupItemEvent(),
 
                     new PrepareItemCraftEvent(),
                     new PrepareSmithingEvent(),
