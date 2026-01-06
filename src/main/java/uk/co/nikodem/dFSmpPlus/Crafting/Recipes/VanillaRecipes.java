@@ -90,10 +90,9 @@ public class VanillaRecipes extends CraftingTemplate {
 
     private void doOtherRecipes(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
-                new DirectConversionRecipeBuilder()
-                        .setSource(Material.FLINT)
-                        .setOutput(Material.GRAVEL)
-                        .setCategory(CraftingBookCategory.MISC)
+                new FurnaceRecipeBuilder()
+                        .setOutput(Material.FLINT)
+                        .setSource(Material.GRAVEL)
                         .build(getInfo())
         );
 
@@ -322,15 +321,6 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setOutput(Material.RABBIT_HIDE)
                         .setSource(Material.LEATHER)
                         .build(getInfo(), "l-h")
-        );
-
-        recipesToAdd.add(
-                new ShapelessRecipeBuilder()
-                        .setOutput(DFMaterial.RottenFleshPestleAndMortar)
-                        .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo(), "RottenPM")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
-                        .addIngredient(Material.ROTTEN_FLESH)
         );
 
         List<Material> allStones = List.of(

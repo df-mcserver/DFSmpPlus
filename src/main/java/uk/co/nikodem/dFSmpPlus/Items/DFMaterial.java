@@ -552,6 +552,14 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
+    public static DFMaterial GravelPestleAndMortar = new DFMaterialBuilder(Material.STICK, "gravel_pestle_and_mortar", 1)
+            .setDisplayName("Pestle and Mortar")
+            .addLore("<light_purple>Contains gravel")
+            .addMeta(new ConvertingItem(ItemStack.of(Material.FLINT, 2), "empty_pestle_and_mortar", Sounds.GravelPestleAndMortarFinish), new CustomDurabilityMeta(3))
+            .setConsumable(Consumable.consumable().consumeSeconds(1f).hasConsumeParticles(false).animation(ItemUseAnimation.EAT).sound(Key.key("minecraft", "block.stone.break")).build())
+            .setMaxStack(1)
+            .create();
+
     public static DFMaterial FlowerPestleAndMortar = new DFMaterialBuilder(Material.STICK, "flower_pestle_and_mortar", 1)
             .setDisplayName("Pestle and Mortar")
             .addLore("<light_purple>Contains flowers")

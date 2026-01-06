@@ -16,6 +16,7 @@ public class Sounds {
     public static PresetSoundData PutModuleIntoCompass = new PresetSoundData(Sound.ITEM_BUNDLE_INSERT, 1F, 1F);
     public static PresetSoundData SculkArmourActivate = new PresetSoundData(Sound.BLOCK_SCULK_SHRIEKER_SHRIEK, 1F, 1F);
     public static PresetSoundData FlowerPestleAndMortarFinish = new PresetSoundData(Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
+    public static PresetSoundData GravelPestleAndMortarFinish = new PresetSoundData(Sound.BLOCK_GRAVEL_PLACE, 1F, 1F);
     public static PresetSoundData RottenFleshPestleAndMortarFinish = new PresetSoundData(Sound.ITEM_CROP_PLANT, 1F, 1F);
 
     public static PresetSoundData PlaceTargetDummy = new PresetSoundData(Sound.ENTITY_ARMOR_STAND_PLACE, 1F, 1F);

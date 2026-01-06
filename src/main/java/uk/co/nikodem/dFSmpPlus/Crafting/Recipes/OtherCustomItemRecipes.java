@@ -162,6 +162,24 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setIngredient('X', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
                         .setIngredient('I', new RecipeChoice.ExactChoice(DFMaterial.PointyStick.toItemStack()))
         );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.RottenFleshPestleAndMortar)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "RottenPM")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
+                        .addIngredient(Material.ROTTEN_FLESH)
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.GravelPestleAndMortar)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "GravelPM")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
+                        .addIngredient(Material.GRAVEL)
+        );
     }
 
     @Override
