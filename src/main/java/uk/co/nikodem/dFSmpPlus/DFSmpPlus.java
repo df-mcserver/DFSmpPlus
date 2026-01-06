@@ -129,6 +129,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
             Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
             Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
+            Objects.requireNonNull(getCommand("back")).setExecutor(new BackCommand());
             Objects.requireNonNull(getCommand("bin")).setExecutor(new BinCommand());
 
             this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {

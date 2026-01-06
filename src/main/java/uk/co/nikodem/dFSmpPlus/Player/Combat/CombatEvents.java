@@ -16,7 +16,13 @@ import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat.WhatYouEgg;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat.WomboCombo;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.DoublingDown;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat.NotEvenCloseBaby;
+import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
+import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
+import uk.co.nikodem.dFSmpPlus.Data.Player.Types.LastDeathInformation;
+import uk.co.nikodem.dFSmpPlus.Data.Player.Types.SerialisedLocation;
 import uk.co.nikodem.dFSmpPlus.Player.BedrockPlayers;
+
+import java.util.Date;
 
 import static org.bukkit.Tag.ITEMS_EGGS;
 import static uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager.COMBAT_LENGTH;
@@ -64,6 +70,15 @@ public class CombatEvents {
                 event.setKeepInventory(true);
             }
         }
+
+        // set /back command info
+        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(victim);
+        LastDeathInformation info = new LastDeathInformation();
+        info.diedInCombat = CombatLoggingManager.isInCombat(victim);
+        info.location = new SerialisedLocation(victim.getLocation());
+        info.lastDeathTime = new Date().getTime();
+        data.lastDeathInformation = info;
+        DFSmpPlus.playerDataHandler.writePlayerData(victim, data);
 
         hideCombatBar(victim);
         CombatLoggingManager.removeCombat(victim);

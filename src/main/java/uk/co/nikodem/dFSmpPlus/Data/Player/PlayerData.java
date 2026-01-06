@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Data.Player;
 
+import uk.co.nikodem.dFSmpPlus.Data.Player.Types.LastDeathInformation;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 
 public class PlayerData {
     public List<String> equippedAccessories = new ArrayList<>();
+    public LastDeathInformation lastDeathInformation;
     public boolean locatorBarEnabled = false;
     public Integer lifeCrystals;
 

@@ -25,3 +25,5 @@ commands:
   waypoint:
     aliases: ["waypoints"]
     description: "Manages the waypoints that you see on the locator bar. Allows you to toggle the locator bar"
+  back:
+    description: "Returns you to your previous death, if you did not die in PVP."
