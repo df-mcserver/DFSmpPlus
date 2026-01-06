@@ -50,8 +50,24 @@ public class DFMaterial {
 
     public static DFMaterial EntityBucket = new DFMaterialBuilder(Material.BUCKET, "entity_bucket", 1)
             .setDisplayName("Entity Bucket")
+            .addLore("<grey>Requires either water or lava to store entities.")
+            .addMeta(new EmptyEntityBucketMeta())
+            .create();
+
+    public static DFMaterial CleaningEntityBucket = new DFMaterialBuilder(Material.WATER_BUCKET, "cleaning_entity_bucket", 1)
+            .setDisplayName("Cleaning Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
-            .addMeta(new EntityBucketMeta())
+            .addLore("<red>Does not store entity data.")
+            .addMeta(new EntityBucketMeta(false))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial StoringEntityBucket = new DFMaterialBuilder(Material.LAVA_BUCKET, "storing_entity_bucket", 1)
+            .setDisplayName("Storing Entity Bucket")
+            .addLore("<light_purple>Stores an entire entity within a bucket.")
+            .addLore("<green>Stores entity data.")
+            .addMeta(new EntityBucketMeta(true))
+            .setMaxStack(1)
             .create();
 
     public static DFMaterial VeinPickaxe = new DFMaterialBuilder(Material.IRON_PICKAXE, "vein_pickaxe", 1)

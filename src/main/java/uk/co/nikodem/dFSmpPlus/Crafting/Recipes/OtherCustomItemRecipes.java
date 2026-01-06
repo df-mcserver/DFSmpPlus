@@ -85,10 +85,40 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.EntityBucket)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo())
+                        .build(getInfo(), "EB-NoBucket")
                         .shape("BXB", " B ")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', Material.IRON_INGOT)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_INGOT)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.EntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "EB-Bucket")
+                        .shape("X", "B")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.BUCKET)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.CleaningEntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "CEB")
+                        .shape("X", "B")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.WATER_BUCKET)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.StoringEntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "SEB")
+                        .shape("X", "B")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.LAVA_BUCKET)))
         );
     }
 

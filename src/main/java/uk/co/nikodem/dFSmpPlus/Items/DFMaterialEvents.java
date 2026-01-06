@@ -139,7 +139,7 @@ public class DFMaterialEvents {
         }
     }
 
-    public static void BucketUseEvent(PlayerBucketFillEvent e) {
+    public static void BucketFillEvent(PlayerBucketFillEvent e) {
         Player plr = e.getPlayer();
 
         ItemStack tool = plr.getInventory().getItemInMainHand();
@@ -150,7 +150,23 @@ public class DFMaterialEvents {
 
         if (material.hasMeta()) {
             for (DFMaterialMeta meta : material.getMeta()) {
-                meta.BucketUseEvent(plr, material, tool, e);
+                meta.BucketFillEvent(plr, material, tool, e);
+            }
+        }
+    }
+
+    public static void BucketEmptyEvent(PlayerBucketEmptyEvent e) {
+        Player plr = e.getPlayer();
+
+        ItemStack tool = plr.getInventory().getItemInMainHand();
+
+        DFMaterial material = DFItemUtils.getDFMaterial(tool);
+
+        if (material == null) return;
+
+        if (material.hasMeta()) {
+            for (DFMaterialMeta meta : material.getMeta()) {
+                meta.BucketEmptyEvent(plr, material, tool, e);
             }
         }
     }

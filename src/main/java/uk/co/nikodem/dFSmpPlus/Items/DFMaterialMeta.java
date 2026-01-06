@@ -28,7 +28,8 @@ public interface DFMaterialMeta {
     default void ItemCreated(DFMaterial material, ItemStack item) {};
     default void ItemKilledEntity(Player plr, DFMaterial material, Entity target, EntityDeathEvent event) {};
     default void ItemConsumed(Player plr, DFMaterial material, ItemStack item, PlayerItemConsumeEvent event) {};
-    default void BucketUseEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {};
+    default void BucketFillEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {};
+    default void BucketEmptyEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketEmptyEvent event) {};
 
     default List<TextComponent> AddAdditionalLore(DFMaterial material) {return List.of();};
     default Enums.UpdateResult ItemUpdated(DFMaterial material, ItemStack item) { return Enums.UpdateResult.NULL; };
