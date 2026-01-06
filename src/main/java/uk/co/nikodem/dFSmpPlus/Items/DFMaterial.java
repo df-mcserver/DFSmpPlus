@@ -18,6 +18,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.persistence.PersistentDataType;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformationBuilder;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.SpeedMeta;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.Bluebellsar;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.SoItBegins;
@@ -653,6 +655,17 @@ public class DFMaterial {
             .setEquippable(createMinecraftKey("floral"), Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.FEET)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addMeta(new CustomDurabilityMeta(300))
+            .create();
+
+    public static DFMaterial TestAccessory = new DFMaterialBuilder(Material.STICK, "test_accessory", 1)
+            .setDisplayName("test")
+            .overrideCustomModel(NamespacedKey.minecraft("creaking_heart"))
+            .addMeta(new AccessoryItemMeta(
+                    new AccessoryInformationBuilder("test")
+                            .setArmourPoints(5f)
+                            .addMeta(new SpeedMeta())
+                            .create()
+            ))
             .create();
 
     private final String namedId;

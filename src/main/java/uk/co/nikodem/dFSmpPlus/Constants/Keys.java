@@ -49,6 +49,13 @@ public class Keys {
         );
     }
 
+    public static NamespacedKey createAccessoryKey(String key) {
+        return new NamespacedKey(
+                "dfjraccessory",
+                key
+        );
+    }
+
     public static NamespacedKey createModelKey(String key) {
         return createResourceKey(key); // i thought this would be different, but im keeping it cuz im too lazy to revert that one line of code
     }
