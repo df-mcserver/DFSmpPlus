@@ -82,6 +82,8 @@ public class AccessoryUI {
             ItemMeta meta = blankSlot.getItemMeta();
             meta.setMaxStackSize(1);
             meta.setItemModel(Keys.emptySlotModel);
+            meta.displayName(Component.text().build());
+            blankSlot.setItemMeta(meta);
             for (int i = 0; i < baseInventory.getSize(); i++) {
                 baseInventory.setItem(i, blankSlot);
             }
