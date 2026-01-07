@@ -13,8 +13,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
+import uk.co.nikodem.dFSmpPlus.Items.Metas.AccessoryItemMeta;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -415,6 +417,27 @@ public class DFItemUtils {
 
     public static boolean hasFireAspect(ItemStack item) {
         return item.containsEnchantment(Enchantment.FIRE_ASPECT);
+    }
+
+    @Nullable
+    public static AccessoryInformation getAccessoryInformation(ItemStack item) {
+        DFMaterial material = getDFMaterial(item);
+        if (material == null) return null;
+
+        for (DFMaterialMeta meta : material.getMeta()) {
+            if (meta instanceof AccessoryItemMeta accessoryItemMeta) {
+                return accessoryItemMeta.information;
+            }
+        }
+
+        return null;
+    }
+
+    public static boolean isAccessory(ItemStack item) {
+        DFMaterial material = getDFMaterial(item);
+        if (material == null) return false;
+
+        return containsMeta(material, AccessoryItemMeta.class);
     }
 
     @Nullable

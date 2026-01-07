@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFWaypointCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands.*;
@@ -181,6 +182,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             Bukkit.getScheduler().runTaskTimer(this, () -> {
                 for (Player plr : Bukkit.getOnlinePlayers()) {
                     DFArmourSetEvents.ApplyRunPerSecond(plr);
+                    AccessoryEvents.ApplyRunPerSecond(plr);
                     CombatEvents.perSecond(plr);
                 }
             }, 0, 20);

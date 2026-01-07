@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerChannelEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
+import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
@@ -31,6 +32,8 @@ public class OnJoin {
         Player plr = e.getPlayer();
 
         WorldRecordAdvancementHandler.onJoin(e);
+
+        AccessoryManager.onJoin(plr);
 
         DFSmpPlus.hidingUtils.hideAllExclusiveEntitiesOnJoin(plr);
         DefaultWaypointAttributes.applyDefaults(plr);
