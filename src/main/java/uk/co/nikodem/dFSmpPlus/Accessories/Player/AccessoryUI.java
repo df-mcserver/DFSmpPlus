@@ -46,22 +46,24 @@ public class AccessoryUI {
     }
 
     public static void onInventoryOpen(InventoryOpenEvent event) {
-        InventoryView view = event.getView();
-        view.setItem(slot1Index, ItemStack.of(Material.OAK_PLANKS));
-        view.setItem(slot1ConfigIndex, ItemStack.of(Material.OAK_HANGING_SIGN));
+        Inventory inv = event.getInventory();
+        if (inv.getHolder() instanceof AccessoryInventory) {
+            InventoryView view = event.getView();
+            view.setItem(slot1Index, ItemStack.of(Material.OAK_PLANKS));
+            view.setItem(slot1ConfigIndex, ItemStack.of(Material.OAK_HANGING_SIGN));
 
-        view.setItem(slot2Index, ItemStack.of(Material.DARK_OAK_BOAT));
-        view.setItem(slot2ConfigIndex, ItemStack.of(Material.DARK_OAK_BUTTON));
+            view.setItem(slot2Index, ItemStack.of(Material.DARK_OAK_BOAT));
+            view.setItem(slot2ConfigIndex, ItemStack.of(Material.DARK_OAK_BUTTON));
 
-        view.setItem(slot3Index, ItemStack.of(Material.SPRUCE_LOG));
-        view.setItem(slot3ConfigIndex, ItemStack.of(Material.SPRUCE_FENCE_GATE));
+            view.setItem(slot3Index, ItemStack.of(Material.SPRUCE_LOG));
+            view.setItem(slot3ConfigIndex, ItemStack.of(Material.SPRUCE_FENCE_GATE));
 
-        view.setItem(slot4Index, ItemStack.of(Material.ACACIA_BOAT));
-        view.setItem(slot4ConfigIndex, ItemStack.of(Material.ACACIA_DOOR));
+            view.setItem(slot4Index, ItemStack.of(Material.ACACIA_BOAT));
+            view.setItem(slot4ConfigIndex, ItemStack.of(Material.ACACIA_DOOR));
 
-        view.setItem(slot5Index, ItemStack.of(Material.ORANGE_BED));
-        view.setItem(slot5ConfigIndex, ItemStack.of(Material.ORANGE_STAINED_GLASS_PANE));
-
+            view.setItem(slot5Index, ItemStack.of(Material.ORANGE_BED));
+            view.setItem(slot5ConfigIndex, ItemStack.of(Material.ORANGE_STAINED_GLASS_PANE));
+        }
     }
 
     public static boolean isAccessorySlot(int index) {
