@@ -662,6 +662,7 @@ public class DFMaterial {
             .overrideCustomModel(NamespacedKey.minecraft("creaking_heart"))
             .addMeta(new AccessoryItemMeta(
                     new AccessoryInformationBuilder("test")
+                            .setDescription("test")
                             .setArmourPoints(5f)
                             .addMeta(new SpeedMeta())
                             .create()

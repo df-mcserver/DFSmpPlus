@@ -6,12 +6,18 @@ import java.util.List;
 
 public class AccessoryInformationBuilder {
     private final String namedId;
-    private float armourPoints;
+    private float armourPoints = 0f;
+    private String accessoryDescription = "Unknown effect";
     private final List<AccessoryMeta> metas = new ArrayList<>();
     private final List<String> conflictingAccessoryIds = new ArrayList<>();
 
     public AccessoryInformationBuilder(String namedId) {
         this.namedId = namedId;
+    }
+
+    public AccessoryInformationBuilder setDescription(String description) {
+        this.accessoryDescription = description;
+        return this;
     }
 
     public AccessoryInformationBuilder setArmourPoints(float armourPoints) {
@@ -34,7 +40,8 @@ public class AccessoryInformationBuilder {
                 namedId,
                 metas,
                 armourPoints,
-                conflictingAccessoryIds
+                conflictingAccessoryIds,
+                accessoryDescription
         );
     }
 }

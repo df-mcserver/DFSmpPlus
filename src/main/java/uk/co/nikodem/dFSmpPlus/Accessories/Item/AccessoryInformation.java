@@ -10,18 +10,21 @@ public class AccessoryInformation {
     private final List<AccessoryMeta> metas;
     private final float armourPoints;
     private final List<String> conflictingAccessoryIds;
+    private final String accessoryDescription;
 
     public AccessoryInformation(
             String namedId,
             List<AccessoryMeta> metas,
             float armourPoints,
-            List<String> conflictingAccessoryIds
+            List<String> conflictingAccessoryIds,
+            String accessoryDescription
     )
     {
         this.namedId = namedId;
         this.metas = metas;
         this.armourPoints = armourPoints;
         this.conflictingAccessoryIds = conflictingAccessoryIds;
+        this.accessoryDescription = accessoryDescription;
     }
 
     public NamespacedKey getNamespacedKey() {
@@ -38,6 +41,10 @@ public class AccessoryInformation {
 
     public List<String> getConflicts() {
         return this.conflictingAccessoryIds;
+    }
+
+    public String getDescription() {
+        return this.accessoryDescription;
     }
 
     public boolean hasMeta() {
