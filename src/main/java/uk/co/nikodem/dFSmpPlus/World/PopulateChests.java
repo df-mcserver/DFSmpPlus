@@ -38,7 +38,7 @@ public class PopulateChests {
                     && !lootContains(loot, Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
             ) {
 
-                int chance = rand.nextInt(0, 4);
+                int chance = rand.nextInt(0, 1);
 
                 if (chance == 0) {
                     loot.add(DFMaterial.ObsidianUpgradeTemplate.toItemStack());
@@ -46,8 +46,6 @@ public class PopulateChests {
             }
 
             if (
-                // target bastions, nether fortresses and ruined portals
-                // and probably some other stuff
                     lootContains(loot,
                             Material.MOSS_BLOCK,
                             Material.COAST_ARMOR_TRIM_SMITHING_TEMPLATE,
@@ -57,7 +55,10 @@ public class PopulateChests {
                 int chance = rand.nextInt(0, 2);
 
                 if (chance == 0) {
-                    loot.add(DFMaterial.FlowerPowder.toItemStack());
+                    int amount = rand.nextInt(3, 7);
+                    ItemStack item = DFMaterial.FlowerPowder.toItemStack();
+                    item.setAmount(amount);
+                    loot.add(item);
                 }
             }
 
