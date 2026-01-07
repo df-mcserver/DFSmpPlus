@@ -129,6 +129,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
             Objects.requireNonNull(getCommand("back")).setExecutor(new BackCommand());
             Objects.requireNonNull(getCommand("bin")).setExecutor(new BinCommand());
+            Objects.requireNonNull(getCommand("accessories")).setExecutor(new AccessoriesCommand());
 
             this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
                 commands.registrar().register(DFWaypointCommand.createCommand().build());
