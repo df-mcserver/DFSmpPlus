@@ -10,6 +10,7 @@ public class Keys {
 
     public static NamespacedKey vampireSwordStage = createDefaultKey("vampire_sword_stage");
     public static NamespacedKey lifecrystal = createDefaultKey("lifecrystal");
+    public static NamespacedKey emptySlotModel = createModelKey("empty_slot_model");
 
     public static NamespacedKey targetDummy = createDefaultKey("target_dummy");
     public static NamespacedKey comicallyLarge = createDefaultKey("comically_large");

@@ -1,18 +1,16 @@
 package uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
+import uk.co.nikodem.dFSmpPlus.Accessories.Player.AccessoryUI;
 
 public class AccessoriesCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player plr) {
-            Inventory inv = Bukkit.createInventory(null, 27, "/accessories");
-            plr.openInventory(inv);
+            AccessoryUI.open(plr);
         } else {
             sender.sendMessage("You are not player!");
         }
