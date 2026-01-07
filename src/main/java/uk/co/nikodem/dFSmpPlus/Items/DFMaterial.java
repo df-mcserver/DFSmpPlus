@@ -629,28 +629,28 @@ public class DFMaterial {
 
     public static DFMaterial FloralHelmet = new DFMaterialBuilder(Material.IRON_HELMET, "floral_helmet", 1)
             .setDisplayName("<light_purple>Floral Helmet")
-            .setEquippable(createMinecraftKey("floral"), Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.HEAD)
+            .setEquippable("floral", Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.HEAD)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralHelmet, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .addMeta(new CustomDurabilityMeta(280))
             .create();
 
     public static DFMaterial FloralChestplate = new DFMaterialBuilder(Material.IRON_CHESTPLATE, "floral_chestplate", 1)
             .setDisplayName("<light_purple>Floral Chestplate")
-            .setEquippable(createMinecraftKey("floral"), Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.CHEST)
+            .setEquippable("floral", Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.CHEST)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralChestplate, 8D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .addMeta(new CustomDurabilityMeta(345))
             .create();
 
     public static DFMaterial FloralLeggings = new DFMaterialBuilder(Material.IRON_LEGGINGS, "floral_leggings", 1)
             .setDisplayName("<light_purple>Floral Leggings")
-            .setEquippable(createMinecraftKey("floral"), Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.LEGS)
+            .setEquippable("floral", Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.LEGS)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralLeggings, 6D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
             .addMeta(new CustomDurabilityMeta(320))
             .create();
 
     public static DFMaterial FloralBoots = new DFMaterialBuilder(Material.IRON_BOOTS, "floral_boots", 1)
             .setDisplayName("<light_purple>Floral Boots")
-            .setEquippable(createMinecraftKey("floral"), Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.FEET)
+            .setEquippable("floral", Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.FEET)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addMeta(new CustomDurabilityMeta(300))
             .create();
