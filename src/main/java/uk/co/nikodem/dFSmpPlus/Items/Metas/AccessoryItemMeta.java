@@ -39,11 +39,11 @@ public class AccessoryItemMeta implements DFMaterialMeta {
                 (TextComponent) MiniMessage.miniMessage().deserialize("<i:false><grey>When equipped as an accessory:")
         ));
 
+        if (armourPoints > 0) lore.add((TextComponent) MiniMessage.miniMessage().deserialize("<i:false><blue>+"+armourPoints/2+" Armor"));
         for (String desc : descriptions) {
             lore.add((TextComponent) MiniMessage.miniMessage().deserialize("<i:false><blue>" + desc));
         }
 
-        if (armourPoints > 0) lore.add((TextComponent) MiniMessage.miniMessage().deserialize("<i:false><blue>+"+armourPoints/2+" Armor"));
         return lore;
     };
 }
