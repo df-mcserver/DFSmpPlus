@@ -12,17 +12,11 @@ import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
+import java.util.Arrays;
+
 public class AccessoryUI {
-    public static int slot1Index = 10;
-    public static int slot1ConfigIndex = slot1Index+9;
-    public static int slot2Index = 12;
-    public static int slot2ConfigIndex = slot2Index+9;
-    public static int slot3Index = 14;
-    public static int slot3ConfigIndex = slot3Index+9;
-    public static int slot4Index = 16;
-    public static int slot4ConfigIndex = slot4Index+9;
-    public static int slot5Index = 31;
-    public static int slot5ConfigIndex = slot5Index+9;
+    public static int[] slots = {10, 12, 14, 16, 31};
+    public static int[] configSlots = {19, 21, 23, 25, 40};
 
     public static void open(Player plr) {
         AccessoryInventory ui = new AccessoryInventory();
@@ -44,16 +38,22 @@ public class AccessoryUI {
                 if (event.isShiftClick()) {
                     PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
                     ItemStack itemClicked = event.getCurrentItem();
-                    boolean succeeded = false;
+                    if (itemClicked == null || itemClicked.getType() == Material.AIR) {
+                        event.setCancelled(true);
+                        return;
+                    }
                     for (int i = 0; i < accessoryData.slots.length; i++) {
-                        if (accessoryData.slots[i] == null) {
-                            accessoryData.slots[i] = itemClicked;
-                            succeeded = true;
-                            break;
+                        ItemStack itemInAccessorySlot = accessoryData.slots[i];
+                        if (itemInAccessorySlot == null || itemInAccessorySlot.getType().equals(Material.AIR)) {
+                            accessoryData.slots[i] = itemClicked.clone();
+
+                            plr.sendMessage(itemClicked.displayName());
+                            plr.sendMessage(String.valueOf(i));
+
+                            AccessoryManager.updatePlayerData(plr, accessoryData);
+                            return;
                         }
                     }
-
-                    if (succeeded) AccessoryManager.updatePlayerData(plr, accessoryData);
 
                     event.setCancelled(true);
                     // going into a slot
@@ -64,31 +64,28 @@ public class AccessoryUI {
 
     public static void onInventoryOpen(InventoryOpenEvent event) {
         Inventory inv = event.getInventory();
+        Player plr = (Player) event.getPlayer();
         if (inv.getHolder() instanceof AccessoryInventory) {
             InventoryView view = event.getView();
-            view.setItem(slot1Index, ItemStack.of(Material.OAK_PLANKS));
-            view.setItem(slot1ConfigIndex, ItemStack.of(Material.OAK_HANGING_SIGN));
 
-            view.setItem(slot2Index, ItemStack.of(Material.DARK_OAK_BOAT));
-            view.setItem(slot2ConfigIndex, ItemStack.of(Material.DARK_OAK_BUTTON));
+            PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+            int i = 0;
+            for (int slot : slots) {
+                ItemStack item = accessoryData.slots[i];
+                if (item == null) item = ItemStack.of(Material.AIR);
 
-            view.setItem(slot3Index, ItemStack.of(Material.SPRUCE_LOG));
-            view.setItem(slot3ConfigIndex, ItemStack.of(Material.SPRUCE_FENCE_GATE));
-
-            view.setItem(slot4Index, ItemStack.of(Material.ACACIA_BOAT));
-            view.setItem(slot4ConfigIndex, ItemStack.of(Material.ACACIA_DOOR));
-
-            view.setItem(slot5Index, ItemStack.of(Material.ORANGE_BED));
-            view.setItem(slot5ConfigIndex, ItemStack.of(Material.ORANGE_STAINED_GLASS_PANE));
+                view.setItem(slot, item);
+                i++;
+            }
         }
     }
 
     public static boolean isAccessorySlot(int index) {
-        return index == slot1Index || index == slot2Index || index == slot3Index || index == slot4Index || index == slot5Index;
+        return Arrays.binarySearch(slots, index) >= 0;
     }
 
     public static boolean isAccessoryConfigSlot(int index) {
-        return index == slot1ConfigIndex || index == slot2ConfigIndex || index == slot3ConfigIndex || index == slot4ConfigIndex || index == slot5ConfigIndex;
+        return Arrays.binarySearch(configSlots, index) >= 0;
     }
 
     public static class AccessoryInventory implements InventoryHolder {

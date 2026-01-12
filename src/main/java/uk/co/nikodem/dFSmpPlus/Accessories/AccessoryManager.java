@@ -15,27 +15,29 @@ public class AccessoryManager {
     public static Map<UUID, PlayerAccessoryData> playerAccessoryDataCache = new HashMap<>();
 
     public static PlayerAccessoryData getPlayerAccessoryData(Player plr) {
-        if (playerAccessoryDataCache.containsKey(plr.getUniqueId())) return playerAccessoryDataCache.get(plr.getUniqueId());
-        else {
-            PlayerAccessoryData newData = new PlayerAccessoryData();
-            playerAccessoryDataCache.put(plr.getUniqueId(), newData);
-            return newData;
-        }
+        PlayerAccessoryData playerAccessoryData = playerAccessoryDataCache.get(plr.getUniqueId());
+        if (playerAccessoryData == null) {
+            PlayerData playerData = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+            PlayerAccessoryData accessoryData = playerData.playerAccessoryData;
+            if (accessoryData == null) accessoryData = new PlayerAccessoryData();
+            playerAccessoryDataCache.put(plr.getUniqueId(), accessoryData);
+            return accessoryData;
+        } else return playerAccessoryData;
     }
 
     public static void onJoin(Player plr) {
         // load accessory data from player data to cache
-        PlayerData playerData = DFSmpPlus.playerDataHandler.getPlayerData(plr);
-        PlayerAccessoryData accessoryData = playerData.playerAccessoryData;
-        if (accessoryData == null) accessoryData = new PlayerAccessoryData();
-
-        for (ItemStack item : accessoryData.slots) {
-            if (item == null) continue;
-            plr.sendMessage(item.displayName());
-        }
-
-        if (playerAccessoryDataCache.containsKey(plr.getUniqueId())) playerAccessoryDataCache.replace(plr.getUniqueId(), accessoryData);
-        else playerAccessoryDataCache.put(plr.getUniqueId(), accessoryData);
+//        PlayerData playerData = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+//        PlayerAccessoryData accessoryData = playerData.playerAccessoryData;
+//        if (accessoryData == null) accessoryData = new PlayerAccessoryData();
+//
+//        for (ItemStack item : accessoryData.slots) {
+//            if (item == null) continue;
+//            plr.sendMessage(item.displayName());
+//        }
+//
+//        if (playerAccessoryDataCache.containsKey(plr.getUniqueId())) playerAccessoryDataCache.replace(plr.getUniqueId(), accessoryData);
+//        else playerAccessoryDataCache.put(plr.getUniqueId(), accessoryData);
     }
 
     public static void updatePlayerData(Player plr, PlayerAccessoryData accessoryData) {
