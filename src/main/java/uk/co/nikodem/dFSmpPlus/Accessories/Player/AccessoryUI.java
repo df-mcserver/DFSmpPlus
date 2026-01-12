@@ -5,12 +5,10 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.InventoryView;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
@@ -33,6 +31,7 @@ public class AccessoryUI {
 
     public static void onInventoryClick(InventoryClickEvent event) {
         Inventory inv = event.getInventory();
+        Player plr = (Player) event.getWhoClicked();
         if (inv.getHolder() instanceof AccessoryInventory) {
             Inventory clickedInventory = event.getClickedInventory();
             if (clickedInventory == null) return;
@@ -41,6 +40,24 @@ public class AccessoryUI {
                 if (!isAccessorySlot(event.getSlot())) event.setCancelled(true);
 
                 event.getView().getPlayer().sendMessage(String.valueOf(event.getSlot()));
+            } else if (clickedInventory instanceof PlayerInventory plrInv) {
+                if (event.isShiftClick()) {
+                    PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+                    ItemStack itemClicked = event.getCurrentItem();
+                    boolean succeeded = false;
+                    for (int i = 0; i < accessoryData.slots.length; i++) {
+                        if (accessoryData.slots[i] == null) {
+                            accessoryData.slots[i] = itemClicked;
+                            succeeded = true;
+                            break;
+                        }
+                    }
+
+                    if (succeeded) AccessoryManager.updatePlayerData(plr, accessoryData);
+
+                    event.setCancelled(true);
+                    // going into a slot
+                }
             }
         }
     }

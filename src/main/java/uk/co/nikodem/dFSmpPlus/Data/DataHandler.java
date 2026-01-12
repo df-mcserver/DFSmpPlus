@@ -1,7 +1,5 @@
 package uk.co.nikodem.dFSmpPlus.Data;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.Nullable;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
@@ -85,11 +83,5 @@ public abstract class DataHandler {
 
     public File getAllocatedDirectory() {
         return Path.of(plugin.getDataPath().toUri().getPath(), "/"+getFolderName()).toFile();
-    }
-
-    public Gson getGson() {
-        return new GsonBuilder()
-                .enableComplexMapKeySerialization()
-                .create();
     }
 }

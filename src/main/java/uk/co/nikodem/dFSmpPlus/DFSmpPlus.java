@@ -1,9 +1,12 @@
 package uk.co.nikodem.dFSmpPlus;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,6 +26,8 @@ import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.Interchangable.MusicDiscRecipes;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.Interchangable.TotemRecipes;
+import uk.co.nikodem.dFSmpPlus.Data.Adapters.ConfigurationSerializableAdapter;
+import uk.co.nikodem.dFSmpPlus.Data.Adapters.ItemStackAdapter;
 import uk.co.nikodem.dFSmpPlus.Data.Global.GlobalDataHandler;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Events.Block.BlockDispenseArmorEvent;
@@ -68,6 +73,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
     public static DFAdvancementsHandler advancements;
 
+    public static Gson gson;
+
     @Override
     public void onEnable() {
         try {
@@ -111,6 +118,12 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             globalDataHandler = new GlobalDataHandler(this);
 
             hidingUtils = new HidingUtils(this);
+
+            gson = new GsonBuilder()
+                    .enableComplexMapKeySerialization()
+                    .registerTypeHierarchyAdapter(ConfigurationSerializable.class, new ConfigurationSerializableAdapter())
+//                    .registerTypeAdapter(ItemStack.class, new ItemStackAdapter())
+                    .create();
 
             getLogger().info("Added "+totalSuccessfulRecipes+"/"+totalRecipes+" recipes in total!");
 

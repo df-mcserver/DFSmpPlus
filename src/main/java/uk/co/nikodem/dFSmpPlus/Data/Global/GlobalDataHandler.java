@@ -19,7 +19,7 @@ public class GlobalDataHandler extends DataHandler {
     public GlobalData getGlobalData() {
         File file = getFileInDirectory(primaryGlobalDataFileName, true);
         if (!file.exists()) return new GlobalData();
-        GlobalData data = getGson().fromJson(readFileAsString(file), GlobalData.class);
+        GlobalData data = DFSmpPlus.gson.fromJson(readFileAsString(file), GlobalData.class);
         if (data == null) data = new GlobalData();
         return data;
     }
@@ -27,7 +27,7 @@ public class GlobalDataHandler extends DataHandler {
     public TelemetryData getTelemetryData() {
         File file = getFileInDirectory(telemetryGlobalDataFileName, true);
         if (!file.exists()) return new TelemetryData();
-        TelemetryData data = getGson().fromJson(readFileAsString(file), TelemetryData.class);
+        TelemetryData data = DFSmpPlus.gson.fromJson(readFileAsString(file), TelemetryData.class);
         if (data == null) data = new TelemetryData();
         return data;
     }
@@ -37,12 +37,12 @@ public class GlobalDataHandler extends DataHandler {
         if (!file.exists()) {
             try {
                 createFileInDirectory(primaryGlobalDataFileName, true);
-                writeStringToFile(file, getGson().toJson(globalData));
+                writeStringToFile(file, DFSmpPlus.gson.toJson(globalData));
             } catch (IOException e) {
                 plugin.getLogger().info("Failed to create "+file.getAbsolutePath()+"!");
             }
         } else {
-            writeStringToFile(file, getGson().toJson(globalData));
+            writeStringToFile(file, DFSmpPlus.gson.toJson(globalData));
         }
     }
 
@@ -51,12 +51,12 @@ public class GlobalDataHandler extends DataHandler {
         if (!file.exists()) {
             try {
                 createFileInDirectory(telemetryGlobalDataFileName, true);
-                writeStringToFile(file, getGson().toJson(telemetryData));
+                writeStringToFile(file, DFSmpPlus.gson.toJson(telemetryData));
             } catch (IOException e) {
                 plugin.getLogger().info("Failed to create "+file.getAbsolutePath()+"!");
             }
         } else {
-            writeStringToFile(file, getGson().toJson(telemetryData));
+            writeStringToFile(file, DFSmpPlus.gson.toJson(telemetryData));
         }
     }
 
