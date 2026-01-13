@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AccessoryInformationBuilder {
     private final String namedId;
-    private float armourPoints = 0f;
+    private double armourPoints = 0f;
     private String accessoryDescription = "Unknown effect";
     private final List<AccessoryMeta> metas = new ArrayList<>();
     private final List<String> conflictingAccessoryIds = new ArrayList<>();
@@ -20,7 +20,7 @@ public class AccessoryInformationBuilder {
         return this;
     }
 
-    public AccessoryInformationBuilder setArmourPoints(float armourPoints) {
+    public AccessoryInformationBuilder setArmourPoints(double armourPoints) {
         this.armourPoints = armourPoints;
         return this;
     }

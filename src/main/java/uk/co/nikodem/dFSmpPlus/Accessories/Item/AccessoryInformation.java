@@ -8,14 +8,14 @@ import java.util.List;
 public class AccessoryInformation {
     private final String namedId;
     private final List<AccessoryMeta> metas;
-    private final float armourPoints;
+    private final double armourPoints;
     private final List<String> conflictingAccessoryIds;
     private final String accessoryDescription;
 
     public AccessoryInformation(
             String namedId,
             List<AccessoryMeta> metas,
-            float armourPoints,
+            double armourPoints,
             List<String> conflictingAccessoryIds,
             String accessoryDescription
     )
@@ -31,7 +31,7 @@ public class AccessoryInformation {
         return Keys.createAccessoryKey(namedId);
     }
 
-    public float getArmourPoints() {
+    public double getArmourPoints() {
         return this.armourPoints;
     }
 

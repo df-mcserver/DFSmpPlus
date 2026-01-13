@@ -29,7 +29,7 @@ public class AccessoryItemMeta implements DFMaterialMeta {
 
     @Override
     public List<TextComponent> AddAdditionalLore(DFMaterial material) {
-        float armourPoints = information.getArmourPoints();
+        double armourPoints = information.getArmourPoints();
         String unsplitDescription = information.getDescription();
 
         List<String> descriptions = List.of(unsplitDescription.split("\n"));
