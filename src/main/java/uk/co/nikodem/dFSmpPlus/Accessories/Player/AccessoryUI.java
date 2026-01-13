@@ -9,8 +9,12 @@ import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
+import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
+import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.Arrays;
 
@@ -33,6 +37,32 @@ public class AccessoryUI {
             if (clickedInventory.getHolder() instanceof AccessoryInventory) {
                 if (!isAccessorySlot(event.getSlot())) event.setCancelled(true);
 
+                PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+                ItemStack itemClicked = event.getCurrentItem();
+                ItemStack itemInCursor = event.getCursor();
+                if (itemClicked == null || itemClicked.getType() == Material.AIR) {
+                    event.setCancelled(true);
+                    return;
+                }
+
+                AccessoryInformation info = DFItemUtils.getAccessoryInformation(itemClicked);
+                if (info == null) {
+                    event.setCancelled(true);
+                    return;
+                }
+
+                for (int i = 0; i < accessoryData.slots.length; i++) {
+                    ItemStack itemInAccessorySlot = accessoryData.slots[i];
+                    if (itemInAccessorySlot.equals(itemClicked)) {
+                        accessoryData.slots[i] = null;
+                        AccessoryEvents.AccessoryUnequipped(plr, itemClicked, info);
+                        AccessoryManager.updatePlayerData(plr, accessoryData);
+                        return;
+                    }
+                }
+
+                event.setCancelled(true);
+
                 event.getView().getPlayer().sendMessage(String.valueOf(event.getSlot()));
             } else if (clickedInventory instanceof PlayerInventory plrInv) {
                 if (event.isShiftClick()) {
@@ -42,21 +72,24 @@ public class AccessoryUI {
                         event.setCancelled(true);
                         return;
                     }
+
+                    AccessoryInformation info = DFItemUtils.getAccessoryInformation(itemClicked);
+                    if (info == null) {
+                        event.setCancelled(true);
+                        return;
+                    }
+
                     for (int i = 0; i < accessoryData.slots.length; i++) {
                         ItemStack itemInAccessorySlot = accessoryData.slots[i];
                         if (itemInAccessorySlot == null || itemInAccessorySlot.getType().equals(Material.AIR)) {
                             accessoryData.slots[i] = itemClicked.clone();
-
-                            plr.sendMessage(itemClicked.displayName());
-                            plr.sendMessage(String.valueOf(i));
-
+                            AccessoryEvents.AccessoryEquipped(plr, itemClicked, info);
                             AccessoryManager.updatePlayerData(plr, accessoryData);
                             return;
                         }
                     }
 
                     event.setCancelled(true);
-                    // going into a slot
                 }
             }
         }

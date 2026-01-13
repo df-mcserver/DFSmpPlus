@@ -27,4 +27,16 @@ public class AccessoryEvents {
             }
         }
     }
+
+    public static void AccessoryEquipped(Player plr, ItemStack item, AccessoryInformation info) {
+        for (AccessoryMeta meta : info.getMeta()) {
+            meta.AccessoryEquipped(plr, item, info);
+        }
+    }
+
+    public static void AccessoryUnequipped(Player plr, ItemStack item, AccessoryInformation info) {
+        for (AccessoryMeta meta : info.getMeta()) {
+            meta.AccessoryUnequipped(plr, item, info);
+        }
+    }
 }
