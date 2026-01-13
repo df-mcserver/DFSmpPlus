@@ -8,7 +8,7 @@ commands:
   accessories:
     description: "Manage your accessories!"
     usage: /accessories, or /a
-    aliases: ["accessory", "a", "equip"]
+    aliases: ["accessory", "a", "A", "equip"]
   givedf:
     description: "Gives DFMaterial."
     usage: /givedf {item}
