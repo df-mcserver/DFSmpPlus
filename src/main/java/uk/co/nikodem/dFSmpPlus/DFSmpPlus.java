@@ -27,7 +27,6 @@ import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.Interchangable.MusicDiscRecipes;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.Interchangable.TotemRecipes;
 import uk.co.nikodem.dFSmpPlus.Data.Adapters.ConfigurationSerializableAdapter;
-import uk.co.nikodem.dFSmpPlus.Data.Adapters.ItemStackAdapter;
 import uk.co.nikodem.dFSmpPlus.Data.Global.GlobalDataHandler;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Events.Block.BlockDispenseArmorEvent;
@@ -122,7 +121,6 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             gson = new GsonBuilder()
                     .enableComplexMapKeySerialization()
                     .registerTypeHierarchyAdapter(ConfigurationSerializable.class, new ConfigurationSerializableAdapter())
-//                    .registerTypeAdapter(ItemStack.class, new ItemStackAdapter())
                     .create();
 
             getLogger().info("Added "+totalSuccessfulRecipes+"/"+totalRecipes+" recipes in total!");

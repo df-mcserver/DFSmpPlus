@@ -19,7 +19,6 @@ import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Combat.NotEvenCloseBaby;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.LastDeathInformation;
-import uk.co.nikodem.dFSmpPlus.Data.Player.Types.SerialisedLocation;
 import uk.co.nikodem.dFSmpPlus.Player.BedrockPlayers;
 
 import java.util.Date;
@@ -75,7 +74,7 @@ public class CombatEvents {
         PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(victim);
         LastDeathInformation info = new LastDeathInformation();
         info.diedInCombat = CombatLoggingManager.isInCombat(victim);
-        info.location = new SerialisedLocation(victim.getLocation());
+        info.location = victim.getLocation();
         info.lastDeathTime = new Date().getTime();
         data.lastDeathInformation = info;
         DFSmpPlus.playerDataHandler.writePlayerData(victim, data);
