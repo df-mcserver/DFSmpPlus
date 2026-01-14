@@ -659,12 +659,25 @@ public class DFMaterial {
 
     public static DFMaterial TestAccessory = new DFMaterialBuilder(Material.STICK, "test_accessory", 1)
             .setDisplayName("test")
+            .setMaxStack(1)
             .overrideCustomModel(NamespacedKey.minecraft("creaking_heart"))
             .addMeta(new AccessoryItemMeta(
                     new AccessoryInformationBuilder("test")
                             .setDescription("test")
                             .setArmourPoints(5f)
                             .addMeta(new SpeedMeta())
+                            .create()
+            ))
+            .create();
+
+    public static DFMaterial TestAccessory2 = new DFMaterialBuilder(Material.STICK, "test_accessory_2", 1)
+            .setDisplayName("test_2")
+            .setMaxStack(1)
+            .overrideCustomModel(NamespacedKey.minecraft("ink_sac"))
+            .addMeta(new AccessoryItemMeta(
+                    new AccessoryInformationBuilder("test_2")
+                            .setDescription("i am a second test accessory")
+                            .setArmourPoints(10f)
                             .create()
             ))
             .create();

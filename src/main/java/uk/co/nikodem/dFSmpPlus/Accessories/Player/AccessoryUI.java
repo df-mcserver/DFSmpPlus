@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
@@ -16,6 +17,7 @@ import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
+import javax.print.DocFlavor;
 import java.util.Arrays;
 
 public class AccessoryUI {
@@ -25,6 +27,9 @@ public class AccessoryUI {
     public static void open(Player plr) {
         AccessoryInventory ui = new AccessoryInventory();
         plr.openInventory(ui.getInventory());
+
+        PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+        accessoryData.accessoryInsertLock = false;
     }
 
     public static void onInventoryClick(InventoryClickEvent event) {
@@ -35,64 +40,108 @@ public class AccessoryUI {
             if (clickedInventory == null) return;
 
             if (clickedInventory.getHolder() instanceof AccessoryInventory) {
-                if (!isAccessorySlot(event.getSlot())) event.setCancelled(true);
-
+                if (!isAccessorySlot(event.getSlot())) {
+                    event.setCancelled(true);
+                    return;
+                }
                 PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+                if (accessoryData.accessoryInsertLock) {
+                    event.setCancelled(true);
+                    return;
+                }
+                accessoryData.accessoryInsertLock = true;
+
+                Integer realAccessorySlotIndex = convertInventorySlotIntoAccessorySlot(event.getSlot());
+                if (realAccessorySlotIndex == null) {
+                    event.setCancelled(true);
+                    accessoryData.accessoryInsertLock = false;
+                    return;
+                }
+
+                plr.sendMessage(String.valueOf(realAccessorySlotIndex));
+
                 ItemStack itemClicked = event.getCurrentItem();
                 ItemStack itemInCursor = event.getCursor();
-                if (itemClicked == null || itemClicked.getType() == Material.AIR) {
+
+                Boolean successfullyUnequipped = takeItemOutOfAccessorySlot(plr, itemClicked, realAccessorySlotIndex);
+                if (Boolean.FALSE.equals(successfullyUnequipped)) {
                     event.setCancelled(true);
+                    accessoryData.accessoryInsertLock = false;
                     return;
                 }
 
-                AccessoryInformation info = DFItemUtils.getAccessoryInformation(itemClicked);
-                if (info == null) {
+                Boolean successfullyEquipped = insertItemIntoAccessorySlot(plr, itemInCursor, realAccessorySlotIndex);
+                if (Boolean.TRUE.equals(successfullyEquipped)) {
                     event.setCancelled(true);
-                    return;
+                    clickedInventory.setItem(event.getSlot(), itemInCursor.clone());
+                    itemInCursor.setAmount(0);
                 }
 
-                for (int i = 0; i < accessoryData.slots.length; i++) {
-                    ItemStack itemInAccessorySlot = accessoryData.slots[i];
-                    if (itemInAccessorySlot.equals(itemClicked)) {
-                        accessoryData.slots[i] = null;
-                        AccessoryEvents.AccessoryUnequipped(plr, itemClicked, info);
-                        AccessoryManager.updatePlayerData(plr, accessoryData);
-                        return;
-                    }
-                }
-
-                event.setCancelled(true);
-
-                event.getView().getPlayer().sendMessage(String.valueOf(event.getSlot()));
+                accessoryData.accessoryInsertLock = false;
             } else if (clickedInventory instanceof PlayerInventory plrInv) {
                 if (event.isShiftClick()) {
                     PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
-                    ItemStack itemClicked = event.getCurrentItem();
-                    if (itemClicked == null || itemClicked.getType() == Material.AIR) {
+                    if (accessoryData.accessoryInsertLock) {
                         event.setCancelled(true);
                         return;
                     }
-
-                    AccessoryInformation info = DFItemUtils.getAccessoryInformation(itemClicked);
-                    if (info == null) {
-                        event.setCancelled(true);
-                        return;
-                    }
-
-                    for (int i = 0; i < accessoryData.slots.length; i++) {
-                        ItemStack itemInAccessorySlot = accessoryData.slots[i];
-                        if (itemInAccessorySlot == null || itemInAccessorySlot.getType().equals(Material.AIR)) {
-                            accessoryData.slots[i] = itemClicked.clone();
-                            AccessoryEvents.AccessoryEquipped(plr, itemClicked, info);
-                            AccessoryManager.updatePlayerData(plr, accessoryData);
-                            return;
-                        }
-                    }
-
-                    event.setCancelled(true);
+                    accessoryData.accessoryInsertLock = true;
+                    event.setCancelled(Boolean.FALSE.equals(insertItemIntoAccessorySlot(plr, event.getCurrentItem(), 0, 1, 2, 3, 4)));
+                    accessoryData.accessoryInsertLock = false;
                 }
             }
         }
+    }
+
+    public static Boolean insertItemIntoAccessorySlot(Player plr, ItemStack item, int... indexesToCheck) {
+        PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+        if (item == null || item.getType() == Material.AIR) {
+            return null;
+        }
+
+        AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
+        if (info == null) {
+            return false;
+        }
+
+        if (accessoryData.isAccessoryEquipped(info)) return false;
+
+        for (int i : indexesToCheck) {
+            ItemStack itemInAccessorySlot = accessoryData.slots[i];
+            if (itemInAccessorySlot == null || itemInAccessorySlot.getType().equals(Material.AIR)) {
+                accessoryData.slots[i] = item.clone();
+                AccessoryEvents.AccessoryEquipped(plr, item, info);
+                AccessoryManager.updatePlayerData(plr, accessoryData);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static Boolean takeItemOutOfAccessorySlot(Player plr, ItemStack item, int... indexesToCheck) {
+        PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+        if (item == null || item.getType() == Material.AIR) {
+            return null;
+        }
+
+        AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
+        if (info == null) {
+            return false;
+        }
+
+        for (int i : indexesToCheck) {
+            ItemStack itemInAccessorySlot = accessoryData.slots[i];
+            if (itemInAccessorySlot == null) continue;
+            if (itemInAccessorySlot.equals(item)) {
+                accessoryData.slots[i] = null;
+                AccessoryEvents.AccessoryUnequipped(plr, item, info);
+                AccessoryManager.updatePlayerData(plr, accessoryData);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static void onInventoryOpen(InventoryOpenEvent event) {
@@ -115,6 +164,13 @@ public class AccessoryUI {
 
     public static boolean isAccessorySlot(int index) {
         return Arrays.binarySearch(slots, index) >= 0;
+    }
+
+    @Nullable
+    public static Integer convertInventorySlotIntoAccessorySlot(int index) {
+        int result = Arrays.binarySearch(slots, index);
+        if (result < 0) return null;
+        else return result;
     }
 
     public static boolean isAccessoryConfigSlot(int index) {
