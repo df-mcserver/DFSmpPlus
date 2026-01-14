@@ -58,8 +58,6 @@ public class AccessoryUI {
                     return;
                 }
 
-                plr.sendMessage(String.valueOf(realAccessorySlotIndex));
-
                 ItemStack itemClicked = event.getCurrentItem();
                 ItemStack itemInCursor = event.getCursor();
 
@@ -74,7 +72,8 @@ public class AccessoryUI {
                 if (Boolean.TRUE.equals(successfullyEquipped)) {
                     event.setCancelled(true);
                     clickedInventory.setItem(event.getSlot(), itemInCursor.clone());
-                    itemInCursor.setAmount(0);
+                    if (itemClicked != null) plr.setItemOnCursor(itemClicked.clone());
+                    else itemInCursor.setAmount(0);
                 }
 
                 accessoryData.accessoryInsertLock = false;

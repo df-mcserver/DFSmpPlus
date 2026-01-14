@@ -15,11 +15,6 @@ public class AccessoryEvents {
     public static void ApplyRunPerSecond(Player plr) {
         PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
 
-        for (ItemStack a : accessoryData.slots) {
-            if (a == null) continue;
-            plr.sendMessage(a.displayName());
-        }
-
         for (int i = 0; i < accessoryData.slots.length; i++) {
             if ((i + 1) == accessoryData.slots.length && !accessoryData.canUseFinalSlot) return;
 
