@@ -43,6 +43,8 @@ public class AccessoryEvents {
             instance.addModifier(newModifier);
         }
 
+        info.getEquipSound().playSound(plr);
+
         for (AccessoryMeta meta : info.getMeta()) {
             meta.AccessoryEquipped(plr, item, info);
 

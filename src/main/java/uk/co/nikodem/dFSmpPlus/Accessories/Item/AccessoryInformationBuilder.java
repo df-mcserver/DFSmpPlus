@@ -1,5 +1,8 @@
 package uk.co.nikodem.dFSmpPlus.Accessories.Item;
 
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.PresetSoundData;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +13,7 @@ public class AccessoryInformationBuilder {
     private String accessoryDescription = "Unknown effect";
     private final List<AccessoryMeta> metas = new ArrayList<>();
     private final List<String> conflictingAccessoryIds = new ArrayList<>();
+    private PresetSoundData equipSound = Sounds.DefaultEquipAccessory;
 
     public AccessoryInformationBuilder(String namedId) {
         this.namedId = namedId;
@@ -30,6 +34,11 @@ public class AccessoryInformationBuilder {
         return this;
     }
 
+    public AccessoryInformationBuilder setEquipSound(PresetSoundData sound) {
+        this.equipSound = sound;
+        return this;
+    }
+
     public AccessoryInformationBuilder addConflictingAccessory(String... namedIds) {
         this.conflictingAccessoryIds.addAll(Arrays.asList(namedIds));
         return this;
@@ -41,7 +50,8 @@ public class AccessoryInformationBuilder {
                 metas,
                 armourPoints,
                 conflictingAccessoryIds,
-                accessoryDescription
+                accessoryDescription,
+                equipSound
         );
     }
 }

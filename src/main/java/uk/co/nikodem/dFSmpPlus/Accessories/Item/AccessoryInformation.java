@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Accessories.Item;
 
 import org.bukkit.NamespacedKey;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.PresetSoundData;
 
 import java.util.List;
 
@@ -11,13 +12,15 @@ public class AccessoryInformation {
     private final double armourPoints;
     private final List<String> conflictingAccessoryIds;
     private final String accessoryDescription;
+    private final PresetSoundData equipSound;
 
     public AccessoryInformation(
             String namedId,
             List<AccessoryMeta> metas,
             double armourPoints,
             List<String> conflictingAccessoryIds,
-            String accessoryDescription
+            String accessoryDescription,
+            PresetSoundData equipSound
     )
     {
         this.namedId = namedId;
@@ -25,6 +28,7 @@ public class AccessoryInformation {
         this.armourPoints = armourPoints;
         this.conflictingAccessoryIds = conflictingAccessoryIds;
         this.accessoryDescription = accessoryDescription;
+        this.equipSound = equipSound;
     }
 
     public NamespacedKey getNamespacedKey() {
@@ -49,5 +53,9 @@ public class AccessoryInformation {
 
     public boolean hasMeta() {
         return !this.metas.isEmpty();
+    }
+
+    public PresetSoundData getEquipSound() {
+        return this.equipSound;
     }
 }
