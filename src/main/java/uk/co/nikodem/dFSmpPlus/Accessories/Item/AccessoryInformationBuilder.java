@@ -12,7 +12,6 @@ public class AccessoryInformationBuilder {
     private double armourPoints = 0f;
     private String accessoryDescription = "Unknown effect";
     private final List<AccessoryMeta> metas = new ArrayList<>();
-    private final List<String> conflictingAccessoryIds = new ArrayList<>();
     private PresetSoundData equipSound = Sounds.DefaultEquipAccessory;
 
     public AccessoryInformationBuilder(String namedId) {
@@ -39,17 +38,11 @@ public class AccessoryInformationBuilder {
         return this;
     }
 
-    public AccessoryInformationBuilder addConflictingAccessory(String... namedIds) {
-        this.conflictingAccessoryIds.addAll(Arrays.asList(namedIds));
-        return this;
-    }
-
     public AccessoryInformation create() {
         return new AccessoryInformation(
                 namedId,
                 metas,
                 armourPoints,
-                conflictingAccessoryIds,
                 accessoryDescription,
                 equipSound
         );

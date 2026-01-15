@@ -10,7 +10,6 @@ public class AccessoryInformation {
     private final String namedId;
     private final List<AccessoryMeta> metas;
     private final double armourPoints;
-    private final List<String> conflictingAccessoryIds;
     private final String accessoryDescription;
     private final PresetSoundData equipSound;
 
@@ -18,7 +17,6 @@ public class AccessoryInformation {
             String namedId,
             List<AccessoryMeta> metas,
             double armourPoints,
-            List<String> conflictingAccessoryIds,
             String accessoryDescription,
             PresetSoundData equipSound
     )
@@ -26,7 +24,6 @@ public class AccessoryInformation {
         this.namedId = namedId;
         this.metas = metas;
         this.armourPoints = armourPoints;
-        this.conflictingAccessoryIds = conflictingAccessoryIds;
         this.accessoryDescription = accessoryDescription;
         this.equipSound = equipSound;
     }
@@ -41,10 +38,6 @@ public class AccessoryInformation {
 
     public List<AccessoryMeta> getMeta() {
         return this.metas;
-    }
-
-    public List<String> getConflicts() {
-        return this.conflictingAccessoryIds;
     }
 
     public String getDescription() {
