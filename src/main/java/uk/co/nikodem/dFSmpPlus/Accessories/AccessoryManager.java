@@ -46,8 +46,6 @@ public class AccessoryManager {
 
         PlayerData playerData = DFSmpPlus.playerDataHandler.getPlayerData(plr);
         playerData.playerAccessoryData = accessoryData;
-
-        DFSmpPlus.playerDataHandler.writePlayerData(plr, playerData);
     }
 
     public static void updatePlayerDataWithCache(Player plr) {
