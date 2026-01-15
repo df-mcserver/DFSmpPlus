@@ -74,6 +74,8 @@ public class AccessoryUI {
                     clickedInventory.setItem(event.getSlot(), itemInCursor.clone());
                     if (itemClicked != null) plr.setItemOnCursor(itemClicked.clone());
                     else itemInCursor.setAmount(0);
+                } else if (Boolean.FALSE.equals(successfullyEquipped)) {
+                    event.setCancelled(true);
                 }
 
                 accessoryData.accessoryInsertLock = false;
