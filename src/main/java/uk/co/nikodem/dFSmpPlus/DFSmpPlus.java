@@ -13,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFWaypointCommand;
@@ -224,6 +225,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        AccessoryManager.CleanupOnShutdown();
         WaypointManager.CleanupOnShutdown();
     }
 }

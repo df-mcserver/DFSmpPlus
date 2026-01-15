@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Accessories;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
@@ -38,6 +39,17 @@ public class AccessoryManager {
 //
 //        if (playerAccessoryDataCache.containsKey(plr.getUniqueId())) playerAccessoryDataCache.replace(plr.getUniqueId(), accessoryData);
 //        else playerAccessoryDataCache.put(plr.getUniqueId(), accessoryData);
+    }
+
+    public static void CleanupOnShutdown() {
+        for (Map.Entry<UUID, PlayerAccessoryData> entry : playerAccessoryDataCache.entrySet()) {
+            Player plr = Bukkit.getPlayer(entry.getKey());
+            if (plr == null) continue;
+
+            PlayerData playerData = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+            playerData.playerAccessoryData = entry.getValue();
+            DFSmpPlus.playerDataHandler.writePlayerData(plr, playerData);
+        }
     }
 
     public static void updatePlayerData(Player plr, PlayerAccessoryData accessoryData) {
