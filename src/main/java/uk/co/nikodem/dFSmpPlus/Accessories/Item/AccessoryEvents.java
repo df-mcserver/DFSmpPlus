@@ -16,11 +16,11 @@ public class AccessoryEvents {
         PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
 
         for (int i = 0; i < accessoryData.slots.length; i++) {
-            if ((i + 1) == accessoryData.slots.length && !accessoryData.canUseFinalSlot) return;
+            if ((i + 1) >= accessoryData.slots.length && !accessoryData.canUseFinalSlot) return;
 
             ItemStack accessoryItem = accessoryData.slots[i];
             AccessoryInformation info = DFItemUtils.getAccessoryInformation(accessoryItem);
-            if (info == null) return;
+            if (info == null) continue;
 
             for (AccessoryMeta meta : info.getMeta()) {
                 meta.RunPerSecond(plr, accessoryItem, info);
