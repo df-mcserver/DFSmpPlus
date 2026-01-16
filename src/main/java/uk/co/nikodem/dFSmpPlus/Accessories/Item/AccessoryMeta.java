@@ -1,11 +1,10 @@
 package uk.co.nikodem.dFSmpPlus.Accessories.Item;
 
-import net.kyori.adventure.text.TextComponent;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
+import uk.co.nikodem.dFSmpPlus.Accessories.Action.AccessoryAction;
 
 import java.util.List;
 import java.util.Map;
@@ -17,5 +16,8 @@ public interface AccessoryMeta {
 
     default Map<Attribute, AttributeModifier> AddAdditionalAttributeModifiers(Player plr, ItemStack accessory, AccessoryInformation info) {
         return Map.of();
+    };
+    default List<AccessoryAction> GetAccessoryActions() {
+        return List.of();
     };
 }

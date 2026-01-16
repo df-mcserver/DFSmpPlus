@@ -8,6 +8,8 @@ public class Keys {
     public static NamespacedKey dfmaterial = createDefaultKey("dfmaterial");
     public static NamespacedKey dfmaterialVersion = createDefaultKey("dfmaterial_version");
 
+    public static NamespacedKey multiconfigOption = createDefaultKey("multichoice");
+
     public static NamespacedKey vampireSwordStage = createDefaultKey("vampire_sword_stage");
     public static NamespacedKey lifecrystal = createDefaultKey("lifecrystal");
     public static NamespacedKey emptySlotModel = createModelKey("inventory_part");

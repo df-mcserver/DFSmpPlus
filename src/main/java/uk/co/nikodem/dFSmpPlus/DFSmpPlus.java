@@ -163,6 +163,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new FurnaceSmeltEvent(),
                     new InventoryOpenEvent(),
                     new InventoryClickEvent(),
+                    new InventoryCloseEvent(),
                     new InventoryDragEvent(),
                     new InventoryPickupItemEvent(),
 

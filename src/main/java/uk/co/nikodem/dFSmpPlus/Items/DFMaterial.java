@@ -19,7 +19,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformationBuilder;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.SpeedMeta;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.Test2Meta;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.TestMeta;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.Bluebellsar;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.SoItBegins;
@@ -665,7 +666,7 @@ public class DFMaterial {
                     new AccessoryInformationBuilder("test")
                             .setDescription("test")
                             .setArmourPoints(5f)
-                            .addMeta(new SpeedMeta())
+                            .addMeta(new TestMeta(), new Test2Meta())
                             .create()
             ))
             .create();
@@ -675,9 +676,10 @@ public class DFMaterial {
             .setMaxStack(1)
             .overrideCustomModel(NamespacedKey.minecraft("ink_sac"))
             .addMeta(new AccessoryItemMeta(
-                    new AccessoryInformationBuilder("test_2")
+                    new AccessoryInformationBuilder("test")
                             .setDescription("i am a second test accessory")
                             .setArmourPoints(10f)
+                            .addMeta(new Test2Meta())
                             .create()
             ))
             .create();
