@@ -27,8 +27,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AccessoryUI {
-    public static int[] slots = {10, 12, 14, 16, 31};
-    public static int[] configSlots = {19, 21, 23, 25, 40};
+    public static int[] slots = {10, 11, 12, 13, 14, 15, 16};
+    public static int[] configSlots = {19, 20, 21, 22, 23, 24, 25};
 
     public static void open(Player plr) {
         AccessoryInventory ui = new AccessoryInventory();
@@ -363,7 +363,7 @@ public class AccessoryUI {
         private final Inventory baseInventory;
 
         public AccessoryInventory() {
-            baseInventory = DFSmpPlus.getPlugin(DFSmpPlus.class).getServer().createInventory(this, 9*6, Component.text("Accessories"));
+            baseInventory = DFSmpPlus.getPlugin(DFSmpPlus.class).getServer().createInventory(this, 9*3, Component.text("Accessories"));
 
             ItemStack blankSlot = getBlankSlot();
             for (int i = 0; i < baseInventory.getSize(); i++) {
@@ -383,7 +383,7 @@ public class AccessoryUI {
         private final String accessoryName;
 
         public AccessoryActionMultipleChoiceInventory(String accessoryName, int accessorySlotIndex) {
-            baseInventory = DFSmpPlus.getPlugin(DFSmpPlus.class).getServer().createInventory(this, 9*6, Component.text("Accessory options for "+accessoryName));
+            baseInventory = DFSmpPlus.getPlugin(DFSmpPlus.class).getServer().createInventory(this, 9*3, Component.text("Accessory options for "+accessoryName));
 
             ItemStack blankSlot = getBlankSlot();
             for (int i = 0; i < baseInventory.getSize(); i++) {
