@@ -7,7 +7,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 
 public class PlayerAccessoryData {
     public ItemStack[] slots = new ItemStack[7];
-    public int accessoryCapIndex = 5;
+    public int accessoryCapIndexAddition = 0;
     public boolean accessoryInsertLock = false;
 
     public boolean isAccessoryEquipped(NamespacedKey id) {
@@ -22,5 +22,9 @@ public class PlayerAccessoryData {
 
     public boolean isAccessoryEquipped(AccessoryInformation info) {
         return isAccessoryEquipped(info.getNamespacedKey());
+    }
+
+    public int getAccessoryCapIndex() {
+        return 4 + accessoryCapIndexAddition;
     }
 }

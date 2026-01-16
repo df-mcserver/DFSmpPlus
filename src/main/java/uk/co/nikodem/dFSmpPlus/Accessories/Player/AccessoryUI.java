@@ -27,9 +27,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AccessoryUI {
-    public static int[] slots = {10, 11, 12, 13, 14, 15, 16};
-    public static int[] configSlots = {19, 20, 21, 22, 23, 24, 25};
-
     public static void open(Player plr) {
         AccessoryInventory ui = new AccessoryInventory();
         plr.openInventory(ui.getInventory());
@@ -49,18 +46,19 @@ public class AccessoryUI {
     public static void onInventoryClick(InventoryClickEvent event) {
         Inventory inv = event.getInventory();
         Player plr = (Player) event.getWhoClicked();
+        PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
         if (inv.getHolder() instanceof AccessoryInventory) {
             Inventory clickedInventory = event.getClickedInventory();
             if (clickedInventory == null) return;
 
             if (clickedInventory.getHolder() instanceof AccessoryInventory) {
-                if (isAccessoryConfigSlot(event.getSlot())) {
+                if (isAccessoryConfigSlot(accessoryData, event.getSlot())) {
                     event.setCancelled(true);
                     ItemStack clickedOption = event.getCurrentItem();
                     if (clickedOption == null) return;
-                    Integer realAccessorySlotIndex = convertInventorySlotIntoAccessoryConfigSlot(event.getSlot());
+                    Integer realAccessorySlotIndex = convertInventorySlotIntoAccessoryConfigSlot(accessoryData, event.getSlot());
                     if (realAccessorySlotIndex == null) return;
-                    int accessorySlot = slots[realAccessorySlotIndex];
+                    int accessorySlot = getSlots(accessoryData)[realAccessorySlotIndex];
                     ItemStack accessory = inv.getItem(accessorySlot);
                     if (accessory == null) return;
 
@@ -79,18 +77,18 @@ public class AccessoryUI {
 
                     return;
                 }
-                if (!isAccessorySlot(event.getSlot())) {
+                if (!isAccessorySlot(accessoryData, event.getSlot())) {
                     event.setCancelled(true);
                     return;
                 }
-                PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+
                 if (accessoryData.accessoryInsertLock) {
                     event.setCancelled(true);
                     return;
                 }
                 accessoryData.accessoryInsertLock = true;
 
-                Integer realAccessorySlotIndex = convertInventorySlotIntoAccessorySlot(event.getSlot());
+                Integer realAccessorySlotIndex = convertInventorySlotIntoAccessorySlot(accessoryData, event.getSlot());
                 if (realAccessorySlotIndex == null) {
                     event.setCancelled(true);
                     accessoryData.accessoryInsertLock = false;
@@ -106,7 +104,7 @@ public class AccessoryUI {
                     accessoryData.accessoryInsertLock = false;
                     return;
                 } else if (Boolean.TRUE.equals(successfullyUnequipped)) {
-                    int configSlot = configSlots[realAccessorySlotIndex];
+                    int configSlot = getConfigSlots(accessoryData)[realAccessorySlotIndex];
                     inv.setItem(configSlot, getBlankSlot());
                 }
 
@@ -119,7 +117,7 @@ public class AccessoryUI {
                     else itemInCursor.setAmount(0);
 
                     AccessoryInformation info = DFItemUtils.getAccessoryInformation(newItem);
-                    int configSlot = configSlots[realAccessorySlotIndex];
+                    int configSlot = getConfigSlots(accessoryData)[realAccessorySlotIndex];
                     if (info != null) {
                         ItemStack configItem = getConfigItemStack(plr, newItem, info);
                         if (configItem != null) inv.setItem(configSlot, configItem);
@@ -131,7 +129,6 @@ public class AccessoryUI {
                 accessoryData.accessoryInsertLock = false;
             } else if (clickedInventory instanceof PlayerInventory plrInv) {
                 if (event.isShiftClick()) {
-                    PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
                     if (accessoryData.accessoryInsertLock) {
                         event.setCancelled(true);
                         return;
@@ -142,7 +139,7 @@ public class AccessoryUI {
                         Boolean result = (insertItemIntoAccessorySlot(plr, item, i));
                         if (Boolean.TRUE.equals(result)) {
                             AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
-                            int configSlot = configSlots[i];
+                            int configSlot = getConfigSlots(accessoryData)[i];
                             if (info != null) {
                                 ItemStack configItem = getConfigItemStack(plr, item, info);
                                 if (configItem != null) inv.setItem(configSlot, configItem);
@@ -162,7 +159,6 @@ public class AccessoryUI {
             int accessorySlotIndex = multipleChoiceInventory.getAccessorySlotIndex();
             event.setCancelled(true);
 
-            PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
             ItemStack accessoryItem = accessoryData.slots[accessorySlotIndex];
             if (accessoryItem == null) {
                 event.setCancelled(true);
@@ -199,7 +195,7 @@ public class AccessoryUI {
         if (accessoryData.isAccessoryEquipped(info)) return false;
 
         for (int i : indexesToCheck) {
-            if (i > accessoryData.accessoryCapIndex) break;
+            if (i > accessoryData.getAccessoryCapIndex()) break;
             ItemStack itemInAccessorySlot = accessoryData.slots[i];
             if (itemInAccessorySlot == null || itemInAccessorySlot.getType().equals(Material.AIR)) {
                 ItemStack newItem = item.clone();
@@ -260,21 +256,21 @@ public class AccessoryUI {
     public static void onInventoryOpen(InventoryOpenEvent event) {
         Inventory inv = event.getInventory();
         Player plr = (Player) event.getPlayer();
+        PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
         if (inv.getHolder() instanceof AccessoryInventory) {
             InventoryView view = event.getView();
 
-            PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
             int i = 0;
-            for (int slot : slots) {
+            for (int slot : getSlots(accessoryData)) {
                 ItemStack item = accessoryData.slots[i];
                 if (item == null) item = ItemStack.of(Material.AIR);
 
-                if (i > accessoryData.accessoryCapIndex) item = getBlankSlot();
+                if (i > accessoryData.getAccessoryCapIndex()) item = getBlankSlot();
 
-                if (i <= accessoryData.accessoryCapIndex) {
+                if (i <= accessoryData.getAccessoryCapIndex()) {
                     AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
                     if (info != null) {
-                        int configSlot = configSlots[i];
+                        int configSlot = getConfigSlots(accessoryData)[i];
                         ItemStack configItem = getConfigItemStack(plr, item, info);
                         if (configItem != null) {
                             view.setItem(configSlot, configItem);
@@ -289,7 +285,6 @@ public class AccessoryUI {
             InventoryView view = event.getView();
             int accessorySlotIndex = multipleChoiceInventory.getAccessorySlotIndex();
 
-            PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
             ItemStack accessoryItem = accessoryData.slots[accessorySlotIndex];
             if (accessoryItem == null) {
                 event.setCancelled(true);
@@ -312,18 +307,22 @@ public class AccessoryUI {
         }
     }
 
-    public static boolean isAccessorySlot(int index) {
-        return Arrays.binarySearch(slots, index) >= 0;
+    public static boolean isAccessorySlot(PlayerAccessoryData accessoryData, int index) {
+        return Arrays.binarySearch(getSlots(accessoryData), index) >= 0;
+    }
+
+    public static boolean isAccessoryConfigSlot(PlayerAccessoryData accessoryData, int index) {
+        return Arrays.binarySearch(getConfigSlots(accessoryData), index) >= 0;
     }
 
     @Nullable
-    public static Integer convertInventorySlotIntoAccessorySlot(int index) {
-        return doIndexSearch(slots, index);
+    public static Integer convertInventorySlotIntoAccessorySlot(PlayerAccessoryData accessoryData, int index) {
+        return doIndexSearch(getSlots(accessoryData), index);
     }
 
     @Nullable
-    public static Integer convertInventorySlotIntoAccessoryConfigSlot(int index) {
-        return doIndexSearch(configSlots, index);
+    public static Integer convertInventorySlotIntoAccessoryConfigSlot(PlayerAccessoryData accessoryData, int index) {
+        return doIndexSearch(getConfigSlots(accessoryData), index);
     }
 
     @Nullable
@@ -333,8 +332,23 @@ public class AccessoryUI {
         else return result;
     }
 
-    public static boolean isAccessoryConfigSlot(int index) {
-        return Arrays.binarySearch(configSlots, index) >= 0;
+    public static int[] getSlots(PlayerAccessoryData accessoryData) {
+        int slotCount = accessoryData.getAccessoryCapIndex()+1;
+        int[] slots = new int[slotCount];
+        int xOffset = (int) Math.ceil((double) (9 - slotCount) / 2);
+        for (int i = 0; i < slotCount; i++) {
+            slots[i] = i+xOffset+9;
+        }
+
+        return slots;
+    }
+
+    public static int[] getConfigSlots(PlayerAccessoryData accessoryData) {
+        int[] slots = getSlots(accessoryData);
+        for (int i = 0; i < slots.length; i++) {
+            slots[i] = slots[i] + 9;
+        }
+        return slots;
     }
 
     public static ItemStack getBlankSlot() {
