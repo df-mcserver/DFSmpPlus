@@ -9,7 +9,6 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.*;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
-import uk.co.nikodem.dFSmpPlus.Data.Player.Types.SerialisedLocation;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
 
 import javax.annotation.Nullable;
@@ -28,7 +27,7 @@ public class WaypointManager {
         if (data.waypoints.size() >= MAX_WAYPOINTS) return WaypointCreationResult.FAILED_REACHED_MAXIMUM;
 
         WaypointInformation info = new WaypointInformation();
-        info.location = new SerialisedLocation(location);
+        info.location = location;
         info.colour = colour;
         data.waypoints.put(id, info);
 
@@ -157,7 +156,7 @@ public class WaypointManager {
             String id = waypointEntry.getKey();
 
             WaypointInformation info = waypointEntry.getValue();
-            CreateWaypoint(plr, id, info.colour, info.location.getLocation());
+            CreateWaypoint(plr, id, info.colour, info.location);
         }
     }
 }

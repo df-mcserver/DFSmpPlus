@@ -16,7 +16,7 @@ public class PlayerDataHandler extends DataHandler {
     public PlayerData getPlayerData(UUID playerUUID) {
         File file = getFileInDirectory(playerUUID.toString(), true);
         if (!file.exists()) return new PlayerData();
-        PlayerData data = getGson().fromJson(readFileAsString(file), PlayerData.class);
+        PlayerData data = DFSmpPlus.gson.fromJson(readFileAsString(file), PlayerData.class);
         if (data == null) data = new PlayerData();
         return data;
     }
@@ -30,12 +30,12 @@ public class PlayerDataHandler extends DataHandler {
         if (!file.exists()) {
             try {
                 createFileInDirectory(playerUUID.toString(), true);
-                writeStringToFile(file, getGson().toJson(playerData));
+                writeStringToFile(file, DFSmpPlus.gson.toJson(playerData));
             } catch (IOException e) {
                 plugin.getLogger().info("Failed to create "+file.getAbsolutePath()+"!");
             }
         } else {
-            writeStringToFile(file, getGson().toJson(playerData));
+            writeStringToFile(file, DFSmpPlus.gson.toJson(playerData));
         }
     }
 

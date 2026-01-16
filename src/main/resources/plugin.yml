@@ -5,6 +5,10 @@ api-version: '1.21.8'
 author: 'deadfry42'
 depend: [UltimateAdvancementAPI]
 commands:
+  accessories:
+    description: "Manage your accessories!"
+    usage: /accessories, or /a
+    aliases: ["accessory", "a", "A", "equip"]
   givedf:
     description: "Gives DFMaterial."
     usage: /givedf {item}

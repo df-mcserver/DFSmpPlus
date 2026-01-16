@@ -1,15 +1,20 @@
 package uk.co.nikodem.dFSmpPlus;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFWaypointCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands.*;
@@ -22,6 +27,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.Interchangable.MusicDiscRecipes;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.Interchangable.TotemRecipes;
+import uk.co.nikodem.dFSmpPlus.Data.Adapters.ConfigurationSerializableAdapter;
 import uk.co.nikodem.dFSmpPlus.Data.Global.GlobalDataHandler;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Events.Block.BlockDispenseArmorEvent;
@@ -67,6 +73,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
     public static DFAdvancementsHandler advancements;
 
+    public static Gson gson;
+
     @Override
     public void onEnable() {
         try {
@@ -111,6 +119,11 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
             hidingUtils = new HidingUtils(this);
 
+            gson = new GsonBuilder()
+                    .enableComplexMapKeySerialization()
+                    .registerTypeHierarchyAdapter(ConfigurationSerializable.class, new ConfigurationSerializableAdapter())
+                    .create();
+
             getLogger().info("Added "+totalSuccessfulRecipes+"/"+totalRecipes+" recipes in total!");
 
             RecipeRemover.Run(); // remove the recipes that the crafting templates want to remove
@@ -128,6 +141,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
             Objects.requireNonNull(getCommand("back")).setExecutor(new BackCommand());
             Objects.requireNonNull(getCommand("bin")).setExecutor(new BinCommand());
+            Objects.requireNonNull(getCommand("accessories")).setExecutor(new AccessoriesCommand());
 
             this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
                 commands.registrar().register(DFWaypointCommand.createCommand().build());
@@ -149,6 +163,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new FurnaceSmeltEvent(),
                     new InventoryOpenEvent(),
                     new InventoryClickEvent(),
+                    new InventoryCloseEvent(),
                     new InventoryDragEvent(),
                     new InventoryPickupItemEvent(),
 
@@ -181,6 +196,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             Bukkit.getScheduler().runTaskTimer(this, () -> {
                 for (Player plr : Bukkit.getOnlinePlayers()) {
                     DFArmourSetEvents.ApplyRunPerSecond(plr);
+                    AccessoryEvents.ApplyRunPerSecond(plr);
                     CombatEvents.perSecond(plr);
                 }
             }, 0, 20);
@@ -210,6 +226,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        AccessoryManager.CleanupOnShutdown();
         WaypointManager.CleanupOnShutdown();
     }
 }

@@ -136,12 +136,12 @@ public class DFWaypointCommand {
 
                                             String hex = String.format("#%06X", info.colour);
 
-                                            double blocksAway = plr.getWorld().equals(info.location.getLocation().getWorld()) ? plr.getLocation().distance(info.location.getLocation()) : -1L;
+                                            double blocksAway = plr.getWorld().equals(info.location.getWorld()) ? plr.getLocation().distance(info.location) : -1L;
 
                                             String distanceString;
                                             if (blocksAway > -1L) distanceString = (int) blocksAway +" blocks away";
                                             else {
-                                                World world = info.location.getLocation().getWorld();
+                                                World world = info.location.getWorld();
                                                 if (world == null) distanceString = "Unknown location";
                                                 else {
                                                     switch (world.getEnvironment()) {
@@ -155,7 +155,7 @@ public class DFWaypointCommand {
 
                                             plr.sendMessage(
                                                     MiniMessage.miniMessage().deserialize(
-                                                            String.format("<color:%s>Waypoint %s:</color:%s>\n- X: %d\n- Y: %d\n- Z: %d\n- Distance: %s", hex, waypointname, hex, info.location.getLocation().getBlockX(), info.location.getLocation().getBlockY(), info.location.getLocation().getBlockZ(), distanceString)
+                                                            String.format("<color:%s>Waypoint %s:</color:%s>\n- X: %d\n- Y: %d\n- Z: %d\n- Distance: %s", hex, waypointname, hex, info.location.getBlockX(), info.location.getBlockY(), info.location.getBlockZ(), distanceString)
                                                     )
                                             );
                                             return Command.SINGLE_SUCCESS;
@@ -183,11 +183,7 @@ public class DFWaypointCommand {
     }
 
     public static int doPlaceWaypointCommand(Player plr, int r, int g, int b, String id) {
-
         String hex = String.format("#%02X%02X%02X", r, g, b);
-
-        System.out.println(plr.getLocation());
-
         WaypointCreationResult result = WaypointManager.CreateNewWaypoint(plr, plr.getLocation(), id, Long.decode(hex.toLowerCase()));
 
         switch (result) {

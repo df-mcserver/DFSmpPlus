@@ -31,9 +31,6 @@ public class SmithingTableRecipe {
 
     public ItemStack transformResult() {
         if (transformResult == null) return this.result;
-
-        System.out.println("Running transform result!");
-
         return transformResult.apply(this);
     }
 

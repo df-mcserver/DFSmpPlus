@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Events.Player.Inventory;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import uk.co.nikodem.dFSmpPlus.Accessories.Player.AccessoryUI;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.AnvilEvents;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.SmithingTableEvents;
 import uk.co.nikodem.dFSmpPlus.Player.EnderEggStoragePreventer;
@@ -14,5 +15,6 @@ public class InventoryClickEvent implements Listener {
         SetBonusText.onInventoryClick(event);
         AnvilEvents.onAnvilInventoryClick(event);
         SmithingTableEvents.onSmithingTableCraft(event);
+        AccessoryUI.onInventoryClick(event);
     }
 }

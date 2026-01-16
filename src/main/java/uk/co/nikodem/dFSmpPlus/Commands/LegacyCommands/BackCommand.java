@@ -25,7 +25,7 @@ public class BackCommand implements CommandExecutor {
                 return denyCommand(sender, "you haven't died recently!");
             }
 
-            Location deathLocation = info.location.getLocation();
+            Location deathLocation = info.location;
             Long timeOfDeath = info.lastDeathTime;
             Boolean diedInCombat = info.diedInCombat;
 
