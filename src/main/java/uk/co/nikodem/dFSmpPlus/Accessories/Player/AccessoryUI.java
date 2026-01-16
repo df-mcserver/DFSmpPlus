@@ -199,6 +199,7 @@ public class AccessoryUI {
         if (accessoryData.isAccessoryEquipped(info)) return false;
 
         for (int i : indexesToCheck) {
+            if (i > accessoryData.accessoryCapIndex) break;
             ItemStack itemInAccessorySlot = accessoryData.slots[i];
             if (itemInAccessorySlot == null || itemInAccessorySlot.getType().equals(Material.AIR)) {
                 ItemStack newItem = item.clone();
@@ -268,12 +269,16 @@ public class AccessoryUI {
                 ItemStack item = accessoryData.slots[i];
                 if (item == null) item = ItemStack.of(Material.AIR);
 
-                AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
-                if (info != null) {
-                    int configSlot = configSlots[i];
-                    ItemStack configItem = getConfigItemStack(plr, item, info);
-                    if (configItem != null) {
-                        view.setItem(configSlot, configItem);
+                if (i > accessoryData.accessoryCapIndex) item = getBlankSlot();
+
+                if (i <= accessoryData.accessoryCapIndex) {
+                    AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
+                    if (info != null) {
+                        int configSlot = configSlots[i];
+                        ItemStack configItem = getConfigItemStack(plr, item, info);
+                        if (configItem != null) {
+                            view.setItem(configSlot, configItem);
+                        }
                     }
                 }
 

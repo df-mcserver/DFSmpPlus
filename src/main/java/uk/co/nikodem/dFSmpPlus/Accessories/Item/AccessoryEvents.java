@@ -16,7 +16,7 @@ public class AccessoryEvents {
         PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
 
         for (int i = 0; i < accessoryData.slots.length; i++) {
-            if ((i + 1) >= accessoryData.slots.length && !accessoryData.canUseFinalSlot) return;
+            if ((i + 1) >= accessoryData.slots.length && i > accessoryData.accessoryCapIndex) return;
 
             ItemStack accessoryItem = accessoryData.slots[i];
             AccessoryInformation info = DFItemUtils.getAccessoryInformation(accessoryItem);
