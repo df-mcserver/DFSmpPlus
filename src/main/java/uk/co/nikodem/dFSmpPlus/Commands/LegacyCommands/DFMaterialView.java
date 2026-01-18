@@ -18,12 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DFMaterialView implements CommandExecutor {
-    private final DFSmpPlus plugin;
-
-    public DFMaterialView(DFSmpPlus plugin) {
-        this.plugin = plugin;
-    }
-
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (sender instanceof Player plr) {

@@ -4,22 +4,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
 import java.util.*;
 
 public class HidingUtils {
-    private final Plugin plugin;
-
     // TODO: fix potential memory leak with null entities
     private final HashMap<UUID, List<Entity>> exclusiveEntities = new HashMap<>();
 
-    public HidingUtils(Plugin plugin) {
-        this.plugin = plugin;
-    }
-
     public void HideEntity(Player plr, Entity entity) {
         if (entity == null) return;
-        plr.hideEntity(plugin, entity);
+        plr.hideEntity(DFSmpPlus.getPlugin(), entity);
     }
 
     public void removeExclusiveEntitiesOnLeave(Player plr) {

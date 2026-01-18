@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HiddenRepairRecipes extends CraftingTemplate {
-    public HiddenRepairRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

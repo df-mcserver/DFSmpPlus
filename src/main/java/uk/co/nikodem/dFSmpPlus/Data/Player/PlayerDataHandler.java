@@ -9,10 +9,6 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class PlayerDataHandler extends DataHandler {
-    public PlayerDataHandler(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     public PlayerData getPlayerData(UUID playerUUID) {
         File file = getFileInDirectory(playerUUID.toString(), true);
         if (!file.exists()) return new PlayerData();
@@ -32,7 +28,7 @@ public class PlayerDataHandler extends DataHandler {
                 createFileInDirectory(playerUUID.toString(), true);
                 writeStringToFile(file, DFSmpPlus.gson.toJson(playerData));
             } catch (IOException e) {
-                plugin.getLogger().info("Failed to create "+file.getAbsolutePath()+"!");
+                DFSmpPlus.getPlugin().getLogger().info("Failed to create "+file.getAbsolutePath()+"!");
             }
         } else {
             writeStringToFile(file, DFSmpPlus.gson.toJson(playerData));

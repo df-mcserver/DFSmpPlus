@@ -22,10 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CopperRecipes extends CraftingTemplate {
-    public CopperRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

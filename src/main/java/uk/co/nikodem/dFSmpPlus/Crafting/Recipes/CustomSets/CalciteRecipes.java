@@ -17,10 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalciteRecipes extends CraftingTemplate {
-    public CalciteRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

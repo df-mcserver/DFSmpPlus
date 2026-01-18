@@ -9,10 +9,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class GlobalDataHandler extends DataHandler {
-    public GlobalDataHandler(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     public final String primaryGlobalDataFileName = "primary";
     public final String telemetryGlobalDataFileName = "telemetry";
 
@@ -39,7 +35,7 @@ public class GlobalDataHandler extends DataHandler {
                 createFileInDirectory(primaryGlobalDataFileName, true);
                 writeStringToFile(file, DFSmpPlus.gson.toJson(globalData));
             } catch (IOException e) {
-                plugin.getLogger().info("Failed to create "+file.getAbsolutePath()+"!");
+                DFSmpPlus.getPlugin().getLogger().info("Failed to create "+file.getAbsolutePath()+"!");
             }
         } else {
             writeStringToFile(file, DFSmpPlus.gson.toJson(globalData));
@@ -53,7 +49,7 @@ public class GlobalDataHandler extends DataHandler {
                 createFileInDirectory(telemetryGlobalDataFileName, true);
                 writeStringToFile(file, DFSmpPlus.gson.toJson(telemetryData));
             } catch (IOException e) {
-                plugin.getLogger().info("Failed to create "+file.getAbsolutePath()+"!");
+                DFSmpPlus.getPlugin().getLogger().info("Failed to create "+file.getAbsolutePath()+"!");
             }
         } else {
             writeStringToFile(file, DFSmpPlus.gson.toJson(telemetryData));

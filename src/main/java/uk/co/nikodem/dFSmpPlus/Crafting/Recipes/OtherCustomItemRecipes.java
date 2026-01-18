@@ -19,10 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OtherCustomItemRecipes extends CraftingTemplate {
-    public OtherCustomItemRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

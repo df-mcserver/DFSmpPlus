@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VeinRecipes extends CraftingTemplate {
-    public VeinRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

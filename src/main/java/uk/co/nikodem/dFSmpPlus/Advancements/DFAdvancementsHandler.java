@@ -34,8 +34,8 @@ public class DFAdvancementsHandler {
 
     public static final HashSet<BaseAdvancement> advancements = new HashSet<>();
 
-    public DFAdvancementsHandler(DFSmpPlus plugin) {
-        api = UltimateAdvancementAPI.getInstance(plugin);
+    public DFAdvancementsHandler() {
+        api = UltimateAdvancementAPI.getInstance(DFSmpPlus.getPlugin());
 
         createTab();
     }

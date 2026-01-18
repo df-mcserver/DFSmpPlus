@@ -24,10 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FiridiumRecipes extends CraftingTemplate {
-    public FiridiumRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

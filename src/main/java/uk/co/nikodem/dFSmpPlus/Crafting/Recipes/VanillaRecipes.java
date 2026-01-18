@@ -25,11 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 public class VanillaRecipes extends CraftingTemplate {
-
-    public VanillaRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

@@ -17,10 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TotemRecipes extends CraftingTemplate {
-    public TotemRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

@@ -15,10 +15,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class CompassRecipes extends CraftingTemplate {
-    public CompassRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

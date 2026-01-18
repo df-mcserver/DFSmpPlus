@@ -78,52 +78,52 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         try {
-            SetDefaults.checkRecommendedSettings(this);
+            SetDefaults.checkRecommendedSettings();
 
-            messageUtils = new MessageUtils(this);
+            messageUtils = new MessageUtils();
             messageUtils.initiateChannels();
 
-            messageListener = new MessageListener(this);
+            messageListener = new MessageListener();
             messageListener.initialiseMessageHandlers();
 
             craftingTemplateList = List.of(
-                    new VanillaRecipes(this),
-                    new OtherCustomItemRecipes(this),
-                    new CoralRecipes(this),
-                    new ChiselRecipes(this),
-                    new AccessoryRecipes(this),
+                    new VanillaRecipes(),
+                    new OtherCustomItemRecipes(),
+                    new CoralRecipes(),
+                    new ChiselRecipes(),
+                    new AccessoryRecipes(),
 
-                    new MusicDiscRecipes(this),
-                    new TotemRecipes(this),
+                    new MusicDiscRecipes(),
+                    new TotemRecipes(),
 
                     // lets hope this works :p
-                    new CompassRecipes(this),
+                    new CompassRecipes(),
 
                     // customset
-                    new CopperRecipes(this),
-                    new FiridiumRecipes(this),
-                    new SculkRecipes(this),
-                    new ObsidianRecipes(this),
-                    new VeinRecipes(this),
-                    new SilkRecipes(this),
-                    new CalciteRecipes(this),
-                    new FloralRecipes(this)
+                    new CopperRecipes(),
+                    new FiridiumRecipes(),
+                    new SculkRecipes(),
+                    new ObsidianRecipes(),
+                    new VeinRecipes(),
+                    new SilkRecipes(),
+                    new CalciteRecipes(),
+                    new FloralRecipes()
             );
 
-            new HiddenRecipes(this);
-            new HiddenRepairRecipes(this);
+            new HiddenRecipes();
+            new HiddenRepairRecipes();
 
-            advancements = new DFAdvancementsHandler(this);
+            advancements = new DFAdvancementsHandler();
 
             gson = new GsonBuilder()
                     .enableComplexMapKeySerialization()
                     .registerTypeHierarchyAdapter(ConfigurationSerializable.class, new ConfigurationSerializableAdapter())
                     .create();
 
-            playerDataHandler = new PlayerDataHandler(this);
-            globalDataHandler = new GlobalDataHandler(this);
+            playerDataHandler = new PlayerDataHandler();
+            globalDataHandler = new GlobalDataHandler();
 
-            hidingUtils = new HidingUtils(this);
+            hidingUtils = new HidingUtils();
 
             getLogger().info("Added "+totalSuccessfulRecipes+"/"+totalRecipes+" recipes in total!");
 
@@ -138,7 +138,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             Objects.requireNonNull(getCommand("dfdebug")).setExecutor(new DFDebugCommand());
             Objects.requireNonNull(getCommand("dfdebug")).setTabCompleter(new DFDebugTabCompleter());
 
-            Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView(this));
+            Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView());
             Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
             Objects.requireNonNull(getCommand("back")).setExecutor(new BackCommand());
             Objects.requireNonNull(getCommand("bin")).setExecutor(new BinCommand());
@@ -230,5 +230,9 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
         // Plugin shutdown logic
         AccessoryManager.CleanupOnShutdown();
         WaypointManager.CleanupOnShutdown();
+    }
+
+    public static DFSmpPlus getPlugin() {
+        return (DFSmpPlus) DFSmpPlus.getProvidingPlugin(DFSmpPlus.class);
     }
 }

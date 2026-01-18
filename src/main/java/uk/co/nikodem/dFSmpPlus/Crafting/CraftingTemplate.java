@@ -15,11 +15,9 @@ public abstract class CraftingTemplate {
 
     List<NamespacedKey> namespacedKeysToDiscover = new ArrayList<>();
 
-    public final DFSmpPlus plugin;
     public final RecipeTemplateInfo info;
 
-    public CraftingTemplate(DFSmpPlus plugin) {
-        this.plugin = plugin;
+    public CraftingTemplate() {
         this.info = new RecipeTemplateInfo(getRecipesID(), namespacedKeysToDiscover);
 
         List<Recipe> recipesToAdd = populateRecipes(); // add the recipes to the list
@@ -32,15 +30,15 @@ public abstract class CraftingTemplate {
                 amnt++;
                 DFSmpPlus.totalSuccessfulRecipes++;
             } catch (IllegalStateException e) {
-                plugin.getLogger().severe("Duplicate recipe! Cannot add this recipe!");
-                plugin.getLogger().severe("Recipe "+recipe.toString()+" | Result: "+recipe.getResult());
+                DFSmpPlus.getPlugin().getLogger().severe("Duplicate recipe! Cannot add this recipe!");
+                DFSmpPlus.getPlugin().getLogger().severe("Recipe "+recipe.toString()+" | Result: "+recipe.getResult());
             } catch (IllegalArgumentException e) {
-                plugin.getLogger().severe("Invalid recipe! Cannot add this recipe!");
+                DFSmpPlus.getPlugin().getLogger().severe("Invalid recipe! Cannot add this recipe!");
                 e.printStackTrace();
             }
         }
 
-        plugin.getLogger().info("Added "+amnt+"/"+recipesToAdd.size()+" \""+this.getClass().getSimpleName()+"\" recipes");
+        DFSmpPlus.getPlugin().getLogger().info("Added "+amnt+"/"+recipesToAdd.size()+" \""+this.getClass().getSimpleName()+"\" recipes");
     }
 
 

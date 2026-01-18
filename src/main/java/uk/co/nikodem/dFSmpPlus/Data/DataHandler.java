@@ -9,21 +9,15 @@ import java.nio.file.Path;
 public abstract class DataHandler {
     public abstract String getFolderName();
 
-    public final DFSmpPlus plugin;
-
-    public DataHandler(DFSmpPlus plugin) {
-        this.plugin = plugin;
-    }
-
     @Nullable
     public String readFileAsString(File file) {
         if (!file.exists()) {
-            plugin.getLogger().info("Cannot read file "+file.getAbsolutePath()+"! File does not exist!");
+            DFSmpPlus.getPlugin().getLogger().info("Cannot read file "+file.getAbsolutePath()+"! File does not exist!");
             return null;
         }
 
         if (!file.canRead()) {
-            plugin.getLogger().info("Cannot read file "+file.getAbsolutePath()+"! Check permissions!");
+            DFSmpPlus.getPlugin().getLogger().info("Cannot read file "+file.getAbsolutePath()+"! Check permissions!");
             return null;
         }
 
@@ -31,10 +25,10 @@ public abstract class DataHandler {
             try (BufferedReader bufferedReader = new BufferedReader(fileReader)) {
                 return bufferedReader.readLine(); // data should only be on the first line
             } catch (IOException e) {
-                plugin.getLogger().info("Failed to parse file "+file.getAbsolutePath()+"!");
+                DFSmpPlus.getPlugin().getLogger().info("Failed to parse file "+file.getAbsolutePath()+"!");
             }
         } catch (IOException e) {
-            plugin.getLogger().info("Failed to read file "+file.getAbsolutePath()+"!");
+            DFSmpPlus.getPlugin().getLogger().info("Failed to read file "+file.getAbsolutePath()+"!");
         }
 
         return null;
@@ -42,12 +36,12 @@ public abstract class DataHandler {
 
     public void writeStringToFile(File file, String content) {
         if (!file.exists()) {
-            plugin.getLogger().info("Cannot write to file "+file.getAbsolutePath()+"! File does not exist!");
+            DFSmpPlus.getPlugin().getLogger().info("Cannot write to file "+file.getAbsolutePath()+"! File does not exist!");
             return;
         }
 
         if (!file.canRead()) {
-            plugin.getLogger().info("Cannot write to file "+file.getAbsolutePath()+"! Check permissions!");
+            DFSmpPlus.getPlugin().getLogger().info("Cannot write to file "+file.getAbsolutePath()+"! Check permissions!");
             return;
         }
 
@@ -56,10 +50,10 @@ public abstract class DataHandler {
                 bufferedWriter.write(content);
                 bufferedWriter.flush();
             } catch (IOException e) {
-                plugin.getLogger().info("Failed to write to file "+file.getAbsolutePath()+"!");
+                DFSmpPlus.getPlugin().getLogger().info("Failed to write to file "+file.getAbsolutePath()+"!");
             }
         } catch (IOException e) {
-            plugin.getLogger().info("Failed to read file "+file.getAbsolutePath()+"!");
+            DFSmpPlus.getPlugin().getLogger().info("Failed to read file "+file.getAbsolutePath()+"!");
         }
     }
 
@@ -82,6 +76,6 @@ public abstract class DataHandler {
     }
 
     public File getAllocatedDirectory() {
-        return Path.of(plugin.getDataPath().toUri().getPath(), "/"+getFolderName()).toFile();
+        return Path.of(DFSmpPlus.getPlugin().getDataPath().toUri().getPath(), "/"+getFolderName()).toFile();
     }
 }

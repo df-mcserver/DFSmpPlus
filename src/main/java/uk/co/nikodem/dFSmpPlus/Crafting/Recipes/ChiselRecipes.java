@@ -21,10 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChiselRecipes extends CraftingTemplate {
-    public ChiselRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

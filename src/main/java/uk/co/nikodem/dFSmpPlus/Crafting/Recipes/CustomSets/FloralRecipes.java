@@ -25,10 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FloralRecipes extends CraftingTemplate {
-    public FloralRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

@@ -12,10 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccessoryRecipes extends CraftingTemplate {
-    public AccessoryRecipes(DFSmpPlus plugin) {
-        super(plugin);
-    }
-
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();

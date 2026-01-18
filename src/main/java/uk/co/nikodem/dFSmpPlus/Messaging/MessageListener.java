@@ -15,16 +15,11 @@ import static uk.co.nikodem.dFSmpPlus.Utils.Server.MessageUtils.CUSTOM_PROXY_CHA
 
 public class MessageListener implements PluginMessageListener {
     public static final HashMap<String, DFPluginMessageHandler> messageHandlers = new HashMap<>();
-    private final DFSmpPlus plugin;
-
-    public MessageListener(DFSmpPlus plugin) {
-        this.plugin = plugin;
-    }
 
     public void initialiseMessageHandlers() {
         messageHandlers.put("IsGeyser", new IsGeyser());
 
-        this.plugin.getServer().getMessenger().registerIncomingPluginChannel(this.plugin, CUSTOM_PROXY_CHANNEL, this);
+        DFSmpPlus.getPlugin().getServer().getMessenger().registerIncomingPluginChannel(DFSmpPlus.getPlugin(), CUSTOM_PROXY_CHANNEL, this);
     }
 
     @Override
