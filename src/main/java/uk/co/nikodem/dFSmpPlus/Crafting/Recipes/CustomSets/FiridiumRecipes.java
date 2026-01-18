@@ -15,6 +15,8 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardHel
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardLeggingsRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Tools.*;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithIngredientReplace;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
@@ -49,7 +51,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .setSource(Material.IRON_INGOT)
                         .setOutput(DFMaterial.FiridiumIngot)
                         .setCategory(CookingBookCategory.MISC)
-                        .build(getInfo(), "FiridiumIngot")
+                        .build(getInfo(), "FiridiumIngot-smelt")
         );
 
         recipesToAdd.add(
@@ -57,7 +59,24 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .setSource(Material.IRON_NUGGET)
                         .setOutput(DFMaterial.FiridiumNugget)
                         .setCategory(CookingBookCategory.MISC)
+                        .build(getInfo(), "FiridiumNugget-smelt")
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.FiridiumNugget, 9)
+                        .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "FiridiumNugget")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FiridiumIngot.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.FiridiumIngot)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "FiridiumIngot")
+                        .shape("XXX", "XXX", "XXX")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FiridiumNugget.toItemStack()))
         );
     }
 
