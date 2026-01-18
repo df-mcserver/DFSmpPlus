@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
-import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.ConsciousWarden;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.SightedWarden;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSet;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetMeta;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
@@ -24,6 +24,6 @@ public class SculkArmourMeta implements DFArmourSetMeta {
 
     @Override
     public void OnUpdateSetBonus(Player plr, ItemStack itemUpdated, DFArmourSet armourSet) {
-        DFAdvancementsHandler.grantAdvancement(plr, ConsciousWarden.class);
+        DFAdvancementsHandler.grantAdvancement(plr, SightedWarden.class);
     }
 }

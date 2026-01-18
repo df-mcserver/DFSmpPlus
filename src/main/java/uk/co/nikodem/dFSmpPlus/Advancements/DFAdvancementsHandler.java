@@ -47,7 +47,7 @@ public class DFAdvancementsHandler {
 
         NewWorld newWorld = new NewWorld(main);
         new UsedSpear(newWorld);
-        new UselessFlex(newWorld);
+        new GenuineDedication(newWorld);
         new IITNIG(newWorld);
         new NetheriteTech(newWorld); // TODO
 
@@ -69,23 +69,22 @@ public class DFAdvancementsHandler {
         new WhatYouEgg(main);
         new I3Rocks(main); // TODO
         new BreakTargetDummy(main);
-        new ConsciousWarden(main);
+        new SightedWarden(main);
         new IYCBTJT(main);
         new VeinTool(main);
         new FiridiumTool(main);
 
-        ObsidianItem obsidianItem = new ObsidianItem(main);
-        new ObsidianArmour(obsidianItem); // TODO
+        new ObsidianArmour(new ObsidianItem(main));
 
         CompassCraft compassCraft = new CompassCraft(main);
         new CompassUse(compassCraft); // TODO
 
-        EquipAccessory equipAccessory = new EquipAccessory(main); // TODO
-        EquipAllAccessories equipAllAccessories = new EquipAllAccessories(equipAccessory); // TODO
+        EquipAccessory equipAccessory = new EquipAccessory(main);
+        EquipAllAccessories equipAllAccessories = new EquipAllAccessories(equipAccessory);
         new ITinkeredItOut(equipAllAccessories); // TODO
 
-        MatchingAttire matchingAttire = new MatchingAttire(main); // TODO
-        new IndecisiveWardrobe(matchingAttire); // TODO
+        MatchingAttire matchingAttire = new MatchingAttire(main);
+        new IndecisiveWardrobe(matchingAttire);
 
         tab.registerAdvancements(main, advancements);
         tab.automaticallyGrantRootAdvancement();

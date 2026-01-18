@@ -10,17 +10,17 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import static uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler.ADVANCEMENT_NAMESPACE;
 
-public class ConsciousWarden extends BaseAdvancement {
-    public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "conscious-warden");
+public class GenuineDedication extends BaseAdvancement {
+    public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "useless-flex");
 
-    public ConsciousWarden(@NotNull Advancement parent) {
+    public GenuineDedication(@NotNull Advancement parent) {
         super(KEY.getKey(),
                 new AdvancementDisplay.Builder(
-                        DFMaterial.SculkChestplate.toItemStack(),
-                        "Conscious Warden")
-                        .description("Wear a full set of Sculk Armour.")
-                        .challengeFrame()
-                        .coords(1f, 15f)
+                        DFMaterial.ObsidianChisel.toItemStack(),
+                        "Genuine Dedication")
+                        .description("Craft an Obsidian Chisel.")
+                        .taskFrame()
+                        .coords(2f, 2f)
                         .showToast()
                         .announceChat()
                         .build()

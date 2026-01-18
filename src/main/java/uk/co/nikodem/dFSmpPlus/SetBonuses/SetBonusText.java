@@ -16,7 +16,11 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Armour.IndecisiveWardrobe;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Armour.MatchingAttire;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
+import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -99,6 +103,20 @@ public class SetBonusText {
             removeSetBonusText(item);
             return;
         }
+
+        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+        List<String> wornSets = data.armourSetsWithSetBonusesWorn;
+        if (!wornSets.contains(set.getName())) {
+            wornSets.add(set.getName());
+            data.armourSetsWithSetBonusesWorn = wornSets;
+            DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
+            DFAdvancementsHandler.grantAdvancement(plr, MatchingAttire.class);
+
+            if (wornSets.size() >= 3) {
+                DFAdvancementsHandler.grantAdvancement(plr, IndecisiveWardrobe.class);
+            }
+        }
+
         if (set.itemInSet(item)) {
             applySetBonusText(item, getSetBonusText(item));
             if (set.hasMeta()) {

@@ -10,6 +10,9 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Accessory.EquipAccessory;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Accessory.EquipAllAccessories;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 
 import java.util.Map;
@@ -42,6 +45,18 @@ public class AccessoryEvents {
         }
 
         info.getEquipSound().playSound(plr);
+
+        PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+        DFAdvancementsHandler.grantAdvancement(plr, EquipAccessory.class);
+        boolean hasEmptySlot = false;
+        for (ItemStack accessory : accessoryData.slots) {
+            if (accessory == null) {
+                hasEmptySlot = true;
+                break;
+            }
+        }
+
+        if (!hasEmptySlot) DFAdvancementsHandler.grantAdvancement(plr, EquipAllAccessories.class);
 
         for (AccessoryMeta meta : info.getMeta()) {
             meta.AccessoryEquipped(plr, item, info);

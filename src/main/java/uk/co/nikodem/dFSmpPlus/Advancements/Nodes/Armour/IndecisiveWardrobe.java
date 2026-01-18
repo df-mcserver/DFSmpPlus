@@ -18,7 +18,7 @@ public class IndecisiveWardrobe extends BaseAdvancement {
                 new AdvancementDisplay.Builder(
                         Material.DIAMOND_CHESTPLATE,
                         "Indecisive Wardrobe")
-                        .description("Wear 3 sets of armour with a set bonus.")
+                        .description("Wear 3 different sets of armour with a set bonus.")
                         .taskFrame()
                         .coords(2f, 10f)
                         .showToast()

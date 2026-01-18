@@ -429,7 +429,7 @@ public class DFMaterial {
     public static DFMaterial ObsidianChisel = new DFMaterialBuilder(Material.STICK, "obsidian_chisel", 1)
             .setDisplayName("Obsidian Chisel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class), new AdvancementOnCraftMeta(UselessFlex.class))
+            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class), new AdvancementOnCraftMeta(GenuineDedication.class))
             .setMaxStack(1)
             .create();
 
