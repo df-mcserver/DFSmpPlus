@@ -12,18 +12,12 @@ import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 
 public class EntityDeathEvent implements Listener {
-    private final DFSmpPlus plugin;
-
-    public EntityDeathEvent(DFSmpPlus plugin) {
-        this.plugin = plugin;
-    }
-
     @EventHandler
     public void EntityDeathEvent(org.bukkit.event.entity.EntityDeathEvent event) {
         DFMaterialEvents.ItemKillEntity(event);
         TelemetryUtils.increaseDeath(event.getEntity(), event.getDamageSource().getCausingEntity());
 
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+        Bukkit.getScheduler().runTaskLater(DFSmpPlus.getProvidingPlugin(DFSmpPlus.class), () -> {
             for (DFCustomDrops drops : DFCustomDrops.CustomDropsMap) {
                 LivingEntity entity = event.getEntity();
 

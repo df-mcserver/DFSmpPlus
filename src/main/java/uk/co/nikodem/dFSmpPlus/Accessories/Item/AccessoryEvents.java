@@ -3,7 +3,10 @@ package uk.co.nikodem.dFSmpPlus.Accessories.Item;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
@@ -76,6 +79,44 @@ public class AccessoryEvents {
                         AttributeModifier alreadyExistingModifier = extraInstance.getModifier(extraModifier.getValue().getKey());
                         if (alreadyExistingModifier != null) extraInstance.removeModifier(extraModifier.getValue().getKey());
                     }
+                }
+            }
+        }
+    }
+
+    public static void UserDamaged(EntityDamageEvent event) {
+        Entity damaged = event.getEntity();
+        if (damaged instanceof Player plr) {
+            PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+
+            for (int i = 0; i < accessoryData.slots.length; i++) {
+                if ((i + 1) >= accessoryData.slots.length && i > accessoryData.getAccessoryCapIndex()) return;
+
+                ItemStack accessoryItem = accessoryData.slots[i];
+                AccessoryInformation info = DFItemUtils.getAccessoryInformation(accessoryItem);
+                if (info == null) continue;
+
+                for (AccessoryMeta meta : info.getMeta()) {
+                    meta.UserDamaged(plr, accessoryItem, info, event);
+                }
+            }
+        }
+    }
+
+    public static void UserTargetted(EntityTargetEvent event) {
+       Entity targetted = event.getTarget();
+        if (targetted instanceof Player plr) {
+            PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+
+            for (int i = 0; i < accessoryData.slots.length; i++) {
+                if ((i + 1) >= accessoryData.slots.length && i > accessoryData.getAccessoryCapIndex()) return;
+
+                ItemStack accessoryItem = accessoryData.slots[i];
+                AccessoryInformation info = DFItemUtils.getAccessoryInformation(accessoryItem);
+                if (info == null) continue;
+
+                for (AccessoryMeta meta : info.getMeta()) {
+                    meta.UserTargetted(plr, accessoryItem, info, event);
                 }
             }
         }

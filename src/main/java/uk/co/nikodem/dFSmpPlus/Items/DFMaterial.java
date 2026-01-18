@@ -19,6 +19,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformationBuilder;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.NegatingFallDamageMeta;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.PhantomIgnoresMeta;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.Bluebellsar;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.SoItBegins;
@@ -654,6 +656,24 @@ public class DFMaterial {
             .setEquippable("floral", Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.FEET)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addMeta(new CustomDurabilityMeta(300))
+            .create();
+
+    public static DFMaterial LuckyHorseshoe = new DFMaterialBuilder(Material.STICK, "lucky_horseshoe", 1)
+            .setDisplayName("Lucky Horseshoe")
+            .addMeta(new AccessoryItemMeta(new AccessoryInformationBuilder("negating_falldamage")
+                    .addMeta(new NegatingFallDamageMeta())
+                    .setDescription("Negates all fall damage")
+                    .setEquipSound(Sounds.EquipAccessory_LuckyHorseshoe)
+                    .create()))
+            .create();
+
+    public static DFMaterial ContaminatedMembrane = new DFMaterialBuilder(Material.STICK, "contaminated_membrane", 1)
+            .setDisplayName("Contaminated Membrane")
+            .addMeta(new AccessoryItemMeta(new AccessoryInformationBuilder("phantom_ignore")
+                    .addMeta(new PhantomIgnoresMeta())
+                    .setDescription("Phantoms don't target you")
+                    .setEquipSound(Sounds.EquipAccessory_ContaminatedMembrane)
+                    .create()))
             .create();
 
     private final String namedId;

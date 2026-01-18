@@ -21,6 +21,9 @@ public class Sounds {
     public static PresetSoundData UseStoringEntityBucket = new PresetSoundData(Sound.ITEM_BUCKET_FILL_LAVA, 1F, 1F);
     public static PresetSoundData DefaultEquipAccessory = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_GENERIC, 1F, 1F);
 
+    public static PresetSoundData EquipAccessory_LuckyHorseshoe = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_GOLD, 1F, 1F);
+    public static PresetSoundData EquipAccessory_ContaminatedMembrane = new PresetSoundData(Sound.ITEM_GLOW_INK_SAC_USE, 1F, 1F);
+
     public static PresetSoundData PlaceTargetDummy = new PresetSoundData(Sound.ENTITY_ARMOR_STAND_PLACE, 1F, 1F);
     public static PresetSoundData PickupTargetDummy = new PresetSoundData(Sound.ENTITY_ARMOR_STAND_BREAK, 1F, 1F);
 }

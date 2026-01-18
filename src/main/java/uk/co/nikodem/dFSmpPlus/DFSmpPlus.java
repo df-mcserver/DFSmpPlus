@@ -91,6 +91,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new OtherCustomItemRecipes(this),
                     new CoralRecipes(this),
                     new ChiselRecipes(this),
+                    new AccessoryRecipes(this),
 
                     new MusicDiscRecipes(this),
                     new TotemRecipes(this),
@@ -114,15 +115,15 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
             advancements = new DFAdvancementsHandler(this);
 
-            playerDataHandler = new PlayerDataHandler(this);
-            globalDataHandler = new GlobalDataHandler(this);
-
-            hidingUtils = new HidingUtils(this);
-
             gson = new GsonBuilder()
                     .enableComplexMapKeySerialization()
                     .registerTypeHierarchyAdapter(ConfigurationSerializable.class, new ConfigurationSerializableAdapter())
                     .create();
+
+            playerDataHandler = new PlayerDataHandler(this);
+            globalDataHandler = new GlobalDataHandler(this);
+
+            hidingUtils = new HidingUtils(this);
 
             getLogger().info("Added "+totalSuccessfulRecipes+"/"+totalRecipes+" recipes in total!");
 
@@ -152,7 +153,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new EntityDamageByEntityEvent(),
                     new EntityDamageEvent(),
                     new EntityPickupItemEvent(),
-                    new EntityDeathEvent(this),
+                    new EntityTargetEvent(),
+                    new EntityDeathEvent(),
 
                     new BlockBreakEvent(),
                     new BlockBreakProgressUpdateEvent(),
