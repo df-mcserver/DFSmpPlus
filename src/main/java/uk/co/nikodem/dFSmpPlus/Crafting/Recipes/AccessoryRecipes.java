@@ -51,6 +51,29 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setIngredient('N', new RecipeChoice.ExactChoice(new ItemStack(Material.IRON_NUGGET)))
         );
 
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.VeinMinerEssence)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "veinessence")
+                        .shape("AAA", "XAP", "AAA")
+                        .setIngredient('A', Material.AMETHYST_SHARD)
+                        .setIngredient('P', new RecipeChoice.ExactChoice(DFMaterial.VeinPickaxe.toItemStack()))
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.VeinAxe.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.FiridiumEssence)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "autosmeltessence")
+                        .shape("NAN", "NNN", "PNS")
+                        .setIngredient('N', new RecipeChoice.ExactChoice(DFMaterial.FiridiumNugget.toItemStack()))
+                        .setIngredient('P', new RecipeChoice.ExactChoice(DFMaterial.FiridiumPickaxe.toItemStack()))
+                        .setIngredient('A', new RecipeChoice.ExactChoice(DFMaterial.FiridiumAxe.toItemStack()))
+                        .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.FiridiumShovel.toItemStack()))
+        );
+
         return recipesToAdd;
     }
 
