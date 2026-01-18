@@ -10,11 +10,13 @@ import net.kyori.adventure.util.TriState;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
+import org.bukkit.util.Vector;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.IITNIG;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
@@ -26,6 +28,7 @@ import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import java.util.Collections;
+import java.util.List;
 
 public class ChiselMeta implements DFMaterialMeta {
     private final float miningSpeed;
@@ -43,6 +46,7 @@ public class ChiselMeta implements DFMaterialMeta {
         for (ChiselBlockData data : ChiselBlockData.ChiselBlockDataIndex) {
             if (data.getBlockMaterial() == block.getType()) {
                 event.setCancelled(true);
+                event.setDropItems(false);
                 ItemStack drop = data.getDrop();
                 boolean autosmelt = DFItemUtils.containsMeta(material, AutoSmeltingMeta.class); // TODO: accessories
 
@@ -57,8 +61,10 @@ public class ChiselMeta implements DFMaterialMeta {
                 }
 
                 if (DFItemUtils.isLevelOrAbove(tool, data.getMinimumToolLevel())) {
-                    if (data.getReplacingMaterial() != Material.AIR &&
-                            block.getLocation().add(0, 1, 0).getBlock().getType() == Material.AIR) loc.add(0, 0.5, 0);
+                    if (data.getBlockMaterial() != Material.AIR) {
+                        BlockFace face = getBlockFace(plr);
+                        loc.add(face.getDirection().divide(new Vector(1.3, 1.3, 1.3)));
+                    }
                     block.getWorld().dropItemNaturally(loc, drop);
                     block.setType(data.getReplacingMaterial());
                 }
@@ -99,5 +105,15 @@ public class ChiselMeta implements DFMaterialMeta {
                 ))
             .defaultMiningSpeed(1f).build());
 //        tool.setData(DataComponentTypes.TOOL, Tool.tool().defaultMiningSpeed(miningSpeed * data.getSpeedMultiplier()).build());
+    }
+
+    // https://www.spigotmc.org/threads/getting-the-blockface-of-a-targeted-block.319181/
+    // tysm
+    public BlockFace getBlockFace(Player player) {
+        List<Block> lastTwoTargetBlocks = player.getLastTwoTargetBlocks(null, 10);
+        if (lastTwoTargetBlocks.size() != 2 || !lastTwoTargetBlocks.get(1).getType().isOccluding()) return null;
+        Block targetBlock = lastTwoTargetBlocks.get(1);
+        Block adjacentBlock = lastTwoTargetBlocks.get(0);
+        return targetBlock.getFace(adjacentBlock);
     }
 }

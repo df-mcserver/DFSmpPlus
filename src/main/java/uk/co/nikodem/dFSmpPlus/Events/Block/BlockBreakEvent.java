@@ -8,7 +8,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
 public class BlockBreakEvent implements Listener {
     @EventHandler
     public void BlockBreakEvent(org.bukkit.event.block.BlockBreakEvent event) {
-        CustomDrops.onBlockBreak(event);
         DFMaterialEvents.ItemMine(event);
+        CustomDrops.onBlockBreak(event);
     }
 }
