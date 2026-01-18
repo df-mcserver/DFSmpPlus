@@ -19,8 +19,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformationBuilder;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.Test2Meta;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.TestMeta;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.Bluebellsar;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.SoItBegins;
@@ -656,32 +654,6 @@ public class DFMaterial {
             .setEquippable("floral", Sound.ITEM_ARMOR_EQUIP_LEATHER, EquipmentSlot.FEET)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.floralBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addMeta(new CustomDurabilityMeta(300))
-            .create();
-
-    public static DFMaterial TestAccessory = new DFMaterialBuilder(Material.STICK, "test_accessory", 1)
-            .setDisplayName("test")
-            .setMaxStack(1)
-            .overrideCustomModel(NamespacedKey.minecraft("creaking_heart"))
-            .addMeta(new AccessoryItemMeta(
-                    new AccessoryInformationBuilder("test")
-                            .setDescription("test")
-                            .setArmourPoints(5f)
-                            .addMeta(new TestMeta(), new Test2Meta())
-                            .create()
-            ))
-            .create();
-
-    public static DFMaterial TestAccessory2 = new DFMaterialBuilder(Material.STICK, "test_accessory_2", 1)
-            .setDisplayName("test_2")
-            .setMaxStack(1)
-            .overrideCustomModel(NamespacedKey.minecraft("ink_sac"))
-            .addMeta(new AccessoryItemMeta(
-                    new AccessoryInformationBuilder("test")
-                            .setDescription("i am a second test accessory")
-                            .setArmourPoints(10f)
-                            .addMeta(new Test2Meta())
-                            .create()
-            ))
             .create();
 
     private final String namedId;
