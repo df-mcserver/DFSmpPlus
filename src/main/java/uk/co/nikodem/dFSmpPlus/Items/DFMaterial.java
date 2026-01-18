@@ -19,8 +19,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformationBuilder;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.NegatingFallDamageMeta;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.PhantomIgnoresMeta;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.Bluebellsar;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.SoItBegins;
@@ -76,13 +75,13 @@ public class DFMaterial {
     public static DFMaterial VeinPickaxe = new DFMaterialBuilder(Material.IRON_PICKAXE, "vein_pickaxe", 1)
             .setDisplayName("<light_purple>Vein Miner's Pickaxe")
             .addLore("<aqua>A powerful pickaxe from a well-respected miner.")
-            .addMeta(new VeinMiningMeta(VeinMineable.VeinOres), new AdvancementOnCraftMeta(VeinTool.class))
+            .addMeta(new VeinminingItemMeta(VeinMineable.VeinOres), new AdvancementOnCraftMeta(VeinTool.class))
             .create();
 
     public static DFMaterial VeinAxe = new DFMaterialBuilder(Material.IRON_AXE, "vein_axe", 1)
             .setDisplayName("<light_purple>Vein Miner's Axe")
             .addLore("<aqua>A powerful axe from a well-respected miner.")
-            .addMeta(new VeinMiningMeta(VeinMineable.VeinLogs), new AdvancementOnCraftMeta(VeinTool.class))
+            .addMeta(new VeinminingItemMeta(VeinMineable.VeinLogs), new AdvancementOnCraftMeta(VeinTool.class))
             .create();
 
     public static DFMaterial FiridiumSword = new DFMaterialBuilder(Material.IRON_SWORD, "firidium_sword", 1)
@@ -94,19 +93,19 @@ public class DFMaterial {
     public static DFMaterial FiridiumPickaxe = new DFMaterialBuilder(Material.IRON_PICKAXE, "firidium_pickaxe", 1)
             .setDisplayName("<red>Firidium Pickaxe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AutoSmeltingMeta(AutoSmeltable.AutosmeltablePickaxe), new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltablePickaxe), new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumAxe = new DFMaterialBuilder(Material.IRON_AXE, "firidium_axe", 1)
             .setDisplayName("<red>Firidium Axe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AutoSmeltingMeta(AutoSmeltable.AutosmeltableAxe), new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltableAxe), new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumShovel = new DFMaterialBuilder(Material.IRON_SHOVEL, "firidium_shovel", 1)
             .setDisplayName("<red>Firidium Shovel")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AutoSmeltingMeta(AutoSmeltable.AutosmeltableShovel), new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltableShovel), new AdvancementOnCraftMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumHoe = new DFMaterialBuilder(Material.IRON_HOE, "firidium_hoe", 1)
@@ -413,7 +412,7 @@ public class DFMaterial {
     public static DFMaterial FiridiumChisel = new DFMaterialBuilder(Material.STICK, "firidium_chisel", 1)
             .setDisplayName("Firidium Chisel")
             .addEnchantment(Enchantment.FIRE_ASPECT, 1)
-            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50), new AutoSmeltingMeta(), new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50), new AutosmeltingItemMeta(), new AdvancementOnCraftMeta(FiridiumTool.class))
             .setMaxStack(1)
             .create();
 
@@ -669,6 +668,7 @@ public class DFMaterial {
 
     public static DFMaterial LuckyHorseshoe = new DFMaterialBuilder(Material.STICK, "lucky_horseshoe", 1)
             .setDisplayName("Lucky Horseshoe")
+            .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformationBuilder("negating_falldamage")
                     .addMeta(new NegatingFallDamageMeta())
                     .setDescription("Negates all fall damage")
@@ -678,10 +678,42 @@ public class DFMaterial {
 
     public static DFMaterial ContaminatedMembrane = new DFMaterialBuilder(Material.STICK, "contaminated_membrane", 1)
             .setDisplayName("Contaminated Membrane")
+            .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformationBuilder("phantom_ignore")
                     .addMeta(new PhantomIgnoresMeta())
                     .setDescription("Phantoms don't target you")
                     .setEquipSound(Sounds.EquipAccessory_ContaminatedMembrane)
+                    .create()))
+            .create();
+
+    public static DFMaterial CobaltShield = new DFMaterialBuilder(Material.STICK, "cobalt_shield", 1)
+            .setDisplayName("Cobalt Shield")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformationBuilder("shield")
+                    .setArmourPoints(5D)
+                    .setDescription("+5 Knockback Resistance")
+                    .setEquipSound(Sounds.EquipAccessory_Shield)
+                    .addMeta(new KnockbackResistenceMeta())
+                    .create()))
+            .create();
+
+    public static DFMaterial VeinMinerEssence = new DFMaterialBuilder(Material.STICK, "vein_essence", 1)
+            .setDisplayName("Vein Miner's essence")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformationBuilder("essence")
+                    .setDescription("Vein mines any smeltable block when mined whilst sneaking")
+                    .setEquipSound(Sounds.EquipAccessory_Essence)
+                    .addMeta(new VeinminingAccessoryMeta(VeinMineable.VeinLogs, VeinMineable.VeinOres))
+                    .create()))
+            .create();
+
+    public static DFMaterial FiridiumEssence = new DFMaterialBuilder(Material.STICK, "autosmelt_essence", 1)
+            .setDisplayName("Firidium essence")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformationBuilder("essence")
+                    .setDescription("Autosmelts any smeltable block when mined whilst sneaking")
+                    .setEquipSound(Sounds.EquipAccessory_Essence)
+                    .addMeta(new AutosmeltAccessoryMeta(AutoSmeltable.AutosmeltableAxe, AutoSmeltable.AutosmeltablePickaxe, AutoSmeltable.AutosmeltableShovel))
                     .create()))
             .create();
 

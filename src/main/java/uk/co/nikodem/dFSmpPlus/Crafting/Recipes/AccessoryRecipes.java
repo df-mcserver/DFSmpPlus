@@ -1,11 +1,12 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.Recipes;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
@@ -37,6 +38,17 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setIngredient('M', Material.PHANTOM_MEMBRANE)
                         .setIngredient('P', Material.POISONOUS_POTATO)
                         .setIngredient('C', Material.FIRE_CHARGE)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.CobaltShield)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "cobaltshield")
+                        .shape("NLN", "LGL", " N ")
+                        .setIngredient('L', Material.LAPIS_LAZULI)
+                        .setIngredient('G', Material.GOLD_INGOT)
+                        .setIngredient('N', new RecipeChoice.ExactChoice(new ItemStack(Material.IRON_NUGGET)))
         );
 
         return recipesToAdd;

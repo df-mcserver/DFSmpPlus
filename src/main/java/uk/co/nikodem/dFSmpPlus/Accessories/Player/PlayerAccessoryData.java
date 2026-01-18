@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Accessories.Player;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryMeta;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 
 public class PlayerAccessoryData {
@@ -22,6 +23,18 @@ public class PlayerAccessoryData {
 
     public boolean isAccessoryEquipped(AccessoryInformation info) {
         return isAccessoryEquipped(info.getNamespacedKey());
+    }
+
+    public boolean hasAccessoryWithMetaEquipped(Class<? extends AccessoryMeta> metaClass) {
+        for (ItemStack item : slots) {
+            AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
+            if (info == null) continue;
+
+            for (AccessoryMeta accessoryMeta : info.getMeta()) {
+                if (accessoryMeta.getClass() == metaClass) return true;
+            }
+        }
+        return false;
     }
 
     public int getAccessoryCapIndex() {

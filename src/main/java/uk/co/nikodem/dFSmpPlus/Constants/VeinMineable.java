@@ -2,8 +2,12 @@ package uk.co.nikodem.dFSmpPlus.Constants;
 
 import org.bukkit.Material;
 
+import java.util.List;
+
 public class VeinMineable {
-    public final static Material[] VeinOres = new Material[] {
+    public static int MAX_BLOCK_CHAIN = 64;
+
+    public final static List<Material> VeinOres = List.of(
             Material.COAL_ORE,
             Material.DEEPSLATE_COAL_ORE,
             Material.IRON_ORE,
@@ -22,10 +26,10 @@ public class VeinMineable {
             Material.DEEPSLATE_DIAMOND_ORE,
             Material.NETHER_GOLD_ORE,
             Material.NETHER_QUARTZ_ORE,
-            Material.AMETHYST_BLOCK,
-    };
+            Material.AMETHYST_BLOCK
+    );
 
-    public final static Material[] VeinLogs = new Material[] {
+    public final static List<Material> VeinLogs = List.of(
             Material.ACACIA_LOG,
             Material.BIRCH_LOG,
             Material.CHERRY_LOG,
@@ -46,7 +50,7 @@ public class VeinMineable {
             Material.CRIMSON_STEM,
             Material.STRIPPED_WARPED_STEM,
             Material.STRIPPED_CRIMSON_STEM
-    };
+    );
 
     public static boolean isVeinOre(Material material) {
         for (Material potential : VeinOres) {

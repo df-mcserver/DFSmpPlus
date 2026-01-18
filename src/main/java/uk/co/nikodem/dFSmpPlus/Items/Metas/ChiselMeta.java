@@ -48,7 +48,7 @@ public class ChiselMeta implements DFMaterialMeta {
                 event.setCancelled(true);
                 event.setDropItems(false);
                 ItemStack drop = data.getDrop();
-                boolean autosmelt = DFItemUtils.containsMeta(material, AutoSmeltingMeta.class); // TODO: accessories
+                boolean autosmelt = DFItemUtils.containsMeta(material, AutosmeltingItemMeta.class); // TODO: accessories
 
                 if (block.getType().equals(Material.BOOKSHELF)) DFAdvancementsHandler.grantAdvancement(plr, IITNIG.class);
 

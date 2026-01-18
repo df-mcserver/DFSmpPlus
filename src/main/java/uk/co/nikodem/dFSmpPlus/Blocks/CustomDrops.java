@@ -6,9 +6,6 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
-import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
-import uk.co.nikodem.dFSmpPlus.Items.Metas.AutoSmeltingMeta;
 
 public class CustomDrops {
     public static void onBlockBreak(BlockBreakEvent event) {

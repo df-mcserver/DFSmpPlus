@@ -3,9 +3,12 @@ package uk.co.nikodem.dFSmpPlus.Items.Metas.VanillaItems;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
@@ -30,10 +33,8 @@ public class FireChargeMeta implements DFMaterialMeta {
         }
         if (plr.hasCooldown(item.getType())) shoot = false;
         if (shoot) {
-            Location loc = plr.getEyeLocation();
             Vector direction = plr.getLocation().getDirection();
-            Location infront = loc.add(direction);
-            plr.getWorld().spawnEntity(infront, EntityType.FIREBALL);
+            plr.launchProjectile(Fireball.class, direction);
             item.setAmount(item.getAmount() - 1);
             plr.setCooldown(item.getType(), 20);
             event.setCancelled(true);

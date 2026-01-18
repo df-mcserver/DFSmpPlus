@@ -5,6 +5,7 @@ import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.inventory.ItemStack;
@@ -133,6 +134,23 @@ public class AccessoryEvents {
                 for (AccessoryMeta meta : info.getMeta()) {
                     meta.UserTargetted(plr, accessoryItem, info, event);
                 }
+            }
+        }
+    }
+
+    public static void BlockMined(BlockBreakEvent event) {
+        Player plr = event.getPlayer();
+        PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+
+        for (int i = 0; i < accessoryData.slots.length; i++) {
+            if ((i + 1) >= accessoryData.slots.length && i > accessoryData.getAccessoryCapIndex()) return;
+
+            ItemStack accessoryItem = accessoryData.slots[i];
+            AccessoryInformation info = DFItemUtils.getAccessoryInformation(accessoryItem);
+            if (info == null) continue;
+
+            for (AccessoryMeta meta : info.getMeta()) {
+                meta.BlockMined(plr, accessoryItem, info, event);
             }
         }
     }
