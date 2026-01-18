@@ -175,46 +175,55 @@ public class DFMaterial {
 
     public static DFMaterial CopperSword = new DFMaterialBuilder(Material.IRON_SWORD, "copper_sword", 1)
             .setDisplayName("Copper Sword")
+            .addMeta(new CustomDurabilityMeta(225))
             .create();
 
     public static DFMaterial CopperAxe = new DFMaterialBuilder(Material.IRON_AXE, "copper_axe", 1)
             .setDisplayName("Copper Axe")
+            .addMeta(new CustomDurabilityMeta(225))
             .create();
 
     public static DFMaterial CopperPickaxe = new DFMaterialBuilder(Material.IRON_PICKAXE, "copper_pickaxe", 1)
             .setDisplayName("Copper Pickaxe")
+            .addMeta(new CustomDurabilityMeta(225))
             .create();
 
     public static DFMaterial CopperShovel = new DFMaterialBuilder(Material.IRON_SHOVEL, "copper_shovel", 1)
             .setDisplayName("Copper Shovel")
+            .addMeta(new CustomDurabilityMeta(225))
             .create();
 
     public static DFMaterial CopperHoe = new DFMaterialBuilder(Material.IRON_HOE, "copper_hoe", 1)
             .setDisplayName("Copper Hoe")
+            .addMeta(new CustomDurabilityMeta(225))
             .create();
 
     public static DFMaterial CopperHelmet = new DFMaterialBuilder(Material.IRON_HELMET, "copper_helmet", 1)
             .setDisplayName("Copper Helmet")
             .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.HEAD)
             .addLore("<gray>(Equivalent to Iron Helmet)")
+            .addMeta(new CustomDurabilityMeta(145))
             .create();
 
     public static DFMaterial CopperChestplate = new DFMaterialBuilder(Material.IRON_CHESTPLATE, "copper_chestplate", 1)
             .setDisplayName("Copper Chestplate")
             .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.CHEST)
             .addLore("<gray>(Equivalent to Iron Chestplate)")
+            .addMeta(new CustomDurabilityMeta(220))
             .create();
 
     public static DFMaterial CopperLeggings = new DFMaterialBuilder(Material.IRON_LEGGINGS, "copper_leggings", 1)
             .setDisplayName("Copper Leggings")
             .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.LEGS)
             .addLore("<gray>(Equivalent to Iron Leggings)")
+            .addMeta(new CustomDurabilityMeta(200))
             .create();
 
     public static DFMaterial CopperBoots = new DFMaterialBuilder(Material.IRON_BOOTS, "copper_boots", 1)
             .setDisplayName("Copper Boots")
             .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.FEET)
             .addLore("<gray>(Equivalent to Iron Boots)")
+            .addMeta(new CustomDurabilityMeta(175))
             .create();
 //
 //    public static DFMaterial Tanzanite = new DFMaterialBuilder(Material.FIREWORK_STAR, "tanzanite", 1)
@@ -391,7 +400,7 @@ public class DFMaterial {
 
     public static DFMaterial CopperChisel = new DFMaterialBuilder(Material.STICK, "copper_chisel", 1)
             .setDisplayName("Copper Chisel")
-            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50))
+            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(40))
             .setMaxStack(1)
             .create();
 
