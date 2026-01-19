@@ -85,6 +85,17 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .addIngredient(Material.CACTUS)
                         .addIngredient(Material.STRING)
         );
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.HitmanTechniquesBook)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "htbook")
+                        .addIngredient(Material.BOOK)
+                        .addIngredient(Material.TOTEM_OF_UNDYING)
+                        .addIngredient(Material.TNT)
+                        .addIngredient(Material.SHIELD)
+                        .addIngredient(Material.SPECTRAL_ARROW)
+        );
 
         return recipesToAdd;
     }
