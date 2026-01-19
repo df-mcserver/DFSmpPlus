@@ -26,6 +26,6 @@ public class AutosmeltingItemMeta implements DFMaterialMeta {
         if (!event.isDropItems()) return;
         if (!DFItemUtils.hasFireAspect(tool)) return; // if you remove fireaspect, autosmelting no work
 
-        AutosmeltingOnBlockbreak.doAutosmelt(event, list);
+        if (list.containsKey(event.getBlock().getType())) AutosmeltingOnBlockbreak.doAutosmelt(event, list);
     }
 }
