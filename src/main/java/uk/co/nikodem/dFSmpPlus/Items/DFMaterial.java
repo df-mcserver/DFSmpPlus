@@ -722,7 +722,7 @@ public class DFMaterial {
             .setDisplayName("Boots of Swiftness")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("boots_of_swiftness")
-                    .setDescription("+10% Speed\n+10% Speed whilst sneaking")
+                    .setDescription("+5% Speed")
                     .setEquipSound(Sounds.EquipAccessory_Boots)
                     .addMeta(new SwiftnessAccessoryMeta())
                     .create()))
