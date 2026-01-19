@@ -7,6 +7,7 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
@@ -72,6 +73,17 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setIngredient('P', new RecipeChoice.ExactChoice(DFMaterial.FiridiumPickaxe.toItemStack()))
                         .setIngredient('A', new RecipeChoice.ExactChoice(DFMaterial.FiridiumAxe.toItemStack()))
                         .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.FiridiumShovel.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.BootsOfSwiftness)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "hermesboots")
+                        .addIngredient(Material.LEATHER_BOOTS)
+                        .addIngredient(Material.FEATHER)
+                        .addIngredient(Material.CACTUS)
+                        .addIngredient(Material.STRING)
         );
 
         return recipesToAdd;

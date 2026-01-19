@@ -9,7 +9,8 @@ public class Keys {
     public static NamespacedKey dfmaterialVersion = createDefaultKey("dfmaterial_version");
 
     public static NamespacedKey multiconfigOption = createDefaultKey("multichoice");
-    public static NamespacedKey cobaltShieldKb = createDefaultKey("cobalt_shield_kb");
+    public static NamespacedKey cobaltShieldKb = createAccessoryKey("cobalt_shield_kb");
+    public static NamespacedKey hermesBootsSpeed = createAccessoryKey("hermes_boots_speed");
 
     public static NamespacedKey vampireSwordStage = createDefaultKey("vampire_sword_stage");
     public static NamespacedKey lifecrystal = createDefaultKey("lifecrystal");

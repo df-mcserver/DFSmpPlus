@@ -717,6 +717,16 @@ public class DFMaterial {
                     .create()))
             .create();
 
+    public static DFMaterial BootsOfSwiftness = new DFMaterialBuilder(Material.STICK, "hermesboots", 1)
+            .setDisplayName("Boots of Swiftness")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformationBuilder("boots_of_swiftness")
+                    .setDescription("+10% Speed\n+10% Speed whilst sneaking")
+                    .setEquipSound(Sounds.EquipAccessory_Boots)
+                    .addMeta(new SwiftnessAccessoryMeta())
+                    .create()))
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

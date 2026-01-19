@@ -4,10 +4,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryMeta;
-import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
 import uk.co.nikodem.dFSmpPlus.Blocks.BlockManipulation.AutosmeltingOnBlockbreak;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -44,7 +42,10 @@ public class AutosmeltAccessoryMeta implements AccessoryMeta {
                     }
                 }
             }
-            if (!isVeinMining) AutosmeltingOnBlockbreak.doAutosmelt(event, this.allAutosmeltLists);
+            if (!isVeinMining) {
+                Material output = this.allAutosmeltLists.get(event.getBlock().getType());
+                if (output != null) AutosmeltingOnBlockbreak.doAutosmelt(event, this.allAutosmeltLists);
+            }
         }
     };
 }
