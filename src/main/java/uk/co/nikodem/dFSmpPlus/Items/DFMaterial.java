@@ -337,6 +337,7 @@ public class DFMaterial {
 
     public static DFMaterial WarpedWart = new DFMaterialBuilder(Material.NETHER_WART, "warped_wart", 1)
             .setDisplayName("Warped Wart")
+            .addMeta(new PreventPlacingMeta())
             .create();
 
     public static DFMaterial SculkHelmet = new DFMaterialBuilder(Material.DIAMOND_HELMET, "sculk_helmet", 1)
@@ -724,6 +725,16 @@ public class DFMaterial {
                     .setDescription("+10% Speed\n+10% Speed whilst sneaking")
                     .setEquipSound(Sounds.EquipAccessory_Boots)
                     .addMeta(new SwiftnessAccessoryMeta())
+                    .create()))
+            .create();
+
+    public static DFMaterial FlowerBoots = new DFMaterialBuilder(Material.STICK, "flowerboots", 1)
+            .setDisplayName("Flower Boots")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformationBuilder("flower_boots")
+                    .setDescription("Auto plants seeds when walking over farmland with seeds in hand\nPrevents stepping over crops")
+                    .setEquipSound(Sounds.EquipAccessory_Boots)
+                    .addMeta(new FlowerBootsMeta())
                     .create()))
             .create();
 
