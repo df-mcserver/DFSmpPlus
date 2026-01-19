@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
@@ -85,6 +86,17 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .addIngredient(Material.CACTUS)
                         .addIngredient(Material.STRING)
         );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.FlowerBoots)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "flowerboots")
+                        .shape("OOO", "OXO", "OOO")
+                        .setIngredient('X', Material.LEATHER_BOOTS)
+                        .setIngredient('O', new RecipeChoice.ExactChoice(DFMaterial.FlowerPowder.toItemStack()))
+        );
+
         recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.HitmanTechniquesBook)

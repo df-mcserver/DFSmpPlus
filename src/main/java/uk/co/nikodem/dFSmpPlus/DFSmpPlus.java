@@ -187,6 +187,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PlayerChannelEvent(),
                     new PlayerQuitEvent(),
                     new PlayerRespawnEvent(),
+                    new PlayerMoveEvent(),
 
                     new LootGenerateEvent()
             );
