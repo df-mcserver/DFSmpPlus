@@ -4,6 +4,7 @@ import org.bukkit.entity.Ageable;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Entities.EnderDragon;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
@@ -15,6 +16,7 @@ public class EntityDamageByEntityEvent implements Listener {
     @EventHandler
     public void EntityDamageByEntityEvent(org.bukkit.event.entity.EntityDamageByEntityEvent event) {
         EnderDragon.onHitByEntity(event);
+        AccessoryEvents.UserAttacking(event);
         DFMaterialEvents.ItemAttack(event);
         DFArmourSetEvents.PlayerAttack(event);
         CombatEvents.onAttack(event);

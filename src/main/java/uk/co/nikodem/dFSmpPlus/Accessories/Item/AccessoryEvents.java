@@ -6,8 +6,7 @@ import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
@@ -114,6 +113,44 @@ public class AccessoryEvents {
 
                 for (AccessoryMeta meta : info.getMeta()) {
                     meta.UserDamaged(plr, accessoryItem, info, event);
+                }
+            }
+        }
+    }
+
+    public static void UserAttacking(EntityDamageByEntityEvent event) {
+        Entity causer = event.getDamager();
+        if (causer instanceof Player plr) {
+            PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+
+            for (int i = 0; i < accessoryData.slots.length; i++) {
+                if ((i + 1) >= accessoryData.slots.length && i > accessoryData.getAccessoryCapIndex()) return;
+
+                ItemStack accessoryItem = accessoryData.slots[i];
+                AccessoryInformation info = DFItemUtils.getAccessoryInformation(accessoryItem);
+                if (info == null) continue;
+
+                for (AccessoryMeta meta : info.getMeta()) {
+                    meta.UserAttacking(plr, accessoryItem, info, event);
+                }
+            }
+        }
+    }
+
+    public static void UserKilledPlayer(PlayerDeathEvent event) {
+        Entity causer = event.getDamageSource().getCausingEntity();
+        if (causer instanceof Player plr) {
+            PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+
+            for (int i = 0; i < accessoryData.slots.length; i++) {
+                if ((i + 1) >= accessoryData.slots.length && i > accessoryData.getAccessoryCapIndex()) return;
+
+                ItemStack accessoryItem = accessoryData.slots[i];
+                AccessoryInformation info = DFItemUtils.getAccessoryInformation(accessoryItem);
+                if (info == null) continue;
+
+                for (AccessoryMeta meta : info.getMeta()) {
+                    meta.UserKilledPlayer(plr, accessoryItem, info, event);
                 }
             }
         }

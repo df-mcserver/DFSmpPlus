@@ -727,6 +727,16 @@ public class DFMaterial {
                     .create()))
             .create();
 
+    public static DFMaterial HitmanTechniquesBook = new DFMaterialBuilder(Material.STICK, "htbook", 1)
+            .setDisplayName("Hitman Techniques Book")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformationBuilder("htbook")
+                    .setDescription("-5% Damage\nSilences players for 5 minutes after death")
+                    .setEquipSound(Sounds.EquipAccessory_Book)
+                    .addMeta(new HitmanTechniquesMeta())
+                    .create()))
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

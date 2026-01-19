@@ -173,6 +173,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PrepareSmithingEvent(),
                     new PrepareAnvilEvent(),
 
+                    new AsyncChatEvent(),
                     new PlayerAttemptPickupItemEvent(),
                     new PlayerBucketFillEvent(),
                     new PlayerBucketEmptyEvent(),
