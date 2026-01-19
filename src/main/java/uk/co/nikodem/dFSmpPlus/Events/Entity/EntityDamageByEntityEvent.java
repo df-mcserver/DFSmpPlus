@@ -19,7 +19,7 @@ public class EntityDamageByEntityEvent implements Listener {
         DFArmourSetEvents.PlayerAttack(event);
         CombatEvents.onAttack(event);
 
-        if (event.getDamager().getType() == EntityType.ZOMBIE && event.getDamager() instanceof Ageable entity) {
+        if (event.getDamager() instanceof Ageable entity) {
             if (!entity.isAdult()) event.setDamage(event.getDamage() * 0.5);
         } else if (event.getEntity().getType() == EntityType.ARMOR_STAND) {
             if (event.getEntity().getPersistentDataContainer().has(Keys.targetDummy))
