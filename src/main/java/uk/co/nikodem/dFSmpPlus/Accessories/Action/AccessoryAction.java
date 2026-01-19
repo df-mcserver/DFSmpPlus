@@ -26,4 +26,29 @@ public class AccessoryAction {
     public void doOnClick(Player plr, ItemStack accessoryItem, AccessoryInformation info, InventoryClickEvent event) {
         onClickAction.onClick(plr, accessoryItem, info, event);
     }
+
+    public static class Builder {
+        private ChooseItemStackIcon chooseItemStackIcon;
+        private OnClickAction onClickAction;
+
+        public Builder setItemStackIcon(ItemStack item) {
+            this.chooseItemStackIcon = (a, b, c) -> item;
+            return this;
+        }
+
+        public Builder setChooseItemStackicon(ChooseItemStackIcon chooseItemStackicon) {
+            this.chooseItemStackIcon = chooseItemStackicon;
+            return this;
+        }
+
+        public Builder setOnClickAction(OnClickAction onClickAction) {
+            this.onClickAction = onClickAction;
+            return this;
+        }
+
+        public AccessoryAction create() {
+            return new AccessoryAction(chooseItemStackIcon, onClickAction);
+        }
+    }
+
 }

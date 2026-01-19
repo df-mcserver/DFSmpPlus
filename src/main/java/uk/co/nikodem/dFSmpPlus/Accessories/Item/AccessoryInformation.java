@@ -3,7 +3,10 @@ package uk.co.nikodem.dFSmpPlus.Accessories.Item;
 import org.bukkit.NamespacedKey;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.PresetSoundData;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AccessoryInformation {
@@ -50,5 +53,47 @@ public class AccessoryInformation {
 
     public PresetSoundData getEquipSound() {
         return this.equipSound;
+    }
+
+    public static class Builder {
+        private final String namedId;
+        private double armourPoints = 0f;
+        private String accessoryDescription = "Unknown effect";
+        private final List<AccessoryMeta> metas = new ArrayList<>();
+        private PresetSoundData equipSound = Sounds.DefaultEquipAccessory;
+
+        public Builder(String namedId) {
+            this.namedId = namedId;
+        }
+
+        public Builder setDescription(String description) {
+            this.accessoryDescription = description;
+            return this;
+        }
+
+        public Builder setArmourPoints(double armourPoints) {
+            this.armourPoints = armourPoints;
+            return this;
+        }
+
+        public Builder addMeta(AccessoryMeta... metas) {
+            this.metas.addAll(Arrays.asList(metas));
+            return this;
+        }
+
+        public Builder setEquipSound(PresetSoundData sound) {
+            this.equipSound = sound;
+            return this;
+        }
+
+        public AccessoryInformation create() {
+            return new AccessoryInformation(
+                    namedId,
+                    metas,
+                    armourPoints,
+                    accessoryDescription,
+                    equipSound
+            );
+        }
     }
 }

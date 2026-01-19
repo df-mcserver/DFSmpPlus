@@ -10,6 +10,7 @@ import uk.co.nikodem.dFSmpPlus.SetBonuses.Metas.*;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class DFArmourSet {
     public final static List<DFArmourSet> DFArmourSetIndex = new ArrayList<>();
 
     // Vanilla armour sets
-    public static final DFArmourSet Native_Leather = new DFArmourSetBuilder("Leather")
+    public static final DFArmourSet Native_Leather = new Builder("Leather")
             .setHelmet(Material.LEATHER_HELMET)
             .setChestplate(Material.LEATHER_CHESTPLATE)
             .setLeggings(Material.LEATHER_LEGGINGS)
@@ -27,7 +28,7 @@ public class DFArmourSet {
             .addMeta(new HungerlessMeta())
             .create();
 
-    public static final DFArmourSet Native_Chainmail = new DFArmourSetBuilder("Chainmail")
+    public static final DFArmourSet Native_Chainmail = new Builder("Chainmail")
             .setHelmet(Material.CHAINMAIL_HELMET)
             .setChestplate(Material.CHAINMAIL_CHESTPLATE)
             .setLeggings(Material.CHAINMAIL_LEGGINGS)
@@ -36,14 +37,14 @@ public class DFArmourSet {
             .addMeta(new FastMineMeta())
             .create();
 
-    public static final DFArmourSet Native_Iron = new DFArmourSetBuilder("Iron")
+    public static final DFArmourSet Native_Iron = new Builder("Iron")
             .setHelmet(Material.IRON_HELMET)
             .setChestplate(Material.IRON_CHESTPLATE)
             .setLeggings(Material.IRON_LEGGINGS)
             .setBoots(Material.IRON_BOOTS)
             .create();
 
-    public static final DFArmourSet Native_Golden = new DFArmourSetBuilder("Golden")
+    public static final DFArmourSet Native_Golden = new Builder("Golden")
             .setHelmet(Material.GOLDEN_HELMET)
             .setChestplate(Material.GOLDEN_CHESTPLATE)
             .setLeggings(Material.GOLDEN_LEGGINGS)
@@ -52,7 +53,7 @@ public class DFArmourSet {
             .addMeta(new SpeedMeta())
             .create();
 
-    public static final DFArmourSet Native_Diamond = new DFArmourSetBuilder("Diamond")
+    public static final DFArmourSet Native_Diamond = new Builder("Diamond")
             .setHelmet(Material.DIAMOND_HELMET)
             .setChestplate(Material.DIAMOND_CHESTPLATE)
             .setLeggings(Material.DIAMOND_LEGGINGS)
@@ -61,7 +62,7 @@ public class DFArmourSet {
             .addMeta(new ConduitMeta())
             .create();
 
-    public static final DFArmourSet Native_Netherite = new DFArmourSetBuilder("Netherite")
+    public static final DFArmourSet Native_Netherite = new Builder("Netherite")
             .setHelmet(Material.NETHERITE_HELMET)
             .setChestplate(Material.NETHERITE_CHESTPLATE)
             .setLeggings(Material.NETHERITE_LEGGINGS)
@@ -71,7 +72,7 @@ public class DFArmourSet {
             .create();
 
     // Custom armour sets
-    public static final DFArmourSet Calcite = new DFArmourSetBuilder("Calcite")
+    public static final DFArmourSet Calcite = new Builder("Calcite")
             .setBase(DFArmourSet.Native_Chainmail)
             .setHelmet(DFMaterial.CalciteHelmet)
             .setChestplate(DFMaterial.CalciteChestplate)
@@ -81,7 +82,7 @@ public class DFArmourSet {
             .addMeta(new CalciteMeta())
             .create();
 
-    public static final DFArmourSet Copper = new DFArmourSetBuilder("Copper")
+    public static final DFArmourSet Copper = new Builder("Copper")
             .setBase(DFArmourSet.Native_Iron)
             .setHelmet(DFMaterial.CopperHelmet)
             .setChestplate(DFMaterial.CopperChestplate)
@@ -91,7 +92,7 @@ public class DFArmourSet {
             .addMeta(new CopperMeta())
             .create();
 
-    public static final DFArmourSet Floral = new DFArmourSetBuilder("Floral")
+    public static final DFArmourSet Floral = new Builder("Floral")
             .setBase(DFArmourSet.Native_Iron)
             .setHelmet(DFMaterial.FloralHelmet)
             .setChestplate(DFMaterial.FloralChestplate)
@@ -100,7 +101,7 @@ public class DFArmourSet {
             .setSetBonus("TBD.")
             .create();
 
-    public static final DFArmourSet Sculk = new DFArmourSetBuilder("Sculk")
+    public static final DFArmourSet Sculk = new Builder("Sculk")
             .setBase(DFArmourSet.Native_Diamond)
             .setHelmet(DFMaterial.SculkHelmet)
             .setChestplate(DFMaterial.SculkChestplate)
@@ -110,7 +111,7 @@ public class DFArmourSet {
             .addMeta(new SculkArmourMeta())
             .create();
 
-    public static final DFArmourSet Firidium = new DFArmourSetBuilder("Firidium")
+    public static final DFArmourSet Firidium = new Builder("Firidium")
             .setBase(DFArmourSet.Native_Iron)
             .setHelmet(DFMaterial.FiridiumHelmet)
             .setChestplate(DFMaterial.FiridiumChestplate)
@@ -120,7 +121,7 @@ public class DFArmourSet {
             .addMeta(new FiridiumMeta())
             .create();
 
-    public static final DFArmourSet Obsidian = new DFArmourSetBuilder("Obsidian")
+    public static final DFArmourSet Obsidian = new Builder("Obsidian")
             .setBase(DFArmourSet.Native_Netherite)
             .setHelmet(DFMaterial.ObsidianHelmet)
             .setChestplate(DFMaterial.ObsidianChestplate)
@@ -190,29 +191,6 @@ public class DFArmourSet {
 
     private final String setBonus;
     private final boolean hasSetBonus;
-
-    public DFArmourSet(
-            String name,
-            ItemStack helmet,
-            ItemStack chestplate,
-            ItemStack leggings,
-            ItemStack boots,
-            String base,
-            String setBonusText,
-            boolean hasSetBonus,
-            List<DFArmourSetMeta> metas
-    )
-    {
-        this.name = name;
-        this.helmet = helmet;
-        this.chestplate = chestplate;
-        this.leggings = leggings;
-        this.boots = boots;
-        this.base = base;
-        this.hasSetBonus = hasSetBonus;
-        this.setBonus = setBonusText;
-        this.metas = metas;
-    }
 
     public String getName() {
         return this.name;
@@ -284,5 +262,142 @@ public class DFArmourSet {
         // this was for debugging
         String customString = getBase() == null ? "vanilla" : getBase();
         return this.getName()+" set: ("+customString+")";
+    }
+
+    public DFArmourSet(
+            String name,
+            ItemStack helmet,
+            ItemStack chestplate,
+            ItemStack leggings,
+            ItemStack boots,
+            String base,
+            String setBonusText,
+            boolean hasSetBonus,
+            List<DFArmourSetMeta> metas
+    )
+    {
+        this.name = name;
+        this.helmet = helmet;
+        this.chestplate = chestplate;
+        this.leggings = leggings;
+        this.boots = boots;
+        this.base = base;
+        this.hasSetBonus = hasSetBonus;
+        this.setBonus = setBonusText;
+        this.metas = metas;
+    }
+
+    public static class Builder {
+
+        private final String name;
+
+        private ItemStack helmet;
+        private ItemStack chestplate;
+        private ItemStack leggings;
+        private ItemStack boots;
+        private List<DFArmourSetMeta> metas = new ArrayList<>();
+
+        private String setBonusText;
+        private String base;
+
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        public Builder setHelmet(ItemStack i) {
+            this.helmet = i;
+            return this;
+        }
+
+        public Builder setHelmet(DFMaterial i) {
+            this.helmet = i.toItemStack();
+            return this;
+        }
+
+        public Builder setHelmet(Material m) {
+            this.helmet = new ItemStack(m);
+            return this;
+        }
+
+        public Builder setChestplate(ItemStack i) {
+            this.chestplate = i;
+            return this;
+        }
+
+        public Builder setChestplate(DFMaterial i) {
+            this.chestplate = i.toItemStack();
+            return this;
+        }
+
+        public Builder setChestplate(Material m) {
+            this.chestplate = new ItemStack(m);
+            return this;
+        }
+
+        public Builder setLeggings(ItemStack i) {
+            this.leggings = i;
+            return this;
+        }
+
+        public Builder setLeggings(DFMaterial i) {
+            this.leggings = i.toItemStack();
+            return this;
+        }
+
+        public Builder setLeggings(Material m) {
+            this.leggings = new ItemStack(m);
+            return this;
+        }
+
+        public Builder setBoots(ItemStack i) {
+            this.boots = i;
+            return this;
+        }
+
+        public Builder setBoots(DFMaterial i) {
+            this.boots = i.toItemStack();
+            return this;
+        }
+
+        public Builder setBoots(Material m) {
+            this.boots = new ItemStack(m);
+            return this;
+        }
+
+        public Builder setBase(String name) {
+            this.base = name;
+            return this;
+        }
+
+        public Builder setBase(DFArmourSet set) {
+            this.base = set.getName();
+            return this;
+        }
+
+        public Builder setSetBonus(String setBonusText) {
+            this.setBonusText = setBonusText;
+            return this;
+        }
+
+        public Builder addMeta(DFArmourSetMeta... metas) {
+            this.metas.addAll(Arrays.asList(metas));
+            return this;
+        }
+
+        public DFArmourSet create() {
+            DFArmourSet newSet = new DFArmourSet(
+                    this.name,
+                    this.helmet,
+                    this.chestplate,
+                    this.leggings,
+                    this.boots,
+                    this.base,
+                    this.setBonusText,
+                    this.setBonusText != null,
+                    this.metas
+            );
+            DFArmourSet.DFArmourSetIndex.add(newSet);
+            return newSet;
+        }
     }
 }
