@@ -7,6 +7,7 @@ import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import static uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler.ADVANCEMENT_NAMESPACE;
 
@@ -16,7 +17,7 @@ public class EquipAccessory extends BaseAdvancement {
     public EquipAccessory(@NotNull Advancement parent) {
         super(KEY.getKey(),
                 new AdvancementDisplay.Builder(
-                        Material.BARRIER, // TODO: Placeholder
+                        DFMaterial.LuckyHorseshoe.toItemStack(),
                         "Accessorized!")
                         .description("Equip any accessory.")
                         .taskFrame()

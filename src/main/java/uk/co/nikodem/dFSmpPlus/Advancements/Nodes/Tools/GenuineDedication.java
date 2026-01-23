@@ -18,7 +18,7 @@ public class GenuineDedication extends BaseAdvancement {
                 new AdvancementDisplay.Builder(
                         DFMaterial.ObsidianChisel.toItemStack(),
                         "Genuine Dedication")
-                        .description("Craft an Obsidian Chisel.")
+                        .description("Obtain an Obsidian Chisel. Why would you waste an obsidian template on that?")
                         .taskFrame()
                         .coords(2f, 2f)
                         .showToast()

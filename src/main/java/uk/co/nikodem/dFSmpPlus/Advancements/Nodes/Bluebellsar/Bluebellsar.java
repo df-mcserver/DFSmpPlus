@@ -18,7 +18,7 @@ public class Bluebellsar extends BaseAdvancement {
                 new AdvancementDisplay.Builder(
                         DFMaterial.BluebellsarStick.toItemStack(),
                         "In Memory Of Bluebellsar")
-                        .description("Craft a Bluebellsar stick.")
+                        .description("Obtain a Bluebellsar stick.")
                         .taskFrame()
                         .coords(1f, 5f)
                         .showToast()

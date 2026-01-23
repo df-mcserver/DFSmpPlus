@@ -18,7 +18,7 @@ public class CompassCraft extends BaseAdvancement {
                 new AdvancementDisplay.Builder(
                         DFMaterial.LocatorCompass.toItemStack(),
                         "What's the seed?")
-                        .description("Craft a Locator Compass.")
+                        .description("Obtain a Locator Compass.")
                         .taskFrame()
                         .coords(1f, 13f)
                         .showToast()

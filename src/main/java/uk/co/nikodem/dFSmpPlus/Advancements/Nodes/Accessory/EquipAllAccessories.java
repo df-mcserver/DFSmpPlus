@@ -17,11 +17,11 @@ public class EquipAllAccessories extends BaseAdvancement {
     public EquipAllAccessories(@NotNull Advancement parent) {
         super(KEY.getKey(),
                 new AdvancementDisplay.Builder(
-                        DFMaterial.LuckyHorseshoe.toItemStack(),
+                        DFMaterial.CobaltShield.toItemStack(), // TODO: Replace with obsidian shield
                         "No more slots")
                         .description("Equip the maximum amount of accessories.")
                         .taskFrame()
-                        .coords(2f, 9f)
+                        .coords(3f, 9f)
                         .showToast()
                         .announceChat()
                         .build()

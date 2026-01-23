@@ -20,6 +20,7 @@ public class Keys {
     public static NamespacedKey comicallyLarge = createDefaultKey("comically_large");
     public static NamespacedKey bluebellsarDeath = createDefaultKey("bluebellsar_death");
     public static NamespacedKey bullyBluebellsarStick = createDefaultKey("bully_bluebellsar_stick");
+    public static NamespacedKey uranium = createDefaultKey("uranium");
 
     public static NamespacedKey calciteHelmet = createDefaultKey("calcite_helmet");
     public static NamespacedKey calciteChestplate = createDefaultKey("calcite_chestplate");

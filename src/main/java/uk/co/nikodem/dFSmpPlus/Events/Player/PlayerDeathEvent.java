@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Events.Player;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
@@ -12,7 +13,7 @@ import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatEvents;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.WorldRecordAdvancementHandler;
 
 public class PlayerDeathEvent implements Listener {
-    @EventHandler
+    @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerDeathEvent(org.bukkit.event.entity.PlayerDeathEvent event) {
         CombatEvents.onDeath(event);
         AccessoryEvents.UserKilledPlayer(event);
@@ -30,6 +31,11 @@ public class PlayerDeathEvent implements Listener {
             DFAdvancementsHandler.grantAdvancement(event.getPlayer(), BulliedByBluebellsar.class);
 
             event.getPlayer().getPersistentDataContainer().remove(Keys.bluebellsarDeath);
+        }
+        if (event.getPlayer().getPersistentDataContainer().has(Keys.uranium)) {
+            event.deathMessage(Component.text(event.getPlayer().getName()+" had too many calories."));
+
+            event.getPlayer().getPersistentDataContainer().remove(Keys.uranium);
         }
     }
 }

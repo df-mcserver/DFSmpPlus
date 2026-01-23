@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Crafting.Recipes;
 
 import org.bukkit.Material;
 import org.bukkit.Tag;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
@@ -20,6 +21,7 @@ public class HiddenRecipes extends CraftingTemplate {
         List<Recipe> recipesToAdd = new ArrayList<>();
 
         addComicallyLarge(recipesToAdd);
+        addMattBlade(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -46,6 +48,17 @@ public class HiddenRecipes extends CraftingTemplate {
                         .setSource(DFMaterial.ComicallyLargeShovel)
                         .setOutput(Material.IRON_INGOT)
                         .build(getInfo(), "CLS-IngotBlast")
+        );
+    }
+
+    public void addMattBlade(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.MattBlade)
+                        .build(getInfo(), "mblade")
+                        .shape("E", "S")
+                        .setIngredient('E', Material.CREEPER_SPAWN_EGG)
+                        .setIngredient('S', new RecipeChoice.ExactChoice(ItemStack.of(Material.DIAMOND_SWORD)))
         );
     }
 

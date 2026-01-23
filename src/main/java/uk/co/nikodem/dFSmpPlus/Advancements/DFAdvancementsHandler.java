@@ -74,6 +74,9 @@ public class DFAdvancementsHandler {
         new VeinTool(main);
         new FiridiumTool(main);
 
+        new TDP(main);
+        new BonAppetit(main);
+
         new ObsidianArmour(new ObsidianItem(main));
 
         CompassCraft compassCraft = new CompassCraft(main);

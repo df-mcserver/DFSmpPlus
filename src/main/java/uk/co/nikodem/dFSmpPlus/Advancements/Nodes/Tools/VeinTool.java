@@ -18,7 +18,7 @@ public class VeinTool extends BaseAdvancement {
                 new AdvancementDisplay.Builder(
                         DFMaterial.VeinPickaxe.toItemStack(),
                         "Vein miner!")
-                        .description("Craft a Vein Tool.")
+                        .description("Obtain a Vein Tool.")
                         .taskFrame()
                         .coords(1f, 17f)
                         .showToast()

@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Items;
 
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.Consumable;
+import io.papermc.paper.datacomponent.item.FoodProperties;
 import io.papermc.paper.datacomponent.item.Tool;
 import io.papermc.paper.datacomponent.item.consumable.ItemUseAnimation;
 import net.kyori.adventure.key.Key;
@@ -22,6 +23,8 @@ import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.Bluebellsar;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.BonAppetit;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.TDP;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.SoItBegins;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
@@ -75,43 +78,43 @@ public class DFMaterial {
     public static DFMaterial VeinPickaxe = new Builder(Material.IRON_PICKAXE, "vein_pickaxe", 1)
             .setDisplayName("<light_purple>Vein Miner's Pickaxe")
             .addLore("<aqua>A powerful pickaxe from a well-respected miner.")
-            .addMeta(new VeinminingItemMeta(VeinMineable.VeinOres), new AdvancementOnCraftMeta(VeinTool.class))
+            .addMeta(new VeinminingItemMeta(VeinMineable.VeinOres), new AdvancementOnObtainMeta(VeinTool.class))
             .create();
 
     public static DFMaterial VeinAxe = new Builder(Material.IRON_AXE, "vein_axe", 1)
             .setDisplayName("<light_purple>Vein Miner's Axe")
             .addLore("<aqua>A powerful axe from a well-respected miner.")
-            .addMeta(new VeinminingItemMeta(VeinMineable.VeinLogs), new AdvancementOnCraftMeta(VeinTool.class))
+            .addMeta(new VeinminingItemMeta(VeinMineable.VeinLogs), new AdvancementOnObtainMeta(VeinTool.class))
             .create();
 
     public static DFMaterial FiridiumSword = new Builder(Material.IRON_SWORD, "firidium_sword", 1)
             .setDisplayName("<red>Firidium Sword")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumPickaxe = new Builder(Material.IRON_PICKAXE, "firidium_pickaxe", 1)
             .setDisplayName("<red>Firidium Pickaxe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltablePickaxe), new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltablePickaxe), new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumAxe = new Builder(Material.IRON_AXE, "firidium_axe", 1)
             .setDisplayName("<red>Firidium Axe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltableAxe), new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltableAxe), new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumShovel = new Builder(Material.IRON_SHOVEL, "firidium_shovel", 1)
             .setDisplayName("<red>Firidium Shovel")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltableShovel), new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltableShovel), new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumHoe = new Builder(Material.IRON_HOE, "firidium_hoe", 1)
             .setDisplayName("<red>Firidium Hoe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
-            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumIngot = new Builder(Material.IRON_INGOT, "firidium_ingot", 1)
@@ -127,7 +130,7 @@ public class DFMaterial {
             .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.HEAD)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Helmet)")
-            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumChestplate = new Builder(Material.IRON_CHESTPLATE, "firidium_chestplate", 1)
@@ -135,7 +138,7 @@ public class DFMaterial {
             .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.CHEST)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Chestplate)")
-            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumLeggings = new Builder(Material.IRON_LEGGINGS, "firidium_leggings", 1)
@@ -143,7 +146,7 @@ public class DFMaterial {
             .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.LEGS)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Leggings)")
-            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial FiridiumBoots = new Builder(Material.IRON_BOOTS, "firidium_boots", 1)
@@ -151,7 +154,7 @@ public class DFMaterial {
             .setEquippable("firidium", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.FEET)
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Boots)")
-            .addMeta(new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
     public static DFMaterial BluebellsarStick = new Builder(Material.STICK, "bluebellsar_stick", 1)
@@ -164,7 +167,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.LUCK_OF_THE_SEA)
             .addEnchantment(Enchantment.AQUA_AFFINITY)
             .addEnchantment(Enchantment.MENDING)
-            .addMeta(new BluebellsarMeta(), new AdvancementOnCraftMeta(Bluebellsar.class))
+            .addMeta(new BluebellsarMeta(), new AdvancementOnObtainMeta(Bluebellsar.class))
             .removeCustomModel()
             .create();
 
@@ -262,38 +265,38 @@ public class DFMaterial {
     public static DFMaterial ObsidianSword = new Builder(Material.NETHERITE_SWORD, "obsidian_sword", 1)
             .setDisplayName("Obsidian Sword")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianItemMeta(false), new AdvancementOnCraftMeta(ObsidianItem.class))
+            .addMeta(new ObsidianItemMeta(false), new AdvancementOnObtainMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianAxe = new Builder(Material.NETHERITE_AXE, "obsidian_axe", 1)
             .setDisplayName("Obsidian Axe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class))
+            .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianPickaxe = new Builder(Material.NETHERITE_PICKAXE, "obsidian_pickaxe", 1)
             .setDisplayName("Obsidian Pickaxe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class))
+            .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianShovel = new Builder(Material.NETHERITE_SHOVEL, "obsidian_shovel", 1)
             .setDisplayName("Obsidian Shovel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class))
+            .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianHoe = new Builder(Material.NETHERITE_HOE, "obsidian_hoe", 1)
             .setDisplayName("Obsidian Hoe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class))
+            .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
             .create();
 
     public static DFMaterial ObsidianHelmet = new Builder(Material.NETHERITE_HELMET, "obsidian_helmet", 1)
             .setDisplayName("Obsidian Helmet")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.HEAD)
-            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(450))
+            .addMeta(new AdvancementOnObtainMeta(ObsidianItem.class), new CustomDurabilityMeta(450))
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianHelmet, 4D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianHelmet, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianHelmet, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
@@ -303,7 +306,7 @@ public class DFMaterial {
             .setDisplayName("Obsidian Chestplate")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.CHEST)
-            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(600))
+            .addMeta(new AdvancementOnObtainMeta(ObsidianItem.class), new CustomDurabilityMeta(600))
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianChestplate, 9D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianChestplate, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianChestplate, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
@@ -313,7 +316,7 @@ public class DFMaterial {
             .setDisplayName("Obsidian Leggings")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.LEGS)
-            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(575))
+            .addMeta(new AdvancementOnObtainMeta(ObsidianItem.class), new CustomDurabilityMeta(575))
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianLeggings, 7D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianLeggings, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianLeggings, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
@@ -323,7 +326,7 @@ public class DFMaterial {
             .setDisplayName("Obsidian Boots")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.FEET)
-            .addMeta(new AdvancementOnCraftMeta(ObsidianItem.class), new CustomDurabilityMeta(500))
+            .addMeta(new AdvancementOnObtainMeta(ObsidianItem.class), new CustomDurabilityMeta(500))
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianBoots, 4D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianBoots, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
@@ -379,7 +382,7 @@ public class DFMaterial {
             .addLore("<aqua>A powerful sword which grows in power with every kill.")
             .markForUUID()
             .addPersistentData(Keys.vampireSwordStage, PersistentDataType.INTEGER, 0)
-            .addMeta(new VampireSwordMeta(), new AdvancementOnCraftMeta(SoItBegins.class))
+            .addMeta(new VampireSwordMeta(), new AdvancementOnObtainMeta(SoItBegins.class))
             .create();
 
     public static DFMaterial PointyStick = new Builder(Material.STICK, "pointy_stick", 1)
@@ -413,7 +416,7 @@ public class DFMaterial {
     public static DFMaterial FiridiumChisel = new Builder(Material.STICK, "firidium_chisel", 1)
             .setDisplayName("Firidium Chisel")
             .addEnchantment(Enchantment.FIRE_ASPECT, 1)
-            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50), new AutosmeltingItemMeta(), new AdvancementOnCraftMeta(FiridiumTool.class))
+            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50), new AutosmeltingItemMeta(), new AdvancementOnObtainMeta(FiridiumTool.class))
             .setMaxStack(1)
             .create();
 
@@ -438,7 +441,7 @@ public class DFMaterial {
     public static DFMaterial ObsidianChisel = new Builder(Material.STICK, "obsidian_chisel", 1)
             .setDisplayName("Obsidian Chisel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnCraftMeta(ObsidianItem.class), new AdvancementOnCraftMeta(GenuineDedication.class))
+            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class), new AdvancementOnObtainMeta(GenuineDedication.class))
             .setMaxStack(1)
             .create();
 
@@ -546,7 +549,7 @@ public class DFMaterial {
     public static DFMaterial LocatorCompass = new Builder(Material.COMPASS, "locator_compass", 1)
             .setDisplayName("Locator Compass")
             .addLore("<aqua>A compass which will try to point you to a destination")
-            .addMeta(new LocatorCompassMeta(), new AdvancementOnCraftMeta(CompassCraft.class))
+            .addMeta(new LocatorCompassMeta(), new AdvancementOnObtainMeta(CompassCraft.class))
             .setMaxStack(1)
             // .addLore("<red>Please insert a module.")
             .create();
@@ -742,10 +745,38 @@ public class DFMaterial {
             .setDisplayName("Hitman Techniques Book")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("htbook")
-                    .setDescription("-5% Damage\nSilences players for 5 minutes after death")
+                    .setDescription("-5% Damage\nSilences players for 5 minutes after `3death")
                     .setEquipSound(Sounds.EquipAccessory_Book)
                     .addMeta(new HitmanTechniquesMeta())
                     .create()))
+            .create();
+
+    public static DFMaterial MattBlade = new Builder(Material.DIAMOND_SWORD, "matt_blade", 1)
+            .setDisplayName("<red>Matt blade")
+            .addMeta(new NoisyItem(null, Sounds.MattBlade), new AdvancementOnObtainMeta(TDP.class))
+            .addLore("<dark_red>The DEADLIEST sword. From the DEADLIEST player.")
+            .create();
+
+    public static DFMaterial FriedEgg = new Builder(Material.STICK, "fried_egg", 1)
+            .setDisplayName("Fried Egg")
+            .setFoodProperties(FoodProperties.food().nutrition(4).saturation(1.5f).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
+            .create();
+
+    public static DFMaterial EggSandwich = new Builder(Material.STICK, "egg_sandwich", 1)
+            .setDisplayName("Egg Sandwich")
+            .setFoodProperties(FoodProperties.food().nutrition(8).saturation(15f).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
+            .addMeta(new AdvancementOnObtainMeta(BonAppetit.class))
+            .create();
+
+    public static DFMaterial EdibleUranium = new Builder(Material.STICK, "edible_uranium", 1)
+            .setDisplayName("Uranium")
+            .addLore("<grey>Nutritional value:")
+            .addLore("<grey>- 20000000000 calories")
+            .setFoodProperties(FoodProperties.food().nutrition(999).saturation(999f).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
+            .addMeta(new ExtremelyUnhealthyItemMeta())
             .create();
 
     private final String namedId;
@@ -856,7 +887,8 @@ public class DFMaterial {
             @Nullable Integer maxStack,
             List<NamespacedKey> possibleModels,
             @Nullable Consumable consumable,
-            @Nullable Tool tool
+            @Nullable Tool tool,
+            @Nullable FoodProperties food
             )
     {
         List<TextComponent> workingLore = lores == null ? List.of() : lores;
@@ -951,6 +983,7 @@ public class DFMaterial {
         newItem.setItemMeta(meta);
         if (consumable != null) item.setData(DataComponentTypes.CONSUMABLE, consumable);
         if (tool != null) item.setData(DataComponentTypes.TOOL, tool);
+        if (food != null) item.setData(DataComponentTypes.FOOD, food);
 
         if (this.hasMeta()) {
             for (DFMaterialMeta createdmeta : this.getMeta()) {
@@ -986,6 +1019,7 @@ public class DFMaterial {
 
         private Consumable consumable = null;
         private Tool tool = null;
+        private FoodProperties food = null;
 
         private List<NamespacedKey> possibleModels = new ArrayList<>();
 
@@ -1117,6 +1151,11 @@ public class DFMaterial {
             return this;
         }
 
+        public Builder setFoodProperties(FoodProperties food) {
+            this.food = food;
+            return this;
+        }
+
         public Builder addPossibleModels(NamespacedKey... models) {
             this.possibleModels.addAll(Arrays.asList(models));
             return this;
@@ -1143,7 +1182,8 @@ public class DFMaterial {
                     maxStack,
                     possibleModels,
                     consumable,
-                    tool
+                    tool,
+                    food
             );
             DFMaterial.DFMaterialIndex.add(newMaterial);
             return newMaterial;

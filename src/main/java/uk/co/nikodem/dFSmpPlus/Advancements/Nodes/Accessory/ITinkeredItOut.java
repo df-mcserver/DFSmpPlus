@@ -20,7 +20,7 @@ public class ITinkeredItOut extends BaseAdvancement {
                         "I Tinkered it out!")
                         .description("Combine two accessories in an anvil.")
                         .taskFrame()
-                        .coords(3f, 9f)
+                        .coords(2f, 9f)
                         .showToast()
                         .announceChat()
                         .build()

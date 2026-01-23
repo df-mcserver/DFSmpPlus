@@ -18,7 +18,7 @@ public class ObsidianItem extends BaseAdvancement {
                 new AdvancementDisplay.Builder(
                         DFMaterial.ObsidianPickaxe.toItemStack(),
                         "Cry about it")
-                        .description("Craft any Obsidian Item.")
+                        .description("Obtain any Obsidian Item.")
                         .challengeFrame()
                         .coords(1f, 12f)
                         .showToast()

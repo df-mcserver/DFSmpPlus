@@ -5,8 +5,10 @@ import org.bukkit.Tag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.recipe.CookingBookCategory;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.CampfireRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ControlledShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
@@ -30,6 +32,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         addVampireSword(recipesToAdd);
         addLocatorCompassAndModules(recipesToAdd);
         addPestleAndMortar(recipesToAdd);
+        addEggSandwichRecipes(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -205,6 +208,28 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "GravelPM")
                         .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
                         .addIngredient(Material.GRAVEL)
+        );
+    }
+
+    public void addEggSandwichRecipes(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new CampfireRecipeBuilder()
+                        .setOutput(DFMaterial.FriedEgg)
+                        .setCookingTime(30*20)
+                        .setExperience(0)
+                        .setCategory(CookingBookCategory.FOOD)
+                        .setSource(Material.EGG)
+                        .build(getInfo(), "friedeggoncampfire")
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.EggSandwich)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "eggsandwich")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FriedEgg.toItemStack()))
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FriedEgg.toItemStack()))
+                        .addIngredient(Material.BREAD)
         );
     }
 
