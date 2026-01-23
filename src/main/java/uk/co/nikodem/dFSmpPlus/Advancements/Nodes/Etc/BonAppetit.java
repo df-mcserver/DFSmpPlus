@@ -16,7 +16,7 @@ public class BonAppetit extends BaseAdvancement {
     public BonAppetit(@NotNull Advancement parent) {
         super(KEY.getKey(),
                 new AdvancementDisplay.Builder(
-                        DFMaterial.FiridiumAxe.toItemStack(),
+                        DFMaterial.EggSandwich.toItemStack(),
                         "Bon appetit!")
                         .description("Obtain an Egg sandwich.")
                         .taskFrame()
