@@ -745,7 +745,7 @@ public class DFMaterial {
             .setDisplayName("Hitman Techniques Book")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("htbook")
-                    .setDescription("-5% Damage\nSilences players for 5 minutes after `3death")
+                    .setDescription("-5% Damage\nSilences players for 5 minutes after death")
                     .setEquipSound(Sounds.EquipAccessory_Book)
                     .addMeta(new HitmanTechniquesMeta())
                     .create()))
