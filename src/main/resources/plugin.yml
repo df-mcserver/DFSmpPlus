@@ -1,5 +1,5 @@
 name: DFSmpPlus
-version: '3.0.0-SEASON2PARITY'
+version: '3.0.0'
 main: uk.co.nikodem.dFSmpPlus.DFSmpPlus
 api-version: '1.21.8'
 author: 'deadfry42'
