@@ -5,20 +5,35 @@ import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Nullable;
+import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
 public class PresetSoundData {
     private final Sound sound;
+    private final String soundName;
     private final float volume;
     private final float pitch;
 
     public PresetSoundData(Sound sound, float volume, float pitch) {
         this.sound = sound;
+        this.soundName = null;
+        this.volume = volume;
+        this.pitch = pitch;
+    }
+
+    public PresetSoundData(String soundName, float volume, float pitch) {
+        this.sound = null;
+        this.soundName = soundName;
         this.volume = volume;
         this.pitch = pitch;
     }
 
     public Sound getSound() {
         return this.sound;
+    }
+
+    public String getSoundName() {
+        return this.soundName;
     }
 
     public float getVolume() {
@@ -30,15 +45,21 @@ public class PresetSoundData {
     }
 
     public void playSound(Location location) {
-        location.getWorld().playSound(location, getSound(), getVolume(), getPitch());
+        if (getSound() != null) location.getWorld().playSound(location, getSound(), getVolume(), getPitch());
+        else if (getSoundName() != null) location.getWorld().playSound(location, getSoundName(), getVolume(), getPitch());
+        else DFSmpPlus.getProvidingPlugin(DFSmpPlus.class).getLogger().info("Tried to play invalid sound! No registered sound / sound name!");
     }
 
     public void playSound(Location location, float overrideVolume) {
-        location.getWorld().playSound(location, getSound(), overrideVolume, getPitch());
+        if (getSound() != null) location.getWorld().playSound(location, getSound(), overrideVolume, getPitch());
+        else if (getSoundName() != null) location.getWorld().playSound(location, getSoundName(), overrideVolume, getPitch());
+        else DFSmpPlus.getProvidingPlugin(DFSmpPlus.class).getLogger().info("Tried to play invalid sound! No registered sound / sound name!");
     }
 
     public void playSound(Location location, float overrideVolume, float overridePitch) {
-        location.getWorld().playSound(location, getSound(), overrideVolume, overridePitch);
+        if (getSound() != null) location.getWorld().playSound(location, getSound(), overrideVolume, overridePitch);
+        else if (getSoundName() != null) location.getWorld().playSound(location, getSoundName(), overrideVolume, overridePitch);
+        else DFSmpPlus.getProvidingPlugin(DFSmpPlus.class).getLogger().info("Tried to play invalid sound! No registered sound / sound name!");
     }
 
     public void playSound(Entity entity) {
@@ -68,15 +89,21 @@ public class PresetSoundData {
     // locally
 
     public void playSoundLocally(Player plr, Location location) {
-        plr.playSound(location, getSound(), getVolume(), getPitch());
+        if (getSound() != null) plr.playSound(location, getSound(), getVolume(), getPitch());
+        else if (getSoundName() != null) plr.playSound(location, getSoundName(), getVolume(), getPitch());
+        else DFSmpPlus.getProvidingPlugin(DFSmpPlus.class).getLogger().info("Tried to play local invalid sound to "+plr.getName()+"! No registered sound / sound name!");
     }
 
     public void playSoundLocally(Player plr, Location location, float overrideVolume) {
-        plr.playSound(location, getSound(), overrideVolume, getPitch());
+        if (getSound() != null) plr.playSound(location, getSound(), overrideVolume, getPitch());
+        else if (getSoundName() != null) plr.playSound(location, getSoundName(), overrideVolume, getPitch());
+        else DFSmpPlus.getProvidingPlugin(DFSmpPlus.class).getLogger().info("Tried to play local invalid sound to "+plr.getName()+"! No registered sound / sound name!");
     }
 
     public void playSoundLocally(Player plr, Location location, float overrideVolume, float overridePitch) {
-        plr.playSound(location, getSound(), overrideVolume, overridePitch);
+        if (getSound() != null) plr.playSound(location, getSound(), overrideVolume, overridePitch);
+        else if (getSoundName() != null) plr.playSound(location, getSoundName(), overrideVolume, getPitch());
+        else DFSmpPlus.getProvidingPlugin(DFSmpPlus.class).getLogger().info("Tried to play local invalid sound to "+plr.getName()+"! No registered sound / sound name!");
     }
 
     public void playSoundLocally(Player plr, Entity entity) {
