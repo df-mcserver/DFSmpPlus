@@ -43,6 +43,7 @@ public class VanillaRecipes extends CraftingTemplate {
 
         addOreRecipes(recipesToAdd);
         addSlabRecipes(recipesToAdd);
+        addGlowInkSacRecipe(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -617,6 +618,19 @@ public class VanillaRecipes extends CraftingTemplate {
                         .shape("OOO", "OXO", "OOO")
                         .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.DEEPSLATE)))
                         .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.REDSTONE)))
+        );
+    }
+
+    public void addGlowInkSacRecipe(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(Material.GLOW_INK_SAC)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo())
+                        .addIngredient(Material.INK_SAC)
+                        .addIngredient(Material.GLOWSTONE_DUST)
+                        .addIngredient(Material.GLOWSTONE_DUST)
+                        .addIngredient(Material.GLOWSTONE_DUST)
         );
     }
 
