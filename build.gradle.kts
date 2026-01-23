@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "uk.co.nikodem"
-version = "3.0.0"
+version = "3.0.0-SEASON2PARITY"
 
 repositories {
     mavenCentral()
