@@ -130,11 +130,33 @@ public class VanillaRecipes extends CraftingTemplate {
                 new ShapedRecipeBuilder()
                         .setOutput(Material.NAME_TAG)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo())
-                        .shape(" SS", "PIS", "PPP")
+                        .setGroup("nametag")
+                        .build(getInfo(), "ironnugget")
+                        .shape(" X", "P ")
                         .setIngredient('P', Material.PAPER)
-                        .setIngredient('I', Material.INK_SAC)
-                        .setIngredient('S', Material.STRING)
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.NAME_TAG)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .setGroup("nametag")
+                        .build(getInfo(), "goldnugget")
+                        .shape(" X", "P ")
+                        .setIngredient('P', Material.PAPER)
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.GOLD_NUGGET)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.NAME_TAG)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .setGroup("nametag")
+                        .build(getInfo(), "coppernugget")
+                        .shape(" X", "P ")
+                        .setIngredient('P', Material.PAPER)
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.CopperNugget.toItemStack()))
         );
 
         recipesToAdd.add(
