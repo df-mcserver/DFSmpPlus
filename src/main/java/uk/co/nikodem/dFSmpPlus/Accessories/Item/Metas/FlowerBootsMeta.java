@@ -55,17 +55,18 @@ public class FlowerBootsMeta implements AccessoryMeta {
                     boolean isMainHand = true;
                     Material finalMaterial = null;
                     for (Map.Entry<Material, Material> plantableMaterial : planteableEntry.getValue()) {
-                        ItemStack itemInMainHand = plr.getInventory().getItemInMainHand();
-                        if (DFItemUtils.getDFMaterial(itemInMainHand) == null) {
-                            if (itemInMainHand.getType() == plantableMaterial.getKey()) {
-                                finalMaterial = plantableMaterial.getValue();
-                            }
-                        }
-
                         ItemStack itemInOffHand = plr.getInventory().getItemInOffHand();
                         if (DFItemUtils.getDFMaterial(itemInOffHand) == null) {
                             if (itemInOffHand.getType() == plantableMaterial.getKey()) {
                                 isMainHand = false;
+                                finalMaterial = plantableMaterial.getValue();
+                            }
+                        }
+
+                        ItemStack itemInMainHand = plr.getInventory().getItemInMainHand();
+                        if (DFItemUtils.getDFMaterial(itemInMainHand) == null) {
+                            if (itemInMainHand.getType() == plantableMaterial.getKey()) {
+                                isMainHand = true;
                                 finalMaterial = plantableMaterial.getValue();
                             }
                         }
