@@ -781,6 +781,7 @@ public class DFMaterial {
 
     public static DFMaterial VacuumAccessory = new Builder(Material.STICK, "vacuum_accessory", 1)
             .setDisplayName("Vacuum")
+            .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("vacuum_accessory")
                     .setDescription("Automatically picks up any mined items")
                     .setEquipSound(Sounds.EquipAccessory_Vacuum)
