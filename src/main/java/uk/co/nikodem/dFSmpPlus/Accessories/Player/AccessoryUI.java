@@ -72,6 +72,10 @@ public class AccessoryUI {
                     for (AccessoryMeta meta : info.getMeta()) {
                         for (AccessoryAction action : meta.GetAccessoryActions()) {
                             action.doOnClick(plr, accessory, info, event);
+                            if (action.shouldUpdateIconOnClick()) {
+                                ItemStack itemUpdate = action.getItemStackIcon(plr, accessory, info);
+                                event.getInventory().setItem(event.getSlot(), itemUpdate);
+                            }
                         }
                     }
 

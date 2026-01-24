@@ -10,17 +10,24 @@ import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 public class AccessoryAction {
     private final ChooseItemStackIcon chooseItemStackIcon;
     private final OnClickAction onClickAction;
+    private final boolean updateIconOnClick;
 
     public AccessoryAction(
             ChooseItemStackIcon chooseItemStackIcon,
-            OnClickAction onClickAction
+            OnClickAction onClickAction,
+            boolean updateIconOnClick
     ) {
         this.chooseItemStackIcon = chooseItemStackIcon;
         this.onClickAction = onClickAction;
+        this.updateIconOnClick = updateIconOnClick;
     }
 
     public ItemStack getItemStackIcon(Player plr, ItemStack accessoryItem, AccessoryInformation info) {
         return chooseItemStackIcon.doActionIcon(plr, accessoryItem, info);
+    }
+
+    public boolean shouldUpdateIconOnClick() {
+        return updateIconOnClick;
     }
 
     public void doOnClick(Player plr, ItemStack accessoryItem, AccessoryInformation info, InventoryClickEvent event) {
@@ -30,9 +37,15 @@ public class AccessoryAction {
     public static class Builder {
         private ChooseItemStackIcon chooseItemStackIcon;
         private OnClickAction onClickAction;
+        private Boolean updateIconOnClick = null;
 
         public Builder setItemStackIcon(ItemStack item) {
             this.chooseItemStackIcon = (a, b, c) -> item;
+            return this;
+        }
+
+        public Builder setUpdateIconOnClick(boolean shouldUpdate) {
+            this.updateIconOnClick = shouldUpdate;
             return this;
         }
 
@@ -47,7 +60,7 @@ public class AccessoryAction {
         }
 
         public AccessoryAction create() {
-            return new AccessoryAction(chooseItemStackIcon, onClickAction);
+            return new AccessoryAction(chooseItemStackIcon, onClickAction, updateIconOnClick == null || updateIconOnClick);
         }
     }
 
