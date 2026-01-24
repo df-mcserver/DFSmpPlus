@@ -109,6 +109,17 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .addIngredient(Material.SPECTRAL_ARROW)
         );
 
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.VacuumAccessory)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "vacuum")
+                        .shape(" X ", "XOX", "IOI")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_INGOT)))
+                        .setIngredient('O', Material.WIND_CHARGE)
+                        .setIngredient('I', Material.IRON_BARS)
+        );
+
         return recipesToAdd;
     }
 
