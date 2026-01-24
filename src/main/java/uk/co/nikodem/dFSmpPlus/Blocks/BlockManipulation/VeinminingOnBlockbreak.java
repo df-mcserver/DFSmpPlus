@@ -1,9 +1,11 @@
 package uk.co.nikodem.dFSmpPlus.Blocks.BlockManipulation;
 
-import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
@@ -12,6 +14,7 @@ import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.AutosmeltAccessoryMeta;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.VacuumAccessoryMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -19,6 +22,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Items.Metas.AutosmeltingItemMeta;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -66,12 +70,29 @@ public class VeinminingOnBlockbreak {
             }
         }
 
+        int count = 0;
+        boolean shouldExp = true;
+
         for (Block block : veinBlocks) {
             if (autosmeltMapping != null) {
                 AutosmeltingOnBlockbreak.doAutosmelt(new BlockBreakEvent(block, plr), autosmeltMapping);
                 block.setType(Material.AIR);
+                shouldExp = false;
             }
-            else block.breakNaturally(tool);
+            else {
+                for (ItemStack drop : VacuumAccessoryMeta.giveItemsToPlayerViaVacuum(plr, block.getDrops(tool, plr).stream().toList())) {
+                    block.getWorld().dropItemNaturally(block.getLocation().add(new Location(block.getWorld(), 0.5, 0.5, 0.5)), drop);
+                }
+                block.setType(Material.AIR);
+            }
+            count++;
+        }
+
+        if (shouldExp) {
+            int expToDrop = event.getExpToDrop();
+            ExperienceOrb orb = (ExperienceOrb) b.getWorld().spawnEntity(new Location(b.getWorld(), 0.5, 0.5, 0.5), EntityType.EXPERIENCE_ORB);
+            orb.setExperience(expToDrop);
+            orb.setCount(count);
         }
     };
 

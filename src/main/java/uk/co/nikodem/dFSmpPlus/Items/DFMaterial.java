@@ -779,6 +779,15 @@ public class DFMaterial {
             .addMeta(new ExtremelyUnhealthyItemMeta())
             .create();
 
+    public static DFMaterial VacuumAccessory = new Builder(Material.STICK, "vacuum_accessory", 1)
+            .setDisplayName("Vacuum")
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("vacuum_accessory")
+                    .setDescription("Automatically picks up any mined items")
+                    .setEquipSound(Sounds.EquipAccessory_Vacuum)
+                    .addMeta(new VacuumAccessoryMeta())
+                    .create()))
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

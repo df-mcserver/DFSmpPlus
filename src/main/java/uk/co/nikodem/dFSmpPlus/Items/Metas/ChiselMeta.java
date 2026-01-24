@@ -17,6 +17,10 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
 import org.bukkit.util.Vector;
+import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.AutosmeltAccessoryMeta;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.VacuumAccessoryMeta;
+import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.IITNIG;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
@@ -47,8 +51,11 @@ public class ChiselMeta implements DFMaterialMeta {
             if (data.getBlockMaterial() == block.getType()) {
                 event.setCancelled(true);
                 event.setDropItems(false);
+                BlockFace face = getBlockFace(plr);
+                if (face == null) return;
                 ItemStack drop = data.getDrop();
-                boolean autosmelt = DFItemUtils.containsMeta(material, AutosmeltingItemMeta.class); // TODO: accessories
+                PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+                boolean autosmelt = DFItemUtils.containsMeta(material, AutosmeltingItemMeta.class) || (accessoryData.hasAccessoryWithMetaEquipped(AutosmeltAccessoryMeta.class) && plr.isSneaking());
 
                 if (block.getType().equals(Material.BOOKSHELF)) DFAdvancementsHandler.grantAdvancement(plr, IITNIG.class);
 
@@ -62,10 +69,11 @@ public class ChiselMeta implements DFMaterialMeta {
 
                 if (DFItemUtils.isLevelOrAbove(tool, data.getMinimumToolLevel())) {
                     if (data.getBlockMaterial() != Material.AIR) {
-                        BlockFace face = getBlockFace(plr);
                         loc.add(face.getDirection().divide(new Vector(1.3, 1.3, 1.3)));
                     }
-                    block.getWorld().dropItemNaturally(loc, drop);
+                    for (ItemStack overflow : VacuumAccessoryMeta.giveItemsToPlayerViaVacuum(plr, List.of(drop))) {
+                        block.getWorld().dropItemNaturally(loc, overflow);
+                    }
                     block.setType(data.getReplacingMaterial());
                 }
 

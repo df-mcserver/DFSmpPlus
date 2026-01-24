@@ -25,8 +25,11 @@ public class Sounds {
     public static PresetSoundData EquipAccessory_ContaminatedMembrane = new PresetSoundData(Sound.ITEM_GLOW_INK_SAC_USE, 1F, 1F);
     public static PresetSoundData EquipAccessory_Shield = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_IRON, 1F, 1F);
     public static PresetSoundData EquipAccessory_Essence = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_IRON, 1F, 1F);
+    public static PresetSoundData EquipAccessory_Vacuum = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_IRON, 1F, 1F);
     public static PresetSoundData EquipAccessory_Boots = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_LEATHER, 1F, 1F);
     public static PresetSoundData EquipAccessory_Book = new PresetSoundData(Sound.BLOCK_CHISELED_BOOKSHELF_INSERT, 1F, 1F);
+
+    public static PresetSoundData VacuumPickupItem = new PresetSoundData(Sound.ENTITY_ITEM_PICKUP, 0.5F, 1.2F);
 
     public static PresetSoundData MattBlade = new PresetSoundData("dfjr:matt_blade", 1F, 1F);
 
