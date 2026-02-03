@@ -3,8 +3,12 @@ package uk.co.nikodem.dFSmpPlus.Items;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.Consumable;
 import io.papermc.paper.datacomponent.item.FoodProperties;
+import io.papermc.paper.datacomponent.item.Repairable;
 import io.papermc.paper.datacomponent.item.Tool;
 import io.papermc.paper.datacomponent.item.consumable.ItemUseAnimation;
+import io.papermc.paper.registry.RegistryKey;
+import io.papermc.paper.registry.keys.ItemTypeKeys;
+import io.papermc.paper.registry.set.RegistrySet;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -13,10 +17,7 @@ import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.EquipmentSlotGroup;
-import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.persistence.PersistentDataType;
@@ -509,26 +510,31 @@ public class DFMaterial {
     public static DFMaterial SilkSword = new Builder(Material.WOODEN_SWORD, "silk_sword", 1)
             .setDisplayName("Silk Sword")
             .addEnchantment(Enchantment.SILK_TOUCH, 1)
+            .setRepairable(Repairable.repairable(RegistrySet.keySet(RegistryKey.ITEM, ItemTypeKeys.STRING)))
             .create();
 
     public static DFMaterial SilkAxe = new Builder(Material.WOODEN_AXE, "silk_axe", 1)
             .setDisplayName("Silk Axe")
             .addEnchantment(Enchantment.SILK_TOUCH, 1)
+            .setRepairable(Repairable.repairable(RegistrySet.keySet(RegistryKey.ITEM, ItemTypeKeys.STRING)))
             .create();
 
     public static DFMaterial SilkPickaxe = new Builder(Material.WOODEN_PICKAXE, "silk_pickaxe", 1)
             .setDisplayName("Silk Pickaxe")
             .addEnchantment(Enchantment.SILK_TOUCH, 1)
+            .setRepairable(Repairable.repairable(RegistrySet.keySet(RegistryKey.ITEM, ItemTypeKeys.STRING)))
             .create();
 
     public static DFMaterial SilkShovel = new Builder(Material.WOODEN_SHOVEL, "silk_shovel", 1)
             .setDisplayName("Silk Shovel")
             .addEnchantment(Enchantment.SILK_TOUCH, 1)
+            .setRepairable(Repairable.repairable(RegistrySet.keySet(RegistryKey.ITEM, ItemTypeKeys.STRING)))
             .create();
 
     public static DFMaterial SilkHoe = new Builder(Material.WOODEN_HOE, "silk_hoe", 1)
             .setDisplayName("Silk Hoe")
             .addEnchantment(Enchantment.SILK_TOUCH, 1)
+            .setRepairable(Repairable.repairable(RegistrySet.keySet(RegistryKey.ITEM, ItemTypeKeys.STRING)))
             .create();
 
     public static DFMaterial TargetDummy = new Builder(Material.STICK, "target_dummy", 1)
@@ -538,6 +544,7 @@ public class DFMaterial {
             .overrideCustomModel(createMinecraftKey("armor_stand"))
             .addMeta(new TargetDummyMeta())
             .setMaxStack(1)
+            .setRepairable(Repairable.repairable(RegistrySet.keySet(RegistryKey.ITEM, ItemTypeKeys.IRON_INGOT)))
             .create();
 
     public static DFMaterial ComicallyLargeShovel = new Builder(Material.IRON_SHOVEL, "comically_large_shovel", 1)
@@ -898,7 +905,8 @@ public class DFMaterial {
             List<NamespacedKey> possibleModels,
             @Nullable Consumable consumable,
             @Nullable Tool tool,
-            @Nullable FoodProperties food
+            @Nullable FoodProperties food,
+            @Nullable Repairable repairable
             )
     {
         List<TextComponent> workingLore = lores == null ? List.of() : lores;
@@ -994,6 +1002,7 @@ public class DFMaterial {
         if (consumable != null) item.setData(DataComponentTypes.CONSUMABLE, consumable);
         if (tool != null) item.setData(DataComponentTypes.TOOL, tool);
         if (food != null) item.setData(DataComponentTypes.FOOD, food);
+        if (repairable != null) item.setData(DataComponentTypes.REPAIRABLE, repairable);
 
         if (this.hasMeta()) {
             for (DFMaterialMeta createdmeta : this.getMeta()) {
@@ -1030,6 +1039,7 @@ public class DFMaterial {
         private Consumable consumable = null;
         private Tool tool = null;
         private FoodProperties food = null;
+        private Repairable repairable = null;
 
         private List<NamespacedKey> possibleModels = new ArrayList<>();
 
@@ -1161,6 +1171,11 @@ public class DFMaterial {
             return this;
         }
 
+        public Builder setRepairable(Repairable repairable) {
+            this.repairable = repairable;
+            return this;
+        }
+
         public Builder setFoodProperties(FoodProperties food) {
             this.food = food;
             return this;
@@ -1193,7 +1208,8 @@ public class DFMaterial {
                     possibleModels,
                     consumable,
                     tool,
-                    food
+                    food,
+                    repairable
             );
             DFMaterial.DFMaterialIndex.add(newMaterial);
             return newMaterial;
