@@ -351,16 +351,28 @@ public class VanillaRecipes extends CraftingTemplate {
         );
 
         int i = 0;
-        for (Material musicDisc : allStones) {
-            for (Material subMusicDisc : allStones) {
+        for (Material stone : allStones) {
+            for (Material substone : allStones) {
                 recipesToAdd.add(
                         new StonecutterRecipeBuilder()
-                                .setSource(musicDisc)
-                                .setOutput(subMusicDisc)
+                                .setSource(stone)
+                                .setOutput(substone)
                                 .build(getInfo(), "stones"+i)
                 );
                 i++;
             }
+        }
+
+        i = 0;
+        Tag<Material> allWool = Tag.WOOL;
+        for (Material wool : allWool.getValues()) {
+            recipesToAdd.add(
+                    new StonecutterRecipeBuilder()
+                            .setSource(wool)
+                            .setOutput(ItemStack.of(Material.STRING, 2))
+                            .build(getInfo(), "wools"+i)
+            );
+            i++;
         }
     }
 
