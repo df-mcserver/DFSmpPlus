@@ -49,7 +49,7 @@ public class DFAdvancementsHandler {
         new UsedSpear(newWorld);
         new GenuineDedication(newWorld);
         new IITNIG(newWorld);
-        new NetheriteTech(newWorld); // TODO
+        new NetheriteTech(newWorld);
 
         SoItBegins soItBegins = new SoItBegins(main);
         new OSFTSB(soItBegins); // TODO

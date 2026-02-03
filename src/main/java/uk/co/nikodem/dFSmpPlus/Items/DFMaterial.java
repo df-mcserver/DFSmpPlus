@@ -796,6 +796,14 @@ public class DFMaterial {
                     .create()))
             .create();
 
+    public static DFMaterial AncientDebrisFragment = new Builder(Material.STICK, "ancient_debris_fragment", 1)
+            .setDisplayName("Ancient Debris Fragment")
+            .create();
+
+    public static DFMaterial AncientDebrisChunk = new Builder(Material.STICK, "ancient_debris_chunk", 1)
+            .setDisplayName("Ancient Debris Chunk")
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

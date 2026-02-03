@@ -1,8 +1,11 @@
 package uk.co.nikodem.dFSmpPlus.Constants.Chisel;
 
+import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.IITNIG;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.NetheriteTech;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.PresetSoundData;
@@ -27,7 +30,6 @@ public class ChiselBlockData {
         new ChiselBlockDataBuilder(Material.COARSE_DIRT).setReplacement(Material.DIRT).setDrop(Material.GRAVEL).create();
         new ChiselBlockDataBuilder(Material.GRAVEL).setReplacement(Material.AIR).setDrop(Material.FLINT).setSpeedMultiplayer(0.25f).create();
 
-        // TODO: autosmelt
         new ChiselBlockDataBuilder(Material.COAL_ORE).setReplacement(Material.STONE).setDrop(Material.COAL).setMinimumTool(Enums.ToolLevel.STONE).create();
         new ChiselBlockDataBuilder(Material.IRON_ORE).setReplacement(Material.STONE).setDrop(Material.RAW_IRON).setMinimumTool(Enums.ToolLevel.STONE).create();
         new ChiselBlockDataBuilder(Material.GOLD_ORE).setReplacement(Material.STONE).setDrop(Material.RAW_GOLD).setMinimumTool(Enums.ToolLevel.STONE).create();
@@ -43,6 +45,9 @@ public class ChiselBlockData {
         new ChiselBlockDataBuilder(Material.DEEPSLATE_EMERALD_ORE).setReplacement(Material.DEEPSLATE).setDrop(Material.EMERALD_ORE).setMinimumTool(Enums.ToolLevel.STONE).create();
         new ChiselBlockDataBuilder(Material.DEEPSLATE_REDSTONE_ORE).setReplacement(Material.DEEPSLATE).setDrop(Material.REDSTONE).setMinimumTool(Enums.ToolLevel.IRON).create();
         new ChiselBlockDataBuilder(Material.DEEPSLATE_DIAMOND_ORE).setReplacement(Material.DEEPSLATE).setDrop(Material.DIAMOND).setMinimumTool(Enums.ToolLevel.IRON).create();
+
+        new ChiselBlockDataBuilder(Material.ANCIENT_DEBRIS).setReplacement(Material.AIR).setDrop(DFMaterial.AncientDebrisFragment, 5).setMinimumTool(Enums.ToolLevel.DIAMOND).setAdvancement(NetheriteTech.class).create();
+        new ChiselBlockDataBuilder(Material.BOOKSHELF).setReplacement(Material.CHISELED_BOOKSHELF).setDrop(Material.BOOK, 3).setAdvancement(IITNIG.class).create();
 
         new ChiselBlockDataBuilder(Material.BLACK_CONCRETE).setReplacement(Material.BLACK_CONCRETE_POWDER).create();
         new ChiselBlockDataBuilder(Material.BLUE_CONCRETE).setReplacement(Material.BLUE_CONCRETE_POWDER).create();
@@ -132,8 +137,6 @@ public class ChiselBlockData {
         new ChiselBlockDataBuilder(Material.OXIDIZED_CUT_COPPER_SLAB).setReplacement(Material.WEATHERED_CUT_COPPER_SLAB).create();
         new ChiselBlockDataBuilder(Material.OXIDIZED_CUT_COPPER_STAIRS).setReplacement(Material.WEATHERED_CUT_COPPER_STAIRS).create();
 
-        new ChiselBlockDataBuilder(Material.BOOKSHELF).setReplacement(Material.CHISELED_BOOKSHELF).setDrop(Material.BOOK, 3).create();
-
         new ChiselBlockDataBuilder(Material.BLACK_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.BLACK_DYE).create();
         new ChiselBlockDataBuilder(Material.BLUE_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.BLUE_DYE).create();
         new ChiselBlockDataBuilder(Material.BROWN_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.BROWN_DYE).create();
@@ -182,6 +185,7 @@ public class ChiselBlockData {
     private final ItemStack drop;
     private final float speedMultiplier;
     private final PresetSoundData soundData;
+    private final @Nullable Class<? extends BaseAdvancement> advancementOnChisel;
 
     public ChiselBlockData(
             Enums.ToolLevel minimumToolLevel,
@@ -189,7 +193,8 @@ public class ChiselBlockData {
             Material convertInto,
             ItemStack drop,
             float speedMultiplier,
-            PresetSoundData soundData
+            PresetSoundData soundData,
+            Class<? extends BaseAdvancement> advancementOnChisel
     ) {
         this.minimumToolLevel = minimumToolLevel;
         this.block = block;
@@ -197,6 +202,7 @@ public class ChiselBlockData {
         this.drop = drop;
         this.speedMultiplier = speedMultiplier;
         this.soundData = soundData;
+        this.advancementOnChisel = advancementOnChisel;
     }
 
     public Enums.ToolLevel getMinimumToolLevel() {
@@ -221,6 +227,11 @@ public class ChiselBlockData {
 
     public PresetSoundData getSoundData() {
         return this.soundData;
+    }
+
+    @Nullable
+    public Class<? extends BaseAdvancement> getAdvancementOnChisel() {
+        return this.advancementOnChisel;
     }
 
     @Nullable

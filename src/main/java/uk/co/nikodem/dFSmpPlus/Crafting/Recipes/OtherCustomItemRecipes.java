@@ -8,10 +8,7 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.recipe.CookingBookCategory;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.CampfireRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ControlledShapelessRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithResultRemoval;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
@@ -33,6 +30,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         addLocatorCompassAndModules(recipesToAdd);
         addPestleAndMortar(recipesToAdd);
         addEggSandwichRecipes(recipesToAdd);
+        addAncientDebrisFragmentRecipe(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -230,6 +228,35 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FriedEgg.toItemStack()))
                         .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FriedEgg.toItemStack()))
                         .addIngredient(Material.BREAD)
+        );
+    }
+
+    public void addAncientDebrisFragmentRecipe(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.AncientDebrisChunk)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "fragtochunk")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setOutput(Material.NETHERITE_SCRAP)
+                        .setCategory(CookingBookCategory.BLOCKS)
+                        .setSource(DFMaterial.AncientDebrisChunk)
+                        .build(getInfo(), "chunktoscrap")
+        );
+
+        recipesToAdd.add(
+                new BlastFurnaceRecipeBuilder()
+                        .setOutput(Material.NETHERITE_SCRAP)
+                        .setCategory(CookingBookCategory.BLOCKS)
+                        .setSource(DFMaterial.AncientDebrisChunk)
+                        .build(getInfo(), "chunktoscrap-blasting")
         );
     }
 

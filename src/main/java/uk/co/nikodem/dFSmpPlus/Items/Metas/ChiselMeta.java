@@ -57,8 +57,6 @@ public class ChiselMeta implements DFMaterialMeta {
                 PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
                 boolean autosmelt = DFItemUtils.containsMeta(material, AutosmeltingItemMeta.class) || (accessoryData.hasAccessoryWithMetaEquipped(AutosmeltAccessoryMeta.class) && plr.isSneaking());
 
-                if (block.getType().equals(Material.BOOKSHELF)) DFAdvancementsHandler.grantAdvancement(plr, IITNIG.class);
-
                 if (autosmelt) {
                     Material autosmeltMat = AutoSmeltable.AutosmeltableChisel.get(drop.getType());
                     if (autosmeltMat != null) {
@@ -68,6 +66,7 @@ public class ChiselMeta implements DFMaterialMeta {
                 }
 
                 if (DFItemUtils.isLevelOrAbove(tool, data.getMinimumToolLevel())) {
+                    if (data.getAdvancementOnChisel() != null) DFAdvancementsHandler.grantAdvancement(plr, data.getAdvancementOnChisel());
                     if (data.getBlockMaterial() != Material.AIR) {
                         loc.add(face.getDirection().divide(new Vector(1.3, 1.3, 1.3)));
                     }
