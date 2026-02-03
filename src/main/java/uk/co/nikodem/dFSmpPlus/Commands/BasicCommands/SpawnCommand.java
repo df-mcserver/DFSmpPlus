@@ -1,26 +1,30 @@
-package uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands;
+package uk.co.nikodem.dFSmpPlus.Commands.BasicCommands;
 
+import io.papermc.paper.command.brigadier.CommandSourceStack;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import uk.co.nikodem.dFSmpPlus.Commands.DFBasicCommand;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
+import java.util.Collection;
+import java.util.List;
 
-public class SpawnCommand implements CommandExecutor {
+
+public class SpawnCommand implements DFBasicCommand {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public void execute(CommandSourceStack commandSourceStack, String[] args) {
+        CommandSender sender = commandSourceStack.getSender();
         if (sender instanceof Player plr) {
             Location spawn = plr.getWorld().getSpawnLocation();
 
             if (inCombat(plr)) {
                 sendCombatMessage(plr);
-                return true;
+                return;
             }
 
             playTeleportingEffect(plr.getLocation());
@@ -31,7 +35,6 @@ public class SpawnCommand implements CommandExecutor {
         } else {
             sender.sendMessage("You are not player!");
         }
-        return true;
     }
 
     public boolean inCombat(Player plr) {
@@ -51,5 +54,20 @@ public class SpawnCommand implements CommandExecutor {
         World world = loc.getWorld();
         Sounds.Teleport.playSound(loc);
         world.spawnParticle(Particle.GLOW_SQUID_INK, loc, 15);
+    }
+
+    @Override
+    public String getLabel() {
+        return "spawn";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Teleport back to the server spawn, if you meet the requirements";
+    }
+
+    @Override
+    public Collection<String> getAliases() {
+        return List.of("tptospawn", "tpspawn", "tospawn");
     }
 }

@@ -9,10 +9,9 @@ import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import uk.co.nikodem.dFSmpPlus.Commands.DFCommand;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
@@ -22,13 +21,24 @@ import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointCreationResult;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 
 import java.awt.*;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
 
-public class DFWaypointCommand {
-    public static LiteralArgumentBuilder<CommandSourceStack> createCommand() {
+public class DFWaypointCommand implements DFCommand {
+    public LiteralArgumentBuilder<CommandSourceStack> createCommand() {
         return Commands.literal("waypoint")
+                .executes(ctx -> {
+                    Player plr = (Player) ctx.getSource().getExecutor();
+                    if (plr == null) return 0;
+                    if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
+
+                    plr.sendMessage(MiniMessage.miniMessage().deserialize(
+                            "<red>Specify a subcommand!"
+                    ));
+                    return Command.SINGLE_SUCCESS;
+                })
                 .then(
                     Commands.literal("locatorbar")
                         .then(Commands.argument("enabled", BoolArgumentType.bool()).executes(ctx -> {
@@ -51,6 +61,7 @@ public class DFWaypointCommand {
                             .executes(ctx -> {
                                 Player plr = (Player) ctx.getSource().getExecutor();
                                 if (plr == null) return 0;
+                                if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
                                 boolean res = getPlayerLocatorBar(plr);
 
@@ -210,4 +221,15 @@ public class DFWaypointCommand {
         PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
         return data.locatorBarEnabled;
     }
+
+
+
+    @Override
+    public String getDescription() {
+        return "Manage your waypoints, which shows up in the locator bar.";
+    }
+
+    public Collection<String> getAliases() {
+        return List.of("waypoints");
+    };
 }

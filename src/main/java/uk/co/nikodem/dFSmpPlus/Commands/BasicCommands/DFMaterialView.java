@@ -1,28 +1,29 @@
-package uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands;
+package uk.co.nikodem.dFSmpPlus.Commands.BasicCommands;
 
+import io.papermc.paper.command.brigadier.CommandSourceStack;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
-import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
+import org.jspecify.annotations.Nullable;
+import uk.co.nikodem.dFSmpPlus.Commands.DFBasicCommand;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class DFMaterialView implements CommandExecutor {
+public class DFMaterialView implements DFBasicCommand {
     @Override
-    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+    public void execute(CommandSourceStack commandSourceStack, String[] args) {
+        CommandSender sender = commandSourceStack.getSender();
         if (sender instanceof Player plr) {
             try {
-                if (args.length != 1) return false;
+                if (args.length != 1) return;
                 Integer givenPage = Integer.parseInt(args[0]);
 
                 Inventory inv = Bukkit.createInventory(null, 54, "DFMaterialView");
@@ -48,7 +49,25 @@ public class DFMaterialView implements CommandExecutor {
         } else {
             sender.sendMessage(Component.text("You are not a player!"));
         }
-        return true;
     }
 
+    @Override
+    public @Nullable String permission() {
+        return "dfsmpplus.adminonly";
+    }
+
+    @Override
+    public String getLabel() {
+        return "dfmaterialview";
+    }
+
+    @Override
+    public String getDescription() {
+        return "debug command";
+    }
+
+    @Override
+    public Collection<String> getAliases() {
+        return List.of();
+    }
 }

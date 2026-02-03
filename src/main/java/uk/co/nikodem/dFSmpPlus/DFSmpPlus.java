@@ -16,10 +16,11 @@ import org.slf4j.LoggerFactory;
 import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Commands.BasicCommands.*;
+import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFGiveCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFWaypointCommand;
-import uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands.*;
-import uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands.TabCompleters.DFDebugTabCompleter;
-import uk.co.nikodem.dFSmpPlus.Commands.LegacyCommands.TabCompleters.GiveDFTabCompleter;
+import uk.co.nikodem.dFSmpPlus.Commands.DFBasicCommand;
+import uk.co.nikodem.dFSmpPlus.Commands.DFCommand;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
@@ -52,7 +53,6 @@ import uk.co.nikodem.dFSmpPlus.Utils.Server.HidingUtils;
 import uk.co.nikodem.dFSmpPlus.World.SetDefaults;
 
 import java.util.List;
-import java.util.Objects;
 
 public final class DFSmpPlus extends JavaPlugin implements Listener {
 
@@ -132,20 +132,28 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
             DFCustomDrops.createCustomDropData();
 
             // Command initiation
-            Objects.requireNonNull(getCommand("givedf")).setExecutor(new GiveDF());
-            Objects.requireNonNull(getCommand("givedf")).setTabCompleter(new GiveDFTabCompleter());
+            List<DFBasicCommand> basicCommands = List.of(
+                    new AccessoriesCommand(),
+                    new SpawnCommand(),
+                    new BinCommand(),
+                    new BackCommand(),
 
-            Objects.requireNonNull(getCommand("dfdebug")).setExecutor(new DFDebugCommand());
-            Objects.requireNonNull(getCommand("dfdebug")).setTabCompleter(new DFDebugTabCompleter());
+                    new DFDebugCommand(),
+                    new DFMaterialView()
+            );
 
-            Objects.requireNonNull(getCommand("dfmaterialview")).setExecutor(new DFMaterialView());
-            Objects.requireNonNull(getCommand("spawn")).setExecutor(new SpawnCommand());
-            Objects.requireNonNull(getCommand("back")).setExecutor(new BackCommand());
-            Objects.requireNonNull(getCommand("bin")).setExecutor(new BinCommand());
-            Objects.requireNonNull(getCommand("accessories")).setExecutor(new AccessoriesCommand());
+            List<DFCommand> brigaderCommands = List.of(
+                    new DFWaypointCommand(),
+                    new DFGiveCommand()
+            );
 
             this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
-                commands.registrar().register(DFWaypointCommand.createCommand().build());
+                for (DFCommand command : brigaderCommands) {
+                    commands.registrar().register(command.createCommand().build(), command.getDescription(), command.getAliases());
+                }
+                for (DFBasicCommand command : basicCommands) {
+                    commands.registrar().register(command.getLabel(), command.getDescription(), command.getAliases(), command);
+                }
             });
 
             List<Listener> eventListeners = List.of(
