@@ -31,7 +31,10 @@ public class Sounds {
 
     public static PresetSoundData VacuumPickupItem = new PresetSoundData(Sound.ENTITY_ITEM_PICKUP, 0.5F, 1.2F);
 
-    public static PresetSoundData MattBlade = new PresetSoundData("dfjr:matt_blade", 1F, 1F);
+    public static PresetSoundData MattBlade = new PresetSoundData("dfjr:matt_blade", 0.25F, 1F);
+    public static PresetSoundData MattBladeSwing = new PresetSoundData("dfjr:matt_blade_swing", 0.25F, 1F);
+    public static PresetSoundData SebBladeStab = new PresetSoundData("dfjr:seb_blade_stab", 0.25F, 1F);
+    public static PresetSoundData SebBladeSwing = new PresetSoundData("dfjr:seb_blade_swing", 0.25F, 1F);
 
     public static PresetSoundData PlaceTargetDummy = new PresetSoundData(Sound.ENTITY_ARMOR_STAND_PLACE, 1F, 1F);
     public static PresetSoundData PickupTargetDummy = new PresetSoundData(Sound.ENTITY_ARMOR_STAND_BREAK, 1F, 1F);

@@ -760,8 +760,14 @@ public class DFMaterial {
 
     public static DFMaterial MattBlade = new Builder(Material.DIAMOND_SWORD, "matt_blade", 1)
             .setDisplayName("<red>Matt blade")
-            .addMeta(new NoisyItem(null, Sounds.MattBlade), new AdvancementOnObtainMeta(TDP.class))
+            .addMeta(new NoisyItem(Sounds.MattBladeSwing, Sounds.MattBlade), new AdvancementOnObtainMeta(TDP.class))
             .addLore("<dark_red>The DEADLIEST sword. From the DEADLIEST player.")
+            .create();
+
+    public static DFMaterial SebBlade = new Builder(Material.WOODEN_SWORD, "seb_blade", 1)
+            .setDisplayName("<red>Seb blade")
+            .addMeta(new NoisyItem(Sounds.SebBladeSwing, Sounds.SebBladeStab))
+            .addLore("<dark_red>The LEAST DEADLY sword. From the LEAST DEADLY player.")
             .create();
 
     public static DFMaterial FriedEgg = new Builder(Material.STICK, "fried_egg", 1)
