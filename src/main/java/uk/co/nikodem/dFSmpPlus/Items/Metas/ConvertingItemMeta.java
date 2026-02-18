@@ -11,20 +11,20 @@ import uk.co.nikodem.dFSmpPlus.Utils.Sound.PresetSoundData;
 
 import java.util.Objects;
 
-public class ConvertingItem implements DFMaterialMeta {
+public class ConvertingItemMeta implements DFMaterialMeta {
     public final String convertsToId;
     public final ItemStack convertsToItemStack;
     public final String residueItemId;
     public final PresetSoundData completionSound;
 
-    public ConvertingItem(String convertsTo, String residueDFMaterial, PresetSoundData completionSound) {
+    public ConvertingItemMeta(String convertsTo, String residueDFMaterial, PresetSoundData completionSound) {
         this.convertsToId = convertsTo;
         this.convertsToItemStack = null;
         this.residueItemId = residueDFMaterial;
         this.completionSound = completionSound;
     }
 
-    public ConvertingItem(ItemStack convertsTo, String residueDFMaterial, PresetSoundData completionSound) {
+    public ConvertingItemMeta(ItemStack convertsTo, String residueDFMaterial, PresetSoundData completionSound) {
         this.convertsToId = null;
         this.convertsToItemStack = convertsTo;
         this.residueItemId = residueDFMaterial;

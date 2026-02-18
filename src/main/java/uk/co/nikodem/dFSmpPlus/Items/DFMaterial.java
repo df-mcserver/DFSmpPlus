@@ -586,7 +586,7 @@ public class DFMaterial {
     public static DFMaterial RottenFleshPestleAndMortar = new Builder(Material.STICK, "rotten_flesh_pestle_and_mortar", 1)
             .setDisplayName("Pestle and Mortar")
             .addLore("<light_purple>Contains rotten flesh")
-            .addMeta(new ConvertingItem(ItemStack.of(Material.LEATHER), "empty_pestle_and_mortar", Sounds.RottenFleshPestleAndMortarFinish), new CustomDurabilityMeta(10))
+            .addMeta(new ConvertingItemMeta(ItemStack.of(Material.LEATHER), "empty_pestle_and_mortar", Sounds.RottenFleshPestleAndMortarFinish), new CustomDurabilityMeta(10))
             .setConsumable(Consumable.consumable().consumeSeconds(1f).hasConsumeParticles(false).animation(ItemUseAnimation.EAT).sound(Key.key("minecraft", "block.stone.break")).build())
             .setMaxStack(1)
             .create();
@@ -594,7 +594,7 @@ public class DFMaterial {
     public static DFMaterial GravelPestleAndMortar = new Builder(Material.STICK, "gravel_pestle_and_mortar", 1)
             .setDisplayName("Pestle and Mortar")
             .addLore("<light_purple>Contains gravel")
-            .addMeta(new ConvertingItem(ItemStack.of(Material.FLINT, 2), "empty_pestle_and_mortar", Sounds.GravelPestleAndMortarFinish), new CustomDurabilityMeta(3))
+            .addMeta(new ConvertingItemMeta(ItemStack.of(Material.FLINT, 2), "empty_pestle_and_mortar", Sounds.GravelPestleAndMortarFinish), new CustomDurabilityMeta(3))
             .setConsumable(Consumable.consumable().consumeSeconds(1f).hasConsumeParticles(false).animation(ItemUseAnimation.EAT).sound(Key.key("minecraft", "block.stone.break")).build())
             .setMaxStack(1)
             .create();
@@ -602,7 +602,7 @@ public class DFMaterial {
     public static DFMaterial FlowerPestleAndMortar = new Builder(Material.STICK, "flower_pestle_and_mortar", 1)
             .setDisplayName("Pestle and Mortar")
             .addLore("<light_purple>Contains flowers")
-            .addMeta(new ConvertingItem("flower_powder", "empty_pestle_and_mortar", Sounds.FlowerPestleAndMortarFinish), new CustomDurabilityMeta(5))
+            .addMeta(new ConvertingItemMeta("flower_powder", "empty_pestle_and_mortar", Sounds.FlowerPestleAndMortarFinish), new CustomDurabilityMeta(5))
             .setConsumable(Consumable.consumable().consumeSeconds(1f).hasConsumeParticles(false).animation(ItemUseAnimation.EAT).sound(Key.key("minecraft", "block.stone.break")).build())
             .setMaxStack(1)
             .create();
@@ -808,6 +808,21 @@ public class DFMaterial {
 
     public static DFMaterial AncientDebrisChunk = new Builder(Material.STICK, "ancient_debris_chunk", 1)
             .setDisplayName("Ancient Debris Chunk")
+            .create();
+
+    public static DFMaterial StrangeBucket = new Builder(Material.STICK, "strange_bucket", 1)
+            .setDisplayName("Strange Bucket")
+            .setMaxStack(16)
+            .create();
+
+    public static DFMaterial DiscreetChickenBucket = new Builder(Material.STICK, "discreet_chicken_bucket", 1)
+            .setDisplayName("Discreet Chicken Bucket")
+            .addLore("It's not finger licking good.")
+            .addLore("Tastes horrible, actually.")
+            .setFoodProperties(FoodProperties.food().nutrition(4).saturation(5f).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
+            .addMeta(new ConsumingResidueMeta("strange_bucket", null))
+            .setMaxStack(1)
             .create();
 
     private final String namedId;

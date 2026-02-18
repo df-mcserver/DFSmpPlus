@@ -11,7 +11,6 @@ import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithResultRemoval;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
-import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         addVampireSword(recipesToAdd);
         addLocatorCompassAndModules(recipesToAdd);
         addPestleAndMortar(recipesToAdd);
-        addEggSandwichRecipes(recipesToAdd);
+        addCustomFoodRecipes(recipesToAdd);
         addAncientDebrisFragmentRecipe(recipesToAdd);
 
         return recipesToAdd;
@@ -209,7 +208,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         );
     }
 
-    public void addEggSandwichRecipes(List<Recipe> recipesToAdd) {
+    public void addCustomFoodRecipes(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new CampfireRecipeBuilder()
                         .setOutput(DFMaterial.FriedEgg)
@@ -228,6 +227,26 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FriedEgg.toItemStack()))
                         .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FriedEgg.toItemStack()))
                         .addIngredient(Material.BREAD)
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.StrangeBucket)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "strange_bucket")
+                        .addIngredient(Material.BUCKET)
+                        .addIngredient(Material.RED_DYE)
+                        .addIngredient(Material.WHITE_DYE)
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.DiscreetChickenBucket)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "dcb")
+                        .addIngredient(Material.COOKED_CHICKEN)
+                        .addIngredient(Material.COOKED_CHICKEN)
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.StrangeBucket.toItemStack()))
         );
     }
 
