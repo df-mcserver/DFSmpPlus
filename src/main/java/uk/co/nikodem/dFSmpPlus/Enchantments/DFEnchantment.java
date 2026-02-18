@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Enchantments;
 
+import io.papermc.paper.registry.RegistryAccess;
 import io.papermc.paper.registry.RegistryKey;
 import io.papermc.paper.registry.TypedKey;
 import io.papermc.paper.registry.data.EnchantmentRegistryEntry;
@@ -8,6 +9,7 @@ import io.papermc.paper.registry.keys.tags.ItemTypeTagKeys;
 import io.papermc.paper.registry.tag.TagKey;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
+import org.bukkit.Registry;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemType;
@@ -122,6 +124,17 @@ public class DFEnchantment {
 
     public List<DFEnchantmentMeta> getMeta() {
         return this.metas;
+    }
+
+    public Enchantment getEnchantment() {
+        //Get the enchantment registry
+        final Registry<Enchantment> enchantmentRegistry = RegistryAccess
+                .registryAccess()
+                .getRegistry(RegistryKey.ENCHANTMENT);
+
+        return enchantmentRegistry.getOrThrow(TypedKey.create(
+                RegistryKey.ENCHANTMENT, this.getKey())
+        );
     }
 
     public DFEnchantment(

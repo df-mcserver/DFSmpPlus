@@ -3,12 +3,16 @@ package uk.co.nikodem.dFSmpPlus.Blocks;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.Ageable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.VacuumAccessoryMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
+import uk.co.nikodem.dFSmpPlus.Enchantments.DFEnchantment;
+import uk.co.nikodem.dFSmpPlus.Enchantments.DFEnchantmentUtils;
+import uk.co.nikodem.dFSmpPlus.Enchantments.Metas.HarvestMeta;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,8 +38,21 @@ public class CustomDrops {
 
         Collection<ItemStack> realDrops = event.getBlock().getDrops(tool, plr);
         if (newDrops.isEmpty() && hasVacuum && !realDrops.isEmpty()) {
+            Ageable ageable = (Ageable) origin.getBlockData();
+            int harvestingEnchantLevel = DFEnchantmentUtils.getEnchantmentLevelOfItem(plr.getInventory().getItemInMainHand(), DFEnchantment.Harvesting);
+            if (harvestingEnchantLevel > 0 && ageable.getAge() == ageable.getMaximumAge()) {
+                for (ItemStack item : realDrops) {
+                    if (HarvestMeta.harvestable.contains(item.getType())) {
+                        float mult = ((float) 1 / (harvestingEnchantLevel + 2)) + ((float) (harvestingEnchantLevel + 1) / 2);
+                        item.setAmount((int) (item.getAmount() * mult));
+                    }
+                    newDrops.add(item);
+                }
+            } else {
+                newDrops = realDrops.stream().toList();
+            }
+
             event.setDropItems(false);
-            newDrops = realDrops.stream().toList();
         }
 
         List<ItemStack> overflow = VacuumAccessoryMeta.giveItemsToPlayerViaVacuum(plr, newDrops);
