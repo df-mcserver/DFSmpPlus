@@ -11,36 +11,58 @@ import io.papermc.paper.registry.event.RegistryEvents;
 import io.papermc.paper.registry.keys.EnchantmentKeys;
 import io.papermc.paper.registry.keys.tags.EnchantmentTagKeys;
 import io.papermc.paper.registry.keys.tags.ItemTypeTagKeys;
+import io.papermc.paper.registry.set.RegistryKeySet;
+import io.papermc.paper.registry.set.RegistrySet;
 import io.papermc.paper.registry.tag.TagKey;
+import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
+import uk.co.nikodem.dFSmpPlus.Enchantments.DFEnchantment;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DFSmpPlusBootstrap implements PluginBootstrap {
     @Override
     public void bootstrap(BootstrapContext context) {
+
         context.getLifecycleManager().registerEventHandler(RegistryEvents.ENCHANTMENT.compose().newHandler(event -> {
-            event.registry().register(
-                    EnchantmentKeys.create(Keys.createRegistryKey("harvesting")),
-                    b -> b
-                            .supportedItems(event.getOrCreateTag(ItemTypeTagKeys.HOES))
-                            .primaryItems(event.getOrCreateTag(ItemTypeTagKeys.HOES))
-                            .description(Component.text("Harvesting"))
-                            .anvilCost(1)
-                            .maxLevel(3)
-                            .weight(100)
-                            .minimumCost(EnchantmentRegistryEntry.EnchantmentCost.of(1, 1))
-                            .maximumCost(EnchantmentRegistryEntry.EnchantmentCost.of(3, 3))
-                            .activeSlots(EquipmentSlotGroup.MAINHAND)
-            );
+            for (DFEnchantment enchantment : DFEnchantment.DFEnchantmentIndex) {
+                event.registry().register(
+                        EnchantmentKeys.create(enchantment.getKey()),
+                        b -> b
+                                .supportedItems(event.getOrCreateTag(enchantment.getSupportedItems()))
+                                .primaryItems(event.getOrCreateTag(enchantment.getPrimaryItems() == null ? enchantment.getSupportedItems() : enchantment.getPrimaryItems()))
+                                .activeSlots(enchantment.getActiveSlotGroup())
+                                .description(enchantment.getName())
+                                .maxLevel(enchantment.getMaxLevel())
+                                .weight(enchantment.getWeight())
+                                .anvilCost(enchantment.getAnvilCost())
+                                .minimumCost(enchantment.getMinCost())
+                                .maximumCost(enchantment.getMaxCost())
+                                .exclusiveWith(RegistrySet.keySet(RegistryKey.ENCHANTMENT, enchantment.getIncompatibleEnchantments()))
+                );
+            }
         }));
 
         context.getLifecycleManager().registerEventHandler(LifecycleEvents.TAGS.postFlatten(RegistryKey.ENCHANTMENT).newHandler(event -> {
-            event.registrar().addToTag(EnchantmentTagKeys.IN_ENCHANTING_TABLE, List.of(EnchantmentKeys.create(Keys.createRegistryKey("harvesting"))));
-            event.registrar().addToTag(EnchantmentTagKeys.TRADEABLE, List.of(EnchantmentKeys.create(Keys.createRegistryKey("harvesting"))));
-            event.registrar().addToTag(EnchantmentTagKeys.ON_TRADED_EQUIPMENT, List.of(EnchantmentKeys.create(Keys.createRegistryKey("harvesting"))));
+            HashMap<TagKey<Enchantment>, List<TypedKey<Enchantment>>> mappings = new HashMap<>();
+            for (DFEnchantment enchantment : DFEnchantment.DFEnchantmentIndex) {
+                for (TagKey<Enchantment> key : enchantment.getEnchantmentTagKeys()) {
+                    List<TypedKey<Enchantment>> entry = mappings.get(key);
+                    if (entry == null) entry = new ArrayList<>();
+                    entry.add(EnchantmentKeys.create(enchantment.getKey()));
+                    mappings.replace(key, entry);
+                }
+            }
+
+            for (Map.Entry<TagKey<Enchantment>, List<TypedKey<Enchantment>>> entry : mappings.entrySet()) {
+                event.registrar().addToTag(entry.getKey(), entry.getValue());
+            }
         }));
     }
 }
