@@ -819,9 +819,18 @@ public class DFMaterial {
             .setDisplayName("Discreet Chicken Bucket")
             .addLore("It's not finger licking good.")
             .addLore("Tastes horrible, actually.")
-            .setFoodProperties(FoodProperties.food().nutrition(4).saturation(5f).build())
+            .setFoodProperties(FoodProperties.food().nutrition(10).saturation(4f).build())
             .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
             .addMeta(new ConsumingResidueMeta("strange_bucket", null))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial DiscreetChickenBurger = new Builder(Material.STICK, "discreet_chicken_burger", 1)
+            .setDisplayName("Discreet Chicken Burger")
+            .addLore("It's not finger licking good.")
+            .addLore("Tastes horrible, actually.")
+            .setFoodProperties(FoodProperties.food().nutrition(10).saturation(4f).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
             .setMaxStack(1)
             .create();
 
