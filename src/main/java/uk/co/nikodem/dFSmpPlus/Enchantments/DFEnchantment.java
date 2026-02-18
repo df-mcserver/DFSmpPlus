@@ -162,11 +162,11 @@ public class DFEnchantment {
         private Iterable<EquipmentSlotGroup> activeSlotGroup;
         private TagKey<ItemType> supportedItems;
         private TagKey<ItemType> primaryItems;
-        private @Range(from = 1L, to = 255L) int maxLevel;
-        private @Range(from = 0L, to = 2147483647L) int anvilCost;
-        private @Range(from = 1L, to = 1024L) int weight;
-        private EnchantmentRegistryEntry.EnchantmentCost minCost;
-        private EnchantmentRegistryEntry.EnchantmentCost maxCost;
+        private @Range(from = 1L, to = 255L) int maxLevel = 1;
+        private @Range(from = 0L, to = 2147483647L) int anvilCost = 1;
+        private @Range(from = 1L, to = 1024L) int weight = 1;
+        private EnchantmentRegistryEntry.EnchantmentCost minCost = EnchantmentRegistryEntry.EnchantmentCost.of(1, 3);
+        private EnchantmentRegistryEntry.EnchantmentCost maxCost = EnchantmentRegistryEntry.EnchantmentCost.of(1, 3);
         private final List<TypedKey<Enchantment>> incompatibleEnchantments = new ArrayList<>();
         private final List<DFEnchantmentMeta> metas = new ArrayList<>();
 
