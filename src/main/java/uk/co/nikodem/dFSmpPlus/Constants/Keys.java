@@ -1,6 +1,8 @@
 package uk.co.nikodem.dFSmpPlus.Constants;
 
+import net.kyori.adventure.key.Key;
 import org.bukkit.NamespacedKey;
+import org.intellij.lang.annotations.Subst;
 
 public class Keys {
     public static NamespacedKey markedForUUID = createDefaultKey("markedforuuid");
@@ -52,6 +54,12 @@ public class Keys {
         return new NamespacedKey(
                 "dfjr",
                 key
+        );
+    }
+
+    public static Key createRegistryKey(@Subst("test") String key) {
+        return Key.key(
+                "dfjr:"+key
         );
     }
 
