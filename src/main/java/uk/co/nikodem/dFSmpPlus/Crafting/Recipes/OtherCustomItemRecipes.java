@@ -231,22 +231,12 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
 
         recipesToAdd.add(
                 new ShapelessRecipeBuilder()
-                        .setOutput(DFMaterial.StrangeBucket)
+                        .setOutput(DFMaterial.ChickenBurger)
                         .setCategory(CraftingBookCategory.MISC)
-                        .build(getInfo(), "strange_bucket")
-                        .addIngredient(Material.BUCKET)
-                        .addIngredient(Material.RED_DYE)
-                        .addIngredient(Material.WHITE_DYE)
-        );
-
-        recipesToAdd.add(
-                new ShapelessRecipeBuilder()
-                        .setOutput(DFMaterial.DiscreetChickenBucket)
-                        .setCategory(CraftingBookCategory.MISC)
-                        .build(getInfo(), "dcb")
+                        .build(getInfo(), "dcburger")
                         .addIngredient(Material.COOKED_CHICKEN)
                         .addIngredient(Material.COOKED_CHICKEN)
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.StrangeBucket.toItemStack()))
+                        .addIngredient(Material.BREAD)
         );
     }
 

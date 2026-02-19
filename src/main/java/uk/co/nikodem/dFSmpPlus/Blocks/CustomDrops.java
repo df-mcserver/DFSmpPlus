@@ -38,18 +38,19 @@ public class CustomDrops {
 
         Collection<ItemStack> realDrops = event.getBlock().getDrops(tool, plr);
         if (newDrops.isEmpty() && hasVacuum && !realDrops.isEmpty()) {
-            Ageable ageable = (Ageable) origin.getBlockData();
-            int harvestingEnchantLevel = DFEnchantmentUtils.getEnchantmentLevelOfItem(plr.getInventory().getItemInMainHand(), DFEnchantment.Harvesting);
-            if (harvestingEnchantLevel > 0 && ageable.getAge() == ageable.getMaximumAge()) {
-                for (ItemStack item : realDrops) {
-                    if (HarvestMeta.harvestable.contains(item.getType())) {
-                        float mult = ((float) 1 / (harvestingEnchantLevel + 2)) + ((float) (harvestingEnchantLevel + 1) / 2);
-                        item.setAmount((int) (item.getAmount() * mult));
+            newDrops = realDrops.stream().toList();
+            if (origin.getBlockData() instanceof Ageable ageable) {
+                int harvestingEnchantLevel = DFEnchantmentUtils.getEnchantmentLevelOfItem(plr.getInventory().getItemInMainHand(), DFEnchantment.Harvesting);
+                if (harvestingEnchantLevel > 0 && ageable.getAge() == ageable.getMaximumAge()) {
+                    newDrops = new ArrayList<>();
+                    for (ItemStack item : realDrops) {
+                        if (HarvestMeta.harvestable.contains(item.getType())) {
+                            float mult = ((float) 1 / (harvestingEnchantLevel + 2)) + ((float) (harvestingEnchantLevel + 1) / 2);
+                            item.setAmount((int) (item.getAmount() * mult));
+                        }
+                        newDrops.add(item);
                     }
-                    newDrops.add(item);
                 }
-            } else {
-                newDrops = realDrops.stream().toList();
             }
 
             event.setDropItems(false);

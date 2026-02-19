@@ -10,6 +10,7 @@ import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import java.util.Map;
 
 public interface DFEnchantmentMeta {
+    // TODO figure out how i'd implement this
     default void BlockMined(Player plr, ItemStack item, DFEnchantment enchantment, BlockBreakEvent event) {};
     default Map<Attribute, AttributeModifier> AddAttributeModifiers(Player plr, ItemStack accessory, AccessoryInformation info) {
         return Map.of();

@@ -13,6 +13,7 @@ import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -810,27 +811,67 @@ public class DFMaterial {
             .setDisplayName("Ancient Debris Chunk")
             .create();
 
+    public static DFMaterial Cardboard = new Builder(Material.STICK, "cardboard", 1)
+            .setDisplayName("Cardboard")
+            .create();
+
     public static DFMaterial StrangeBucket = new Builder(Material.STICK, "strange_bucket", 1)
             .setDisplayName("Strange Bucket")
+            .setMaxStack(16)
+            .create();
+
+    public static DFMaterial StrangeChipBox = new Builder(Material.STICK, "strange_chip_box", 1)
+            .setDisplayName("Strange Chip Box")
             .setMaxStack(16)
             .create();
 
     public static DFMaterial DiscreetChickenBucket = new Builder(Material.STICK, "discreet_chicken_bucket", 1)
             .setDisplayName("Discreet Chicken Bucket")
             .addLore("It's not finger licking good.")
-            .addLore("Tastes horrible, actually.")
-            .setFoodProperties(FoodProperties.food().nutrition(10).saturation(4f).build())
+            .setFoodProperties(FoodProperties.food().nutrition(12).saturation(4f).build())
             .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
             .addMeta(new ConsumingResidueMeta("strange_bucket", null))
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial DiscreetChickenBurger = new Builder(Material.STICK, "discreet_chicken_burger", 1)
-            .setDisplayName("Discreet Chicken Burger")
+    public static DFMaterial DiscreetChips = new Builder(Material.STICK, "discreet_chips", 1)
+            .setDisplayName("Discreet Chips")
             .addLore("It's not finger licking good.")
-            .addLore("Tastes horrible, actually.")
-            .setFoodProperties(FoodProperties.food().nutrition(10).saturation(4f).build())
+            .setFoodProperties(FoodProperties.food().nutrition(9).saturation(2f).build())
             .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
+            .addMeta(new ConsumingResidueMeta("strange_chip_box", null))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial ChickenBurger = new Builder(Material.STICK, "chicken_burger", 1)
+            .setDisplayName("Chicken Burger")
+            .setFoodProperties(FoodProperties.food().nutrition(7).saturation(10f).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
+            .create();
+
+    public static DFMaterial Coke = new Builder(Material.POTION, "coke", 1)
+            .setDisplayName("Coke")
+            .addLore("Literally the same as pepsi")
+            .setFoodProperties(FoodProperties.food().canAlwaysEat(true).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).sound(Registry.SOUNDS.getKey(Sound.ENTITY_GENERIC_DRINK)).hasConsumeParticles(false).animation(ItemUseAnimation.DRINK).build())
+            .addMeta(new ConsumingResidueMeta(ItemStack.of(Material.GLASS_BOTTLE), null))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial Pepsi = new Builder(Material.POTION, "pepsi", 1)
+            .setDisplayName("Pepsi")
+            .addLore("Literally the same as coke")
+            .setFoodProperties(FoodProperties.food().canAlwaysEat(true).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).sound(Registry.SOUNDS.getKey(Sound.ENTITY_GENERIC_DRINK)).hasConsumeParticles(false).animation(ItemUseAnimation.DRINK).build())
+            .addMeta(new ConsumingResidueMeta(ItemStack.of(Material.GLASS_BOTTLE), null))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial Sprite = new Builder(Material.POTION, "sprite", 1)
+            .setDisplayName("Sprite")
+            .setFoodProperties(FoodProperties.food().canAlwaysEat(true).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).sound(Registry.SOUNDS.getKey(Sound.ENTITY_GENERIC_DRINK)).hasConsumeParticles(false).animation(ItemUseAnimation.DRINK).build())
+            .addMeta(new ConsumingResidueMeta(ItemStack.of(Material.GLASS_BOTTLE), null))
             .setMaxStack(1)
             .create();
 

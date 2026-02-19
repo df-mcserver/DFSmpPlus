@@ -112,6 +112,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
             new HiddenRecipes();
             new HiddenRepairRecipes();
+            new HiddenFoodRecipes();
 
             advancements = new DFAdvancementsHandler();
 
