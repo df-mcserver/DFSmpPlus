@@ -68,12 +68,12 @@ public class ChiselRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "CopperChisel")
                         .shape("XX", "XX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.CopperNugget.toItemStack()))
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_NUGGET)))
         );
 
         new ItemRepairAnvilRecipeBuilder()
                 .setItem(DFMaterial.CopperChisel)
-                .setAddition(DFMaterial.CopperNugget)
+                .setAddition(Material.COPPER_NUGGET)
                 .assign();
 
         recipesToAdd.add(

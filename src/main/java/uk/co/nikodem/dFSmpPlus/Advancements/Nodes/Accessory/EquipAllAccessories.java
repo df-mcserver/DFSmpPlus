@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Accessory;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
+import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplayBuilder;
 import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
@@ -15,8 +16,8 @@ public class EquipAllAccessories extends BaseAdvancement {
     public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "equip-all-accessories");
 
     public EquipAllAccessories(@NotNull Advancement parent) {
-        super(KEY.getKey(),
-                new AdvancementDisplay.Builder(
+        super(parent, KEY.getKey(),
+                new AdvancementDisplayBuilder(
                         DFMaterial.CobaltShield.toItemStack(), // TODO: Replace with obsidian shield
                         "No more slots")
                         .description("Equip the maximum amount of accessories.")
@@ -24,8 +25,7 @@ public class EquipAllAccessories extends BaseAdvancement {
                         .coords(3f, 9f)
                         .showToast()
                         .announceChat()
-                        .build()
-                , parent);
+                        .build());
 
         DFAdvancementsHandler.registerAdvancement(this);
     }

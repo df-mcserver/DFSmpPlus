@@ -124,7 +124,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo())
                         .shape("III", "X X")
                         .setIngredient('I', Material.LEATHER)
-                        .setIngredient('X', Material.CHAIN)
+                        .setIngredient('X', Material.IRON_CHAIN)
         );
 
         recipesToAdd.add(
@@ -157,7 +157,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo(), "coppernugget")
                         .shape(" X", "P ")
                         .setIngredient('P', Material.PAPER)
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.CopperNugget.toItemStack()))
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_NUGGET)))
         );
 
         recipesToAdd.add(
@@ -249,7 +249,7 @@ public class VanillaRecipes extends CraftingTemplate {
         recipesToAdd.add(
                 new StandardHelmetRecipeBuilder()
                         .setItem(Material.CHAINMAIL_HELMET)
-                        .setMaterial(Material.CHAIN)
+                        .setMaterial(Material.IRON_CHAIN)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
@@ -257,7 +257,7 @@ public class VanillaRecipes extends CraftingTemplate {
         recipesToAdd.add(
                 new StandardChestplateRecipeBuilder()
                         .setItem(Material.CHAINMAIL_CHESTPLATE)
-                        .setMaterial(Material.CHAIN)
+                        .setMaterial(Material.IRON_CHAIN)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
@@ -265,7 +265,7 @@ public class VanillaRecipes extends CraftingTemplate {
         recipesToAdd.add(
                 new StandardLeggingsRecipeBuilder()
                         .setItem(Material.CHAINMAIL_LEGGINGS)
-                        .setMaterial(Material.CHAIN)
+                        .setMaterial(Material.IRON_CHAIN)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
@@ -273,7 +273,7 @@ public class VanillaRecipes extends CraftingTemplate {
         recipesToAdd.add(
                 new StandardBootsRecipeBuilder()
                         .setItem(Material.CHAINMAIL_BOOTS)
-                        .setMaterial(Material.CHAIN)
+                        .setMaterial(Material.IRON_CHAIN)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );

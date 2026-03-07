@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
+import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplayBuilder;
 import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import com.fren_gor.ultimateAdvancementAPI.visibilities.HiddenVisibility;
 import org.jetbrains.annotations.NotNull;
@@ -15,8 +16,8 @@ public class BulliedByBluebellsar extends BaseAdvancement implements HiddenVisib
     public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "bullied-by-bluebellsar");
 
     public BulliedByBluebellsar(@NotNull Advancement parent) {
-        super(KEY.getKey(),
-                new AdvancementDisplay.Builder(
+        super(parent, KEY.getKey(),
+                new AdvancementDisplayBuilder(
                         DFMaterial.BluebellsarStick.toItemStack(),
                         "Self Medicated")
                         .description("Your actions have consequences.")
@@ -24,8 +25,7 @@ public class BulliedByBluebellsar extends BaseAdvancement implements HiddenVisib
                         .coords(2f, 5f)
                         .showToast()
                         .announceChat()
-                        .build()
-                , parent);
+                        .build());
 
         DFAdvancementsHandler.registerAdvancement(this);
     }

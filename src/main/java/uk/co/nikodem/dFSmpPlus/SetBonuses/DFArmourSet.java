@@ -53,6 +53,16 @@ public class DFArmourSet {
             .addMeta(new SpeedMeta())
             .create();
 
+    public static final DFArmourSet Native_Copper = new Builder("Copper")
+            .setBase(DFArmourSet.Native_Iron)
+            .setHelmet(Material.COPPER_HELMET)
+            .setChestplate(Material.COPPER_CHESTPLATE)
+            .setLeggings(Material.COPPER_LEGGINGS)
+            .setBoots(Material.COPPER_BOOTS)
+            .setSetBonus("Has a chance to strike lightning when critical hitting someone, during the rain.")
+            .addMeta(new CopperMeta())
+            .create();
+
     public static final DFArmourSet Native_Diamond = new Builder("Diamond")
             .setHelmet(Material.DIAMOND_HELMET)
             .setChestplate(Material.DIAMOND_CHESTPLATE)
@@ -80,16 +90,6 @@ public class DFArmourSet {
             .setBoots(DFMaterial.CalciteBoots)
             .setSetBonus("Gives you speed and a few extra hearts")
             .addMeta(new CalciteMeta())
-            .create();
-
-    public static final DFArmourSet Copper = new Builder("Copper")
-            .setBase(DFArmourSet.Native_Iron)
-            .setHelmet(DFMaterial.CopperHelmet)
-            .setChestplate(DFMaterial.CopperChestplate)
-            .setLeggings(DFMaterial.CopperLeggings)
-            .setBoots(DFMaterial.CopperBoots)
-            .setSetBonus("Has a chance to strike lightning when critical hitting someone, during the rain.")
-            .addMeta(new CopperMeta())
             .create();
 
     public static final DFArmourSet Floral = new Builder("Floral")

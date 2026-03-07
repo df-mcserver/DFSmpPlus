@@ -15,7 +15,6 @@ import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemType;
 import org.jetbrains.annotations.Range;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
-import uk.co.nikodem.dFSmpPlus.Enchantments.Metas.HarvestMeta;
 import uk.co.nikodem.dFSmpPlus.Enchantments.Metas.MouseMeta;
 
 import javax.annotation.Nullable;
@@ -28,19 +27,32 @@ public class DFEnchantment {
     // do not touch this list
     public final static List<DFEnchantment> DFEnchantmentIndex = new ArrayList<>();
 
-    public static final DFEnchantment Harvesting = new DFEnchantment.Builder("harvesting")
-            .setName("Harvesting")
+    public static final DFEnchantment Autosmelting = new DFEnchantment.Builder("autosmelting")
+            .setName("Autosmelting")
             .addEnchantmentTagKeys(EnchantmentTagKeys.IN_ENCHANTING_TABLE, EnchantmentTagKeys.ON_TRADED_EQUIPMENT, EnchantmentTagKeys.TRADEABLE)
             .setActiveSlotGroups(EquipmentSlotGroup.MAINHAND)
             .setPrimaryItems(ItemTypeTagKeys.HOES)
             .setSupportedItems(ItemTypeTagKeys.HOES)
-            .setAnvilCost(1)
-            .setMaxLevel(3)
+            .setAnvilCost(3)
+            .setMaxLevel(1)
             .setWeight(100)
             .setMaxCost(EnchantmentRegistryEntry.EnchantmentCost.of(1, 3))
             .setMinCost(EnchantmentRegistryEntry.EnchantmentCost.of(1, 3))
             .addIncompatibleEnchantments(Enchantment.SILK_TOUCH)
-            .addMeta(new HarvestMeta())
+            .create();
+
+    public static final DFEnchantment Veinmining = new DFEnchantment.Builder("veinmining")
+            .setName("Veinmining")
+            .addEnchantmentTagKeys(EnchantmentTagKeys.IN_ENCHANTING_TABLE, EnchantmentTagKeys.ON_TRADED_EQUIPMENT, EnchantmentTagKeys.TRADEABLE)
+            .setActiveSlotGroups(EquipmentSlotGroup.MAINHAND)
+            .setPrimaryItems(ItemTypeTagKeys.HOES)
+            .setSupportedItems(ItemTypeTagKeys.HOES)
+            .setAnvilCost(3)
+            .setMaxLevel(1)
+            .setWeight(100)
+            .setMaxCost(EnchantmentRegistryEntry.EnchantmentCost.of(1, 3))
+            .setMinCost(EnchantmentRegistryEntry.EnchantmentCost.of(1, 3))
+            .addIncompatibleEnchantments(Enchantment.SILK_TOUCH)
             .create();
 
     public static final DFEnchantment Mouse = new DFEnchantment.Builder("mouse")

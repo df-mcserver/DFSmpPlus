@@ -332,11 +332,11 @@ public class DFItemUtils {
     }
 
     public static boolean isCopper(ItemStack item) {
-        return DFMaterial.CopperSword.isSimilar(item)
-                || DFMaterial.CopperAxe.isSimilar(item)
-                || DFMaterial.CopperPickaxe.isSimilar(item)
-                || DFMaterial.CopperShovel.isSimilar(item)
-                || DFMaterial.CopperHoe.isSimilar(item)
+        return item.getType() == Material.COPPER_SWORD
+                || item.getType() == Material.COPPER_AXE
+                || item.getType() == Material.COPPER_PICKAXE
+                || item.getType() == Material.COPPER_SHOVEL
+                || item.getType() == Material.COPPER_HOE
                 || DFMaterial.CopperChisel.isSimilar(item);
     }
 
