@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Player.Waypoints;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
@@ -12,7 +13,9 @@ import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
 
 import javax.annotation.Nullable;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class WaypointManager {
     public static final int MAX_WAYPOINTS = 10;
@@ -64,12 +67,7 @@ public class WaypointManager {
 
                 DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
 
-                // TODO: if ever ported to 1.21.11, use Waypoint Styling API (https://github.com/PaperMC/Paper/commit/8e5e54f5664c19096ec1a3040dc038bab4fb306b)
-                // for now, this will do.
-                Bukkit.getServer().dispatchCommand(
-                        Bukkit.getConsoleSender(),
-                        String.format("minecraft:waypoint modify %s color hex %s", waypointEntity.getUniqueId(), String.format("%06X", colour))
-                );
+                waypointEntity.setWaypointColor(Color.fromRGB((int) colour));
 
                 // make sure that the waypoint transmission is set after is invisible to other players
                 AttributeInstance transmit_range = waypointEntity.getAttribute(Attribute.WAYPOINT_TRANSMIT_RANGE);
