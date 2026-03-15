@@ -44,16 +44,17 @@ public class SetBonusText {
             boolean allArmourEquipped = true;
             for (ItemStack piece : inv.getArmorContents()) {
                 if (piece == null || piece.getType() == Material.AIR) allArmourEquipped = false;
-                updateItem(plr, piece);
+                updateItem(plr, piece, InventoryType.SlotType.ARMOR);
             }
 
-            updateItem(plr, plr.getItemOnCursor());
-            updateItem(plr, event.getCurrentItem());
+            updateItem(plr, plr.getItemOnCursor(), null);
+            updateItem(plr, event.getCurrentItem(), event.getSlotType());
 
             if (event.getClick().isShiftClick()) {
                 // the shift clicking is pretty weird
                 // looping through them and removing the set bonus is probably
                 // the easiest method
+
                 if (!allArmourEquipped && (event.getCurrentItem() == null || event.getCurrentItem().getType().equals(Material.AIR))) {
                     for (ItemStack item : inv.getContents()) {
                         removeSetBonusText(item);
@@ -71,7 +72,7 @@ public class SetBonusText {
             PlayerInventory inv = plr.getInventory();
 
             for (ItemStack piece : inv.getArmorContents()) {
-                updateItem(plr, piece);
+                updateItem(plr, piece, null);
             }
         }, 1L);
     }
@@ -90,16 +91,21 @@ public class SetBonusText {
             PlayerInventory inv = plr.getInventory();
 
             for (ItemStack piece : inv.getArmorContents()) {
-                updateItem(plr, piece);
+                updateItem(plr, piece, null);
             }
 
             removeSetBonusText(inv.getItemInMainHand());
         }, 1L);
     }
 
-    public static void updateItem(Player plr, ItemStack item) {
+    public static void updateItem(Player plr, ItemStack item, @Nullable InventoryType.SlotType type) {
         DFArmourSet set = DFArmourSet.getArmourSetEquipped(plr);
         if (set == null) {
+            removeSetBonusText(item);
+            return;
+        }
+
+        if (type != null && type != InventoryType.SlotType.ARMOR) {
             removeSetBonusText(item);
             return;
         }
