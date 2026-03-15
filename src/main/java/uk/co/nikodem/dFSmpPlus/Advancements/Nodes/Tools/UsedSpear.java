@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
+import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplayBuilder;
 import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import org.jetbrains.annotations.NotNull;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
@@ -14,8 +15,8 @@ public class UsedSpear extends BaseAdvancement {
     public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "used-spear");
 
     public UsedSpear(@NotNull Advancement parent) {
-        super(KEY.getKey(),
-                new AdvancementDisplay.Builder(
+        super(parent, KEY.getKey(),
+                new AdvancementDisplayBuilder(
                         DFMaterial.PointyStick.toItemStack(),
                         "Used Spear")
                         .description("Kill someone with a pointy stick.")
@@ -23,8 +24,7 @@ public class UsedSpear extends BaseAdvancement {
                         .coords(2f, 0f)
                         .showToast()
                         .announceChat()
-                        .build()
-                , parent);
+                        .build());
 
         DFAdvancementsHandler.registerAdvancement(this);
     }

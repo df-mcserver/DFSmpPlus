@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
+import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplayBuilder;
 import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import org.jetbrains.annotations.NotNull;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
@@ -14,8 +15,8 @@ public class SoItBegins extends BaseAdvancement {
     public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "so-it-begins");
 
     public SoItBegins(@NotNull Advancement parent) {
-        super(KEY.getKey(),
-                new AdvancementDisplay.Builder(
+        super(parent, KEY.getKey(),
+                new AdvancementDisplayBuilder(
                         DFMaterial.VampireSword.toItemStack(),
                         "So it begins.")
                         .description("Craft a Vampire Sword.")
@@ -23,8 +24,7 @@ public class SoItBegins extends BaseAdvancement {
                         .coords(1f, 3f)
                         .showToast()
                         .announceChat()
-                        .build()
-                , parent);
+                        .build());
 
         DFAdvancementsHandler.registerAdvancement(this);
     }

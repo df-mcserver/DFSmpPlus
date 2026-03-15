@@ -41,7 +41,7 @@ public class DFAdvancementsHandler {
     }
 
     public void createTab() {
-        AdvancementTab tab = api.createAdvancementTab(ADVANCEMENT_NAMESPACE);
+        AdvancementTab tab = api.createAdvancementTab(ADVANCEMENT_NAMESPACE, "textures/block/red_nether_bricks.png");
 
         DFRootAdvancement main = new DFRootAdvancement(tab);
 

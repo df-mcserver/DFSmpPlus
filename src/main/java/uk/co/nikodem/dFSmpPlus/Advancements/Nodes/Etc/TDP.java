@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc;
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
+import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplayBuilder;
 import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import com.fren_gor.ultimateAdvancementAPI.visibilities.HiddenVisibility;
 import org.jetbrains.annotations.NotNull;
@@ -15,8 +16,8 @@ public class TDP extends BaseAdvancement implements HiddenVisibility {
     public static AdvancementKey KEY = new AdvancementKey(ADVANCEMENT_NAMESPACE, "tdp");
 
     public TDP(@NotNull Advancement parent) {
-        super(KEY.getKey(),
-                new AdvancementDisplay.Builder(
+        super(parent, KEY.getKey(),
+                new AdvancementDisplayBuilder(
                         DFMaterial.MattBlade.toItemStack(),
                         "The DEADLIEST player!")
                         .description("Hold the DEADLIEST sword, courtesy of the DEADLIEST player.")
@@ -24,8 +25,7 @@ public class TDP extends BaseAdvancement implements HiddenVisibility {
                         .coords(1f, 4f)
                         .showToast()
                         .announceChat()
-                        .build()
-                , parent);
+                        .build());
 
         DFAdvancementsHandler.registerAdvancement(this);
     }

@@ -1,6 +1,6 @@
 name: DFSmpPlus
 version: '3.0.0'
-api-version: '1.21.8'
+api-version: '1.21.11'
 author: 'deadfry42'
 main: uk.co.nikodem.dFSmpPlus.DFSmpPlus
 bootstrapper: uk.co.nikodem.dFSmpPlus.DFSmpPlusBootstrap

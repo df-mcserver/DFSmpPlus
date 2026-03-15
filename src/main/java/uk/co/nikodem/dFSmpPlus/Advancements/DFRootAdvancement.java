@@ -2,7 +2,9 @@ package uk.co.nikodem.dFSmpPlus.Advancements;
 
 import com.fren_gor.ultimateAdvancementAPI.AdvancementTab;
 import com.fren_gor.ultimateAdvancementAPI.advancement.RootAdvancement;
+import com.fren_gor.ultimateAdvancementAPI.advancement.display.AbstractAdvancementDisplay;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
+import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplayBuilder;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementFrameType;
 import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import org.bukkit.Material;
@@ -17,15 +19,12 @@ public class DFRootAdvancement extends RootAdvancement {
     public DFRootAdvancement(@NotNull AdvancementTab advancementTab) {
         super(advancementTab,
                 KEY.getKey(),
-                new AdvancementDisplay(
-                        Material.CRIMSON_NYLIUM,
-                        "Server",
-                        AdvancementFrameType.TASK,
-                        false,
-                        false,
-                        0f, 0f,
-                        "I'm sure you'll love it here."
-                ),
-                "textures/block/red_nether_bricks.png");
+                1,
+                new AdvancementDisplayBuilder(Material.CRIMSON_NYLIUM, "Server")
+                        .description("I'm sure you'll love it here.")
+                        .coords(0f, 0f)
+                        .taskFrame()
+                        .build()
+            );
     }
 }

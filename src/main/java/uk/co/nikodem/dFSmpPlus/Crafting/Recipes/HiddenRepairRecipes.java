@@ -141,47 +141,47 @@ public class HiddenRepairRecipes extends CraftingTemplate {
     public void doCopperRecipes(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperSword)
+                        .setItem(Material.COPPER_SWORD)
                         .build(getInfo(), "CopperSword")
         );
         recipesToAdd.add(
                 new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperAxe)
+                        .setItem(Material.COPPER_AXE)
                         .build(getInfo(), "CopperAxe")
         );
         recipesToAdd.add(
                 new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperPickaxe)
+                        .setItem(Material.COPPER_PICKAXE)
                         .build(getInfo(), "CopperPickaxe")
         );
         recipesToAdd.add(
                 new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperShovel)
+                        .setItem(Material.COPPER_SHOVEL)
                         .build(getInfo(), "CopperShovel")
         );
         recipesToAdd.add(
                 new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperHoe)
+                        .setItem(Material.COPPER_HOE)
                         .build(getInfo(), "CopperHoe")
         );
         recipesToAdd.add(
                 new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperHelmet)
+                        .setItem(Material.COPPER_HELMET)
                         .build(getInfo(), "CopperHelmet")
         );
         recipesToAdd.add(
                 new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperChestplate)
+                        .setItem(Material.COPPER_CHESTPLATE)
                         .build(getInfo(), "CopperChestplate")
         );
         recipesToAdd.add(
                 new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperLeggings)
+                        .setItem(Material.COPPER_LEGGINGS)
                         .build(getInfo(), "CopperLeggings")
         );
         recipesToAdd.add(
                 new ItemRepairCombineRecipeBuilder()
-                        .setItem(DFMaterial.CopperBoots)
+                        .setItem(Material.COPPER_BOOTS)
                         .build(getInfo(), "CopperBoots")
         );
     }

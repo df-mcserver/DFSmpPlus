@@ -100,7 +100,6 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new CompassRecipes(),
 
                     // customset
-                    new CopperRecipes(),
                     new FiridiumRecipes(),
                     new SculkRecipes(),
                     new ObsidianRecipes(),

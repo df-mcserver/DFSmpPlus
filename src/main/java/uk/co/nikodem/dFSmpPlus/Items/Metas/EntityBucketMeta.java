@@ -6,12 +6,12 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.type.Switch;
 import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.inventory.EntityEquipment;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.SpawnEggMeta;
 import uk.co.nikodem.dFSmpPlus.Entities.EntityUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -88,6 +88,21 @@ public class EntityBucketMeta implements DFMaterialMeta {
                     }
                 }
 
+                if (entity instanceof InventoryHolder holder) {
+                    Inventory inv = holder.getInventory();
+
+                    if (inv instanceof ArmoredMountInventory armoredMountInventory) {
+                        ItemStack armour = armoredMountInventory.getArmor();
+                        if (armour != null) {
+                            lores.add(MiniMessage.miniMessage().deserialize("<light_purple>Wearing ").append(armour.displayName()));
+                        }
+                    }
+
+                    if (inv instanceof SaddledMountInventory saddledMountInventory) {
+                        if (saddledMountInventory.getSaddle() != null) lores.add(MiniMessage.miniMessage().deserialize("<light_purple>Saddled"));
+                    }
+                }
+
                 if (entity instanceof Ageable ageable) {
                     if (!ageable.isAdult()) lores.add(MiniMessage.miniMessage().deserialize("<dark_aqua>Baby"));
                 }
@@ -96,6 +111,13 @@ public class EntityBucketMeta implements DFMaterialMeta {
                 if (equipment != null) { // doesn't work for endermen
                     ItemStack heldItem = equipment.getItemInMainHand();
                     if (heldItem.getType() != Material.AIR) lores.add(MiniMessage.miniMessage().deserialize("<light_purple>Holding ").append(heldItem.displayName()));
+                }
+
+                if (entity instanceof Tameable tameable) {
+                    AnimalTamer tamer = tameable.getOwner();
+                    if (tamer != null) {
+                        lores.add(MiniMessage.miniMessage().deserialize("<gold>Tamed by "+tamer.getName()));
+                    }
                 }
 
                 if (lores.isEmpty()) lores.add(MiniMessage.miniMessage().deserialize("<light_purple>Contains data"));

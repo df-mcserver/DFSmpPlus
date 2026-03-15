@@ -12,7 +12,6 @@ import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.VacuumAccessoryMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
 import uk.co.nikodem.dFSmpPlus.Enchantments.DFEnchantment;
 import uk.co.nikodem.dFSmpPlus.Enchantments.DFEnchantmentUtils;
-import uk.co.nikodem.dFSmpPlus.Enchantments.Metas.HarvestMeta;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,20 +38,6 @@ public class CustomDrops {
         Collection<ItemStack> realDrops = event.getBlock().getDrops(tool, plr);
         if (newDrops.isEmpty() && hasVacuum && !realDrops.isEmpty()) {
             newDrops = realDrops.stream().toList();
-            if (origin.getBlockData() instanceof Ageable ageable) {
-                int harvestingEnchantLevel = DFEnchantmentUtils.getEnchantmentLevelOfItem(plr.getInventory().getItemInMainHand(), DFEnchantment.Harvesting);
-                if (harvestingEnchantLevel > 0 && ageable.getAge() == ageable.getMaximumAge()) {
-                    newDrops = new ArrayList<>();
-                    for (ItemStack item : realDrops) {
-                        if (HarvestMeta.harvestable.contains(item.getType())) {
-                            float mult = ((float) 1 / (harvestingEnchantLevel + 2)) + ((float) (harvestingEnchantLevel + 1) / 2);
-                            item.setAmount((int) (item.getAmount() * mult));
-                        }
-                        newDrops.add(item);
-                    }
-                }
-            }
-
             event.setDropItems(false);
         }
 

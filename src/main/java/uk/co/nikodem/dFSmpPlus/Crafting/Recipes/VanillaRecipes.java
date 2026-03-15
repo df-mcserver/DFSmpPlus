@@ -34,6 +34,7 @@ public class VanillaRecipes extends CraftingTemplate {
         doBlastFurnaceRecipes(recipesToAdd);
         doUnobtainableRecipes(recipesToAdd);
         doHorseArmourRecipes(recipesToAdd);
+        doNautilusArmourRecipes(recipesToAdd);
         doDispenserChange(recipesToAdd);
         doSlimeblockChange(recipesToAdd);
 
@@ -119,16 +120,6 @@ public class VanillaRecipes extends CraftingTemplate {
     private void doUnobtainableRecipes(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
-                        .setOutput(Material.SADDLE)
-                        .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo())
-                        .shape("III", "X X")
-                        .setIngredient('I', Material.LEATHER)
-                        .setIngredient('X', Material.CHAIN)
-        );
-
-        recipesToAdd.add(
-                new ShapedRecipeBuilder()
                         .setOutput(Material.NAME_TAG)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .setGroup("nametag")
@@ -157,7 +148,29 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo(), "coppernugget")
                         .shape(" X", "P ")
                         .setIngredient('P', Material.PAPER)
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.CopperNugget.toItemStack()))
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_NUGGET)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.NAME_TAG)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .setGroup("nametag")
+                        .build(getInfo(), "firidiumnugget")
+                        .shape(" X", "P ")
+                        .setIngredient('P', Material.PAPER)
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FiridiumNugget.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.NAME_TAG)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .setGroup("nametag")
+                        .build(getInfo(), "floralnugget")
+                        .shape(" X", "P ")
+                        .setIngredient('P', Material.PAPER)
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FloralNugget.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -185,6 +198,16 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo())
                         .shape("  L", "LWL", "LLL")
                         .setIngredient('L', Material.LEATHER)
+                        .setIngredient('W', Material.SADDLE)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.COPPER_HORSE_ARMOR)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo())
+                        .shape("  L", "LWL", "LLL")
+                        .setIngredient('L', Material.COPPER_INGOT)
                         .setIngredient('W', Material.SADDLE)
         );
 
@@ -219,6 +242,47 @@ public class VanillaRecipes extends CraftingTemplate {
         );
     }
 
+    private void doNautilusArmourRecipes(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.COPPER_NAUTILUS_ARMOR)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo())
+                        .shape("LWL", "L L", "LL ")
+                        .setIngredient('L', Material.COPPER_INGOT)
+                        .setIngredient('W', Material.SADDLE)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.IRON_NAUTILUS_ARMOR)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo())
+                        .shape("LWL", "L L", "LL ")
+                        .setIngredient('L', Material.IRON_INGOT)
+                        .setIngredient('W', Material.SADDLE)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.GOLDEN_NAUTILUS_ARMOR)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo())
+                        .shape("LWL", "L L", "LL ")
+                        .setIngredient('L', Material.GOLD_INGOT)
+                        .setIngredient('W', Material.SADDLE)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.DIAMOND_NAUTILUS_ARMOR)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo())
+                        .shape("LWL", "L L", "LL ")
+                        .setIngredient('L', Material.DIAMOND)
+                        .setIngredient('W', Material.SADDLE)
+        );
+    }
     private void doBlastFurnaceRecipes(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
@@ -249,7 +313,7 @@ public class VanillaRecipes extends CraftingTemplate {
         recipesToAdd.add(
                 new StandardHelmetRecipeBuilder()
                         .setItem(Material.CHAINMAIL_HELMET)
-                        .setMaterial(Material.CHAIN)
+                        .setMaterial(Material.IRON_CHAIN)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
@@ -257,7 +321,7 @@ public class VanillaRecipes extends CraftingTemplate {
         recipesToAdd.add(
                 new StandardChestplateRecipeBuilder()
                         .setItem(Material.CHAINMAIL_CHESTPLATE)
-                        .setMaterial(Material.CHAIN)
+                        .setMaterial(Material.IRON_CHAIN)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
@@ -265,7 +329,7 @@ public class VanillaRecipes extends CraftingTemplate {
         recipesToAdd.add(
                 new StandardLeggingsRecipeBuilder()
                         .setItem(Material.CHAINMAIL_LEGGINGS)
-                        .setMaterial(Material.CHAIN)
+                        .setMaterial(Material.IRON_CHAIN)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
@@ -273,7 +337,7 @@ public class VanillaRecipes extends CraftingTemplate {
         recipesToAdd.add(
                 new StandardBootsRecipeBuilder()
                         .setItem(Material.CHAINMAIL_BOOTS)
-                        .setMaterial(Material.CHAIN)
+                        .setMaterial(Material.IRON_CHAIN)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
         );
