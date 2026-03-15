@@ -15,7 +15,7 @@ public class SwiftnessAccessoryMeta implements AccessoryMeta {
     public Map<Attribute, AttributeModifier> AddAdditionalAttributeModifiers(Player plr, ItemStack accessory, AccessoryInformation info) {
         return Map.of(
                 Attribute.MOVEMENT_SPEED,
-                new AttributeModifier(Keys.hermesBootsSpeed, 0.05f, AttributeModifier.Operation.ADD_NUMBER)
+                new AttributeModifier(Keys.hermesBootsSpeed, 0.02f, AttributeModifier.Operation.ADD_NUMBER)
         );
 
     };
