@@ -87,6 +87,8 @@ public class EntityBucketData {
             Map.entry(EntityType.ARMADILLO, Material.ARMADILLO_SPAWN_EGG),
             Map.entry(EntityType.BREEZE, Material.BREEZE_SPAWN_EGG),
             Map.entry(EntityType.TRADER_LLAMA, Material.TRADER_LLAMA_SPAWN_EGG),
-            Map.entry(EntityType.BOGGED, Material.BOGGED_SPAWN_EGG)
+            Map.entry(EntityType.BOGGED, Material.BOGGED_SPAWN_EGG),
+            Map.entry(EntityType.NAUTILUS, Material.NAUTILUS_SPAWN_EGG),
+            Map.entry(EntityType.ZOMBIE_NAUTILUS, Material.ZOMBIE_NAUTILUS_SPAWN_EGG)
     );
 }
