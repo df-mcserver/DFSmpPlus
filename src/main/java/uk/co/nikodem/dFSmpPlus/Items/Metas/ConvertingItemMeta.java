@@ -55,7 +55,8 @@ public class ConvertingItemMeta implements DFMaterialMeta {
 
             this.completionSound.playSound(plr);
             plr.getInventory().setItemInMainHand(residue.toItemStack());
-            plr.getInventory().addItem(convertedTo == null ? convertsToItemStack : convertedTo.toItemStack());
+            if (plr.getInventory().firstEmpty() == -1) plr.dropItem(convertedTo == null ? convertsToItemStack : convertedTo.toItemStack());
+            else plr.getInventory().addItem(convertedTo == null ? convertsToItemStack : convertedTo.toItemStack());
         } else {
             damageable.setDamage(damage);
             item.setItemMeta(damageable);
