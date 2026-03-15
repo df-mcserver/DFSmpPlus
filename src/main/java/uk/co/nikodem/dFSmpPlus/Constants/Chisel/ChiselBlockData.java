@@ -153,6 +153,25 @@ public class ChiselBlockData {
         new ChiselBlockDataBuilder(Material.RED_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.RED_DYE).create();
         new ChiselBlockDataBuilder(Material.YELLOW_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.YELLOW_DYE).create();
 
+        new ChiselBlockDataBuilder(Material.BLACK_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.BLACK_DYE).create();
+        new ChiselBlockDataBuilder(Material.BLUE_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.BLUE_DYE).create();
+        new ChiselBlockDataBuilder(Material.BROWN_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.BROWN_DYE).create();
+        new ChiselBlockDataBuilder(Material.CYAN_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.CYAN_DYE).create();
+        new ChiselBlockDataBuilder(Material.GRAY_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.GRAY_DYE).create();
+        new ChiselBlockDataBuilder(Material.GREEN_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.GREEN_DYE).create();
+        new ChiselBlockDataBuilder(Material.LIGHT_GRAY_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.LIGHT_GRAY_DYE).create();
+        new ChiselBlockDataBuilder(Material.LIGHT_BLUE_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.LIGHT_BLUE_DYE).create();
+        new ChiselBlockDataBuilder(Material.LIME_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.LIME_DYE).create();
+        new ChiselBlockDataBuilder(Material.MAGENTA_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.MAGENTA_DYE).create();
+        new ChiselBlockDataBuilder(Material.ORANGE_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.ORANGE_DYE).create();
+        new ChiselBlockDataBuilder(Material.PINK_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.PINK_DYE).create();
+        new ChiselBlockDataBuilder(Material.PURPLE_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.PURPLE_DYE).create();
+        new ChiselBlockDataBuilder(Material.RED_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.RED_DYE).create();
+        new ChiselBlockDataBuilder(Material.YELLOW_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.YELLOW_DYE).create();
+
+        new ChiselBlockDataBuilder(Material.CHORUS_FLOWER).setReplacement(Material.CHORUS_PLANT).setDrop(Material.CHORUS_FRUIT).create();
+        new ChiselBlockDataBuilder(Material.COBWEB).setReplacement(Material.AIR).setDrop(Material.STRING, 2).create();
+
         new ChiselBlockDataBuilder(Material.OAK_LOG).setReplacement(Material.STRIPPED_OAK_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new ChiselBlockDataBuilder(Material.ACACIA_LOG).setReplacement(Material.STRIPPED_ACACIA_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new ChiselBlockDataBuilder(Material.BIRCH_LOG).setReplacement(Material.STRIPPED_BIRCH_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();

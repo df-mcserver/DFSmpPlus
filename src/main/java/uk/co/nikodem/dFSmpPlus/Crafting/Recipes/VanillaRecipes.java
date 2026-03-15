@@ -114,6 +114,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setOutput(Material.COBWEB)
                         .build(getInfo())
                         .addIngredient(2, Material.STRING)
+                        .addIngredient(1, Material.SLIME_BALL)
         );
     }
 
