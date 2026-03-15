@@ -22,9 +22,9 @@ Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 ## Soft Dependencies
 - [PaperMC](https://papermc.io/) (1.21.11)
    - This is a plugin using the Paper API. Any Minecraft server software which implements the Paper API (whether that be Paper, or forks like [Purpur](https://purpurmc.org/) etc.) should support this plugin.
-   - Note: This plugin is only tested on [LeafMC](https://www.leafmc.one/), a PaperMC fork.
-   - Please note that this plugin will only work with 1.21.11 and above, as it relies on APIs which were not previously present in older versions of paper.
-   - Spigot / Spigot forks will NOT work, as this plugin relies on the Paper API.
+   - This plugin has been tested on PaperMC and [LeafMC](https://www.leafmc.one/), both of which appear to run without issue.
+   - Please note that this plugin will only work with 1.21.11 and above, as it relies on APIs which were not previously present in older versions of paper, among other things.
+   - Spigot / Spigot forks will NOT work, as this plugin relies very heavily on the Paper API.
 - [DFJavaResourcesPlus](https://github.com/df-mcserver/DFJavaResourcesPlus)
    - The resource pack which adds the textures and resources required in order to display custom content.
    - Not strictly required, however recommended for the proper experience.
