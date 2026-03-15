@@ -47,9 +47,13 @@ public class MagicMirrorMeta implements DFMaterialMeta {
             }
 
             // run playTeleportingEffect so that both sides of the magic mirror are effected
-            playTeleportingEffect(plr.getLocation());
-            playTeleportingEffect(destination);
+            Sounds.Teleport.playSound(plr.getLocation());
+            plr.getLocation().getWorld().spawnParticle(Particle.GLOW_SQUID_INK, plr.getLocation(), 15);
+
             plr.teleport(destination);
+
+            Sounds.Teleport.playSound(destination);
+            destination.getWorld().spawnParticle(Particle.GLOW_SQUID_INK, destination, 15);
 
             sendSuccessfulTeleportMessage(plr);
         }
@@ -82,12 +86,6 @@ public class MagicMirrorMeta implements DFMaterialMeta {
 
     public boolean inCombat(Player plr) {
          return CombatLoggingManager.isInCombat(plr);
-    }
-
-    public void playTeleportingEffect(Location loc) {
-        World world = loc.getWorld();
-        Sounds.Teleport.playSound(loc);
-        world.spawnParticle(Particle.GLOW_SQUID_INK, loc, 15);
     }
 
     public void sendSuccessfulTeleportMessage(Player plr) {
