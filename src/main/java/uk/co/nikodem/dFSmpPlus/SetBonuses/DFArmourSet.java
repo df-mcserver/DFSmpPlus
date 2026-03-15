@@ -54,7 +54,6 @@ public class DFArmourSet {
             .create();
 
     public static final DFArmourSet Native_Copper = new Builder("Copper")
-            .setBase(DFArmourSet.Native_Iron)
             .setHelmet(Material.COPPER_HELMET)
             .setChestplate(Material.COPPER_CHESTPLATE)
             .setLeggings(Material.COPPER_LEGGINGS)
