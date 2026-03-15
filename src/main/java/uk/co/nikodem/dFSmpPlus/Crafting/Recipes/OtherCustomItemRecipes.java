@@ -220,6 +220,26 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setOutput(DFMaterial.FriedEgg)
+                        .setCookingTime(30*20)
+                        .setExperience(0)
+                        .setCategory(CookingBookCategory.FOOD)
+                        .setSource(Material.EGG)
+                        .build(getInfo(), "friedegginfurnace")
+        );
+
+        recipesToAdd.add(
+                new SmokerRecipeBuilder()
+                        .setOutput(DFMaterial.FriedEgg)
+                        .setCookingTime(15*20)
+                        .setExperience(0)
+                        .setCategory(CookingBookCategory.FOOD)
+                        .setSource(Material.EGG)
+                        .build(getInfo(), "friedegginfurnace")
+        );
+
+        recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.EggSandwich)
                         .setCategory(CraftingBookCategory.MISC)
