@@ -11,6 +11,7 @@ public class Enums {
         NONE,
         WOODEN,
         STONE,
+        COPPER,
         IRON,
         GOLDEN,
         DIAMOND,

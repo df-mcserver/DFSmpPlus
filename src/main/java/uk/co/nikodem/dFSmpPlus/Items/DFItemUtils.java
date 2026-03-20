@@ -248,6 +248,16 @@ public class DFItemUtils {
                         || isNetherite(item)
                         || isObsidian(item);
             }
+            case COPPER -> {
+                res = isCopper(item)
+                        || isIron(item)
+                        || isFiridium(item)
+                        || isCopper(item)
+                        || isGolden(item)
+                        || isDiamond(item)
+                        || isNetherite(item)
+                        || isObsidian(item);
+            }
             case IRON -> {
                 res = isIron(item)
                         || isFiridium(item)
