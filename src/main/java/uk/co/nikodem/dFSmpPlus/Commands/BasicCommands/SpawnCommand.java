@@ -1,12 +1,15 @@
 package uk.co.nikodem.dFSmpPlus.Commands.BasicCommands;
 
+import com.google.j2objc.annotations.WeakOuter;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import uk.co.nikodem.dFSmpPlus.Commands.DFBasicCommand;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
@@ -20,20 +23,35 @@ public class SpawnCommand implements DFBasicCommand {
     public void execute(CommandSourceStack commandSourceStack, String[] args) {
         CommandSender sender = commandSourceStack.getSender();
         if (sender instanceof Player plr) {
-            Location spawn = plr.getWorld().getSpawnLocation();
+            Location spawn = getRealWorld().getSpawnLocation();
 
             if (inCombat(plr)) {
                 sendCombatMessage(plr);
                 return;
             }
 
-            playTeleportingEffect(plr.getLocation());
-            playTeleportingEffect(spawn);
-            plr.teleport(spawn);
+            Sounds.Teleport.playSound(plr.getLocation());
+            plr.getLocation().getWorld().spawnParticle(Particle.GLOW_SQUID_INK, plr.getLocation(), 15);
+            plr.teleport(spawn, PlayerTeleportEvent.TeleportCause.COMMAND);
+            Sounds.Teleport.playSound(spawn);
+            spawn.getWorld().spawnParticle(Particle.GLOW_SQUID_INK, spawn, 15);
+
             plr.setNoDamageTicks(100);
             sendSuccessMessage(plr);
         } else {
             sender.sendMessage("You are not player!");
+        }
+    }
+
+    public World getRealWorld() {
+        World defaultWorld = Bukkit.getWorld("world");
+        if (defaultWorld != null && defaultWorld.getEnvironment() == World.Environment.NORMAL) return defaultWorld;
+        else {
+            for (World world : Bukkit.getWorlds()) {
+                if (world.getEnvironment() == World.Environment.NETHER) return world;
+            }
+
+            return Bukkit.getWorlds().getFirst();
         }
     }
 
@@ -48,12 +66,6 @@ public class SpawnCommand implements DFBasicCommand {
     public void sendCombatMessage(Player plr) {
         Sounds.FailedTeleport.playSoundLocally(plr);
         plr.sendMessage(MiniMessage.miniMessage().deserialize("<red>You're currently in combat!"));
-    }
-
-    public void playTeleportingEffect(Location loc) {
-        World world = loc.getWorld();
-        Sounds.Teleport.playSound(loc);
-        world.spawnParticle(Particle.GLOW_SQUID_INK, loc, 15);
     }
 
     @Override
