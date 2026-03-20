@@ -60,14 +60,14 @@ public class EntityBucketMeta implements DFMaterialMeta {
                 switch (entity) {
                     case Villager villager -> {
                         lores.add(MiniMessage.miniMessage().deserialize("<grey>Level: " + villager.getVillagerLevel()));
-                        lores.add(MiniMessage.miniMessage().deserialize("<grey>Region: " + StringUtils.NormalCapitalisation(String.valueOf(villager.getVillagerType()))));
-                        lores.add(MiniMessage.miniMessage().deserialize("<grey>Profession: " + StringUtils.NormalCapitalisation(String.valueOf(villager.getProfession()))));
+                        lores.add(MiniMessage.miniMessage().deserialize("<grey>Region: " + StringUtils.NormalCapitalisation(villager.getVillagerType().getKey().getKey())));
+                        lores.add(MiniMessage.miniMessage().deserialize("<grey>Profession: " + StringUtils.NormalCapitalisation(villager.getProfession().getKey().getKey())));
                     }
                     case ZombieVillager villager -> {
                         if (villager.isConverting())
                             lores.add(MiniMessage.miniMessage().deserialize("<light_purple>Treated"));
-                        lores.add(MiniMessage.miniMessage().deserialize("<grey>Region: " + StringUtils.NormalCapitalisation(String.valueOf(villager.getVillagerType()))));
-                        lores.add(MiniMessage.miniMessage().deserialize("<grey>Profession: " + StringUtils.NormalCapitalisation(String.valueOf(villager.getVillagerProfession()))));
+                        lores.add(MiniMessage.miniMessage().deserialize("<grey>Region: " + StringUtils.NormalCapitalisation(villager.getVillagerType().getKey().getKey())));
+                        lores.add(MiniMessage.miniMessage().deserialize("<grey>Profession: " + StringUtils.NormalCapitalisation(villager.getVillagerProfession().getKey().getKey())));
                     }
                     case Creeper creeper -> {
                         if (creeper.isPowered()) lores.add(MiniMessage.miniMessage().deserialize("<aqua>Charged"));
