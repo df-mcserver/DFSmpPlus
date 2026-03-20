@@ -91,20 +91,20 @@ public class MagicMirrorMeta implements DFMaterialMeta {
     public void sendSuccessfulTeleportMessage(Player plr) {
         int random = (int )(Math.random() * 4096 + 1);
         if (random == 69) {
-            plr.sendMessage(mm.deserialize("<dark_purple>You wake up in your bed in a cold sweat.."));
+            plr.sendActionBar(mm.deserialize("<dark_purple>You wake up in your bed in a cold sweat.."));
             DFAdvancementsHandler.grantAdvancement(plr, MagicMirror.class);
         } else {
-            plr.sendMessage(mm.deserialize("<dark_purple>Teleported to your bed!"));
+            plr.sendActionBar(mm.deserialize("<dark_purple>Teleported to your bed!"));
         }
     }
 
     public void sendNoBedMessage(Player plr) {
         Sounds.FailedTeleport.playSoundLocally(plr);
-        plr.sendMessage(mm.deserialize("<red>You don't have a bed!"));
+        plr.sendActionBar(mm.deserialize("<red>You don't have a bed!"));
     }
 
     public void sendCombatMessage(Player plr) {
         Sounds.FailedTeleport.playSoundLocally(plr);
-        plr.sendMessage(mm.deserialize("<red>You're currently in combat!"));
+        plr.sendActionBar(mm.deserialize("<red>You're currently in combat!"));
     }
 }
