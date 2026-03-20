@@ -6,6 +6,8 @@ public class Sounds {
     public static PresetSoundData VeryLoudShovel = new PresetSoundData(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 100F, 1F);
     public static PresetSoundData WoodCrash = new PresetSoundData(Sound.ENTITY_ZOMBIE_BREAK_WOODEN_DOOR, 1F, 1F);
     public static PresetSoundData StoneClank = new PresetSoundData(Sound.BLOCK_ANVIL_PLACE, 1F, 1.75F);
+    public static PresetSoundData CobwebBreak = new PresetSoundData(Sound.ENTITY_ARROW_SHOOT, 1F, 1.5F);
+    public static PresetSoundData WoolChisel = new PresetSoundData(Sound.BLOCK_WOOL_BREAK, 1F, 0.65F);
     public static PresetSoundData AutoSmelt = new PresetSoundData(Sound.BLOCK_FIRE_EXTINGUISH, 0.25F, 1F);
     public static PresetSoundData UseLifeCrystal = new PresetSoundData(Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1F, 1F);
     public static PresetSoundData Notification = new PresetSoundData(Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1F, 1F);
