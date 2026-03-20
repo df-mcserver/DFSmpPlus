@@ -19,6 +19,7 @@ import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Commands.BasicCommands.*;
 import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFGiveCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFWaypointCommand;
+import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.LocatorBarCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.DFBasicCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.DFCommand;
 import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
@@ -144,7 +145,9 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
 
             List<DFCommand> brigaderCommands = List.of(
                     new DFWaypointCommand(),
-                    new DFGiveCommand()
+                    new DFGiveCommand(),
+
+                    new LocatorBarCommand()
             );
 
             this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
@@ -163,6 +166,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new EntityPickupItemEvent(),
                     new EntityTargetEvent(),
                     new EntityDeathEvent(),
+                    new ItemSpawnEvent(),
 
                     new BlockBreakEvent(),
                     new BlockBreakProgressUpdateEvent(),
