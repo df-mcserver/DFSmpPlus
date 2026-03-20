@@ -236,7 +236,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setExperience(0)
                         .setCategory(CookingBookCategory.FOOD)
                         .setSource(Material.EGG)
-                        .build(getInfo(), "friedegginfurnace")
+                        .build(getInfo(), "friedegginsmoker")
         );
 
         recipesToAdd.add(
