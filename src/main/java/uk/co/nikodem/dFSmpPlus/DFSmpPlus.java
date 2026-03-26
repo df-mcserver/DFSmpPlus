@@ -107,7 +107,9 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new VeinRecipes(),
                     new SilkRecipes(),
                     new CalciteRecipes(),
-                    new FloralRecipes()
+                    new FloralRecipes(),
+
+                    new RecipeRemovals() // literally has 0 recipes
             );
 
             new HiddenRecipes();

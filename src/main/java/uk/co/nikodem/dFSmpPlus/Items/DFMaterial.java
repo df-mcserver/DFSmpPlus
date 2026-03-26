@@ -46,7 +46,7 @@ public class DFMaterial {
     // please don't touch lol
     public final static List<DFMaterial> DFMaterialIndex = new ArrayList<>();
 
-    public static DFMaterial MagicMirror = new Builder(Material.COMPASS, "magic_mirror", 1)
+    public static DFMaterial MagicMirror = new Builder(Material.POPPED_CHORUS_FRUIT, "magic_mirror", 1)
             .setDisplayName("<dark_purple>Magic Mirror")
             .addLore("<gold>Teleports you back to your bed.")
             .addLore("<red>Will not work in combat.")
@@ -61,7 +61,7 @@ public class DFMaterial {
             .addMeta(new EmptyEntityBucketMeta())
             .create();
 
-    public static DFMaterial CleaningEntityBucket = new Builder(Material.STICK, "cleaning_entity_bucket", 1)
+    public static DFMaterial CleaningEntityBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "cleaning_entity_bucket", 1)
             .setDisplayName("Cleaning Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
             .addLore("<red>Does not store entity data.")
@@ -69,7 +69,7 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial StoringEntityBucket = new Builder(Material.STICK, "storing_entity_bucket", 1)
+    public static DFMaterial StoringEntityBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "storing_entity_bucket", 1)
             .setDisplayName("Storing Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
             .addLore("<green>Stores entity data.")
@@ -119,11 +119,11 @@ public class DFMaterial {
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
-    public static DFMaterial FiridiumIngot = new Builder(Material.IRON_INGOT, "firidium_ingot", 1)
+    public static DFMaterial FiridiumIngot = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_ingot", 1)
             .setDisplayName("<red>Firidium Ingot")
             .create();
 
-    public static DFMaterial FiridiumNugget = new Builder(Material.IRON_NUGGET, "firidium_nugget", 1)
+    public static DFMaterial FiridiumNugget = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_nugget", 1)
             .setDisplayName("<red>Firidium Nugget")
             .create();
 
@@ -159,7 +159,7 @@ public class DFMaterial {
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .create();
 
-    public static DFMaterial BluebellsarStick = new Builder(Material.STICK, "bluebellsar_stick", 1)
+    public static DFMaterial BluebellsarStick = new Builder(Material.POPPED_CHORUS_FRUIT, "bluebellsar_stick", 1)
             .setDisplayName("<light_purple>Bluebellsar Stick")
             .markForUUID()
             .addLore("<aqua>Using this item shrivels shrieks from past souls.")
@@ -170,7 +170,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.AQUA_AFFINITY)
             .addEnchantment(Enchantment.MENDING)
             .addMeta(new BluebellsarMeta(), new AdvancementOnObtainMeta(Bluebellsar.class))
-            .removeCustomModel()
+            .overrideCustomModel(createMinecraftKey("stick"))
             .create();
 
 //    public static DFMaterial CopperNugget = new Builder(Material.IRON_NUGGET, "copper_nugget", 1)
@@ -254,7 +254,7 @@ public class DFMaterial {
 //            .setDisplayName("Contaminated Mud")
 //            .create();
 
-    public static DFMaterial ObsidianUpgradeTemplate = new Builder(Material.FIREWORK_STAR, "obsidian_upgrade", 1)
+    public static DFMaterial ObsidianUpgradeTemplate = new Builder(Material.POPPED_CHORUS_FRUIT, "obsidian_upgrade", 1)
             .setDisplayName("<yellow>Obsidian Upgrade")
             .addLore("<gray>Smithing Template")
             .addLore("")
@@ -334,7 +334,7 @@ public class DFMaterial {
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianBoots, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .create();
 
-    public static DFMaterial LifeCrystal = new Builder(Material.FIREWORK_STAR, "life_crystal", 1)
+    public static DFMaterial LifeCrystal = new Builder(Material.POPPED_CHORUS_FRUIT, "life_crystal", 1)
             .setDisplayName("<red>Life Crystal")
             .addLore("<red>Increases your max health by 2.")
             .addMeta(new LifeCrystalMeta())
@@ -387,60 +387,60 @@ public class DFMaterial {
             .addMeta(new VampireSwordMeta(), new AdvancementOnObtainMeta(SoItBegins.class))
             .create();
 
-    public static DFMaterial PointyStick = new Builder(Material.STICK, "pointy_stick", 1)
+    public static DFMaterial PointyStick = new Builder(Material.POPPED_CHORUS_FRUIT, "pointy_stick", 1)
             .setDisplayName("Pointy Stick")
             .addMeta(new SoundOnCraftMeta(Sounds.WoodCrash), new ChiselMeta(1f), new CustomDurabilityMeta(2), new PointyStickMeta())
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial LooseStone = new Builder(Material.STICK, "loose_stone", 1)
+    public static DFMaterial LooseStone = new Builder(Material.POPPED_CHORUS_FRUIT, "loose_stone", 1)
             .setDisplayName("Loose Stone")
             .create();
 
-    public static DFMaterial SharpStone = new Builder(Material.STICK, "sharp_stone", 1)
+    public static DFMaterial SharpStone = new Builder(Material.POPPED_CHORUS_FRUIT, "sharp_stone", 1)
             .setDisplayName("Sharp Stone")
             .addMeta(new SoundOnCraftMeta(Sounds.StoneClank), new ChiselMeta(3f), new CustomDurabilityMeta(8))
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial CopperChisel = new Builder(Material.STICK, "copper_chisel", 1)
+    public static DFMaterial CopperChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_chisel", 1)
             .setDisplayName("Copper Chisel")
             .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(40))
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial IronChisel = new Builder(Material.STICK, "iron_chisel", 1)
+    public static DFMaterial IronChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "iron_chisel", 1)
             .setDisplayName("Iron Chisel")
             .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50))
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial FiridiumChisel = new Builder(Material.STICK, "firidium_chisel", 1)
+    public static DFMaterial FiridiumChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_chisel", 1)
             .setDisplayName("Firidium Chisel")
             .addEnchantment(Enchantment.FIRE_ASPECT, 1)
             .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50), new AutosmeltingItemMeta(), new AdvancementOnObtainMeta(FiridiumTool.class))
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial GoldChisel = new Builder(Material.STICK, "gold_chisel", 1)
+    public static DFMaterial GoldChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_chisel", 1)
             .setDisplayName("Gold Chisel")
             .addMeta(new ChiselMeta(5.5f), new CustomDurabilityMeta(70))
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial DiamondChisel = new Builder(Material.STICK, "diamond_chisel", 1)
+    public static DFMaterial DiamondChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "diamond_chisel", 1)
             .setDisplayName("Diamond Chisel")
             .addMeta(new ChiselMeta(6f), new CustomDurabilityMeta(500))
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial NetheriteChisel = new Builder(Material.STICK, "netherite_chisel", 1)
+    public static DFMaterial NetheriteChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "netherite_chisel", 1)
             .setDisplayName("Netherite Chisel")
             .addMeta(new ChiselMeta(7f), new CustomDurabilityMeta(1500))
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial ObsidianChisel = new Builder(Material.STICK, "obsidian_chisel", 1)
+    public static DFMaterial ObsidianChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "obsidian_chisel", 1)
             .setDisplayName("Obsidian Chisel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class), new AdvancementOnObtainMeta(GenuineDedication.class))
@@ -538,7 +538,7 @@ public class DFMaterial {
             .setRepairable(Repairable.repairable(RegistrySet.keySet(RegistryKey.ITEM, ItemTypeKeys.STRING)))
             .create();
 
-    public static DFMaterial TargetDummy = new Builder(Material.STICK, "target_dummy", 1)
+    public static DFMaterial TargetDummy = new Builder(Material.POPPED_CHORUS_FRUIT, "target_dummy", 1)
             .setDisplayName("Target Dummy")
             .addLore("<aqua>Allows you to check how much damage you're doing!")
             .addLore("<grey>Note: Shows you the damage that a normal enemy would take, not a player.")
@@ -562,11 +562,11 @@ public class DFMaterial {
             // .addLore("<red>Please insert a module.")
             .create();
 
-    public static DFMaterial LocatorCompassModule = new Builder(Material.STICK, "locator_compass_module_base", 1)
+    public static DFMaterial LocatorCompassModule = new Builder(Material.POPPED_CHORUS_FRUIT, "locator_compass_module_base", 1)
             .setDisplayName("Empty Compass Module")
             .create();
 
-    public static DFMaterial EndLocatorCompassModule = new Builder(Material.STICK, "locator_compass_end_module", 1)
+    public static DFMaterial EndLocatorCompassModule = new Builder(Material.POPPED_CHORUS_FRUIT, "locator_compass_end_module", 1)
             .setDisplayName("End Locator Compass Module")
             .addLore("<aqua>Holds the location of a nearby stronghold.")
             .addMeta(new LocatorCompassModuleMeta())
@@ -580,11 +580,11 @@ public class DFMaterial {
             .removeCustomModel()
             .create();
 
-    public static DFMaterial EmptyPestleAndMortar = new Builder(Material.STICK, "empty_pestle_and_mortar", 1)
+    public static DFMaterial EmptyPestleAndMortar = new Builder(Material.POPPED_CHORUS_FRUIT, "empty_pestle_and_mortar", 1)
             .setDisplayName("Empty Pestle and Mortar")
             .create();
 
-    public static DFMaterial RottenFleshPestleAndMortar = new Builder(Material.STICK, "rotten_flesh_pestle_and_mortar", 1)
+    public static DFMaterial RottenFleshPestleAndMortar = new Builder(Material.POPPED_CHORUS_FRUIT, "rotten_flesh_pestle_and_mortar", 1)
             .setDisplayName("Pestle and Mortar")
             .addLore("<light_purple>Contains rotten flesh")
             .addMeta(new ConvertingItemMeta(ItemStack.of(Material.LEATHER), "empty_pestle_and_mortar", Sounds.RottenFleshPestleAndMortarFinish), new CustomDurabilityMeta(10))
@@ -592,7 +592,7 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial GravelPestleAndMortar = new Builder(Material.STICK, "gravel_pestle_and_mortar", 1)
+    public static DFMaterial GravelPestleAndMortar = new Builder(Material.POPPED_CHORUS_FRUIT, "gravel_pestle_and_mortar", 1)
             .setDisplayName("Pestle and Mortar")
             .addLore("<light_purple>Contains gravel")
             .addMeta(new ConvertingItemMeta(ItemStack.of(Material.FLINT, 2), "empty_pestle_and_mortar", Sounds.GravelPestleAndMortarFinish), new CustomDurabilityMeta(3))
@@ -600,7 +600,7 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial FlowerPestleAndMortar = new Builder(Material.STICK, "flower_pestle_and_mortar", 1)
+    public static DFMaterial FlowerPestleAndMortar = new Builder(Material.POPPED_CHORUS_FRUIT, "flower_pestle_and_mortar", 1)
             .setDisplayName("Pestle and Mortar")
             .addLore("<light_purple>Contains flowers")
             .addMeta(new ConvertingItemMeta("flower_powder", "empty_pestle_and_mortar", Sounds.FlowerPestleAndMortarFinish), new CustomDurabilityMeta(5))
@@ -608,15 +608,15 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial FlowerPowder = new Builder(Material.STICK, "flower_powder", 1)
+    public static DFMaterial FlowerPowder = new Builder(Material.POPPED_CHORUS_FRUIT, "flower_powder", 1)
             .setDisplayName("<light_purple>Flower Powder")
             .create();
 
-    public static DFMaterial FloralIngot = new Builder(Material.STICK, "floral_ingot", 1)
+    public static DFMaterial FloralIngot = new Builder(Material.POPPED_CHORUS_FRUIT, "floral_ingot", 1)
             .setDisplayName("<light_purple>Floral Ingot")
             .create();
 
-    public static DFMaterial FloralNugget = new Builder(Material.STICK, "floral_nugget", 1)
+    public static DFMaterial FloralNugget = new Builder(Material.POPPED_CHORUS_FRUIT, "floral_nugget", 1)
             .setDisplayName("<light_purple>Floral Nugget")
             .create();
 
@@ -678,7 +678,7 @@ public class DFMaterial {
             .addMeta(new CustomDurabilityMeta(300))
             .create();
 
-    public static DFMaterial LuckyHorseshoe = new Builder(Material.STICK, "lucky_horseshoe", 1)
+    public static DFMaterial LuckyHorseshoe = new Builder(Material.POPPED_CHORUS_FRUIT, "lucky_horseshoe", 1)
             .setDisplayName("Lucky Horseshoe")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("negating_falldamage")
@@ -688,7 +688,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial ContaminatedMembrane = new Builder(Material.STICK, "contaminated_membrane", 1)
+    public static DFMaterial ContaminatedMembrane = new Builder(Material.POPPED_CHORUS_FRUIT, "contaminated_membrane", 1)
             .setDisplayName("Contaminated Membrane")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("phantom_ignore")
@@ -698,7 +698,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial CobaltShield = new Builder(Material.STICK, "cobalt_shield", 1)
+    public static DFMaterial CobaltShield = new Builder(Material.POPPED_CHORUS_FRUIT, "cobalt_shield", 1)
             .setDisplayName("Cobalt Shield")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("shield")
@@ -709,7 +709,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial VeinMinerEssence = new Builder(Material.STICK, "vein_essence", 1)
+    public static DFMaterial VeinMinerEssence = new Builder(Material.POPPED_CHORUS_FRUIT, "vein_essence", 1)
             .setDisplayName("Vein Miner's essence")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("essence")
@@ -719,7 +719,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial FiridiumEssence = new Builder(Material.STICK, "autosmelt_essence", 1)
+    public static DFMaterial FiridiumEssence = new Builder(Material.POPPED_CHORUS_FRUIT, "autosmelt_essence", 1)
             .setDisplayName("Firidium essence")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("essence")
@@ -729,7 +729,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial BootsOfSwiftness = new Builder(Material.STICK, "hermesboots", 1)
+    public static DFMaterial BootsOfSwiftness = new Builder(Material.POPPED_CHORUS_FRUIT, "hermesboots", 1)
             .setDisplayName("Boots of Swiftness")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("boots_of_swiftness")
@@ -739,7 +739,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial FlowerBoots = new Builder(Material.STICK, "flowerboots", 1)
+    public static DFMaterial FlowerBoots = new Builder(Material.POPPED_CHORUS_FRUIT, "flowerboots", 1)
             .setDisplayName("Flower Boots")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("flower_boots")
@@ -749,7 +749,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial HitmanTechniquesBook = new Builder(Material.STICK, "htbook", 1)
+    public static DFMaterial HitmanTechniquesBook = new Builder(Material.POPPED_CHORUS_FRUIT, "htbook", 1)
             .setDisplayName("Hitman Techniques Book")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("htbook")
@@ -771,20 +771,20 @@ public class DFMaterial {
             .addLore("<dark_red>The LEAST DEADLY sword. From the LEAST DEADLY player.")
             .create();
 
-    public static DFMaterial FriedEgg = new Builder(Material.STICK, "fried_egg", 1)
+    public static DFMaterial FriedEgg = new Builder(Material.POPPED_CHORUS_FRUIT, "fried_egg", 1)
             .setDisplayName("Fried Egg")
             .setFoodProperties(FoodProperties.food().nutrition(4).saturation(1.5f).build())
             .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
             .create();
 
-    public static DFMaterial EggSandwich = new Builder(Material.STICK, "egg_sandwich", 1)
+    public static DFMaterial EggSandwich = new Builder(Material.POPPED_CHORUS_FRUIT, "egg_sandwich", 1)
             .setDisplayName("Egg Sandwich")
             .setFoodProperties(FoodProperties.food().nutrition(8).saturation(15f).build())
             .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
             .addMeta(new AdvancementOnObtainMeta(BonAppetit.class))
             .create();
 
-    public static DFMaterial EdibleUranium = new Builder(Material.STICK, "edible_uranium", 1)
+    public static DFMaterial EdibleUranium = new Builder(Material.POPPED_CHORUS_FRUIT, "edible_uranium", 1)
             .setDisplayName("Uranium")
             .addLore("<grey>Nutritional value:")
             .addLore("<grey>- 20000000000 calories")
@@ -793,7 +793,7 @@ public class DFMaterial {
             .addMeta(new ExtremelyUnhealthyItemMeta())
             .create();
 
-    public static DFMaterial VacuumAccessory = new Builder(Material.STICK, "vacuum_accessory", 1)
+    public static DFMaterial VacuumAccessory = new Builder(Material.POPPED_CHORUS_FRUIT, "vacuum_accessory", 1)
             .setDisplayName("Vacuum")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("vacuum_accessory")
@@ -803,29 +803,29 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial AncientDebrisFragment = new Builder(Material.STICK, "ancient_debris_fragment", 1)
+    public static DFMaterial AncientDebrisFragment = new Builder(Material.POPPED_CHORUS_FRUIT, "ancient_debris_fragment", 1)
             .setDisplayName("Ancient Debris Fragment")
             .create();
 
-    public static DFMaterial AncientDebrisChunk = new Builder(Material.STICK, "ancient_debris_chunk", 1)
+    public static DFMaterial AncientDebrisChunk = new Builder(Material.POPPED_CHORUS_FRUIT, "ancient_debris_chunk", 1)
             .setDisplayName("Ancient Debris Chunk")
             .create();
 
-    public static DFMaterial Cardboard = new Builder(Material.STICK, "cardboard", 1)
+    public static DFMaterial Cardboard = new Builder(Material.POPPED_CHORUS_FRUIT, "cardboard", 1)
             .setDisplayName("Cardboard")
             .create();
 
-    public static DFMaterial StrangeBucket = new Builder(Material.STICK, "strange_bucket", 1)
+    public static DFMaterial StrangeBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "strange_bucket", 1)
             .setDisplayName("Strange Bucket")
             .setMaxStack(16)
             .create();
 
-    public static DFMaterial StrangeChipBox = new Builder(Material.STICK, "strange_chip_box", 1)
+    public static DFMaterial StrangeChipBox = new Builder(Material.POPPED_CHORUS_FRUIT, "strange_chip_box", 1)
             .setDisplayName("Strange Chip Box")
             .setMaxStack(16)
             .create();
 
-    public static DFMaterial DiscreetChickenBucket = new Builder(Material.STICK, "discreet_chicken_bucket", 1)
+    public static DFMaterial DiscreetChickenBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "discreet_chicken_bucket", 1)
             .setDisplayName("Discreet Chicken Bucket")
             .addLore("It's not finger licking good.")
             .setFoodProperties(FoodProperties.food().nutrition(12).saturation(4f).build())
@@ -834,7 +834,7 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial DiscreetChips = new Builder(Material.STICK, "discreet_chips", 1)
+    public static DFMaterial DiscreetChips = new Builder(Material.POPPED_CHORUS_FRUIT, "discreet_chips", 1)
             .setDisplayName("Discreet Chips")
             .addLore("It's not finger licking good.")
             .setFoodProperties(FoodProperties.food().nutrition(9).saturation(2f).build())
@@ -843,7 +843,7 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial ChickenBurger = new Builder(Material.STICK, "chicken_burger", 1)
+    public static DFMaterial ChickenBurger = new Builder(Material.POPPED_CHORUS_FRUIT, "chicken_burger", 1)
             .setDisplayName("Chicken Burger")
             .setFoodProperties(FoodProperties.food().nutrition(7).saturation(10f).build())
             .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())

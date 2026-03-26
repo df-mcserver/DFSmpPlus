@@ -30,19 +30,12 @@ public class FiridiumRecipes extends CraftingTemplate {
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();
 
-        doRemovals();
         addIngotRecipes(recipesToAdd);
         addTools(recipesToAdd);
         addArmour(recipesToAdd);
         addFurnaceRecipes(recipesToAdd);
 
         return recipesToAdd;
-    }
-
-    public void doRemovals() {
-        RecipeRemover.addQuery(new RecipeWithIngredientReplace()
-                .setReplacementIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.IRON_INGOT)))
-                .setIngredient(Material.IRON_INGOT));
     }
 
     public void addIngotRecipes(List<Recipe> recipesToAdd) {

@@ -31,11 +31,6 @@ public class ChiselRecipes extends CraftingTemplate {
     }
 
     public void addAllChisels(List<Recipe> recipesToAdd) {
-        RecipeRemover.addQuery(new RecipeWithIngredientReplace()
-                .setReplacementIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.STICK)))
-                .setIngredient(Material.STICK));
-
-
         recipesToAdd.add(
                 new DirectConversionRecipeBuilder()
                         .setSource(new RecipeChoice.ExactChoice(ItemStack.of(Material.STICK)))

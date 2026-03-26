@@ -17,7 +17,6 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Etc.DirectConversi
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithResultRemoval;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
-import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
@@ -50,10 +49,15 @@ public class VanillaRecipes extends CraftingTemplate {
     }
 
     private void doDispenserChange(List<Recipe> recipesToAdd) {
-        RecipeRemover.addQuery(
-                new RecipeWithResultRemoval()
-                        .setResult(Material.DISPENSER)
-                        .onlyUseMinecraftNamespace()
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.DISPENSER)
+                        .setCategory(CraftingBookCategory.BUILDING)
+                        .build(getInfo(), "w/iron")
+                        .shape("CCC", "CIC", "CSC")
+                        .setIngredient('C', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
+                        .setIngredient('I', new RecipeChoice.ExactChoice(new ItemStack(Material.IRON_INGOT)))
+                        .setIngredient('S', Material.REDSTONE)
         );
 
         recipesToAdd.add(
@@ -63,7 +67,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo())
                         .shape("CCC", "CIC", "CSC")
                         .setIngredient('C', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
-                        .setIngredient('I', new RecipeChoice.ExactChoice(new ItemStack(Material.IRON_INGOT)))
+                        .setIngredient('I', Material.BOW)
                         .setIngredient('S', Material.REDSTONE)
         );
     }

@@ -50,10 +50,6 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.WarpedWart.toItemStack()))
         );
 
-        RecipeRemover.addQuery(new RecipeWithResultRemoval()
-                .onlyUseMinecraftNamespace()
-                .setResult(Material.NETHER_WART_BLOCK));
-
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(Material.NETHER_WART_BLOCK)
@@ -123,7 +119,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.BluebellsarStick)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo())
+                        .build(getInfo(), "bluebellsarstick")
                         .shape("AdA", "dXd", "AdA")
                         .setIngredient('A', Material.AMETHYST_SHARD)
                         .setIngredient('d', Material.DIAMOND)
