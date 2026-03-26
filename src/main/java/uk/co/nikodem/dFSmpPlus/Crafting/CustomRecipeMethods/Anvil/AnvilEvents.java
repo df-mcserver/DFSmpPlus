@@ -29,6 +29,8 @@ public class AnvilEvents {
         ItemStack base = inventory.getFirstItem();
         ItemStack addition = inventory.getSecondItem();
 
+        event.getView().setRepairCost(0);
+
         if (base == null) return;
         if (addition == null) return;
 
