@@ -875,6 +875,37 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
+    public static DFMaterial CopperShears = new Builder(Material.SHEARS, "copper_shears", 1)
+            .setDisplayName("Copper Shears")
+            .addMeta(new CustomDurabilityMeta(150))
+            .create();
+
+    public static DFMaterial FiridiumShears = new Builder(Material.SHEARS, "firidium_shears", 1)
+            .setDisplayName("Firidium Shears")
+            .addEnchantment(Enchantment.FIRE_ASPECT)
+            .create();
+
+    public static DFMaterial GoldShears = new Builder(Material.SHEARS, "gold_shears", 1)
+            .setDisplayName("Golden Shears")
+            .addMeta(new CustomDurabilityMeta(300))
+            .create();
+
+    public static DFMaterial DiamondShears = new Builder(Material.SHEARS, "diamond_shears", 1)
+            .setDisplayName("Diamond Shears")
+            .addMeta(new CustomDurabilityMeta(500))
+            .create();
+
+    public static DFMaterial NetheriteShears = new Builder(Material.SHEARS, "netherite_shears", 1)
+            .setDisplayName("Netherite Shears")
+            .addMeta(new CustomDurabilityMeta(750))
+            .create();
+
+    public static DFMaterial ObsidianShears = new Builder(Material.SHEARS, "obsidian_shears", 1)
+            .setDisplayName("Obsidian Shears")
+            .addMeta(new CustomDurabilityMeta(1000))
+            .addEnchantment(Enchantment.UNBREAKING, 10)
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

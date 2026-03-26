@@ -8,9 +8,9 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.recipe.CookingBookCategory;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.*;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithResultRemoval;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
@@ -30,6 +30,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         addPestleAndMortar(recipesToAdd);
         addCustomFoodRecipes(recipesToAdd);
         addAncientDebrisFragmentRecipe(recipesToAdd);
+        addShears(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -282,6 +283,88 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setCategory(CookingBookCategory.BLOCKS)
                         .setSource(DFMaterial.AncientDebrisChunk)
                         .build(getInfo(), "chunktoscrap-blasting")
+        );
+    }
+
+    public void addShears(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.CopperShears)
+                        .build(getInfo(), "coppershears")
+                        .shape(" X", "X ")
+                        .setIngredient('X', Material.COPPER_INGOT)
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CopperShears)
+                .setAddition(Material.COPPER_INGOT)
+                .assign();
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.FiridiumShears)
+                        .build(getInfo(), "firidiumshears")
+                        .shape(" X", "X ")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FiridiumIngot.toItemStack()))
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumShears)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.GoldShears)
+                        .build(getInfo(), "goldshears")
+                        .shape(" X", "X ")
+                        .setIngredient('X', Material.GOLD_INGOT)
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.GoldShears)
+                .setAddition(Material.GOLD_INGOT)
+                .assign();
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.DiamondShears)
+                        .build(getInfo(), "diamondshears")
+                        .shape(" X", "X ")
+                        .setIngredient('X', Material.DIAMOND)
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.DiamondShears)
+                .setAddition(Material.DIAMOND)
+                .assign();
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.NetheriteShears)
+                .setAddition(Material.NETHERITE_INGOT)
+                .assign();
+
+        recipesToAdd.add(
+                new SmithingTableRecipeBuilder()
+                        .setBase(new CustomItemRepresentation(DFMaterial.DiamondShears))
+                        .setTemplate(new CustomItemRepresentation(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
+                        .setAddition(new CustomItemRepresentation(Material.NETHERITE_INGOT))
+                        .setResult(DFMaterial.NetheriteShears)
+                        .build(getInfo(), "NetheriteShears")
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianShears)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
+
+        recipesToAdd.add(
+                new SmithingTableRecipeBuilder()
+                        .setBase(new CustomItemRepresentation(DFMaterial.ObsidianShears))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
+                        .setResult(DFMaterial.ObsidianShears)
+                        .build(getInfo(), "ObsidianShears")
         );
     }
 
