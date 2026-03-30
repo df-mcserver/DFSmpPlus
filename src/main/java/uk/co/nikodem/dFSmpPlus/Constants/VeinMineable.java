@@ -30,7 +30,6 @@ public class VeinMineable {
             Material.AMETHYST_CLUSTER,
             Material.GLOWSTONE,
             Material.ANCIENT_DEBRIS
-
     );
 
     public final static List<Material> VeinLogs = List.of(
@@ -44,6 +43,7 @@ public class VeinMineable {
             Material.MUDDY_MANGROVE_ROOTS,
             Material.OAK_LOG,
             Material.SPRUCE_LOG,
+            Material.PALE_OAK_LOG,
             Material.STRIPPED_ACACIA_LOG,
             Material.STRIPPED_BIRCH_LOG,
             Material.STRIPPED_CHERRY_LOG,
@@ -52,6 +52,7 @@ public class VeinMineable {
             Material.STRIPPED_MANGROVE_LOG,
             Material.STRIPPED_OAK_LOG,
             Material.STRIPPED_SPRUCE_LOG,
+            Material.STRIPPED_PALE_OAK_LOG,
             Material.WARPED_STEM,
             Material.CRIMSON_STEM,
             Material.STRIPPED_WARPED_STEM,
