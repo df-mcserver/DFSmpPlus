@@ -510,7 +510,7 @@ public class DFItemUtils {
         List<Tool.Rule> rules = new ArrayList<>();
 
         for (Tool.Rule rule : base.rules()) {
-            rules.add(Tool.rule(rule.blocks(), rule.speed() * speedMultiplier, rule.correctForDrops()));
+            rules.add(Tool.rule(rule.blocks(), rule.speed() == null ? null : (rule.speed() * speedMultiplier), rule.correctForDrops()));
         }
 
         return Tool.tool()
