@@ -418,71 +418,76 @@ public class DFMaterial {
 
     public static DFMaterial CopperChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_chisel", 1)
             .setDisplayName("Copper Chisel")
-            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(40))
+            .addMeta(new ChiselMeta(4.5f), new CustomDurabilityMeta(40))
             .setMaxStack(1)
             .create();
 
     public static DFMaterial IronChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "iron_chisel", 1)
             .setDisplayName("Iron Chisel")
-            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50))
+            .addMeta(new ChiselMeta(6.5f), new CustomDurabilityMeta(50))
             .setMaxStack(1)
             .create();
 
     public static DFMaterial FiridiumChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_chisel", 1)
             .setDisplayName("Firidium Chisel")
             .addEnchantment(Enchantment.FIRE_ASPECT, 1)
-            .addMeta(new ChiselMeta(5f), new CustomDurabilityMeta(50), new AutosmeltingItemMeta(), new AdvancementOnObtainMeta(FiridiumTool.class))
+            .addMeta(new ChiselMeta(6.5f), new CustomDurabilityMeta(50), new AutosmeltingItemMeta(), new AdvancementOnObtainMeta(FiridiumTool.class))
             .setMaxStack(1)
             .create();
 
     public static DFMaterial GoldChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_chisel", 1)
             .setDisplayName("Gold Chisel")
-            .addMeta(new ChiselMeta(5.5f), new CustomDurabilityMeta(70))
+            .addMeta(new ChiselMeta(7.5f), new CustomDurabilityMeta(70))
             .setMaxStack(1)
             .create();
 
     public static DFMaterial DiamondChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "diamond_chisel", 1)
             .setDisplayName("Diamond Chisel")
-            .addMeta(new ChiselMeta(6f), new CustomDurabilityMeta(500))
+            .addMeta(new ChiselMeta(7f), new CustomDurabilityMeta(500))
             .setMaxStack(1)
             .create();
 
     public static DFMaterial NetheriteChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "netherite_chisel", 1)
             .setDisplayName("Netherite Chisel")
-            .addMeta(new ChiselMeta(7f), new CustomDurabilityMeta(1500))
+            .addMeta(new ChiselMeta(8f), new CustomDurabilityMeta(1500))
             .setMaxStack(1)
             .create();
 
     public static DFMaterial ObsidianChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "obsidian_chisel", 1)
             .setDisplayName("Obsidian Chisel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class), new AdvancementOnObtainMeta(GenuineDedication.class))
+            .addMeta(new ChiselMeta(15f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class), new AdvancementOnObtainMeta(GenuineDedication.class))
             .setMaxStack(1)
             .create();
 
     public static DFMaterial CalciteSword = new Builder(Material.STONE_SWORD, "calcite_sword", 1)
             .setDisplayName("Calcite Sword")
             .addEnchantment(Enchantment.UNBREAKING, 1)
+            .setTool(createFasterTool(ItemType.IRON_SWORD, 0.9f))
             .create();
 
     public static DFMaterial CalciteAxe = new Builder(Material.IRON_AXE, "calcite_axe", 1)
             .setDisplayName("Calcite Axe")
             .addEnchantment(Enchantment.UNBREAKING, 1)
+            .setTool(createFasterTool(ItemType.IRON_AXE, 0.9f))
             .create();
 
     public static DFMaterial CalcitePickaxe = new Builder(Material.IRON_PICKAXE, "calcite_pickaxe", 1)
             .setDisplayName("Calcite Pickaxe")
             .addEnchantment(Enchantment.UNBREAKING, 1)
+            .setTool(createFasterTool(ItemType.IRON_PICKAXE, 0.9f))
             .create();
 
     public static DFMaterial CalciteShovel = new Builder(Material.IRON_SHOVEL, "calcite_shovel", 1)
             .setDisplayName("Calcite Shovel")
             .addEnchantment(Enchantment.UNBREAKING, 1)
+            .setTool(createFasterTool(ItemType.IRON_SHOVEL, 0.9f))
             .create();
 
     public static DFMaterial CalciteHoe = new Builder(Material.IRON_HOE, "calcite_hoe", 1)
             .setDisplayName("Calcite Hoe")
             .addEnchantment(Enchantment.UNBREAKING, 1)
+            .setTool(createFasterTool(ItemType.IRON_HOE, 0.9f))
             .create();
 
     public static DFMaterial CalciteHelmet = new Builder(Material.CHAINMAIL_HELMET, "calcite_helmet", 1)
@@ -648,7 +653,7 @@ public class DFMaterial {
     public static DFMaterial FloralPickaxe = new Builder(Material.IRON_PICKAXE, "floral_pickaxe", 1)
             .setDisplayName("<light_purple>Floral Pickaxe")
             .addMeta(new CustomDurabilityMeta(750), new HarvesterItemMeta())
-            .setTool(Material.IRON_PICKAXE.getDefaultData(DataComponentTypes.TOOL)) // can't mine netherite
+            .setTool(createFasterTool(ItemType.IRON_PICKAXE, 1.25f)) // can't mine netherite
             .create();
 
     public static DFMaterial FloralShovel = new Builder(Material.IRON_SHOVEL, "floral_shovel", 1)
