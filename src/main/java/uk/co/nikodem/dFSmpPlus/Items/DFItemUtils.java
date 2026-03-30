@@ -1,5 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.Tool;
 import net.kyori.adventure.text.Component;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -10,6 +12,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ItemType;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -500,5 +503,21 @@ public class DFItemUtils {
         }
 
         return displayName != material.getDisplayName();
+    }
+
+    public static Tool createFasterTool(ItemType type, float speedMultiplier) {
+        Tool base = type.getDefaultData(DataComponentTypes.TOOL);
+        List<Tool.Rule> rules = new ArrayList<>();
+
+        for (Tool.Rule rule : base.rules()) {
+            rules.add(Tool.rule(rule.blocks(), rule.speed() * speedMultiplier, rule.correctForDrops()));
+        }
+
+        return Tool.tool()
+                .defaultMiningSpeed(base.defaultMiningSpeed())
+                .addRules(rules)
+                .damagePerBlock(base.damagePerBlock())
+                .canDestroyBlocksInCreative(base.canDestroyBlocksInCreative())
+                .build();
     }
 }

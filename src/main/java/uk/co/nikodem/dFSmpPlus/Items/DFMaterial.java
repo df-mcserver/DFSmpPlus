@@ -41,6 +41,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.Keys.*;
+import static uk.co.nikodem.dFSmpPlus.Items.DFItemUtils.createFasterTool;
 
 public class DFMaterial {
     // please don't touch lol
@@ -81,42 +82,49 @@ public class DFMaterial {
             .setDisplayName("<light_purple>Vein Miner's Pickaxe")
             .addLore("<aqua>A powerful pickaxe from a well-respected miner.")
             .addMeta(new VeinminingItemMeta(VeinMineable.VeinOres), new AdvancementOnObtainMeta(VeinTool.class))
+            .setTool(createFasterTool(ItemType.IRON_PICKAXE, 1.25f))
             .create();
 
     public static DFMaterial VeinAxe = new Builder(Material.IRON_AXE, "vein_axe", 1)
             .setDisplayName("<light_purple>Vein Miner's Axe")
             .addLore("<aqua>A powerful axe from a well-respected miner.")
             .addMeta(new VeinminingItemMeta(VeinMineable.VeinLogs), new AdvancementOnObtainMeta(VeinTool.class))
+            .setTool(createFasterTool(ItemType.IRON_AXE, 1.25f))
             .create();
 
     public static DFMaterial FiridiumSword = new Builder(Material.IRON_SWORD, "firidium_sword", 1)
             .setDisplayName("<red>Firidium Sword")
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
+            .setTool(createFasterTool(ItemType.IRON_SWORD, 1.1f))
             .create();
 
     public static DFMaterial FiridiumPickaxe = new Builder(Material.IRON_PICKAXE, "firidium_pickaxe", 1)
             .setDisplayName("<red>Firidium Pickaxe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltablePickaxe), new AdvancementOnObtainMeta(FiridiumTool.class))
+            .setTool(createFasterTool(ItemType.IRON_PICKAXE, 1.1f))
             .create();
 
     public static DFMaterial FiridiumAxe = new Builder(Material.IRON_AXE, "firidium_axe", 1)
             .setDisplayName("<red>Firidium Axe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltableAxe), new AdvancementOnObtainMeta(FiridiumTool.class))
+            .setTool(createFasterTool(ItemType.IRON_AXE, 1.1f))
             .create();
 
     public static DFMaterial FiridiumShovel = new Builder(Material.IRON_SHOVEL, "firidium_shovel", 1)
             .setDisplayName("<red>Firidium Shovel")
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltableShovel), new AdvancementOnObtainMeta(FiridiumTool.class))
+            .setTool(createFasterTool(ItemType.IRON_SHOVEL, 1.1f))
             .create();
 
     public static DFMaterial FiridiumHoe = new Builder(Material.IRON_HOE, "firidium_hoe", 1)
             .setDisplayName("<red>Firidium Hoe")
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
+            .setTool(createFasterTool(ItemType.IRON_HOE, 1.1f))
             .create();
 
     public static DFMaterial FiridiumIngot = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_ingot", 1)
@@ -268,30 +276,35 @@ public class DFMaterial {
             .setDisplayName("Obsidian Sword")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(false), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .setTool(createFasterTool(ItemType.NETHERITE_SWORD, 1.1f))
             .create();
 
     public static DFMaterial ObsidianAxe = new Builder(Material.NETHERITE_AXE, "obsidian_axe", 1)
             .setDisplayName("Obsidian Axe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .setTool(createFasterTool(ItemType.NETHERITE_AXE, 1.1f))
             .create();
 
     public static DFMaterial ObsidianPickaxe = new Builder(Material.NETHERITE_PICKAXE, "obsidian_pickaxe", 1)
             .setDisplayName("Obsidian Pickaxe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .setTool(createFasterTool(ItemType.NETHERITE_PICKAXE, 1.1f))
             .create();
 
     public static DFMaterial ObsidianShovel = new Builder(Material.NETHERITE_SHOVEL, "obsidian_shovel", 1)
             .setDisplayName("Obsidian Shovel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .setTool(createFasterTool(ItemType.NETHERITE_SHOVEL, 1.1f))
             .create();
 
     public static DFMaterial ObsidianHoe = new Builder(Material.NETHERITE_HOE, "obsidian_hoe", 1)
             .setDisplayName("Obsidian Hoe")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .setTool(createFasterTool(ItemType.NETHERITE_HOE, 1.1f))
             .create();
 
     public static DFMaterial ObsidianHelmet = new Builder(Material.NETHERITE_HELMET, "obsidian_helmet", 1)
@@ -878,6 +891,7 @@ public class DFMaterial {
     public static DFMaterial CopperShears = new Builder(Material.SHEARS, "copper_shears", 1)
             .setDisplayName("Copper Shears")
             .addMeta(new CustomDurabilityMeta(150))
+            .setTool(createFasterTool(ItemType.SHEARS, 0.75f))
             .create();
 
     public static DFMaterial FiridiumShears = new Builder(Material.SHEARS, "firidium_shears", 1)
@@ -887,23 +901,28 @@ public class DFMaterial {
 
     public static DFMaterial GoldShears = new Builder(Material.SHEARS, "gold_shears", 1)
             .setDisplayName("Golden Shears")
-            .addMeta(new CustomDurabilityMeta(300))
+            .addMeta(new CustomDurabilityMeta(100))
+            .setTool(createFasterTool(ItemType.SHEARS, 2.5f))
             .create();
 
     public static DFMaterial DiamondShears = new Builder(Material.SHEARS, "diamond_shears", 1)
             .setDisplayName("Diamond Shears")
             .addMeta(new CustomDurabilityMeta(500))
+            .setTool(createFasterTool(ItemType.SHEARS, 3.25f))
             .create();
 
     public static DFMaterial NetheriteShears = new Builder(Material.SHEARS, "netherite_shears", 1)
             .setDisplayName("Netherite Shears")
             .addMeta(new CustomDurabilityMeta(750))
+            .setTool(createFasterTool(ItemType.SHEARS, 3.25f))
             .create();
 
     public static DFMaterial ObsidianShears = new Builder(Material.SHEARS, "obsidian_shears", 1)
             .setDisplayName("Obsidian Shears")
             .addMeta(new CustomDurabilityMeta(1000))
             .addEnchantment(Enchantment.UNBREAKING, 10)
+            .setTool(createFasterTool(ItemType.SHEARS, 3.5f))
+            .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
             .create();
 
     private final String namedId;
