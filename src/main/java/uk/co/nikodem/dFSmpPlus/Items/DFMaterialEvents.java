@@ -216,8 +216,7 @@ public class DFMaterialEvents {
 
     public static void BucketFillEvent(PlayerBucketFillEvent e) {
         Player plr = e.getPlayer();
-
-        ItemStack tool = plr.getInventory().getItemInMainHand();
+        ItemStack tool = plr.getInventory().getItem(e.getHand());
 
         DFMaterial material = DFItemUtils.getDFMaterial(tool);
 
@@ -241,8 +240,7 @@ public class DFMaterialEvents {
 
     public static void BucketEmptyEvent(PlayerBucketEmptyEvent e) {
         Player plr = e.getPlayer();
-
-        ItemStack tool = plr.getInventory().getItemInMainHand();
+        ItemStack tool = plr.getInventory().getItem(e.getHand());
 
         DFMaterial material = DFItemUtils.getDFMaterial(tool);
 
@@ -264,10 +262,35 @@ public class DFMaterialEvents {
         }
     }
 
+    public static void BucketEntityEvent(PlayerBucketEntityEvent e) {
+        Player plr = e.getPlayer();
+
+        ItemStack tool = plr.getInventory().getItem(e.getHand());
+
+        DFMaterial material = DFItemUtils.getDFMaterial(tool);
+
+        if (material == null) {
+            for (Map.Entry<Material, List<DFMaterialMeta>> entry : VanillaItems.vanillaItemMetas.entrySet()) {
+                if (tool.getType().equals(entry.getKey())) {
+                    for (DFMaterialMeta meta : entry.getValue()) {
+                        meta.BucketEntityEvent(plr, null, tool, e);
+                    }
+                }
+            }
+            return;
+        }
+
+        if (material.hasMeta()) {
+            for (DFMaterialMeta meta : material.getMeta()) {
+                meta.BucketEntityEvent(plr, material, tool, e);
+            }
+        }
+    }
+
     public static void ItemConsumed(PlayerItemConsumeEvent e) {
         Player plr = e.getPlayer();
 
-        ItemStack tool = plr.getInventory().getItemInMainHand();
+        ItemStack tool = plr.getInventory().getItem(e.getHand());
 
         DFMaterial material = DFItemUtils.getDFMaterial(tool);
 
@@ -291,7 +314,7 @@ public class DFMaterialEvents {
 
     public static void ItemPlaced(BlockPlaceEvent e) {
         Player plr = e.getPlayer();
-        ItemStack item = plr.getInventory().getItemInMainHand();
+        ItemStack item = e.getItemInHand();
 
         DFMaterial material = DFItemUtils.getDFMaterial(item);
 
