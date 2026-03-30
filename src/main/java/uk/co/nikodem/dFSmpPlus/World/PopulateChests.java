@@ -38,7 +38,7 @@ public class PopulateChests {
                     && !lootContains(loot, Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
             ) {
 
-                int chance = rand.nextInt(0, 1);
+                int chance = rand.nextInt(0, 4);
 
                 if (chance == 0) {
                     loot.add(DFMaterial.ObsidianUpgradeTemplate.toItemStack());
