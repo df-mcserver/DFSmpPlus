@@ -472,6 +472,7 @@ public class VanillaRecipes extends CraftingTemplate {
                 Map.entry(Material.CRIMSON_STEM, Material.STRIPPED_CRIMSON_STEM)
         );
 
+        i = 0;
         for (Map.Entry<Material, Material> entry : allLogsToStrippedLogs.entrySet()) {
             recipesToAdd.add(
                     new StonecutterRecipeBuilder()
