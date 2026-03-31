@@ -21,6 +21,8 @@ public class AdvancementOnObtainMeta implements DFMaterialMeta {
     }
 
     public void ItemPickup(Player plr, DFMaterial material, ItemStack item, PlayerAttemptPickupItemEvent event) {
+        if (event.isCancelled()) return;
+        if (event.getPlayer().getInventory().firstEmpty() == -1) return;
         DFAdvancementsHandler.grantAdvancement(plr, clazz);
     };
 }
