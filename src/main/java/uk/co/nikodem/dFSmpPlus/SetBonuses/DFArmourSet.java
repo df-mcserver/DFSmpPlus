@@ -126,8 +126,8 @@ public class DFArmourSet {
             .setChestplate(DFMaterial.ObsidianChestplate)
             .setLeggings(DFMaterial.ObsidianLeggings)
             .setBoots(DFMaterial.ObsidianBoots)
-            .setSetBonus("Resistance I")
-            .addMeta(new ObsidianMeta())
+            .setSetBonus("Makes you immune to fire")
+            .addMeta(new ObsidianMeta(), new FireImmunityMeta())
             .create();
 
     public static boolean hasArmourSetEquipped(Player plr, DFArmourSet set) {

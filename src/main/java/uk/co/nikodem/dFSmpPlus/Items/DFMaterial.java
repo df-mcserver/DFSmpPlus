@@ -312,7 +312,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.HEAD)
             .addMeta(new AdvancementOnObtainMeta(ObsidianItem.class), new CustomDurabilityMeta(450))
-            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianHelmet, 4D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianHelmet, 5D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianHelmet, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianHelmet, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .create();
@@ -342,7 +342,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setEquippable("obsidian", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.FEET)
             .addMeta(new AdvancementOnObtainMeta(ObsidianItem.class), new CustomDurabilityMeta(500))
-            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianBoots, 4D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianBoots, 5D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianBoots, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .create();
