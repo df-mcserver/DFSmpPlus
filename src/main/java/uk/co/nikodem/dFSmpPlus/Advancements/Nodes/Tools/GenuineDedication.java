@@ -20,7 +20,7 @@ public class GenuineDedication extends BaseAdvancement {
                         DFMaterial.ObsidianChisel.toItemStack(),
                         "Genuine Dedication")
                         .description("Obtain an Obsidian Chisel. Why would you waste an obsidian template on that?")
-                        .taskFrame()
+                        .challengeFrame()
                         .coords(2f, 2f)
                         .showToast()
                         .announceChat()
