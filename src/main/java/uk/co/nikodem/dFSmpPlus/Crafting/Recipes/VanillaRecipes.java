@@ -120,6 +120,20 @@ public class VanillaRecipes extends CraftingTemplate {
                         .addIngredient(2, Material.STRING)
                         .addIngredient(1, Material.SLIME_BALL)
         );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setOutput(Material.GREEN_DYE)
+                        .setSource(Material.KELP)
+                        .build(getInfo())
+        );
+
+        recipesToAdd.add(
+                new FurnaceRecipeBuilder()
+                        .setOutput(Material.GREEN_DYE)
+                        .setSource(Material.BAMBOO)
+                        .build(getInfo())
+        );
     }
 
     private void doUnobtainableRecipes(List<Recipe> recipesToAdd) {
