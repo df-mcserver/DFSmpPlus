@@ -125,14 +125,14 @@ public class VanillaRecipes extends CraftingTemplate {
                 new FurnaceRecipeBuilder()
                         .setOutput(Material.GREEN_DYE)
                         .setSource(Material.KELP)
-                        .build(getInfo())
+                        .build(getInfo(), "kelp")
         );
 
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setOutput(Material.GREEN_DYE)
                         .setSource(Material.BAMBOO)
-                        .build(getInfo())
+                        .build(getInfo(), "bamboo")
         );
     }
 
