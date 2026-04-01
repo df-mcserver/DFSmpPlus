@@ -72,13 +72,17 @@ public class WaypointManager {
                 waypoints.add(waypointEntity);
                 activeWaypoints.replace(plr.getUniqueId(), waypoints);
 
+                killGhostWaypointsInChunk(location.getChunk());
+
                 return waypointEntity;
             } else {
+                killGhostWaypointsInChunk(location.getChunk());
                 return null;
             }
         } catch (Exception ex) {
             ex.printStackTrace();
             e.remove();
+            killGhostWaypointsInChunk(location.getChunk());
             return null;
         }
     }
