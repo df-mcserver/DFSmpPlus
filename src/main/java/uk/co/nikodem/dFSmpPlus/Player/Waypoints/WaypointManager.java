@@ -1,13 +1,11 @@
 package uk.co.nikodem.dFSmpPlus.Player.Waypoints;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
+import org.bukkit.*;
 import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.*;
+import uk.co.nikodem.dFSmpPlus.Constants.WaypointConstants;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
@@ -18,16 +16,13 @@ import java.util.*;
 import java.util.List;
 
 public class WaypointManager {
-    public static final int MAX_WAYPOINTS = 10;
-    public static final double MAX_DISTANCE = 60000000D;
-    public static final String TAG = "waypoint";
-
     public static final HashMap<UUID, List<ArmorStand>> activeWaypoints = new HashMap<>();
+    public static final HashMap<NamespacedKey, List<Long>> unloadedChunksWithWaypoints = new HashMap<>();
 
     public static WaypointCreationResult CreateNewWaypoint(Player plr, Location location, String id, long colour) {
         PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
         if (data.waypoints.containsKey(id)) return WaypointCreationResult.FAILED_ALREADY_EXISTS;
-        if (data.waypoints.size() >= MAX_WAYPOINTS) return WaypointCreationResult.FAILED_REACHED_MAXIMUM;
+        if (data.waypoints.size() >= WaypointConstants.WAYPOINT_MAX) return WaypointCreationResult.FAILED_REACHED_MAXIMUM;
 
         WaypointInformation info = new WaypointInformation();
         info.location = location;
@@ -62,7 +57,7 @@ public class WaypointManager {
                 waypointEntity.setMarker(true);
                 waypointEntity.setInvisible(true);
 
-                waypointEntity.addScoreboardTag(TAG);
+                waypointEntity.addScoreboardTag(WaypointConstants.WAYPOINT_TAG);
                 waypointEntity.addScoreboardTag(id);
 
                 DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
@@ -71,7 +66,7 @@ public class WaypointManager {
 
                 // make sure that the waypoint transmission is set after is invisible to other players
                 AttributeInstance transmit_range = waypointEntity.getAttribute(Attribute.WAYPOINT_TRANSMIT_RANGE);
-                if (transmit_range != null) transmit_range.setBaseValue(MAX_DISTANCE);
+                if (transmit_range != null) transmit_range.setBaseValue(WaypointConstants.WAYPOINT_MAX_DISTANCE);
 
                 List<ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr.getUniqueId(), k -> new ArrayList<>());
                 waypoints.add(waypointEntity);
@@ -104,7 +99,7 @@ public class WaypointManager {
                 waypointEntity.remove();
                 int waypointEntityCount = 0;
                 for (Entity entity : chunk.getEntities()) {
-                    if (entity.getScoreboardTags().contains(TAG)) waypointEntityCount++;
+                    if (entity.getScoreboardTags().contains(WaypointConstants.WAYPOINT_TAG)) waypointEntityCount++;
                 }
                 if (waypointEntityCount <= 0) chunk.setForceLoaded(false);
             }
@@ -156,5 +151,35 @@ public class WaypointManager {
             WaypointInformation info = waypointEntry.getValue();
             CreateWaypoint(plr, id, info.colour, info.location);
         }
+    }
+
+    public static boolean killGhostWaypointsInChunk(Chunk chunk) {
+        boolean containsRealWaypoints = false;
+        for (Entity entity : chunk.getEntities()) {
+            if (entity instanceof ArmorStand armorStand) {
+                if (armorStand.getScoreboardTags().contains(WaypointConstants.WAYPOINT_TAG)) {
+                    if (getWaypointOwner(armorStand) == null) {
+                        armorStand.remove();
+                    } else {
+                        containsRealWaypoints = true;
+                    }
+                }
+            }
+        }
+
+        return containsRealWaypoints;
+    }
+
+    @Nullable
+    public static UUID getWaypointOwner(ArmorStand armorStand) {
+        for (Map.Entry<UUID, List<ArmorStand>> entry : WaypointManager.activeWaypoints.entrySet()) {
+            UUID waypointsOwner = entry.getKey();
+            List<ArmorStand> waypoints = entry.getValue();
+
+            for (ArmorStand waypoint : waypoints) {
+                if (waypoint.getUniqueId().equals(armorStand.getUniqueId())) return waypointsOwner;
+            }
+        }
+        return null;
     }
 }

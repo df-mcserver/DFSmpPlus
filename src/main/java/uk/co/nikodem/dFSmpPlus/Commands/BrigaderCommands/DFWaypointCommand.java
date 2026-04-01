@@ -12,6 +12,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import uk.co.nikodem.dFSmpPlus.Commands.DFCommand;
+import uk.co.nikodem.dFSmpPlus.Constants.WaypointConstants;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
@@ -204,7 +205,7 @@ public class DFWaypointCommand implements DFCommand {
             }
             case FAILED_CREATING_WAYPOINT -> plr.sendMessage("Error creating "+id+"!");
             case FAILED_ALREADY_EXISTS -> plr.sendMessage("Waypoint "+id+" already exists!");
-            case FAILED_REACHED_MAXIMUM -> plr.sendMessage("You cannot make more than "+WaypointManager.MAX_WAYPOINTS+" waypoints!");
+            case FAILED_REACHED_MAXIMUM -> plr.sendMessage("You cannot make more than "+ WaypointConstants.WAYPOINT_MAX +" waypoints!");
         }
 
         return Command.SINGLE_SUCCESS;

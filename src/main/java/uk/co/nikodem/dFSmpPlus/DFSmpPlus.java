@@ -45,9 +45,12 @@ import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareGrindston
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareItemCraftEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareSmithingEvent;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerDataHandler;
+import uk.co.nikodem.dFSmpPlus.Events.World.ChunkLoadEvent;
+import uk.co.nikodem.dFSmpPlus.Events.World.ChunkUnloadEvent;
 import uk.co.nikodem.dFSmpPlus.Events.World.LootGenerateEvent;
 import uk.co.nikodem.dFSmpPlus.Messaging.MessageListener;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatEvents;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointEventHandler;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.MessageUtils;
@@ -205,7 +208,9 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PlayerRespawnEvent(),
                     new PlayerMoveEvent(),
 
-                    new LootGenerateEvent()
+                    new LootGenerateEvent(),
+                    new ChunkUnloadEvent(),
+                    new ChunkLoadEvent()
             );
 
             for (Listener listener : eventListeners) {
@@ -219,6 +224,8 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     AccessoryEvents.ApplyRunPerSecond(plr);
                     CombatEvents.perSecond(plr);
                 }
+
+                WaypointEventHandler.onPerSecond();
             }, 0, 20);
 
         } catch (Exception e) {
