@@ -2,7 +2,9 @@ package uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -49,6 +51,30 @@ public class VacuumAccessoryMeta implements AccessoryMeta {
         );
     };
 
+    public static void ItemSpawned(EntityDropItemEvent event) {
+        if (event.getEntity() instanceof Player plr) {
+            Item item = event.getItemDrop();
+            ItemStack itemStack = item.getItemStack();
+            item.remove();
+            for (ItemStack drop : VacuumAccessoryMeta.giveItemsToPlayerViaVacuum(plr, List.of(itemStack))) {
+                item.getWorld().dropItemNaturally(item.getLocation(), drop);
+            }
+        }
+    }
+
+    public static List<ItemStack> giveItemEntitiesToPlayerViaVacuum(Player plr, List<Item> newDrops) {
+        PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+        boolean hasVacuum = accessoryData.hasAccessoryWithMetaEquipped(VacuumAccessoryMeta.class);
+
+        List<ItemStack> items = new ArrayList<>();
+        for (Item item : newDrops) {
+            items.add(item.getItemStack());
+            if (hasVacuum) item.setItemStack(ItemStack.of(Material.AIR));
+        }
+
+        return giveItemsToPlayerViaVacuum(plr, items);
+    }
+
     public static List<ItemStack> giveItemsToPlayerViaVacuum(Player plr, List<ItemStack> newDrops) {
         PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
         boolean hasVacuum = accessoryData.hasAccessoryWithMetaEquipped(VacuumAccessoryMeta.class);
@@ -60,6 +86,16 @@ public class VacuumAccessoryMeta implements AccessoryMeta {
         for (ItemStack drop : newDrops) {
             if (hasVacuum) {
                 PlayerInventory inv = plr.getInventory();
+                if (drop.isSimilar(inv.getItemInOffHand())) {
+                    int totalAmount = drop.getAmount() + inv.getItemInOffHand().getAmount();
+                    if (totalAmount <= 64) {
+                        inv.getItemInOffHand().setAmount(totalAmount);
+                        continue;
+                    } else {
+                        inv.getItemInOffHand().setAmount(64);
+                        drop.setAmount(totalAmount - 64);
+                    }
+                }
                 Map<Integer, ItemStack> overflow = inv.addItem(drop);
                 if (overflow.isEmpty() && data.hasVacuumSoundEnabled) Sounds.VacuumPickupItem.playSound(plr);
                 for (Map.Entry<Integer, ItemStack> item : overflow.entrySet()) {

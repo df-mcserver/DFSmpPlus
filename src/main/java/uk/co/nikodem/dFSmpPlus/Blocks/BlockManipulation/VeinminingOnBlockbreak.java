@@ -1,30 +1,21 @@
 package uk.co.nikodem.dFSmpPlus.Blocks.BlockManipulation;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
-import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryMeta;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.AutosmeltAccessoryMeta;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.VacuumAccessoryMeta;
-import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
-import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
-import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
-import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
-import uk.co.nikodem.dFSmpPlus.Items.Metas.AutosmeltingItemMeta;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import static uk.co.nikodem.dFSmpPlus.Constants.VeinMineable.MAX_BLOCK_CHAIN;
 
@@ -33,66 +24,30 @@ public class VeinminingOnBlockbreak {
         Player plr = event.getPlayer();
         Block b = event.getBlock();
         ItemStack tool = plr.getInventory().getItemInMainHand();
-
         if (!veinMineable.contains(b.getType())) return;
-
         List<Block> veinBlocks = new ArrayList<>();
         veinBlocks.add(b);
         findVeinBlocks(b, b.getType(), veinBlocks);
-
         Damageable im = (Damageable) tool.getItemMeta();
         if (im == null) return;
         int damage = im.getDamage() + 1;
         im.setDamage(damage);
         tool.setItemMeta(im);
 
-        Map<Material, Material> autosmeltMapping = null;
-        DFMaterial material = DFItemUtils.getDFMaterial(tool);
-        if (material != null) {
-            for (DFMaterialMeta meta : material.getMeta()) {
-                if (meta instanceof AutosmeltingItemMeta autosmeltingItemMeta) {
-                    autosmeltMapping = autosmeltingItemMeta.list;
-                    break;
-                }
-            }
-        }
-
-        if (autosmeltMapping == null && plr.isSneaking()) {
-            PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
-            for (ItemStack accessory : accessoryData.slots) {
-                AccessoryInformation info = DFItemUtils.getAccessoryInformation(accessory);
-                if (info == null) continue;
-                for (AccessoryMeta meta : info.getMeta()) {
-                    if (meta instanceof AutosmeltAccessoryMeta autosmeltAccessoryMeta) {
-                        autosmeltMapping = autosmeltAccessoryMeta.allAutosmeltLists;
-                    }
-                }
-            }
-        }
-
-        int count = 0;
-        boolean shouldExp = true;
-
         for (Block block : veinBlocks) {
-            if (autosmeltMapping != null) {
-                AutosmeltingOnBlockbreak.doAutosmelt(new BlockBreakEvent(block, plr), autosmeltMapping);
-                block.setType(Material.AIR);
-                shouldExp = false;
-            }
-            else {
-                for (ItemStack drop : VacuumAccessoryMeta.giveItemsToPlayerViaVacuum(plr, block.getDrops(tool, plr).stream().toList())) {
-                    block.getWorld().dropItemNaturally(block.getLocation().add(new Location(block.getWorld(), 0.5, 0.5, 0.5)), drop);
-                }
-                block.setType(Material.AIR);
-            }
-            count++;
-        }
+            Location dropLocation = block.getLocation().add(0.5, 0.5, 0.5);
 
-        if (shouldExp) {
-            int expToDrop = event.getExpToDrop();
-            ExperienceOrb orb = (ExperienceOrb) b.getWorld().spawnEntity(new Location(b.getWorld(), 0.5, 0.5, 0.5), EntityType.EXPERIENCE_ORB);
-            orb.setExperience(expToDrop);
-            orb.setCount(count);
+            List<Item> itemDrops = new ArrayList<>();
+            for (ItemStack item : block.getDrops(tool, plr)) {
+                Item newItem = block.getWorld().dropItem(dropLocation, item);
+                newItem.setItemStack(item);
+                itemDrops.add(newItem);
+            }
+
+            BlockData blockParticleData = block.getType().createBlockData();
+            if (!block.equals(b)) block.getWorld().spawnParticle(Particle.BLOCK, dropLocation, 10, blockParticleData);
+            Bukkit.getPluginManager().callEvent(new BlockDropItemEvent(block, block.getState(), plr, itemDrops));
+            block.setType(Material.AIR);
         }
     };
 
@@ -100,7 +55,7 @@ public class VeinminingOnBlockbreak {
         BlockFace[] allSides = BlockFace.values();
 
         for (BlockFace face : allSides) {
-            if (veinBlocks.size() > MAX_BLOCK_CHAIN) return; // max of 64 blocks, to not lag the server
+            if (veinBlocks.size() >= MAX_BLOCK_CHAIN) return; // max of 64 blocks, to not lag the server
             Block relative = origin.getRelative(face);
             if (relative.getType() == type && !veinBlocks.contains(relative)) {
                 veinBlocks.add(relative);

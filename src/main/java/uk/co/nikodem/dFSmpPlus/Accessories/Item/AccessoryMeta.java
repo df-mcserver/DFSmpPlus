@@ -2,15 +2,14 @@ package uk.co.nikodem.dFSmpPlus.Accessories.Item;
 
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Accessories.Action.AccessoryAction;
-import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,7 @@ public interface AccessoryMeta {
     default void UserDamaged(Player plr, ItemStack accessory, AccessoryInformation info, EntityDamageEvent event) {};
     default void UserTargetted(Player plr, ItemStack accessory, AccessoryInformation info, EntityTargetEvent event) {};
     default void BlockMined(Player plr, ItemStack accessory, AccessoryInformation info, BlockBreakEvent event) {};
+    default void MinedBlockDropItem(Player plr, ItemStack accessory, AccessoryInformation info, BlockDropItemEvent event) {};
     default void UserAttacking(Player plr, ItemStack accessory, AccessoryInformation info, EntityDamageByEntityEvent event) {};
     default void UserKilledPlayer(Player plr, ItemStack accessory, AccessoryInformation info, PlayerDeathEvent event) {};
     default void UserInteract(Player plr, ItemStack accessory, AccessoryInformation info, PlayerInteractEvent event) {};

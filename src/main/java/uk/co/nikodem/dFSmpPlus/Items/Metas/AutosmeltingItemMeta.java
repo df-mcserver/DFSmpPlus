@@ -2,7 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Blocks.BlockManipulation.AutosmeltingOnBlockbreak;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
@@ -22,10 +22,9 @@ public class AutosmeltingItemMeta implements DFMaterialMeta {
     }
 
     @Override
-    public void ItemMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakEvent event) {
-        if (!event.isDropItems()) return;
-        if (!DFItemUtils.hasFireAspect(tool)) return; // if you remove fireaspect, autosmelting no work
+    public void ItemMinedBlockDropItem(Player plr, DFMaterial material, ItemStack tool, BlockDropItemEvent event) {
+        if (!DFItemUtils.hasFireAspect(tool)) return; // if you remove fireaspect, autosmelting no work (even though you can no longer remove fire aspect)
 
-        if (list.containsKey(event.getBlock().getType())) AutosmeltingOnBlockbreak.doAutosmelt(event, list);
+        if (list.containsKey(event.getBlockState().getType())) AutosmeltingOnBlockbreak.doAutosmelt(event, list);
     }
 }

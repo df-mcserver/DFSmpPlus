@@ -2,15 +2,11 @@ package uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryMeta;
 import uk.co.nikodem.dFSmpPlus.Blocks.BlockManipulation.AutosmeltingOnBlockbreak;
-import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
-import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
-import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
-import uk.co.nikodem.dFSmpPlus.Items.Metas.VeinminingItemMeta;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,25 +23,10 @@ public class AutosmeltAccessoryMeta implements AccessoryMeta {
     }
 
     @Override
-    public void BlockMined(Player plr, ItemStack accessory, AccessoryInformation info, BlockBreakEvent event) {
+    public void MinedBlockDropItem(Player plr, ItemStack accessory, AccessoryInformation info, BlockDropItemEvent event) {
         if (plr.isSneaking()) {
-            boolean isVeinMining = false;
-            ItemStack tool = plr.getInventory().getItemInMainHand();
-            DFMaterial material = DFItemUtils.getDFMaterial(tool);
-            if (material != null) {
-                for (DFMaterialMeta meta : material.getMeta()) {
-                    if (meta instanceof VeinminingItemMeta veinminingItemMeta) {
-                        if (veinminingItemMeta.list.contains(event.getBlock().getType())) {
-                            isVeinMining = true;
-                            break;
-                        }
-                    }
-                }
-            }
-            if (!isVeinMining) {
-                Material output = this.allAutosmeltLists.get(event.getBlock().getType());
-                if (output != null) AutosmeltingOnBlockbreak.doAutosmelt(event, this.allAutosmeltLists);
-            }
+            Material output = this.allAutosmeltLists.get(event.getBlockState().getType());
+            if (output != null) AutosmeltingOnBlockbreak.doAutosmelt(event, this.allAutosmeltLists);
         }
     };
 }

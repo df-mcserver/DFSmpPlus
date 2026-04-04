@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -183,6 +184,30 @@ public class DFMaterialEvents {
         if (material.hasMeta()) {
             for (DFMaterialMeta meta : material.getMeta()) {
                 meta.ItemMine(plr, material, tool, e);
+            }
+        }
+    }
+
+    public static void ItemMinedBlockDropItem(BlockDropItemEvent e) {
+        Player plr = e.getPlayer();
+        ItemStack tool = plr.getInventory().getItemInMainHand();
+
+        DFMaterial material = DFItemUtils.getDFMaterial(tool);
+
+        if (material == null) {
+            for (Map.Entry<Material, List<DFMaterialMeta>> entry : VanillaItems.vanillaItemMetas.entrySet()) {
+                if (tool.getType().equals(entry.getKey())) {
+                    for (DFMaterialMeta meta : entry.getValue()) {
+                        meta.ItemMinedBlockDropItem(plr, null, tool, e);
+                    }
+                }
+            }
+            return;
+        }
+
+        if (material.hasMeta()) {
+            for (DFMaterialMeta meta : material.getMeta()) {
+                meta.ItemMinedBlockDropItem(plr, material, tool, e);
             }
         }
     }

@@ -1,49 +1,40 @@
 package uk.co.nikodem.dFSmpPlus.Blocks;
 
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.data.Ageable;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.inventory.ItemStack;
-import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.VacuumAccessoryMeta;
-import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
-import uk.co.nikodem.dFSmpPlus.Enchantments.DFEnchantment;
-import uk.co.nikodem.dFSmpPlus.Enchantments.DFEnchantmentUtils;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 public class CustomDrops {
-    public static void onBlockBreak(BlockBreakEvent event) {
-        if (event.isCancelled()) return;
-        if (!event.isDropItems()) return;
-
-        List<ItemStack> newDrops = new ArrayList<>();
-
+    public static void onBlockDropEvent(BlockDropItemEvent event) {
         Player plr = event.getPlayer();
-        ItemStack tool = plr.getInventory().getItemInMainHand();
-        PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
-        Block origin = event.getBlock();
-        if (origin.getType() == Material.GRAVEL) {
-            event.setDropItems(false);
-            newDrops = List.of(ItemStack.of(Material.GRAVEL));
+
+        if (event.getBlock().getType() == Material.GRAVEL && event.getItems().size() == 1) {
+            event.getItems().getFirst().setItemStack(ItemStack.of(Material.FLINT));
         }
 
-        boolean hasVacuum = accessoryData.hasAccessoryWithMetaEquipped(VacuumAccessoryMeta.class);
+        List<ItemStack> overflow = VacuumAccessoryMeta.giveItemEntitiesToPlayerViaVacuum(plr, event.getItems());
 
-        Collection<ItemStack> realDrops = event.getBlock().getDrops(tool, plr);
-        if (newDrops.isEmpty() && hasVacuum && !realDrops.isEmpty()) {
-            newDrops = realDrops.stream().toList();
-            event.setDropItems(false);
-        }
+        Iterator<ItemStack> itemStackIterator = overflow.iterator();
+        Iterator<Item> itemIterator = event.getItems().iterator();
+        while (itemIterator.hasNext()) {
+            Item item = itemIterator.next();
+            if (!itemStackIterator.hasNext()) {
+                itemIterator.remove();
+                continue;
+            }
+            ItemStack itemStack = itemStackIterator.next();
 
-        List<ItemStack> overflow = VacuumAccessoryMeta.giveItemsToPlayerViaVacuum(plr, newDrops);
-        for (ItemStack item : overflow) {
-            plr.getWorld().dropItemNaturally(origin.getLocation().add(new Location(origin.getWorld(), 0.5, 0.5, 0.5)), item);
+            if (itemStack == null) {
+                itemIterator.remove();
+            } else {
+                item.setItemStack(itemStack);
+            }
         }
     }
 }

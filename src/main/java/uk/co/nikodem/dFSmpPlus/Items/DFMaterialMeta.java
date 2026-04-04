@@ -5,6 +5,7 @@ import net.kyori.adventure.text.TextComponent;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -23,6 +24,7 @@ public interface DFMaterialMeta {
     default void ItemAttack(Player plr, DFMaterial material, ItemStack weapon, EntityDamageByEntityEvent event) {};
     default void ItemAttackWhileOffhand(Player plr, DFMaterial material, ItemStack weapon, EntityDamageByEntityEvent event) {};
     default void ItemMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakEvent event) {};
+    default void ItemMinedBlockDropItem(Player plr, DFMaterial material, ItemStack tool, BlockDropItemEvent event) {};
     default void ItemStartMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakProgressUpdateEvent event) {};
     default void ItemDrop(Player plr, DFMaterial material, ItemStack item, PlayerDropItemEvent event) {};
     default void ItemCrafted(DFMaterial material, ItemStack item, Player plr, @Nullable CraftItemEvent event) {};
@@ -32,6 +34,7 @@ public interface DFMaterialMeta {
     default void ItemPlaced(Player plr, DFMaterial material, ItemStack item, BlockPlaceEvent event) {};
     default void BucketFillEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {};
     default void BucketEmptyEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketEmptyEvent event) {};
+    default void BucketEntityEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketEntityEvent event) {};
 
     default List<TextComponent> AddAdditionalLore(DFMaterial material) {return List.of();};
     default Enums.UpdateResult ItemUpdated(DFMaterial material, ItemStack item) { return Enums.UpdateResult.NULL; };

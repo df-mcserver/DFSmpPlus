@@ -1,35 +1,31 @@
 package uk.co.nikodem.dFSmpPlus.Blocks.BlockManipulation;
 
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.inventory.ItemStack;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.VacuumAccessoryMeta;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
-import java.util.List;
 import java.util.Map;
 
 public class AutosmeltingOnBlockbreak {
-    public static void doAutosmelt(BlockBreakEvent event, Map<Material, Material> matches) {
+    public static void doAutosmelt(BlockDropItemEvent event, Map<Material, Material> matches) {
         Player plr = event.getPlayer();
-        Block b = event.getBlock();
-        ItemStack tool = plr.getInventory().getItemInMainHand();
 
-        Material drop = matches.get(b.getType());
+        boolean changed = false;
 
-        event.setDropItems(false);
+        for (Item item : event.getItems()) {
+            ItemStack itemStack = item.getItemStack();
+            Material newMaterial = matches.get(event.getBlockState().getType());
 
-        Sounds.AutoSmelt.playSound(plr);
+            if (newMaterial == null) continue;
+            ItemStack newItemStack = ItemStack.of(newMaterial, itemStack.getAmount());
+            item.setItemStack(newItemStack);
 
-        for (ItemStack a : b.getDrops(tool)) {
-            ItemStack newDrop = new ItemStack(drop);
-            newDrop.setAmount(a.getAmount());
-            for (ItemStack overflow : VacuumAccessoryMeta.giveItemsToPlayerViaVacuum(plr, List.of(newDrop))) {
-                b.getWorld().dropItemNaturally(b.getLocation().add(new Location(b.getWorld(), 0.5, 0.5, 0.5)), overflow);
-            }
+            changed = true;
         }
+
+        if (changed) Sounds.AutoSmelt.playSound(plr);
     }
 }
