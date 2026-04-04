@@ -15,6 +15,8 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+// TODO Rewrite when https://github.com/PaperMC/adventure/pull/1377 gets merged
+
 public class WaypointManager {
     public static final HashMap<UUID, List<ArmorStand>> activeWaypoints = new HashMap<>();
     public static final HashMap<NamespacedKey, List<Long>> unloadedChunksWithWaypoints = new HashMap<>();

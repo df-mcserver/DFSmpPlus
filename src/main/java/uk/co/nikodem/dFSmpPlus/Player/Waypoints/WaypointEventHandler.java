@@ -1,13 +1,11 @@
 package uk.co.nikodem.dFSmpPlus.Player.Waypoints;
 
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
-import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,6 @@ public class WaypointEventHandler {
         boolean containsWaypoints = WaypointManager.killGhostWaypointsInChunk(chunk);
 
         if (containsWaypoints) {
-            debugmsg("<red>Add chunk "+chunk.getChunkKey()+" to list");
             List<Long> chunks = WaypointManager.unloadedChunksWithWaypoints.getOrDefault(world.getKey(), new ArrayList<>());
             chunks.add(chunk.getChunkKey());
             if (WaypointManager.unloadedChunksWithWaypoints.containsKey(world.getKey())) WaypointManager.unloadedChunksWithWaypoints.replace(world.getKey(), chunks);
@@ -39,7 +36,6 @@ public class WaypointEventHandler {
         if (chunks == null) return;
         chunks.remove(chunk.getChunkKey());
         WaypointManager.unloadedChunksWithWaypoints.replace(world.getKey(), chunks);
-        debugmsg("<green>Loaded chunk "+chunk.getChunkKey());
     }
 
     public static void onPerSecond() {
@@ -47,15 +43,9 @@ public class WaypointEventHandler {
             World world = Bukkit.getWorld(entry.getKey());
             if (world == null) continue;
             for (Long chunkKey : entry.getValue()) {
-                debugmsg("<cyan>Attempting to load chunk "+chunkKey);
                 Chunk chunk = world.getChunkAt(chunkKey);
                 world.loadChunk(chunk);
             }
         }
-    }
-
-    public static void debugmsg(String msg) {
-        Bukkit.getOnlinePlayers().forEach((plr) -> plr.sendMessage(MiniMessage.miniMessage().deserialize(msg)));
-        DFSmpPlus.getPlugin().getLogger().info(msg);
     }
 }
