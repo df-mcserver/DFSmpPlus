@@ -113,7 +113,7 @@ public class CombatEvents {
         Component msg = MiniMessage.miniMessage().deserialize("<red>You are now in combat! Leaving the server in combat will instantly kill you!");
         Component bedrockMsg = MiniMessage.miniMessage().deserialize("<red>You are now in combat!<newline>Leaving the server in combat will instantly kill you!");
 
-        BossBar bar = BossBar.bossBar(MiniMessage.miniMessage().deserialize("<red>Combat"), 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS);
+        BossBar bar = BossBar.bossBar(MiniMessage.miniMessage().deserialize("<red>DO NOT LEAVE - Combat"), 1f, BossBar.Color.RED, BossBar.Overlay.PROGRESS);
 
         if (!CombatLoggingManager.isInCombat(victim)) {
             Boolean bedrock = BedrockPlayers.isBedrock(victim);
@@ -145,7 +145,7 @@ public class CombatEvents {
             float progress = 1f - (float) (Bukkit.getCurrentTick() - startTick) / COMBAT_LENGTH;
             int kills = info.getKills() == null ? 0 : info.getKills();
             info.getBar().progress(Math.clamp(progress, 0f, 1f));
-            info.getBar().name(MiniMessage.miniMessage().deserialize("<red>Combat"+(kills > 0 ? " ("+kills+")" : "")));
+            info.getBar().name(MiniMessage.miniMessage().deserialize("<red>DO NOT LEAVE - Combat"+(kills > 0 ? " ("+kills+")" : "")));
         }
     }
 
