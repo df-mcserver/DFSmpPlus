@@ -6,7 +6,12 @@ Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 > NOT INTENDED FOR PERSONAL USE  
 > This plugin is built for a very specific use case, and you may need to modify the source code in order to make the plugin work for you.  
 > I will not help you if you try to use this plugin. The code here is provided as-is.  
-> Precompiled binaries are not planned to be available. If you wish to use this plugin, you need to compile it from source.
+> Precompiled binaries are not planned to be available. If you wish to use this plugin, you need to compile it from source.  
+
+> [!WARNING]
+> This plugin is intended to be experienced purely in survival mode.  
+> Do not expect this plugin to work from update to update, atleast during initial development.  
+> There is some amount of work done to allow porting of items over to newer versions of the plugin, but this may not be perfect and may cause issues.
 
 > [!WARNING]
 > This plugin may be incredibly inefficient, and may lead to a noticeable drop in performance, due to overhead.  
