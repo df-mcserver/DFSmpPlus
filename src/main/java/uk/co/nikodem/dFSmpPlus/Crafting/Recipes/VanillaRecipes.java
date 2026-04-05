@@ -34,7 +34,7 @@ public class VanillaRecipes extends CraftingTemplate {
         doUnobtainableRecipes(recipesToAdd);
         doHorseArmourRecipes(recipesToAdd);
         doNautilusArmourRecipes(recipesToAdd);
-        doDispenserChange(recipesToAdd);
+        doVanillaRecipeChanges(recipesToAdd);
         doSlimeblockChange(recipesToAdd);
 
         addLooseStoneRecipes(recipesToAdd);
@@ -48,7 +48,7 @@ public class VanillaRecipes extends CraftingTemplate {
         return recipesToAdd;
     }
 
-    private void doDispenserChange(List<Recipe> recipesToAdd) {
+    private void doVanillaRecipeChanges(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(Material.DISPENSER)
@@ -69,6 +69,36 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setIngredient('C', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
                         .setIngredient('I', Material.BOW)
                         .setIngredient('S', Material.REDSTONE)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.LANTERN, 4)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo())
+                        .shape("XXX", "XIX", "XXX")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
+                        .setIngredient('I', Material.TORCH)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.SOUL_LANTERN, 4)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo())
+                        .shape("XXX", "XIX", "XXX")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
+                        .setIngredient('I', Material.SOUL_TORCH)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.COPPER_LANTERN, 4)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo())
+                        .shape("XXX", "XIX", "XXX")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_NUGGET)))
+                        .setIngredient('I', Material.COPPER_TORCH)
         );
     }
 
@@ -430,7 +460,10 @@ public class VanillaRecipes extends CraftingTemplate {
                 Material.ANDESITE,
                 Material.DIORITE,
                 Material.GRANITE,
-                Material.NETHERRACK // this one doesn't make sense but its for qol
+                Material.TUFF,
+                // these don't make sense but it's for qol
+                Material.NETHERRACK,
+                Material.END_STONE
         );
 
         int i = 0;

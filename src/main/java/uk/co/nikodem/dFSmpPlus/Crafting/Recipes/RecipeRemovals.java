@@ -22,6 +22,24 @@ public class RecipeRemovals extends CraftingTemplate {
                         .onlyUseMinecraftNamespace()
         );
 
+        RecipeRemover.addQuery( // custom one is implemented
+                new RecipeWithResultRemoval()
+                        .setResult(Material.SOUL_LANTERN)
+                        .onlyUseMinecraftNamespace()
+        );
+
+        RecipeRemover.addQuery( // custom one is implemented
+                new RecipeWithResultRemoval()
+                        .setResult(Material.LANTERN)
+                        .onlyUseMinecraftNamespace()
+        );
+
+        RecipeRemover.addQuery( // custom one is implemented
+                new RecipeWithResultRemoval()
+                        .setResult(Material.COPPER_LANTERN)
+                        .onlyUseMinecraftNamespace()
+        );
+
         return List.of();
     }
 

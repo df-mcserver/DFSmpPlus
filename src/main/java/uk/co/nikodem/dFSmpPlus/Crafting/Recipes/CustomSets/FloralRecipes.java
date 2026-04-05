@@ -29,24 +29,12 @@ public class FloralRecipes extends CraftingTemplate {
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();
 
-        addPestleAndMortarRecipes(recipesToAdd);
         addIngredientRecipes(recipesToAdd);
         addTools(recipesToAdd);
         addArmour(recipesToAdd);
         addFurnaceRecipes(recipesToAdd);
 
         return recipesToAdd;
-    }
-
-    public void addPestleAndMortarRecipes(List<Recipe> recipesToAdd) {
-        recipesToAdd.add(
-                new ShapelessRecipeBuilder()
-                        .setOutput(DFMaterial.FlowerPestleAndMortar)
-                        .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo(), "FlowerPM")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
-                        .addIngredient(new RecipeChoice.MaterialChoice(Tag.ITEMS_FLOWERS))
-        );
     }
 
     public void addIngredientRecipes(List<Recipe> recipesToAdd) {

@@ -177,6 +177,15 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
 
     public void addPestleAndMortar(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.FlowerPestleAndMortar)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "FlowerPM")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
+                        .addIngredient(new RecipeChoice.MaterialChoice(Tag.ITEMS_FLOWERS))
+        );
+
+        recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.EmptyPestleAndMortar)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
@@ -202,6 +211,15 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "GravelPM")
                         .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
                         .addIngredient(Material.GRAVEL)
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.AmethystPestleAndMortar)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "AmethystPM")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
+                        .addIngredient(Material.AMETHYST_BLOCK)
         );
     }
 

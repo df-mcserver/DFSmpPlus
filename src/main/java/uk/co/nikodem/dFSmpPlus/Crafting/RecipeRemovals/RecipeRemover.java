@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.*;
@@ -54,10 +55,7 @@ public class RecipeRemover {
                 if (hasIngredient) {
                     NamespacedKey key = getRecipeKey(r);
                     if (key == null) continue;
-                    boolean shouldRemove = true;
-
-                    if (query.getOnlyUseMinecraftNamespace() && !key.getNamespace().equals("minecraft")) shouldRemove = false;
-
+                    boolean shouldRemove = !query.getOnlyUseMinecraftNamespace() || key.getNamespace().equals("minecraft");
                     if (shouldRemove) {
 
                         if (query instanceof RecipeWithIngredientReplace replaceQuery) {
@@ -128,18 +126,8 @@ public class RecipeRemover {
 
     @Nullable
     public static NamespacedKey getRecipeKey(Recipe r) {
-        if (r instanceof ShapedRecipe recipe) {
-            return recipe.getKey();
-        } else if (r instanceof ShapelessRecipe recipe) {
-            return recipe.getKey();
-        } else if (r instanceof StonecuttingRecipe recipe) {
-            return recipe.getKey();
-        } else if (r instanceof FurnaceRecipe recipe) {
-            return recipe.getKey();
-        } else if (r instanceof BlastingRecipe recipe) {
-            return recipe.getKey();
-        } else if (r instanceof SmokingRecipe recipe) {
-            return recipe.getKey();
+        if (r instanceof Keyed keyed) {
+            return keyed.getKey();
         }
         return null;
     }

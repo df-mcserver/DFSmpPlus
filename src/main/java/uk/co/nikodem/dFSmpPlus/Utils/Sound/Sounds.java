@@ -18,7 +18,8 @@ public class Sounds {
     public static PresetSoundData SculkArmourActivate = new PresetSoundData(Sound.BLOCK_SCULK_SHRIEKER_SHRIEK, 1F, 1F);
     public static PresetSoundData FlowerPestleAndMortarFinish = new PresetSoundData(Sound.ENTITY_ZOMBIE_INFECT, 1F, 1F);
     public static PresetSoundData GravelPestleAndMortarFinish = new PresetSoundData(Sound.BLOCK_GRAVEL_PLACE, 1F, 1F);
-    public static PresetSoundData RottenFleshPestleAndMortarFinish = new PresetSoundData(Sound.ITEM_CROP_PLANT, 1F, 1F);
+    public static PresetSoundData RottenFleshPestleAndMortarFinish = new PresetSoundData(Sound.ENTITY_ZOMBIE_NAUTILUS_EAT, 1F, 1F);
+    public static PresetSoundData AmethystPestleAndMortarFinish = new PresetSoundData(Sound.BLOCK_AMETHYST_BLOCK_BREAK, 1F, 1F);
     public static PresetSoundData UseCleaningEntityBucket = new PresetSoundData(Sound.ITEM_BUCKET_FILL, 1F, 1F);
     public static PresetSoundData UseStoringEntityBucket = new PresetSoundData(Sound.ITEM_BUCKET_FILL_LAVA, 1F, 1F);
     public static PresetSoundData DefaultEquipAccessory = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_GENERIC, 1F, 1F);

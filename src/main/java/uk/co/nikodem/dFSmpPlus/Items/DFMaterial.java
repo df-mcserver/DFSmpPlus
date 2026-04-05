@@ -626,6 +626,15 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
+    public static DFMaterial AmethystPestleAndMortar = new Builder(Material.POPPED_CHORUS_FRUIT, "amethyst_pestle_and_mortar", 1)
+            .setDisplayName("Pestle and Mortar")
+            .addLore("<light_purple>Contains amethyst block")
+            .addMeta(new ConvertingItemMeta(ItemStack.of(Material.AMETHYST_SHARD, 2), "empty_pestle_and_mortar", Sounds.AmethystPestleAndMortarFinish), new CustomDurabilityMeta(7))
+            .setConsumable(Consumable.consumable().consumeSeconds(1f).hasConsumeParticles(false).animation(ItemUseAnimation.EAT).sound(Key.key("minecraft", "block.stone.break")).build())
+            .setMaxStack(1)
+            .create();
+
+
     public static DFMaterial FlowerPowder = new Builder(Material.POPPED_CHORUS_FRUIT, "flower_powder", 1)
             .setDisplayName("<light_purple>Flower Powder")
             .create();
