@@ -29,10 +29,74 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         addLocatorCompassAndModules(recipesToAdd);
         addPestleAndMortar(recipesToAdd);
         addCustomFoodRecipes(recipesToAdd);
+        addCustomBuckets(recipesToAdd);
+        addEmptyingEntityBuckets(recipesToAdd);
         addAncientDebrisFragmentRecipe(recipesToAdd);
         addShears(recipesToAdd);
 
         return recipesToAdd;
+    }
+
+    public void addEmptyingEntityBuckets(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.CopperEntityBucket)
+                        .build(getInfo(), "ccbucketempty")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.CopperCleaningEntityBucket.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.CopperEntityBucket)
+                        .build(getInfo(), "csbucketempty")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.CopperStoringEntityBucket.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.EntityBucket)
+                        .build(getInfo(), "icbucketempty")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.CleaningEntityBucket.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.EntityBucket)
+                        .build(getInfo(), "isbucketempty")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.StoringEntityBucket.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.GoldEntityBucket)
+                        .build(getInfo(), "gcbucketempty")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.GoldCleaningEntityBucket.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.GoldEntityBucket)
+                        .build(getInfo(), "gsbucketempty")
+                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.GoldStoringEntityBucket.toItemStack()))
+        );
+    }
+
+    public void addCustomBuckets(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.CopperBucket)
+                        .build(getInfo(), "cbucket")
+                        .shape("X X", " X ")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_INGOT)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.GoldBucket)
+                        .build(getInfo(), "gbucket")
+                        .shape("X X", " X ")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.GOLD_INGOT)))
+        );
     }
 
     public void doWartChanges(List<Recipe> recipesToAdd) {
@@ -76,6 +140,46 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
     public void addEntityBucket(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.CopperEntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "EB-NoBucketCopper")
+                        .shape("BXB", " B ")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_INGOT)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.CopperEntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "EB-BucketCopper")
+                        .shape("X", "B")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.CopperBucket.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.CopperCleaningEntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "CEBCopper")
+                        .shape("X", "B")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.CopperWaterBucket.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.CopperStoringEntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "SEBCopper")
+                        .shape("X", "B")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.CopperLavaBucket.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.EntityBucket)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "EB-NoBucket")
@@ -112,6 +216,48 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .shape("X", "B")
                         .setIngredient('X', Material.COBWEB)
                         .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.LAVA_BUCKET)))
+        );
+
+        //
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.GoldEntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "EB-NoBucketGold")
+                        .shape("BXB", " B ")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.GOLD_INGOT)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.GoldEntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "EB-BucketGold")
+                        .shape("X", "B")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.GoldBucket.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.GoldCleaningEntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "CEBGold")
+                        .shape("X", "B")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.GoldWaterBucket.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.GoldStoringEntityBucket)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "SEBGold")
+                        .shape("X", "B")
+                        .setIngredient('X', Material.COBWEB)
+                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.GoldLavaBucket.toItemStack()))
         );
     }
 

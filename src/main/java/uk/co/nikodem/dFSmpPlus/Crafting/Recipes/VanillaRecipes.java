@@ -44,6 +44,7 @@ public class VanillaRecipes extends CraftingTemplate {
         addOreRecipes(recipesToAdd);
         addSlabRecipes(recipesToAdd);
         addGlowInkSacRecipe(recipesToAdd);
+        addCakeRecipe(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -802,6 +803,44 @@ public class VanillaRecipes extends CraftingTemplate {
                         .addIngredient(Material.GLOWSTONE_DUST)
                         .addIngredient(Material.GLOWSTONE_DUST)
                         .addIngredient(Material.GLOWSTONE_DUST)
+        );
+    }
+
+    public void addCakeRecipe(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.CAKE)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "iron")
+                        .shape("BBB", "XYX", "WWW")
+                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.MILK_BUCKET)))
+                        .setIngredient('X', Material.SUGAR)
+                        .setIngredient('Y', new RecipeChoice.MaterialChoice(Tag.ITEMS_EGGS))
+                        .setIngredient('W', Material.WHEAT)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.CAKE)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "copper")
+                        .shape("BBB", "XYX", "WWW")
+                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.CopperMilkBucket.toItemStack()))
+                        .setIngredient('X', Material.SUGAR)
+                        .setIngredient('Y', new RecipeChoice.MaterialChoice(Tag.ITEMS_EGGS))
+                        .setIngredient('W', Material.WHEAT)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.CAKE)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "gold")
+                        .shape("BBB", "XYX", "WWW")
+                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.GoldMilkBucket.toItemStack()))
+                        .setIngredient('X', Material.SUGAR)
+                        .setIngredient('Y', new RecipeChoice.MaterialChoice(Tag.ITEMS_EGGS))
+                        .setIngredient('W', Material.WHEAT)
         );
     }
 

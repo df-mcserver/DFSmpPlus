@@ -76,6 +76,21 @@ public class PopulateChests {
                     if (biome == Biome.WARPED_FOREST) {
                         loot.set(i, DFMaterial.WarpedWart.toItemStack());
                     }
+                } else if (item.getType() == Material.BUCKET) {
+                    int chance = rand.nextInt(0, 2);
+
+                    switch (chance) {
+                        case 0:
+                            break;
+
+                        case 1:
+                            loot.set(i, DFMaterial.CopperBucket.toItemStack());
+                            break;
+
+                        case 2:
+                            loot.set(i, DFMaterial.GoldBucket.toItemStack());
+                            break;
+                    }
                 }
                 i++;
             }

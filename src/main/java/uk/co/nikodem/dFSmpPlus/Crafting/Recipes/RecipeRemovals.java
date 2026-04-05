@@ -40,6 +40,12 @@ public class RecipeRemovals extends CraftingTemplate {
                         .onlyUseMinecraftNamespace()
         );
 
+        RecipeRemover.addQuery( // custom one is implemented
+                new RecipeWithResultRemoval()
+                        .setResult(Material.CAKE)
+                        .onlyUseMinecraftNamespace()
+        );
+
         return List.of();
     }
 

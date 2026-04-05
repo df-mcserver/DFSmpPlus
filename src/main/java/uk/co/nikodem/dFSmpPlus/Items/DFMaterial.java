@@ -59,14 +59,14 @@ public class DFMaterial {
     public static DFMaterial EntityBucket = new Builder(Material.BUCKET, "entity_bucket", 1)
             .setDisplayName("Entity Bucket")
             .addLore("<grey>Requires either water or lava to store entities.")
-            .addMeta(new EmptyEntityBucketMeta())
+            .addMeta(new EmptyEntityBucketMeta("cleaning_entity_bucket", "storing_entity_bucket"))
             .create();
 
     public static DFMaterial CleaningEntityBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "cleaning_entity_bucket", 1)
             .setDisplayName("Cleaning Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
             .addLore("<red>Does not store entity data.")
-            .addMeta(new EntityBucketMeta(false, Sounds.UseCleaningEntityBucket))
+            .addMeta(new EntityBucketMeta(false, Sounds.UseCleaningEntityBucket, "entity_bucket", "<white>[Entity Bucket]"))
             .setMaxStack(1)
             .create();
 
@@ -74,7 +74,7 @@ public class DFMaterial {
             .setDisplayName("Storing Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
             .addLore("<green>Stores entity data.")
-            .addMeta(new EntityBucketMeta(true, Sounds.UseStoringEntityBucket))
+            .addMeta(new EntityBucketMeta(true, Sounds.UseStoringEntityBucket, "entity_bucket", "<white>[Entity Bucket]"))
             .setMaxStack(1)
             .create();
 
@@ -937,6 +937,162 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setTool(createFasterTool(ItemType.SHEARS, 3.5f))
             .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .create();
+
+    public static DFMaterial CopperBucket = new Builder(Material.BUCKET, "copper_bucket", 1)
+            .setDisplayName("Copper Bucket")
+            .addMeta(new EmptyCopperBucketMeta("copper_"))
+            .create();
+
+    public static DFMaterial CopperEntityBucket = new Builder(Material.BUCKET, "copper_entity_bucket", 1)
+            .setDisplayName("Copper Entity Bucket")
+            .addLore("<grey>Requires either water or lava to store entities.")
+            .addMeta(new EmptyEntityBucketMeta("copper_cleaning_entity_bucket", null))
+            .create();
+
+    public static DFMaterial CopperWaterBucket = new Builder(Material.WATER_BUCKET, "copper_water_bucket", 1)
+            .setDisplayName("Copper Water Bucket")
+            .addMeta(new FilledCustomBucketMeta("copper_"))
+            .create();
+
+    public static DFMaterial CopperLavaBucket = new Builder(Material.LAVA_BUCKET, "copper_lava_bucket", 1)
+            .setDisplayName("Copper Lava Bucket")
+            .addMeta(new FilledCustomBucketMeta("copper_"))
+            .create();
+
+    public static DFMaterial CopperPowderSnowBucket = new Builder(Material.POWDER_SNOW_BUCKET, "copper_powder_snow_bucket", 1)
+            .setDisplayName("Copper Powder Snow Bucket")
+            .addMeta(new FilledCustomBucketMeta("copper_"), new PowderSnowBucketMeta("copper_bucket"))
+            .create();
+
+    public static DFMaterial CopperMilkBucket = new Builder(Material.MILK_BUCKET, "copper_milk_bucket", 1)
+            .setDisplayName("Copper Milk Bucket")
+            .addMeta(new MilkCustomBucketMeta("copper_bucket"))
+            .create();
+
+    public static DFMaterial CopperCodBucket = new Builder(Material.COD_BUCKET, "copper_cod_bucket", 1)
+            .setDisplayName("Copper Bucket of Cod")
+            .addMeta(new FilledCustomBucketMeta("copper_"))
+            .create();
+
+    public static DFMaterial CopperSalmonBucket = new Builder(Material.SALMON_BUCKET, "copper_salmon_bucket", 1)
+            .setDisplayName("Copper Bucket of Salmon")
+            .addMeta(new FilledCustomBucketMeta("copper_"))
+            .create();
+
+    public static DFMaterial CopperTropicalFishBucket = new Builder(Material.TROPICAL_FISH_BUCKET, "copper_tropical_fish_bucket", 1)
+            .setDisplayName("Copper Bucket of Tropical Fish")
+            .addMeta(new FilledCustomBucketMeta("copper_"))
+            .create();
+
+    public static DFMaterial CopperPufferfishBucket = new Builder(Material.PUFFERFISH_BUCKET, "copper_pufferfish_bucket", 1)
+            .setDisplayName("Copper Bucket of Pufferfish")
+            .addMeta(new FilledCustomBucketMeta("copper_"))
+            .create();
+
+    public static DFMaterial CopperAxolotlBucket = new Builder(Material.AXOLOTL_BUCKET, "copper_axolotl_bucket", 1)
+            .setDisplayName("Copper Bucket of Axolotl")
+            .addMeta(new FilledCustomBucketMeta("copper_"))
+            .create();
+
+    public static DFMaterial CopperTadpoleBucket = new Builder(Material.TADPOLE_BUCKET, "copper_tadpole_bucket", 1)
+            .setDisplayName("Copper Bucket of Tadpole")
+            .addMeta(new FilledCustomBucketMeta("copper_"))
+            .create();
+
+    public static DFMaterial CopperCleaningEntityBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_cleaning_entity_bucket", 1)
+            .setDisplayName("Copper Cleaning Entity Bucket")
+            .addLore("<light_purple>Stores an entire entity within a bucket.")
+            .addLore("<red>Does not store entity data.")
+            .addMeta(new EntityBucketMeta(false, Sounds.UseCleaningEntityBucket, null, null))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial CopperStoringEntityBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_storing_entity_bucket", 1)
+            .setDisplayName("Copper Storing Entity Bucket")
+            .addLore("<light_purple>Stores an entire entity within a bucket.")
+            .addLore("<green>Stores entity data.")
+            .addMeta(new EntityBucketMeta(true, Sounds.UseStoringEntityBucket, null, null))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial GoldBucket = new Builder(Material.BUCKET, "gold_bucket", 1)
+            .setDisplayName("Golden Bucket")
+            .addMeta(new EmptyCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldEntityBucket = new Builder(Material.BUCKET, "gold_entity_bucket", 1)
+            .setDisplayName("Golden Entity Bucket")
+            .addLore("<grey>Requires either water or lava to store entities.")
+            .addMeta(new EmptyEntityBucketMeta("gold_cleaning_entity_bucket", "gold_storing_entity_bucket"))
+            .create();
+
+    public static DFMaterial GoldWaterBucket = new Builder(Material.WATER_BUCKET, "gold_water_bucket", 1)
+            .setDisplayName("Golden Water Bucket")
+            .addMeta(new FilledCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldLavaBucket = new Builder(Material.LAVA_BUCKET, "gold_lava_bucket", 1)
+            .setDisplayName("Golden Lava Bucket")
+            .addMeta(new FilledCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldPowderSnowBucket = new Builder(Material.POWDER_SNOW_BUCKET, "gold_powder_snow_bucket", 1)
+            .setDisplayName("Golden Powder Snow Bucket")
+            .addMeta(new FilledCustomBucketMeta("gold_"), new PowderSnowBucketMeta("gold_bucket"))
+            .create();
+
+    public static DFMaterial GoldMilkBucket = new Builder(Material.MILK_BUCKET, "gold_milk_bucket", 1)
+            .setDisplayName("Golden Milk Bucket")
+            .addMeta(new MilkCustomBucketMeta("gold_bucket"))
+            .create();
+
+    public static DFMaterial GoldCodBucket = new Builder(Material.COD_BUCKET, "gold_cod_bucket", 1)
+            .setDisplayName("Golden Bucket of Cod")
+            .addMeta(new FilledCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldSalmonBucket = new Builder(Material.SALMON_BUCKET, "gold_salmon_bucket", 1)
+            .setDisplayName("Golden Bucket of Salmon")
+            .addMeta(new FilledCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldTropicalFishBucket = new Builder(Material.TROPICAL_FISH_BUCKET, "gold_tropical_fish_bucket", 1)
+            .setDisplayName("Golden Bucket of Tropical Fish")
+            .addMeta(new FilledCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldPufferfishBucket = new Builder(Material.PUFFERFISH_BUCKET, "gold_pufferfish_bucket", 1)
+            .setDisplayName("Golden Bucket of Pufferfish")
+            .addMeta(new FilledCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldAxolotlBucket = new Builder(Material.AXOLOTL_BUCKET, "gold_axolotl_bucket", 1)
+            .setDisplayName("Golden Bucket of Axolotl")
+            .addMeta(new FilledCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldTadpoleBucket = new Builder(Material.TADPOLE_BUCKET, "gold_tadpole_bucket", 1)
+            .setDisplayName("Golden Bucket of Tadpole")
+            .addMeta(new FilledCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldCleaningEntityBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_cleaning_entity_bucket", 1)
+            .setDisplayName("Golden Cleaning Entity Bucket")
+            .addLore("<light_purple>Stores an entire entity within a bucket.")
+            .addLore("<light_purple>Not destroyed after use")
+            .addLore("<red>Does not store entity data.")
+            .addMeta(new EntityBucketMeta(false, Sounds.UseCleaningEntityBucket, "gold_cleaning_entity_bucket", "<gold>[Golden Cleaning Entity Bucket]"))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial GoldStoringEntityBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_storing_entity_bucket", 1)
+            .setDisplayName("Golden Storing Entity Bucket")
+            .addLore("<light_purple>Stores an entire entity within a bucket.")
+            .addLore("<light_purple>Not destroyed after use")
+            .addLore("<green>Stores entity data.")
+            .addMeta(new EntityBucketMeta(true, Sounds.UseStoringEntityBucket, "gold_storing_entity_bucket", "<gold>[Golden Storing Entity Bucket]"))
+            .setMaxStack(1)
             .create();
 
     private final String namedId;

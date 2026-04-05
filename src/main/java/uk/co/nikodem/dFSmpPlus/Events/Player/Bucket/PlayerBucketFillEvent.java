@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Events.Player;
+package uk.co.nikodem.dFSmpPlus.Events.Player.Bucket;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

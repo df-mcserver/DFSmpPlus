@@ -4,15 +4,15 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.block.data.type.Switch;
 import org.bukkit.entity.*;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.SpawnEggMeta;
+import org.bukkit.persistence.PersistentDataType;
+import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Entities.EntityUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
@@ -24,17 +24,22 @@ import java.util.List;
 
 public class EntityBucketMeta implements DFMaterialMeta {
     public final boolean storesEntitySnapshot;
+    public final String usedBucketForPersistence;
+    public final String bucketName;
     public final PresetSoundData sound;
 
-    public EntityBucketMeta(boolean storesEntitySnapshot, PresetSoundData sound) {
+    public EntityBucketMeta(boolean storesEntitySnapshot, PresetSoundData sound, String usedBucketForPersistence, String bucketName) {
         this.storesEntitySnapshot = storesEntitySnapshot;
+        this.usedBucketForPersistence = usedBucketForPersistence;
+        this.bucketName = bucketName;
         this.sound = sound;
     }
 
     @Override
     public void ItemUseOnEntity(Player plr, DFMaterial material, ItemStack item, PlayerInteractEntityEvent event) {
         event.setCancelled(true);
-        LivingEntity entity = (LivingEntity) event.getRightClicked();
+        Entity entityCheck = event.getRightClicked();
+        if (!(entityCheck instanceof LivingEntity entity)) return;
 
         Material egg = EntityUtils.ConvertEntityToEgg(entity.getType());
 
@@ -46,16 +51,20 @@ public class EntityBucketMeta implements DFMaterialMeta {
             entity.remove();
 
             ItemStack eggItem = new ItemStack(egg);
+            SpawnEggMeta meta = (SpawnEggMeta) eggItem.getItemMeta();
+
+            List<Component> lores = meta.lore();
+            if (lores == null) lores = new ArrayList<>();
+
+            if (usedBucketForPersistence != null) {
+                if (bucketName != null) lores.add(MiniMessage.miniMessage().deserialize("Will return "+bucketName));
+                meta.getPersistentDataContainer().set(Keys.entityBucketUsed, PersistentDataType.STRING, usedBucketForPersistence);
+            }
 
             if (storesEntitySnapshot) {
-                SpawnEggMeta meta = (SpawnEggMeta) eggItem.getItemMeta();
-
                 Component customEntityName = entity.customName();
                 if (customEntityName != null) meta.displayName(customEntityName);
                 meta.setSpawnedEntity(snapshot);
-
-                List<Component> lores = meta.lore();
-                if (lores == null) lores = new ArrayList<>();
 
                 switch (entity) {
                     case Villager villager -> {
@@ -120,13 +129,14 @@ public class EntityBucketMeta implements DFMaterialMeta {
                     }
                 }
 
+                if (entity.getFireTicks() > 0) lores.add(MiniMessage.miniMessage().deserialize("<gradient:#f47709:red>On fire!</gradient>"));
+
                 if (lores.isEmpty()) lores.add(MiniMessage.miniMessage().deserialize("<light_purple>Contains data"));
                 meta.setMaxStackSize(1);
-
-                meta.lore(lores);
-
-                eggItem.setItemMeta(meta);
             }
+
+            meta.lore(lores);
+            eggItem.setItemMeta(meta);
 
             plr.setCooldown(eggItem, 20);
 

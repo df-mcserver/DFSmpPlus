@@ -36,9 +36,9 @@ import uk.co.nikodem.dFSmpPlus.Events.Block.*;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.*;
 import uk.co.nikodem.dFSmpPlus.Events.Entity.Food.FoodLevelChangeEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.*;
-import uk.co.nikodem.dFSmpPlus.Events.Block.BlockBreakEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Block.BlockBreakProgressUpdateEvent;
-import uk.co.nikodem.dFSmpPlus.Events.Block.BlockPlaceEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Player.Bucket.PlayerBucketEmptyEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Player.Bucket.PlayerBucketEntityEvent;
+import uk.co.nikodem.dFSmpPlus.Events.Player.Bucket.PlayerBucketFillEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.*;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareAnvilEvent;
 import uk.co.nikodem.dFSmpPlus.Events.Player.Inventory.Crafting.PrepareGrindstoneEvent;
@@ -197,6 +197,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PlayerAttemptPickupItemEvent(),
                     new PlayerBucketFillEvent(),
                     new PlayerBucketEmptyEvent(),
+                    new PlayerBucketEntityEvent(),
                     new PlayerDeathEvent(),
                     new PlayerDropItemEvent(),
                     new PlayerInteractAtEntityEvent(),

@@ -8,17 +8,39 @@ import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
+import java.util.Objects;
+
 public class EmptyEntityBucketMeta implements DFMaterialMeta {
+    private final String cleaningBucketNamedId;
+    private final String storingBucketNamedId;
+
+    public EmptyEntityBucketMeta(String cleaningBucketNamedId, String storingBucketNamedId) {
+        this.cleaningBucketNamedId = cleaningBucketNamedId;
+        this.storingBucketNamedId = storingBucketNamedId;
+    }
+
     @Override
     public void BucketFillEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {
         Block block = event.getBlockClicked();
         if (block.getType() == Material.WATER) {
-            event.setItemStack(DFMaterial.CleaningEntityBucket.toItemStack());
-//            DFMaterial convertingMaterial = DFItemUtils.getDFMaterial("cleaning_entity_bucket");
-//            if (convertingMaterial == null) event.setCancelled(true);
-//            else event.setItemStack(convertingMaterial.toItemStack());
+            for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
+                if (Objects.equals(potentialMaterial.getNamedId(), cleaningBucketNamedId)) {
+                    event.setItemStack(potentialMaterial.toItemStack());
+                    return;
+                };
+            }
         } else if (block.getType() == Material.LAVA) {
-            event.setItemStack(DFMaterial.StoringEntityBucket.toItemStack());
+            if (storingBucketNamedId == null) {
+                event.setItemStack(ItemStack.of(Material.COPPER_INGOT));
+                plr.getLocation().getBlock().setType(Material.LAVA);
+            } else {
+                for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
+                    if (Objects.equals(potentialMaterial.getNamedId(), storingBucketNamedId)) {
+                        event.setItemStack(potentialMaterial.toItemStack());
+                        return;
+                    };
+                }
+            }
         } else {
             event.setCancelled(true);
         }
