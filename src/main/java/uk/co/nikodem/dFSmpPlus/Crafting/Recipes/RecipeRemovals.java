@@ -64,6 +64,18 @@ public class RecipeRemovals extends CraftingTemplate {
                         .onlyUseMinecraftNamespace()
         );
 
+        RecipeRemover.addQuery( // custom one is implemented
+                new RecipeWithResultRemoval()
+                        .setResult(Material.IRON_CHAIN)
+                        .onlyUseMinecraftNamespace()
+        );
+
+        RecipeRemover.addQuery( // custom one is implemented
+                new RecipeWithResultRemoval()
+                        .setResult(Material.COPPER_CHAIN)
+                        .onlyUseMinecraftNamespace()
+        );
+
         return List.of();
     }
 

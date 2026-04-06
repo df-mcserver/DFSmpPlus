@@ -123,6 +123,24 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_NUGGET)))
                         .setIngredient('I', Material.COPPER_TORCH)
         );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.IRON_CHAIN, 4)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo())
+                        .shape("X", "X")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.COPPER_CHAIN, 4)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo())
+                        .shape("X", "X")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_NUGGET)))
+        );
     }
 
     private void doSlimeblockChange(List<Recipe> recipesToAdd) {
