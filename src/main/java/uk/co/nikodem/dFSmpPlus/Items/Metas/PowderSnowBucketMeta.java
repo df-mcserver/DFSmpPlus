@@ -22,14 +22,13 @@ public class PowderSnowBucketMeta implements DFMaterialMeta {
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             if (event.getClickedBlock() == null) return;
             if (event.getClickedBlock().getType() == Material.CAULDRON) return;
-            for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-                if (Objects.equals(potentialMaterial.getNamedId(), emptyBucketNamedId)) {
-                    event.setUseItemInHand(Event.Result.DENY);
-                    Objects.requireNonNull(event.getClickedBlock().getLocation().add(event.getBlockFace().getDirection())).getBlock().setType(Material.POWDER_SNOW);
-                    if (plr.getInventory().getItemInMainHand().equals(item)) plr.getInventory().setItemInMainHand(potentialMaterial.toItemStack());
-                    else if (plr.getInventory().getItemInOffHand().equals(item)) plr.getInventory().setItemInOffHand(potentialMaterial.toItemStack());
-                    return;
-                }
+
+            DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(emptyBucketNamedId);
+            if (newMaterial != null) {
+                event.setUseItemInHand(Event.Result.DENY);
+                Objects.requireNonNull(event.getClickedBlock().getLocation().add(event.getBlockFace().getDirection())).getBlock().setType(Material.POWDER_SNOW);
+                if (plr.getInventory().getItemInMainHand().equals(item)) plr.getInventory().setItemInMainHand(newMaterial.toItemStack());
+                else if (plr.getInventory().getItemInOffHand().equals(item)) plr.getInventory().setItemInOffHand(newMaterial.toItemStack());
             }
         }
     };

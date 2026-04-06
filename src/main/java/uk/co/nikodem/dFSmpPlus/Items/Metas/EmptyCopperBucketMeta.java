@@ -24,12 +24,8 @@ public class EmptyCopperBucketMeta implements DFMaterialMeta {
             plr.getLocation().getBlock().setType(Material.LAVA);
         } else {
             String nameToLookFor = namedIdPrefix + vanillaItemStack.getType().key().value();
-            for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-                if (Objects.equals(potentialMaterial.getNamedId(), nameToLookFor)) {
-                    event.setItemStack(potentialMaterial.toItemStack());
-                    return;
-                };
-            }
+            DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(nameToLookFor);
+            event.setItemStack(newMaterial == null ? null : newMaterial.toItemStack());
         }
     };
 }

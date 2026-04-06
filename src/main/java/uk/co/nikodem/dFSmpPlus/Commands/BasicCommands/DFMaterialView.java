@@ -16,6 +16,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 public class DFMaterialView implements DFBasicCommand {
     @Override
@@ -29,7 +30,8 @@ public class DFMaterialView implements DFBasicCommand {
                 Inventory inv = Bukkit.createInventory(null, 54, "DFMaterialView");
 
                 List<ItemStack> items = new ArrayList<>();
-                for (DFMaterial material : DFMaterial.DFMaterialIndex) {
+                for (Map.Entry<String, DFMaterial> entry : DFMaterial.DFMaterialIndex.entrySet()) {
+                    DFMaterial material = entry.getValue();
                     items.add(material.toItemStack());
                     for (NamespacedKey modelKey : material.getPossibleModels()) {
                         items.add(material.toItemStack(modelKey));

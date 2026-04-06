@@ -26,7 +26,7 @@ public class OnCraft {
         DFItemUtils.addUUIDIfMarked(item);
 
         // hopefully this doesn't cause any issues later on down the line
-        ItemStack[] newMatrix = new ItemStack[9];
+        ItemStack[] newMatrix = new ItemStack[e.getInventory().getMatrix().length];
         for (int i = 0; i < newMatrix.length; i++) {
             ItemStack x = e.getInventory().getMatrix()[i];
             if (x != null) {

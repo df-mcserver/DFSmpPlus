@@ -20,40 +20,38 @@ public class FilledCustomBucketMeta implements DFMaterialMeta {
     }
 
     public void BucketEmptyEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketEmptyEvent event) {
-        for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-            if (Objects.equals(potentialMaterial.getNamedId(), namedIdPrefix+"bucket")) {
-                ItemMeta meta = item.getItemMeta();
-                // make sure that the name is reset, so any entities summoned don't take the name of the item
-                Component customName = meta.customName();
-                if (customName != null) if (customName.equals(material.getDisplayName())) meta.customName(null);
-                item.setItemMeta(meta);
-                event.setItemStack(potentialMaterial.toItemStack());
-                return;
-            }
+        DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(namedIdPrefix+"bucket");
+        if (newMaterial != null) {
+            ItemMeta meta = item.getItemMeta();
+            // make sure that the name is reset, so any entities summoned don't take the name of the item
+            Component customName = meta.customName();
+            if (customName != null) if (customName.equals(material.getDisplayName())) meta.customName(null);
+            item.setItemMeta(meta);
+            event.setItemStack(newMaterial.toItemStack());
         }
     }
 
     public void BucketEntityEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketEntityEvent event) {
         ItemStack vanillaItemStack = event.getEntityBucket();
         String nameToLookFor = namedIdPrefix + vanillaItemStack.getType().key().value();
-        for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-            if (Objects.equals(potentialMaterial.getNamedId(), nameToLookFor)) {
-                ItemMeta currentMeta = vanillaItemStack.getItemMeta();
-                ItemMeta baseMeta = potentialMaterial.toItemStack().getItemMeta();
 
-                currentMeta.setItemModel(baseMeta.getItemModel());
-                if (!currentMeta.hasCustomName()) currentMeta.customName(baseMeta.customName());
-                Integer dfmaterialversion = baseMeta.getPersistentDataContainer().get(Keys.dfmaterialVersion, PersistentDataType.INTEGER);
-                if (dfmaterialversion != null) currentMeta.getPersistentDataContainer().set(Keys.dfmaterialVersion, PersistentDataType.INTEGER, dfmaterialversion);
+        DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(nameToLookFor);
+        if (newMaterial != null) {
+            ItemMeta currentMeta = vanillaItemStack.getItemMeta();
+            ItemMeta baseMeta = newMaterial.toItemStack().getItemMeta();
 
-                currentMeta.getPersistentDataContainer().set(Keys.dfmaterial, PersistentDataType.STRING, nameToLookFor);
+            currentMeta.setItemModel(baseMeta.getItemModel());
+            if (!currentMeta.hasCustomName()) currentMeta.customName(baseMeta.customName());
+            Integer dfmaterialversion = baseMeta.getPersistentDataContainer().get(Keys.dfmaterialVersion, PersistentDataType.INTEGER);
+            if (dfmaterialversion != null) currentMeta.getPersistentDataContainer().set(Keys.dfmaterialVersion, PersistentDataType.INTEGER, dfmaterialversion);
 
-                Boolean markeduuid = baseMeta.getPersistentDataContainer().get(Keys.markedForUUID, PersistentDataType.BOOLEAN);
-                if (markeduuid != null) currentMeta.getPersistentDataContainer().set(Keys.markedForUUID, PersistentDataType.BOOLEAN, markeduuid);
+            currentMeta.getPersistentDataContainer().set(Keys.dfmaterial, PersistentDataType.STRING, nameToLookFor);
 
-                vanillaItemStack.setItemMeta(currentMeta);
-                return;
-            };
+            Boolean markeduuid = baseMeta.getPersistentDataContainer().get(Keys.markedForUUID, PersistentDataType.BOOLEAN);
+            if (markeduuid != null) currentMeta.getPersistentDataContainer().set(Keys.markedForUUID, PersistentDataType.BOOLEAN, markeduuid);
+
+            vanillaItemStack.setItemMeta(currentMeta);
+            return;
         }
     };
 }

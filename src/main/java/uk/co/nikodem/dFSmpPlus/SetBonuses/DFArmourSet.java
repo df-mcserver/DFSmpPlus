@@ -9,14 +9,11 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.Metas.*;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class DFArmourSet {
     // do not touch this list
-    public final static List<DFArmourSet> DFArmourSetIndex = new ArrayList<>();
+    public final static HashMap<String, DFArmourSet> DFArmourSetIndex = new HashMap<>();
 
     // Vanilla armour sets
     public static final DFArmourSet Native_Leather = new Builder("Leather")
@@ -160,7 +157,8 @@ public class DFArmourSet {
     }
 
     public static boolean hasArmourSetEquippedWithSetBonus(Player plr) {
-        for (DFArmourSet set : DFArmourSetIndex) {
+        for (Map.Entry<String, DFArmourSet> entry : DFArmourSetIndex.entrySet()) {
+            DFArmourSet set = entry.getValue();
             if (!set.hasSetBonus()) continue;
             if (set.playerHasEquipped(plr)) {
                 return true;
@@ -172,7 +170,8 @@ public class DFArmourSet {
 
     @Nullable
     public static DFArmourSet getArmourSetEquipped(Player plr) {
-        for (DFArmourSet set : DFArmourSetIndex) {
+        for (Map.Entry<String, DFArmourSet> entry : DFArmourSetIndex.entrySet()) {
+            DFArmourSet set = entry.getValue();
             if (hasArmourSetEquipped(plr, set)) return set;
         }
         return null;
@@ -395,7 +394,7 @@ public class DFArmourSet {
                     this.setBonusText != null,
                     this.metas
             );
-            DFArmourSet.DFArmourSetIndex.add(newSet);
+            DFArmourSet.DFArmourSetIndex.put(this.name, newSet);
             return newSet;
         }
     }

@@ -174,7 +174,8 @@ public class SetBonusText {
 
     @Nullable
     public static String getSetBonusText(ItemStack item) {
-        for (DFArmourSet set : DFArmourSet.DFArmourSetIndex) {
+        for (Map.Entry<String, DFArmourSet> entry : DFArmourSet.DFArmourSetIndex.entrySet()) {
+            DFArmourSet set = entry.getValue();
             if (set.itemInSet(item)) return set.getSetBonusText();
         }
         return null;

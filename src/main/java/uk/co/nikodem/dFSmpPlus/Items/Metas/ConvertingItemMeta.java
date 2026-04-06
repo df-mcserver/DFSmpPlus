@@ -39,14 +39,8 @@ public class ConvertingItemMeta implements DFMaterialMeta {
         int damage = (damageable.hasDamage() ? damageable.getDamage() : maxDamage) - 1;
         if (damage <= 0) {
             // consumed
-            DFMaterial residue = null;
-            DFMaterial convertedTo = null;
-
-            for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-                if (Objects.equals(potentialMaterial.getNamedId(), convertsToId)) convertedTo = potentialMaterial;
-                if (Objects.equals(potentialMaterial.getNamedId(), residueItemId)) residue = potentialMaterial;
-                if (convertedTo != null && residue != null) break;
-            }
+            DFMaterial residue = DFMaterial.DFMaterialIndex.get(residueItemId);
+            DFMaterial convertedTo = DFMaterial.DFMaterialIndex.get(convertsToId);
 
             if ((convertedTo == null && convertsToItemStack == null) || residue == null) {
                 item.setAmount(0);

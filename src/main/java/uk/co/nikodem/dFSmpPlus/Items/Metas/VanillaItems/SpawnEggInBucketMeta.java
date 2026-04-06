@@ -15,8 +15,6 @@ import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
-import java.util.Objects;
-
 public class SpawnEggInBucketMeta implements DFMaterialMeta {
     public void ItemUse(Player plr, DFMaterial material, ItemStack item, PlayerInteractEvent event) {
         // TODO: Migrate to new event API if it exists, for now this will do.
@@ -37,16 +35,15 @@ public class SpawnEggInBucketMeta implements DFMaterialMeta {
             String bucketUsedName = meta.getPersistentDataContainer().get(Keys.entityBucketUsed, PersistentDataType.STRING);
             if (bucketUsedName == null) return;
 
-            for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-                if (Objects.equals(potentialMaterial.getNamedId(), bucketUsedName)) {
-                    EquipmentSlot slot = event.getHand();
-                    Bukkit.getScheduler().runTaskLater(DFSmpPlus.getPlugin(), () -> {
-                        if (item.getAmount() == 1) plr.getInventory().setItem(slot, potentialMaterial.toItemStack());
-                        if (plr.getInventory().firstEmpty() == -1) plr.dropItem(potentialMaterial.toItemStack());
-                        else plr.getInventory().addItem(potentialMaterial.toItemStack());
-                    }, 1L);
-                    return;
-                };
+            DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(bucketUsedName);
+            if (newMaterial != null) {
+                EquipmentSlot slot = event.getHand();
+                Bukkit.getScheduler().runTaskLater(DFSmpPlus.getPlugin(), () -> {
+                    if (item.getAmount() == 1) plr.getInventory().setItem(slot, newMaterial.toItemStack());
+                    if (plr.getInventory().firstEmpty() == -1) plr.dropItem(newMaterial.toItemStack());
+                    else plr.getInventory().addItem(newMaterial.toItemStack());
+                }, 1L);
+                return;
             }
         }
     };

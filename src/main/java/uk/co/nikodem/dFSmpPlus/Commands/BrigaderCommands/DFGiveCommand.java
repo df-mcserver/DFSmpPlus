@@ -25,7 +25,8 @@ public class DFGiveCommand implements DFCommand {
     private List<String> validOptions = new ArrayList<>();
 
     public DFGiveCommand() {
-        for (DFMaterial material : DFMaterial.DFMaterialIndex) {
+        for (Map.Entry<String, DFMaterial> entry : DFMaterial.DFMaterialIndex.entrySet()) {
+            DFMaterial material = entry.getValue();
             validOptions.add(material.getNamedId());
         }
     }
@@ -63,13 +64,7 @@ public class DFGiveCommand implements DFCommand {
             return Command.SINGLE_SUCCESS;
         }
 
-        DFMaterial mat = null;
-        for (DFMaterial dfMaterial : DFMaterial.DFMaterialIndex) {
-            if (Objects.equals(dfMaterial.getNamedId(), dfmaterialName)) {
-                mat = dfMaterial;
-                break;
-            }
-        }
+        DFMaterial mat = DFMaterial.DFMaterialIndex.get(dfmaterialName);
 
         if (mat == null) {
             sender.sendMessage("Invalid DFMaterial!");

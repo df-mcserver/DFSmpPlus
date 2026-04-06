@@ -23,23 +23,15 @@ public class EmptyEntityBucketMeta implements DFMaterialMeta {
     public void BucketFillEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {
         Block block = event.getBlockClicked();
         if (block.getType() == Material.WATER) {
-            for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-                if (Objects.equals(potentialMaterial.getNamedId(), cleaningBucketNamedId)) {
-                    event.setItemStack(potentialMaterial.toItemStack());
-                    return;
-                };
-            }
+            DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(cleaningBucketNamedId);
+            event.setItemStack(newMaterial == null ? null : newMaterial.toItemStack());
         } else if (block.getType() == Material.LAVA) {
             if (storingBucketNamedId == null) {
                 event.setItemStack(ItemStack.of(Material.COPPER_INGOT));
                 plr.getLocation().getBlock().setType(Material.LAVA);
             } else {
-                for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-                    if (Objects.equals(potentialMaterial.getNamedId(), storingBucketNamedId)) {
-                        event.setItemStack(potentialMaterial.toItemStack());
-                        return;
-                    };
-                }
+                DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(storingBucketNamedId);
+                event.setItemStack(newMaterial == null ? null : newMaterial.toItemStack());
             }
         } else {
             event.setCancelled(true);

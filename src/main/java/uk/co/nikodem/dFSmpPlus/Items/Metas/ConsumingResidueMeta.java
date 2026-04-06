@@ -29,14 +29,7 @@ public class ConsumingResidueMeta implements DFMaterialMeta {
     public void ItemConsumed(Player plr, DFMaterial material, ItemStack item, PlayerItemConsumeEvent event) {
         ItemStack residue = residueItemStack;
 
-        if (residue == null) {
-            for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-                if (Objects.equals(potentialMaterial.getNamedId(), residueItemId)) {
-                    residue = potentialMaterial.toItemStack();
-                    break;
-                }
-            }
-        }
+        if (residue == null) DFMaterial.DFMaterialIndex.get(residueItemId);
 
         if (residue != null) {
             if (item.getAmount() == 1) plr.getInventory().setItemInMainHand(residue);

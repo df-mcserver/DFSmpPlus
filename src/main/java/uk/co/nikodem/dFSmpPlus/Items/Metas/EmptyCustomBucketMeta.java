@@ -19,11 +19,7 @@ public class EmptyCustomBucketMeta implements DFMaterialMeta {
         ItemStack vanillaItemStack = event.getItemStack();
         if (vanillaItemStack == null) return;
         String nameToLookFor = namedIdPrefix + vanillaItemStack.getType().key().value();
-        for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-            if (Objects.equals(potentialMaterial.getNamedId(), nameToLookFor)) {
-                event.setItemStack(potentialMaterial.toItemStack());
-                return;
-            };
-        }
+        DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(nameToLookFor);
+        event.setItemStack(newMaterial == null ? null : newMaterial.toItemStack());
     };
 }

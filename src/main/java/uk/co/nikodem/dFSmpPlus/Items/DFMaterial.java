@@ -45,7 +45,7 @@ import static uk.co.nikodem.dFSmpPlus.Items.DFItemUtils.createFasterTool;
 
 public class DFMaterial {
     // please don't touch lol
-    public final static List<DFMaterial> DFMaterialIndex = new ArrayList<>();
+    public final static HashMap<String, DFMaterial> DFMaterialIndex = new HashMap<>();
 
     public static DFMaterial MagicMirror = new Builder(Material.POPPED_CHORUS_FRUIT, "magic_mirror", 1)
             .setDisplayName("<dark_purple>Magic Mirror")
@@ -180,63 +180,6 @@ public class DFMaterial {
             .addMeta(new BluebellsarMeta(), new AdvancementOnObtainMeta(Bluebellsar.class))
             .overrideCustomModel(createMinecraftKey("stick"))
             .create();
-
-//    public static DFMaterial CopperNugget = new Builder(Material.IRON_NUGGET, "copper_nugget", 1)
-//            .setDisplayName("Copper Nugget")
-//            .create();
-//
-//    public static DFMaterial CopperSword = new Builder(Material.IRON_SWORD, "copper_sword", 1)
-//            .setDisplayName("Copper Sword")
-//            .addMeta(new CustomDurabilityMeta(225))
-//            .create();
-//
-//    public static DFMaterial CopperAxe = new Builder(Material.IRON_AXE, "copper_axe", 1)
-//            .setDisplayName("Copper Axe")
-//            .addMeta(new CustomDurabilityMeta(225))
-//            .create();
-//
-//    public static DFMaterial CopperPickaxe = new Builder(Material.IRON_PICKAXE, "copper_pickaxe", 1)
-//            .setDisplayName("Copper Pickaxe")
-//            .addMeta(new CustomDurabilityMeta(225))
-//            .create();
-//
-//    public static DFMaterial CopperShovel = new Builder(Material.IRON_SHOVEL, "copper_shovel", 1)
-//            .setDisplayName("Copper Shovel")
-//            .addMeta(new CustomDurabilityMeta(225))
-//            .create();
-//
-//    public static DFMaterial CopperHoe = new Builder(Material.IRON_HOE, "copper_hoe", 1)
-//            .setDisplayName("Copper Hoe")
-//            .addMeta(new CustomDurabilityMeta(225))
-//            .create();
-//
-//    public static DFMaterial CopperHelmet = new Builder(Material.IRON_HELMET, "copper_helmet", 1)
-//            .setDisplayName("Copper Helmet")
-//            .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.HEAD)
-//            .addLore("<gray>(Equivalent to Iron Helmet)")
-//            .addMeta(new CustomDurabilityMeta(145))
-//            .create();
-//
-//    public static DFMaterial CopperChestplate = new Builder(Material.IRON_CHESTPLATE, "copper_chestplate", 1)
-//            .setDisplayName("Copper Chestplate")
-//            .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.CHEST)
-//            .addLore("<gray>(Equivalent to Iron Chestplate)")
-//            .addMeta(new CustomDurabilityMeta(220))
-//            .create();
-//
-//    public static DFMaterial CopperLeggings = new Builder(Material.IRON_LEGGINGS, "copper_leggings", 1)
-//            .setDisplayName("Copper Leggings")
-//            .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.LEGS)
-//            .addLore("<gray>(Equivalent to Iron Leggings)")
-//            .addMeta(new CustomDurabilityMeta(200))
-//            .create();
-//
-//    public static DFMaterial CopperBoots = new Builder(Material.IRON_BOOTS, "copper_boots", 1)
-//            .setDisplayName("Copper Boots")
-//            .setEquippable("copper", Sound.ITEM_ARMOR_EQUIP_IRON, EquipmentSlot.FEET)
-//            .addLore("<gray>(Equivalent to Iron Boots)")
-//            .addMeta(new CustomDurabilityMeta(175))
-//            .create();
 //
 //    public static DFMaterial Tanzanite = new Builder(Material.FIREWORK_STAR, "tanzanite", 1)
 //            .setDisplayName("Tanzanite")
@@ -746,7 +689,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial FiridiumEssence = new Builder(Material.POPPED_CHORUS_FRUIT, "autosmelt_essence", 1)
+    public static DFMaterial FiridiumEssence = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_essence", 1)
             .setDisplayName("Firidium essence")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("essence")
@@ -756,7 +699,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial BootsOfSwiftness = new Builder(Material.POPPED_CHORUS_FRUIT, "hermesboots", 1)
+    public static DFMaterial BootsOfSwiftness = new Builder(Material.POPPED_CHORUS_FRUIT, "boots_of_swiftness", 1)
             .setDisplayName("Boots of Swiftness")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("boots_of_swiftness")
@@ -1510,7 +1453,7 @@ public class DFMaterial {
                     food,
                     repairable
             );
-            DFMaterial.DFMaterialIndex.add(newMaterial);
+            DFMaterial.DFMaterialIndex.put(namedId, newMaterial);
             return newMaterial;
         }
     }

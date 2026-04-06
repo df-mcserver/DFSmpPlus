@@ -474,13 +474,7 @@ public class DFItemUtils {
     public static DFMaterial getDFMaterial(String namedId) {
         if (namedId == null) return null;
 
-        for (DFMaterial material : DFMaterial.DFMaterialIndex) {
-            if (Objects.equals(material.getNamedId(), namedId)) {
-                return material;
-            }
-        }
-
-        return null;
+        return DFMaterial.DFMaterialIndex.get(namedId);
     }
 
     @Nullable

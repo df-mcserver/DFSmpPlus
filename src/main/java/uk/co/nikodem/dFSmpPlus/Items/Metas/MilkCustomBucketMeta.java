@@ -16,11 +16,7 @@ public class MilkCustomBucketMeta implements DFMaterialMeta {
     }
 
     public void ItemConsumed(Player plr, DFMaterial material, ItemStack item, PlayerItemConsumeEvent event) {
-        for (DFMaterial potentialMaterial : DFMaterial.DFMaterialIndex) {
-            if (Objects.equals(potentialMaterial.getNamedId(), emptyBucketNamedId)) {
-                event.setReplacement(potentialMaterial.toItemStack());
-                return;
-            };
-        }
+        DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(emptyBucketNamedId);
+        event.setReplacement(newMaterial == null ? null : newMaterial.toItemStack());
     };
 }
