@@ -47,7 +47,6 @@ public class AccessoryEvents {
         for (int i = 0; i < accessoryData.slots.length; i++) {
             ItemStack item = accessoryData.slots[i];
             if (item == null) continue;
-            plr.sendMessage(item.displayName());
             AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
             if (info == null) {
                 accessoryData.slots[i] = null;
