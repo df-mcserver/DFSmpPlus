@@ -740,7 +740,7 @@ public class DFMaterial {
             .setDisplayName("Vein Miner's essence")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("essence")
-                    .setDescription("Vein mines any smeltable block when mined whilst sneaking")
+                    .setDescription("Vein mines ores and logs when mined whilst sneaking")
                     .setEquipSound(Sounds.EquipAccessory_Essence)
                     .addMeta(new VeinminingAccessoryMeta(VeinMineable.VeinLogs, VeinMineable.VeinOres))
                     .create()))
