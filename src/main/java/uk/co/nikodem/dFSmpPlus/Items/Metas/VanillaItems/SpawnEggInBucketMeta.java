@@ -1,9 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Items.Metas.VanillaItems;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.Tag;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
@@ -12,14 +9,12 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.bukkit.spawner.BaseSpawner;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
+import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
-import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Objects;
 
 public class SpawnEggInBucketMeta implements DFMaterialMeta {
@@ -30,8 +25,8 @@ public class SpawnEggInBucketMeta implements DFMaterialMeta {
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             if (plr.hasCooldown(item)) return;
             if (event.getHand() == null) return;
-            // Material#isInteractable() is pretty unreliable, but it works well enough /shrug
-            Boolean result = shouldBePlaced(event.getClickedBlock());
+
+            Boolean result = DFItemUtils.shouldBePlaced(event.getClickedBlock());
             if (result == null) {
                 event.setCancelled(true);
                 return;
@@ -55,28 +50,4 @@ public class SpawnEggInBucketMeta implements DFMaterialMeta {
             }
         }
     };
-
-    // true = run as usual
-    // false = doesn't spawn entity
-    // null = cancel the event or else it will break
-    @Nullable
-    public Boolean shouldBePlaced(Block block) {
-        if (block == null) return true;
-
-        if (block.getState() instanceof BaseSpawner spawner) {
-            if (spawner.getSpawnedType() == null) return true;
-            else return null;
-        }
-
-        List<Material> cancelMaterials = List.of(Material.CHISELED_BOOKSHELF, Material.BELL, Material.VAULT, Material.RESPAWN_ANCHOR, Material.CAULDRON, Material.CAKE, Material.JUKEBOX, Material.REDSTONE, Material.IRON_DOOR, Material.IRON_TRAPDOOR, Material.TNT, Material.PUMPKIN);
-        List<Tag<Material>> cancelTags = List.of(Tag.CANDLES, Tag.CANDLE_CAKES, Tag.BEEHIVES, Tag.CAMPFIRES, Tag.WOODEN_SHELVES, Tag.FENCES);
-
-        if (cancelMaterials.contains(block.getType())) return null;
-
-        for (Tag<Material> tag : cancelTags) {
-            if (tag.isTagged(block.getType())) return null;
-        }
-
-        return !block.getType().isInteractable();
-    }
 }

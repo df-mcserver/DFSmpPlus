@@ -6,8 +6,10 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Tag;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.EquipmentSlot;
@@ -16,6 +18,7 @@ import org.bukkit.inventory.ItemType;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.spawner.BaseSpawner;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
@@ -519,5 +522,30 @@ public class DFItemUtils {
                 .damagePerBlock(base.damagePerBlock())
                 .canDestroyBlocksInCreative(base.canDestroyBlocksInCreative())
                 .build();
+    }
+
+    // true = no action on right click
+    // false = action on right click guaranteed
+    // null = action on right click is conditional / doesn't exist, but still considered interactable
+    @Nullable
+    public static Boolean shouldBePlaced(Block block) {
+        if (block == null) return true;
+
+        if (block.getState() instanceof BaseSpawner spawner) {
+            if (spawner.getSpawnedType() == null) return true;
+            else return null;
+        }
+
+        List<Material> cancelMaterials = List.of(Material.CHISELED_BOOKSHELF, Material.BELL, Material.VAULT, Material.RESPAWN_ANCHOR, Material.CAULDRON, Material.CAKE, Material.JUKEBOX, Material.REDSTONE, Material.IRON_DOOR, Material.IRON_TRAPDOOR, Material.TNT, Material.PUMPKIN);
+        List<Tag<Material>> cancelTags = List.of(Tag.CANDLES, Tag.CANDLE_CAKES, Tag.BEEHIVES, Tag.CAMPFIRES, Tag.WOODEN_SHELVES, Tag.FENCES);
+
+        if (cancelMaterials.contains(block.getType())) return null;
+
+        for (Tag<Material> tag : cancelTags) {
+            if (tag.isTagged(block.getType())) return null;
+        }
+
+        // Material#isInteractable() is pretty unreliable, but it works well enough /shrug
+        return !block.getType().isInteractable();
     }
 }

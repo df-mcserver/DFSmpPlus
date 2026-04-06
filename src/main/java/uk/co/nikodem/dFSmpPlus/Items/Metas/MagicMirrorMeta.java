@@ -2,12 +2,14 @@ package uk.co.nikodem.dFSmpPlus.Items.Metas;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.MagicMirror;
+import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager;
@@ -29,6 +31,12 @@ public class MagicMirrorMeta implements DFMaterialMeta {
     @Override
     public void ItemUse(Player plr, DFMaterial material, ItemStack item, PlayerInteractEvent e) {
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            Block block = e.getClickedBlock();
+            if (block != null) {
+                Boolean res = DFItemUtils.shouldBePlaced(block);
+                if (res == null || !res) return;
+            }
+
             e.setCancelled(true);
 
             if (onMagicMirrorCooldown(plr)) return;
