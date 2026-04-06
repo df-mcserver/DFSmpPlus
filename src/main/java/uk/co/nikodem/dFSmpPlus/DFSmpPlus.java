@@ -22,7 +22,7 @@ import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.DFWaypointCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.BrigaderCommands.LocatorBarCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.DFBasicCommand;
 import uk.co.nikodem.dFSmpPlus.Commands.DFCommand;
-import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
+import uk.co.nikodem.dFSmpPlus.Constants.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
 import uk.co.nikodem.dFSmpPlus.Crafting.Recipes.*;

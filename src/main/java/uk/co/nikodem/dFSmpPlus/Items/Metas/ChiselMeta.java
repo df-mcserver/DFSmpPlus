@@ -22,9 +22,8 @@ import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.AutosmeltAccessoryMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.VacuumAccessoryMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
-import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.IITNIG;
 import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
-import uk.co.nikodem.dFSmpPlus.Constants.Chisel.ChiselBlockData;
+import uk.co.nikodem.dFSmpPlus.Constants.ChiselBlockData;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
@@ -79,6 +78,7 @@ public class ChiselMeta implements DFMaterialMeta {
                 data.getSoundData().playSound(loc);
                 DFItemUtils.reduceDurability(plr, tool, 1, true);
                 TelemetryUtils.increaseChiselUses(1);
+                data.runBlockModifications(plr, block, face);
                 break;
             }
         }
