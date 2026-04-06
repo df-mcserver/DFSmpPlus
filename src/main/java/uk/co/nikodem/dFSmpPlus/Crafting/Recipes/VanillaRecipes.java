@@ -36,6 +36,7 @@ public class VanillaRecipes extends CraftingTemplate {
         doNautilusArmourRecipes(recipesToAdd);
         doVanillaRecipeChanges(recipesToAdd);
         doSlimeblockChange(recipesToAdd);
+        doPoppedChorusRecipeReadditions(recipesToAdd);
 
         addLooseStoneRecipes(recipesToAdd);
 
@@ -47,6 +48,27 @@ public class VanillaRecipes extends CraftingTemplate {
         addCakeRecipe(recipesToAdd);
 
         return recipesToAdd;
+    }
+
+    private void doPoppedChorusRecipeReadditions(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.END_ROD, 4)
+                        .setCategory(CraftingBookCategory.BUILDING)
+                        .build(getInfo())
+                        .shape("I", "X")
+                        .setIngredient('I', Material.BLAZE_ROD)
+                        .setIngredient('X', new RecipeChoice.ExactChoice(new ItemStack(Material.POPPED_CHORUS_FRUIT)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(Material.PURPUR_BLOCK, 4)
+                        .setCategory(CraftingBookCategory.BUILDING)
+                        .build(getInfo())
+                        .shape("XX", "XX")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(new ItemStack(Material.POPPED_CHORUS_FRUIT)))
+        );
     }
 
     private void doVanillaRecipeChanges(List<Recipe> recipesToAdd) {
@@ -104,12 +126,6 @@ public class VanillaRecipes extends CraftingTemplate {
     }
 
     private void doSlimeblockChange(List<Recipe> recipesToAdd) {
-        RecipeRemover.addQuery(
-                new RecipeWithResultRemoval()
-                        .setResult(Material.SLIME_BLOCK)
-                        .onlyUseMinecraftNamespace()
-        );
-
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(Material.SLIME_BLOCK)

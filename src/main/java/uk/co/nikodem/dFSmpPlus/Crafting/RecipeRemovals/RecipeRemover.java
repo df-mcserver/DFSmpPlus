@@ -57,7 +57,6 @@ public class RecipeRemover {
                     if (key == null) continue;
                     boolean shouldRemove = !query.getOnlyUseMinecraftNamespace() || key.getNamespace().equals("minecraft");
                     if (shouldRemove) {
-
                         if (query instanceof RecipeWithIngredientReplace replaceQuery) {
                             recipesToReAdd.add(createSimilarRecipe(r, ingredient, replaceQuery.getReplacementIngredient()));
                             Bukkit.removeRecipe(key);

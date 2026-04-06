@@ -46,10 +46,29 @@ public class RecipeRemovals extends CraftingTemplate {
                         .onlyUseMinecraftNamespace()
         );
 
+        RecipeRemover.addQuery( // custom one is implemented
+                new RecipeWithResultRemoval()
+                        .setResult(Material.SLIME_BLOCK)
+                        .onlyUseMinecraftNamespace()
+        );
+
+        RecipeRemover.addQuery( // custom one is implemented
+                new RecipeWithResultRemoval()
+                        .setResult(Material.END_ROD)
+                        .onlyUseMinecraftNamespace()
+        );
+
+        RecipeRemover.addQuery( // custom one is implemented
+                new RecipeWithResultRemoval()
+                        .setResult(Material.PURPUR_BLOCK)
+                        .onlyUseMinecraftNamespace()
+        );
+
         return List.of();
     }
 
     public void replaceIngredientsWithExactChoices() {
+        // TODO fix these not working
         RecipeRemover.addQuery(new RecipeWithIngredientReplace()
                 .setReplacementIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.STICK)))
                 .setIngredient(Material.STICK));
