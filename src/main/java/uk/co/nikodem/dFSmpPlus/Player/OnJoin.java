@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
@@ -70,6 +71,14 @@ public class OnJoin {
                     if (!atleastOneDeletion && Objects.equals(res, DELETED)) atleastOneDeletion = true;
                 }
             }
+        }
+
+        boolean removedInvalidAccessories = AccessoryEvents.RefreshAccessoryAttributes(plr);
+
+        if (removedInvalidAccessories) {
+            Component msg = MiniMessage.miniMessage().deserialize("<red>Some accessories that were equipped have been removed due to invalid data!");
+            plr.sendMessage(msg);
+            Sounds.Notification.playSoundLocally(plr);
         }
 
         if (atleastOneUpdate) {

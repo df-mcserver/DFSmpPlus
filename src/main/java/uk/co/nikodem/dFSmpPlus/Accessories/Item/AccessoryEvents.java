@@ -1,5 +1,8 @@
 package uk.co.nikodem.dFSmpPlus.Accessories.Item;
 
+import io.papermc.paper.registry.RegistryAccess;
+import io.papermc.paper.registry.RegistryKey;
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
@@ -16,11 +19,71 @@ import uk.co.nikodem.dFSmpPlus.Accessories.Player.PlayerAccessoryData;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Accessory.EquipAccessory;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Accessory.EquipAllAccessories;
+import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class AccessoryEvents {
+    public static boolean RefreshAccessoryAttributes(Player plr) {
+        for (Attribute attr : RegistryAccess.registryAccess().getRegistry(RegistryKey.ATTRIBUTE).stream().toList()) {
+            AttributeInstance instance = plr.getAttribute(attr);
+            if (instance == null) continue;
+            List<NamespacedKey> attributesToRemove = new ArrayList<>();
+            instance.getModifiers().forEach(mods -> {
+                if (mods.getKey().getNamespace().equals(Keys.createAccessoryKey("").getNamespace())) attributesToRemove.add(mods.getKey());
+            });
+
+            for (NamespacedKey key : attributesToRemove) {
+                instance.removeModifier(key);
+            }
+        }
+
+        PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+        boolean detectedInvalidAccessories = false;
+
+        for (int i = 0; i < accessoryData.slots.length; i++) {
+            ItemStack item = accessoryData.slots[i];
+            if (item == null) continue;
+            plr.sendMessage(item.displayName());
+            AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
+            if (info == null) {
+                accessoryData.slots[i] = null;
+                detectedInvalidAccessories = true;
+                continue;
+            }
+
+            AttributeInstance instance = plr.getAttribute(Attribute.ARMOR);
+            if (instance != null) {
+                AttributeModifier newModifier = new AttributeModifier(info.getNamespacedKey(), info.getArmourPoints(), AttributeModifier.Operation.ADD_NUMBER);
+                instance.addModifier(newModifier);
+            }
+
+            for (AccessoryMeta meta : info.getMeta()) {
+                meta.AccessoryEquipped(plr, item, info);
+
+                Map<Attribute, AttributeModifier> extraModifiers = meta.AddAdditionalAttributeModifiers(plr, item, info);
+                if (!extraModifiers.isEmpty()) {
+                    for (Map.Entry<Attribute, AttributeModifier> extraModifier : extraModifiers.entrySet()) {
+                        AttributeInstance extraInstance = plr.getAttribute(extraModifier.getKey());
+                        if (extraInstance != null) {
+                            AttributeModifier alreadyExistingModifier = extraInstance.getModifier(extraModifier.getValue().getKey());
+                            if (alreadyExistingModifier != null) extraInstance.removeModifier(extraModifier.getValue().getKey());
+
+                            extraInstance.addModifier(extraModifier.getValue());
+                        }
+                    }
+                }
+            }
+        }
+
+        if (detectedInvalidAccessories) AccessoryManager.updatePlayerData(plr, accessoryData);
+
+        return detectedInvalidAccessories;
+    }
+
     public static void ApplyRunPerSecond(Player plr) {
         PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
 

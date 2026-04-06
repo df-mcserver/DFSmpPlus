@@ -17,6 +17,5 @@ public class SwiftnessAccessoryMeta implements AccessoryMeta {
                 Attribute.MOVEMENT_SPEED,
                 new AttributeModifier(Keys.hermesBootsSpeed, 0.02f, AttributeModifier.Operation.ADD_NUMBER)
         );
-
     };
 }
