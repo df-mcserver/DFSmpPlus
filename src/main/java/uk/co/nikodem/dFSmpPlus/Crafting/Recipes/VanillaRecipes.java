@@ -847,7 +847,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "iron")
                         .shape("BBB", "XYX", "WWW")
-                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.MILK_BUCKET)))
+                        .setIngredient('B', Material.MILK_BUCKET)
                         .setIngredient('X', Material.SUGAR)
                         .setIngredient('Y', new RecipeChoice.MaterialChoice(Tag.ITEMS_EGGS))
                         .setIngredient('W', Material.WHEAT)
