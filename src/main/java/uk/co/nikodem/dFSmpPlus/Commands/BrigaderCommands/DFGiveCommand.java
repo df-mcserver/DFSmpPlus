@@ -19,6 +19,7 @@ import uk.co.nikodem.dFSmpPlus.Commands.DFCommand;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class DFGiveCommand implements DFCommand {
@@ -34,6 +35,7 @@ public class DFGiveCommand implements DFCommand {
     @Override
     public LiteralArgumentBuilder<CommandSourceStack> createCommand() {
         return Commands.literal("dfgive")
+                .requires(sender -> sender.getSender().hasPermission("dfsmpplus.adminonly"))
                 .then(
                         Commands.argument("targets", ArgumentTypes.players())
                                 .then(Commands.argument("dfmaterial", StringArgumentType.string())
