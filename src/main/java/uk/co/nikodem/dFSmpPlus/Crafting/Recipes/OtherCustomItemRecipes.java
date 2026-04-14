@@ -524,7 +524,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
 
         recipesToAdd.add(
                 new SmithingTableRecipeBuilder()
-                        .setBase(new CustomItemRepresentation(DFMaterial.ObsidianShears))
+                        .setBase(new CustomItemRepresentation(DFMaterial.NetheriteShears))
                         .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
                         .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
                         .setResult(DFMaterial.ObsidianShears)
