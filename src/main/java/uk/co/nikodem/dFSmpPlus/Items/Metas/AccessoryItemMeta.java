@@ -7,6 +7,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
@@ -45,5 +46,18 @@ public class AccessoryItemMeta implements DFMaterialMeta {
         }
 
         return lore;
+    };
+
+    public void ItemUpdated(DFMaterial material, ItemStack item) {
+        if (item == null) return;
+        ItemMeta meta = item.getItemMeta();
+        if (material == null) return;
+        ItemStack refItem = material.toItemStack();
+        ItemMeta refMeta = refItem.getItemMeta();
+        if (refMeta == null) return;
+
+        meta.lore(refMeta.hasLore() ? refMeta.lore() : null);
+
+        item.setItemMeta(meta);
     };
 }

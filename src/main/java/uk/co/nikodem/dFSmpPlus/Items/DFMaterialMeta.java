@@ -13,7 +13,6 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
-import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 
 import java.util.List;
 
@@ -37,5 +36,5 @@ public interface DFMaterialMeta {
     default void BucketEntityEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketEntityEvent event) {};
 
     default List<TextComponent> AddAdditionalLore(DFMaterial material) {return List.of();};
-    default Enums.UpdateResult ItemUpdated(DFMaterial material, ItemStack item) { return Enums.UpdateResult.NULL; };
+    default void ItemUpdated(DFMaterial material, ItemStack item) { };
 }

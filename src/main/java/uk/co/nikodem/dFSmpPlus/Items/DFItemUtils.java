@@ -478,14 +478,26 @@ public class DFItemUtils {
     }
 
     @Nullable
-    public static Integer getCurrentVersion(ItemStack item) {
+    public static Integer getLegacyDFVersion(ItemStack item) {
         if (item == null) return null;
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return null;
 
         return meta.getPersistentDataContainer().get(
-                Keys.dfmaterialVersion,
+                Keys.legacy_dfmaterialVersion,
                 PersistentDataType.INTEGER
+        );
+    }
+
+    @Nullable
+    public static String getDFUpdateId(ItemStack item) {
+        if (item == null) return null;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return null;
+
+        return meta.getPersistentDataContainer().get(
+                Keys.dfUpdateId,
+                PersistentDataType.STRING
         );
     }
 

@@ -10,8 +10,6 @@ import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
-import java.util.Objects;
-
 public class FilledCustomBucketMeta implements DFMaterialMeta {
     private final String namedIdPrefix;
 
@@ -42,16 +40,14 @@ public class FilledCustomBucketMeta implements DFMaterialMeta {
 
             currentMeta.setItemModel(baseMeta.getItemModel());
             if (!currentMeta.hasCustomName()) currentMeta.customName(baseMeta.customName());
-            Integer dfmaterialversion = baseMeta.getPersistentDataContainer().get(Keys.dfmaterialVersion, PersistentDataType.INTEGER);
-            if (dfmaterialversion != null) currentMeta.getPersistentDataContainer().set(Keys.dfmaterialVersion, PersistentDataType.INTEGER, dfmaterialversion);
-
+            String dfupdateid = baseMeta.getPersistentDataContainer().get(Keys.dfUpdateId, PersistentDataType.STRING);
+            if (dfupdateid != null) currentMeta.getPersistentDataContainer().set(Keys.dfUpdateId, PersistentDataType.STRING, dfupdateid);
             currentMeta.getPersistentDataContainer().set(Keys.dfmaterial, PersistentDataType.STRING, nameToLookFor);
 
             Boolean markeduuid = baseMeta.getPersistentDataContainer().get(Keys.markedForUUID, PersistentDataType.BOOLEAN);
             if (markeduuid != null) currentMeta.getPersistentDataContainer().set(Keys.markedForUUID, PersistentDataType.BOOLEAN, markeduuid);
 
             vanillaItemStack.setItemMeta(currentMeta);
-            return;
         }
     };
 }

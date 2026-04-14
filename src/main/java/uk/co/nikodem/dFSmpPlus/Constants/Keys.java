@@ -7,8 +7,10 @@ import org.intellij.lang.annotations.Subst;
 public class Keys {
     public static NamespacedKey markedForUUID = createDefaultKey("markedforuuid");
     public static NamespacedKey UUID = createDefaultKey("uuid");
+
     public static NamespacedKey dfmaterial = createDefaultKey("dfmaterial");
-    public static NamespacedKey dfmaterialVersion = createDefaultKey("dfmaterial_version");
+    public static NamespacedKey dfUpdateId = createDefaultKey("dfupdateid");
+    public static NamespacedKey legacy_dfmaterialVersion = createDefaultKey("dfmaterial_version");
 
     public static NamespacedKey multiconfigOption = createDefaultKey("multichoice");
     public static NamespacedKey cobaltShieldKb = createAccessoryKey("cobalt_shield_kb");

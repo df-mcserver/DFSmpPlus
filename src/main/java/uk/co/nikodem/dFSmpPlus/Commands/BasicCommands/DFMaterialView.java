@@ -2,15 +2,17 @@ package uk.co.nikodem.dFSmpPlus.Commands.BasicCommands;
 
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 import uk.co.nikodem.dFSmpPlus.Commands.DFBasicCommand;
+import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class DFMaterialView implements DFBasicCommand {
                 if (args.length != 1) return;
                 Integer givenPage = Integer.parseInt(args[0]);
 
-                Inventory inv = Bukkit.createInventory(null, 54, "DFMaterialView");
+                Inventory inv = new DFMaterialViewInventory().getInventory();
 
                 List<ItemStack> items = new ArrayList<>();
                 for (Map.Entry<String, DFMaterial> entry : DFMaterial.DFMaterialIndex.entrySet()) {
@@ -50,6 +52,19 @@ public class DFMaterialView implements DFBasicCommand {
             }
         } else {
             sender.sendMessage(Component.text("You are not a player!"));
+        }
+    }
+
+    public static class DFMaterialViewInventory implements InventoryHolder {
+        private final Inventory baseInventory;
+
+        public DFMaterialViewInventory() {
+            baseInventory = DFSmpPlus.getPlugin(DFSmpPlus.class).getServer().createInventory(this, 54, Component.text("DFMaterialView"));
+        }
+
+        @Override
+        public @NotNull Inventory getInventory() {
+            return baseInventory;
         }
     }
 
