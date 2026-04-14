@@ -542,8 +542,8 @@ public class DFItemUtils {
             else return null;
         }
 
-        List<Material> cancelMaterials = List.of(Material.CHISELED_BOOKSHELF, Material.BELL, Material.VAULT, Material.RESPAWN_ANCHOR, Material.CAULDRON, Material.CAKE, Material.JUKEBOX, Material.REDSTONE, Material.IRON_DOOR, Material.IRON_TRAPDOOR, Material.TNT, Material.PUMPKIN);
-        List<Tag<Material>> cancelTags = List.of(Tag.CANDLES, Tag.CANDLE_CAKES, Tag.BEEHIVES, Tag.CAMPFIRES, Tag.WOODEN_SHELVES, Tag.FENCES);
+        List<Material> cancelMaterials = List.of(Material.CHISELED_BOOKSHELF, Material.BELL, Material.VAULT, Material.RESPAWN_ANCHOR, Material.CAKE, Material.JUKEBOX, Material.REDSTONE, Material.IRON_DOOR, Material.IRON_TRAPDOOR, Material.TNT, Material.PUMPKIN);
+        List<Tag<Material>> cancelTags = List.of(Tag.CANDLES, Tag.CANDLE_CAKES, Tag.BEEHIVES, Tag.CAMPFIRES, Tag.WOODEN_SHELVES, Tag.FENCES, Tag.CAULDRONS);
 
         if (cancelMaterials.contains(block.getType())) return null;
 
