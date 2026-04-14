@@ -12,6 +12,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
+import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
@@ -147,8 +148,7 @@ public class DFMaterialUpdater {
             updatesToPerform.add(Enums.UpdateType.ITEM_MODEL);
         }
         if (refMeta.hasCustomName() && meta.hasCustomName()) {
-            String name = MiniMessage.miniMessage().serialize(Objects.requireNonNull(meta.customName()));
-            if (!name.startsWith("<!italic>")) updatesToPerform.add(Enums.UpdateType.CUSTOM_NAME);
+            if (DFItemUtils.itemIsRenamed(item)) updatesToPerform.add(Enums.UpdateType.CUSTOM_NAME);
         }
         if (!isSameUpdateId) if (!dfMaterial.toItemStack().getType().equals(item.getType())) {
             updatesToPerform.add(Enums.UpdateType.ITEM_TYPE);

@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Items;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.Tool;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -502,16 +503,15 @@ public class DFItemUtils {
     }
 
     public static boolean itemIsRenamed(ItemStack item) {
-        DFMaterial material = DFItemUtils.getDFMaterial(item);
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return false;
-        Component displayName = meta.displayName();
 
-        if (material == null) {
-            return displayName != null;
+        if (meta.hasCustomName()) {
+            String name = MiniMessage.miniMessage().serialize(Objects.requireNonNull(meta.customName()));
+            return !name.startsWith("<!italic>");
         }
 
-        return displayName != material.getDisplayName();
+        return false;
     }
 
     public static Tool createFasterTool(ItemType type, float speedMultiplier) {
