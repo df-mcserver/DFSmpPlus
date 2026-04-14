@@ -6,6 +6,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -94,4 +95,12 @@ public class EntityBucketData {
             Map.entry(EntityType.WANDERING_TRADER, Material.WANDERING_TRADER_SPAWN_EGG),
             Map.entry(EntityType.ZOMBIFIED_PIGLIN, Material.ZOMBIFIED_PIGLIN_SPAWN_EGG)
     );
+
+    public static final Map<Material, EntityType> EntityEggToEntityIndex = new HashMap<>();
+
+    static {
+        for (Map.Entry<EntityType, Material> entry : EntityEggIndex.entrySet()) {
+            EntityEggToEntityIndex.put(entry.getValue(), entry.getKey());
+        }
+    }
 }
