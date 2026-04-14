@@ -64,13 +64,20 @@ public class VacuumAccessoryMeta implements AccessoryMeta {
 
     public static List<ItemStack> giveItemEntitiesToPlayerViaVacuum(Player plr, List<Item> newDrops) {
         PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
+        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
         boolean hasVacuum = accessoryData.hasAccessoryWithMetaEquipped(VacuumAccessoryMeta.class);
+        boolean hasVacuumedItem = false;
 
         List<ItemStack> items = new ArrayList<>();
         for (Item item : newDrops) {
             items.add(item.getItemStack());
-            if (hasVacuum) item.setItemStack(ItemStack.of(Material.AIR));
+            if (hasVacuum) {
+                item.setItemStack(ItemStack.of(Material.AIR));
+                hasVacuumedItem = true;
+            }
         }
+
+        if (hasVacuumedItem && data.hasVacuumSoundEnabled) Sounds.VacuumPickupItem.playSound(plr);
 
         return giveItemsToPlayerViaVacuum(plr, items);
     }
@@ -85,19 +92,23 @@ public class VacuumAccessoryMeta implements AccessoryMeta {
 
         for (ItemStack drop : newDrops) {
             if (hasVacuum) {
+                boolean hasVacuumedItem = false;
                 PlayerInventory inv = plr.getInventory();
                 if (drop.isSimilar(inv.getItemInOffHand())) {
                     int totalAmount = drop.getAmount() + inv.getItemInOffHand().getAmount();
                     if (totalAmount <= 64) {
                         inv.getItemInOffHand().setAmount(totalAmount);
+                        hasVacuumedItem = true;
                         continue;
                     } else {
+                        hasVacuumedItem = true;
                         inv.getItemInOffHand().setAmount(64);
                         drop.setAmount(totalAmount - 64);
                     }
                 }
                 Map<Integer, ItemStack> overflow = inv.addItem(drop);
-                if (overflow.isEmpty() && data.hasVacuumSoundEnabled) Sounds.VacuumPickupItem.playSound(plr);
+                if (overflow.isEmpty()) hasVacuumedItem = true;
+                if (hasVacuumedItem && data.hasVacuumSoundEnabled) Sounds.VacuumPickupItem.playSound(plr);
                 for (Map.Entry<Integer, ItemStack> item : overflow.entrySet()) {
                     overflowItems.add(item.getValue());
                 }
