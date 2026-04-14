@@ -152,6 +152,14 @@ public class VanillaRecipes extends CraftingTemplate {
                         .shape("XX", "XX")
                         .setIngredient('X', Material.SLIME_BALL)
         );
+
+        recipesToAdd.add(
+                new ShapelessRecipeBuilder()
+                        .setOutput(Material.SLIME_BALL, 4)
+                        .setCategory(CraftingBookCategory.BUILDING)
+                        .build(getInfo())
+                        .addIngredient(Material.SLIME_BLOCK)
+        );
     }
 
     private void doOtherRecipes(List<Recipe> recipesToAdd) {

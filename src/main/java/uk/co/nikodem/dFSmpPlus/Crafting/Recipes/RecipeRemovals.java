@@ -54,6 +54,12 @@ public class RecipeRemovals extends CraftingTemplate {
 
         RecipeRemover.addQuery( // custom one is implemented
                 new RecipeWithResultRemoval()
+                        .setResult(Material.SLIME_BALL)
+                        .onlyUseMinecraftNamespace()
+        );
+
+        RecipeRemover.addQuery( // custom one is implemented
+                new RecipeWithResultRemoval()
                         .setResult(Material.END_ROD)
                         .onlyUseMinecraftNamespace()
         );
