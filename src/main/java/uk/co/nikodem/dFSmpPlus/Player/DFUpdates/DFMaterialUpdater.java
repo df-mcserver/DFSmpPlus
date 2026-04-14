@@ -127,8 +127,11 @@ public class DFMaterialUpdater {
         }
 
         if (dfMaterial == null) {
-            item.setAmount(0);
-            return Map.entry(DELETED, ItemStack.empty());
+            PersistentDataContainer container = meta.getPersistentDataContainer();
+            if (container.has(Keys.dfmaterial)) {
+                item.setAmount(0);
+                return Map.entry(DELETED, ItemStack.empty());
+            } else return Map.entry(NULL, ItemStack.empty());
         }
         boolean isSameUpdateId = false;
 
