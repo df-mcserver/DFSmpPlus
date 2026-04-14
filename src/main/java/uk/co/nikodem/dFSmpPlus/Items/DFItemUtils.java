@@ -534,8 +534,9 @@ public class DFItemUtils {
     // false = action on right click guaranteed
     // null = action on right click is conditional / doesn't exist, but still considered interactable
     @Nullable
-    public static Boolean shouldBePlaced(Block block) {
+    public static Boolean shouldBePlaced(Player plr, Block block) {
         if (block == null) return true;
+
 
         if (block.getState() instanceof BaseSpawner spawner) {
             if (spawner.getSpawnedType() == null) return true;
@@ -552,6 +553,8 @@ public class DFItemUtils {
         }
 
         // Material#isInteractable() is pretty unreliable, but it works well enough /shrug
+        if (plr.isSneaking()) if (block.getType().isInteractable()) return null;
+
         return !block.getType().isInteractable();
     }
 }

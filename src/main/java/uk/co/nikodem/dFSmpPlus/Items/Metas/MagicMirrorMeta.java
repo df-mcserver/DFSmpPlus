@@ -33,7 +33,7 @@ public class MagicMirrorMeta implements DFMaterialMeta {
         if (e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Block block = e.getClickedBlock();
             if (block != null) {
-                Boolean res = DFItemUtils.shouldBePlaced(block);
+                Boolean res = DFItemUtils.shouldBePlaced(plr, block);
                 if (res == null || !res) return;
             }
 

@@ -29,7 +29,7 @@ public class SpawnEggInBucketMeta implements DFMaterialMeta {
             if (plr.hasCooldown(item)) return;
             if (event.getHand() == null) return;
 
-            Boolean result = DFItemUtils.shouldBePlaced(event.getClickedBlock());
+            Boolean result = DFItemUtils.shouldBePlaced(plr, event.getClickedBlock());
             if (result == null) {
                 event.setCancelled(true);
                 return;
