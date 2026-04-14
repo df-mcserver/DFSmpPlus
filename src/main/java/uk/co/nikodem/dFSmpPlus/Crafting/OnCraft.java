@@ -33,7 +33,7 @@ public class OnCraft {
                 if (DFMaterial.GoldMilkBucket.isSimilar(x)) newMatrix[i] = DFMaterial.GoldBucket.toItemStack();
                 else if (DFMaterial.CopperMilkBucket.isSimilar(x)) newMatrix[i] = DFMaterial.CopperBucket.toItemStack();
                 else if (x.getType().equals(Material.MILK_BUCKET)) newMatrix[i] = ItemStack.of(Material.BUCKET); // fixes issue on bedrock
-                else newMatrix[i] = null;
+                else newMatrix[i] = x;
             }
         }
 
