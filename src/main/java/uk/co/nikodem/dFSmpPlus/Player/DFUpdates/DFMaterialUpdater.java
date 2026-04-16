@@ -148,7 +148,7 @@ public class DFMaterialUpdater {
             updatesToPerform.add(Enums.UpdateType.ITEM_MODEL);
         }
         if (refMeta.hasCustomName() && meta.hasCustomName()) {
-            if (DFItemUtils.itemIsRenamed(item)) updatesToPerform.add(Enums.UpdateType.CUSTOM_NAME);
+            if (!DFItemUtils.itemIsRenamed(item)) updatesToPerform.add(Enums.UpdateType.CUSTOM_NAME);
         }
         if (!isSameUpdateId) if (!dfMaterial.toItemStack().getType().equals(item.getType())) {
             updatesToPerform.add(Enums.UpdateType.ITEM_TYPE);
