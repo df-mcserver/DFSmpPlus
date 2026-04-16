@@ -14,8 +14,10 @@ public class CustomDrops {
     public static void onBlockDropEvent(BlockDropItemEvent event) {
         Player plr = event.getPlayer();
 
-        if (event.getBlock().getType() == Material.GRAVEL && event.getItems().size() == 1) {
-            event.getItems().getFirst().setItemStack(ItemStack.of(Material.FLINT));
+        if (event.getBlockState().getType() == Material.GRAVEL) {
+            for (Item i : event.getItems()) {
+                i.setItemStack(ItemStack.of(Material.GRAVEL));
+            }
         }
 
         List<ItemStack> overflow = VacuumAccessoryMeta.giveItemEntitiesToPlayerViaVacuum(plr, event.getItems());
