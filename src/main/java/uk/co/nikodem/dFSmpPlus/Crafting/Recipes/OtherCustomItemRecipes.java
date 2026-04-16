@@ -383,7 +383,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         recipesToAdd.add(
                 new FurnaceRecipeBuilder()
                         .setOutput(DFMaterial.FriedEgg)
-                        .setCookingTime(30*20)
+                        .setCookingTime(10*20)
                         .setExperience(0)
                         .setCategory(CookingBookCategory.FOOD)
                         .setSource(Material.EGG)
@@ -393,7 +393,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         recipesToAdd.add(
                 new SmokerRecipeBuilder()
                         .setOutput(DFMaterial.FriedEgg)
-                        .setCookingTime(15*20)
+                        .setCookingTime(5*20)
                         .setExperience(0)
                         .setCategory(CookingBookCategory.FOOD)
                         .setSource(Material.EGG)
