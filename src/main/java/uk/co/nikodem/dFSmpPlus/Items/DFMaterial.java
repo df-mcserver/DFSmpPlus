@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
+import io.papermc.paper.datacomponent.DataComponentType;
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.Consumable;
 import io.papermc.paper.datacomponent.item.FoodProperties;
@@ -10,6 +11,7 @@ import io.papermc.paper.registry.RegistryKey;
 import io.papermc.paper.registry.keys.ItemTypeKeys;
 import io.papermc.paper.registry.set.RegistrySet;
 import net.kyori.adventure.key.Key;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.NamespacedKey;
@@ -1173,7 +1175,6 @@ public class DFMaterial {
 
         if (maxStack != null) meta.setMaxStackSize(maxStack);
 
-        if (Name != null) meta.displayName(Name);
         if (Enchantments != null && !Enchantments.isEmpty()) {
             for (Map.Entry<Enchantment, Integer> ench : Enchantments.entrySet()) {
                 meta.addEnchant(ench.getKey(), ench.getValue(), true);
@@ -1245,6 +1246,7 @@ public class DFMaterial {
         if (tool != null) item.setData(DataComponentTypes.TOOL, tool);
         if (food != null) item.setData(DataComponentTypes.FOOD, food);
         if (repairable != null) item.setData(DataComponentTypes.REPAIRABLE, repairable);
+        if (Name != null) item.setData(DataComponentTypes.ITEM_NAME, Name);
 
         if (this.hasMeta()) {
             for (DFMaterialMeta createdmeta : this.getMeta()) {
