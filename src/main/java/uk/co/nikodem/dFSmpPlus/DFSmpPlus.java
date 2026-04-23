@@ -201,6 +201,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new PlayerDeathEvent(),
                     new PlayerDropItemEvent(),
                     new PlayerInteractAtEntityEvent(),
+                    new PlayerItemFrameChangeEvent(),
                     new PlayerInteractEntityEvent(),
                     new PlayerInteractEvent(),
                     new PlayerItemConsumeEvent(),
