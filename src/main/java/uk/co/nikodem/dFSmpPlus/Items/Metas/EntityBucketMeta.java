@@ -37,9 +37,9 @@ public class EntityBucketMeta implements DFMaterialMeta {
 
     @Override
     public void ItemUseOnEntity(Player plr, DFMaterial material, ItemStack item, PlayerInteractEntityEvent event) {
-        event.setCancelled(true);
         Entity entityCheck = event.getRightClicked();
         if (!(entityCheck instanceof LivingEntity entity)) return;
+        event.setCancelled(true);
 
         Material egg = EntityUtils.ConvertEntityToEgg(entity.getType());
 
