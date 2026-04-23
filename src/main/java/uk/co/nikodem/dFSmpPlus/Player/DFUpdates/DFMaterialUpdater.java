@@ -1,7 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Player.DFUpdates;
 
 import io.papermc.paper.datacomponent.DataComponentType;
-import net.kyori.adventure.text.minimessage.MiniMessage;
+import io.papermc.paper.datacomponent.DataComponentTypes;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemFlag;
@@ -49,8 +49,6 @@ public class DFMaterialUpdater {
             itemShouldBeReplaced = true;
         }
 
-        if (updatesToPerform.contains(Enums.UpdateType.CUSTOM_NAME)) meta.customName(material.getDisplayName());
-
         if (updatesToPerform.contains(Enums.UpdateType.DATA_COMPONENTS)) operatingItem.copyDataFrom(reference, reference.getDataTypes()::contains);
 
         ItemMeta refMeta = reference.getItemMeta();
@@ -83,7 +81,11 @@ public class DFMaterialUpdater {
             container.set(Keys.dfUpdateId, PersistentDataType.STRING, material.getUpdateId());
         }
 
+        if (updatesToPerform.contains(Enums.UpdateType.CUSTOM_NAME)) if (DFItemUtils.itemHasOldCustomNameFormat(operatingItem)) meta.customName(null);
+
         operatingItem.setItemMeta(meta);
+
+        if (updatesToPerform.contains(Enums.UpdateType.CUSTOM_NAME)) operatingItem.setData(DataComponentTypes.ITEM_NAME, material.getDisplayName());
 
         if (material.hasMeta()) {
             for (DFMaterialMeta materialMeta : material.getMeta()) {
@@ -147,8 +149,8 @@ public class DFMaterialUpdater {
         if ((refMeta.hasItemModel() != meta.hasItemModel()) || (!Objects.equals(refMeta.getItemModel(),meta.getItemModel()))) {
             updatesToPerform.add(Enums.UpdateType.ITEM_MODEL);
         }
-        if (refMeta.hasCustomName() && meta.hasCustomName()) {
-            if (!DFItemUtils.itemIsRenamed(item)) updatesToPerform.add(Enums.UpdateType.CUSTOM_NAME);
+        if (!item.hasData(DataComponentTypes.ITEM_NAME) || (item.getData(DataComponentTypes.ITEM_NAME) != dfMaterial.getDisplayName())) {
+            if ((!DFItemUtils.itemIsRenamed(item)) || DFItemUtils.itemHasOldCustomNameFormat(item)) updatesToPerform.add(Enums.UpdateType.CUSTOM_NAME);
         }
         if (!isSameUpdateId) if (!dfMaterial.toItemStack().getType().equals(item.getType())) {
             updatesToPerform.add(Enums.UpdateType.ITEM_TYPE);

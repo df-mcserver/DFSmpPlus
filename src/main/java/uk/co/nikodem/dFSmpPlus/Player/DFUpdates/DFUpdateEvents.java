@@ -3,10 +3,12 @@ package uk.co.nikodem.dFSmpPlus.Player.DFUpdates;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
@@ -169,6 +171,32 @@ public class DFUpdateEvents {
                 ItemStack replacedItemIfExists = res.getValue();
 
                 if (!replacedItemIfExists.isEmpty()) inv.setItem(i, replacedItemIfExists);
+            }
+        }
+    }
+
+    public static void onChunkLoadEvent(ChunkLoadEvent event) {
+        for (Entity entity : event.getChunk().getEntities()) {
+            if (entity instanceof ItemFrame frame) {
+                ItemStack item = frame.getItem();
+                Map.Entry<Enums.UpdateResult, ItemStack> res = DFMaterialUpdater.doUpdate(item);
+                ItemStack replacedItemIfExists = res.getValue();
+
+                if (!replacedItemIfExists.isEmpty()) frame.setItem(replacedItemIfExists);
+                else frame.setItem(item);
+            }
+
+            if (entity instanceof ArmorStand stand) {
+                List<EquipmentSlot> slots = List.of(EquipmentSlot.HAND, EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET);
+
+                for (EquipmentSlot slot : slots) {
+                    ItemStack item = stand.getItem(slot);
+                    Map.Entry<Enums.UpdateResult, ItemStack> res = DFMaterialUpdater.doUpdate(item);
+                    ItemStack replacedItemIfExists = res.getValue();
+
+                    if (!replacedItemIfExists.isEmpty()) stand.setItem(slot, replacedItemIfExists);
+                    else stand.setItem(slot, item);
+                }
             }
         }
     }

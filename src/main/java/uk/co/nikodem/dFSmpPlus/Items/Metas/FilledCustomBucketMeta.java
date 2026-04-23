@@ -1,5 +1,5 @@
 package uk.co.nikodem.dFSmpPlus.Items.Metas;
-import net.kyori.adventure.text.Component;
+import io.papermc.paper.datacomponent.DataComponentTypes;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketEntityEvent;
@@ -20,11 +20,6 @@ public class FilledCustomBucketMeta implements DFMaterialMeta {
     public void BucketEmptyEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketEmptyEvent event) {
         DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(namedIdPrefix+"bucket");
         if (newMaterial != null) {
-            ItemMeta meta = item.getItemMeta();
-            // make sure that the name is reset, so any entities summoned don't take the name of the item
-            Component customName = meta.customName();
-            if (customName != null) if (customName.equals(material.getDisplayName())) meta.customName(null);
-            item.setItemMeta(meta);
             event.setItemStack(newMaterial.toItemStack());
         }
     }
@@ -39,7 +34,7 @@ public class FilledCustomBucketMeta implements DFMaterialMeta {
             ItemMeta baseMeta = newMaterial.toItemStack().getItemMeta();
 
             currentMeta.setItemModel(baseMeta.getItemModel());
-            if (!currentMeta.hasCustomName()) currentMeta.customName(baseMeta.customName());
+            if (!currentMeta.hasCustomName()) item.setData(DataComponentTypes.ITEM_NAME, newMaterial.getDisplayName());
             String dfupdateid = baseMeta.getPersistentDataContainer().get(Keys.dfUpdateId, PersistentDataType.STRING);
             if (dfupdateid != null) currentMeta.getPersistentDataContainer().set(Keys.dfUpdateId, PersistentDataType.STRING, dfupdateid);
             currentMeta.getPersistentDataContainer().set(Keys.dfmaterial, PersistentDataType.STRING, nameToLookFor);

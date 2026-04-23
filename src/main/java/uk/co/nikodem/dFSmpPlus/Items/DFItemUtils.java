@@ -2,7 +2,6 @@ package uk.co.nikodem.dFSmpPlus.Items;
 
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import io.papermc.paper.datacomponent.item.Tool;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -506,9 +505,16 @@ public class DFItemUtils {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return false;
 
+        return meta.hasCustomName();
+    }
+
+    public static boolean itemHasOldCustomNameFormat(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return false;
+
         if (meta.hasCustomName()) {
             String name = MiniMessage.miniMessage().serialize(Objects.requireNonNull(meta.customName()));
-            return !name.startsWith("<!italic>");
+            return name.startsWith("<!italic>");
         }
 
         return false;
