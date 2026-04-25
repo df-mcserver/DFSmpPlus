@@ -56,6 +56,7 @@ public class ChiselBlockData {
         new Builder(Material.ANCIENT_DEBRIS).setReplacement(Material.AIR).setDrop(DFMaterial.AncientDebrisFragment, 5).setMinimumTool(Enums.ToolLevel.DIAMOND).setAdvancement(NetheriteTech.class).create();
 
         new Builder(Material.BOOKSHELF).setReplacement(Material.CHISELED_BOOKSHELF).setAdvancement(IITNIG.class)
+                // make a bookshelf that points in the right direction, and has 3 random books (3 books are destroyed in the chiseling process)
                 .setBlockModification((plr, block, face ) -> {
                     BlockData blockData = block.getBlockData();
                     if (blockData instanceof ChiseledBookshelf bookshelfData) {
@@ -180,6 +181,7 @@ public class ChiselBlockData {
         new Builder(Material.PURPLE_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.PURPLE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
         new Builder(Material.RED_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.RED_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
         new Builder(Material.YELLOW_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.YELLOW_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.WHITE_WOOL).setReplacement(Material.AIR).setDrop(Material.STRING, 2).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
 
         new Builder(Material.BLACK_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.BLACK_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
         new Builder(Material.BLUE_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.BLUE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();

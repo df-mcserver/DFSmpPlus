@@ -96,6 +96,17 @@ public class VanillaRecipes extends CraftingTemplate {
 
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
+                        .setOutput(Material.DISPENSER)
+                        .setCategory(CraftingBookCategory.BUILDING)
+                        .build(getInfo())
+                        .shape("CCC", "CIC", "CSC")
+                        .setIngredient('C', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
+                        .setIngredient('I', Material.CROSSBOW)
+                        .setIngredient('S', Material.REDSTONE)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
                         .setOutput(Material.LANTERN, 4)
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo())
