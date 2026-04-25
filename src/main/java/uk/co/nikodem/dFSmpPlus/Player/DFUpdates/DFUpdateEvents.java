@@ -2,7 +2,10 @@ package uk.co.nikodem.dFSmpPlus.Player.DFUpdates;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Chunk;
 import org.bukkit.Material;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Shelf;
 import org.bukkit.entity.*;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -11,6 +14,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShelfInventory;
 import org.bukkit.inventory.meta.BundleMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.AccessoryManager;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
@@ -176,7 +180,24 @@ public class DFUpdateEvents {
     }
 
     public static void onChunkLoadEvent(ChunkLoadEvent event) {
-        for (Entity entity : event.getChunk().getEntities()) {
+        Chunk chunk = event.getChunk();
+
+        for (BlockState state : chunk.getTileEntities()) {
+            if (state instanceof Shelf shelf) {
+                ShelfInventory inv = shelf.getInventory();
+
+                for (int i = 0; i < inv.getSize(); i++) {
+                    ItemStack item = inv.getItem(i);
+                    Map.Entry<Enums.UpdateResult, ItemStack> res = DFMaterialUpdater.doUpdate(item);
+                    ItemStack replacedItemIfExists = res.getValue();
+
+                    if (!replacedItemIfExists.isEmpty()) inv.setItem(i, replacedItemIfExists);
+                    else inv.setItem(i, item);
+                }
+            }
+        }
+
+        for (Entity entity : chunk.getEntities()) {
             if (entity instanceof ItemFrame frame) {
                 ItemStack item = frame.getItem();
                 Map.Entry<Enums.UpdateResult, ItemStack> res = DFMaterialUpdater.doUpdate(item);
