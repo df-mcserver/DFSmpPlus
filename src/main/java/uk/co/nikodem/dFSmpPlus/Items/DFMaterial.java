@@ -1040,6 +1040,26 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
+    public static DFMaterial CalciteSpear = new Builder(Material.IRON_SPEAR, "calcite_spear", "39a19b")
+            .setDisplayName("Calcite Spear")
+            .create();
+
+    public static DFMaterial FiridiumSpear = new Builder(Material.IRON_SPEAR, "firidium_spear", "31e9a3")
+            .setDisplayName("Firidium Spear")
+            .addEnchantment(Enchantment.FIRE_ASPECT)
+            .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
+            .create();
+
+    public static DFMaterial FloralSpear = new Builder(Material.IRON_SPEAR, "floral_spear", "e40fdc")
+            .setDisplayName("<light_purple>Floral Spear")
+            .create();
+
+    public static DFMaterial ObsidianSpear = new Builder(Material.NETHERITE_SPEAR, "obsidian_spear", "17fae1")
+            .setDisplayName("Obsidian Spear")
+            .addEnchantment(Enchantment.UNBREAKING, 10)
+            .addMeta(new ObsidianItemMeta(false), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

@@ -112,6 +112,20 @@ public class CalciteRecipes extends CraftingTemplate {
                 .setItem(DFMaterial.CalciteHoe)
                 .setAddition(Material.CALCITE)
                 .assign();
+
+        recipesToAdd.add(
+                new SpearRecipeBuilder()
+                        .setItem(DFMaterial.CalciteSpear)
+                        .setMaterial(Material.CALCITE)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .setGroup("CalciteSpear")
+                        .build(getInfo(), "Right")
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteSpear)
+                .setAddition(Material.CALCITE)
+                .assign();
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {

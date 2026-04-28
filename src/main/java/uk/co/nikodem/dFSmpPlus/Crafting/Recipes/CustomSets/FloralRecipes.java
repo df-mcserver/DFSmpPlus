@@ -151,6 +151,20 @@ public class FloralRecipes extends CraftingTemplate {
                 .setItem(DFMaterial.FloralHoe)
                 .setAddition(DFMaterial.FloralIngot)
                 .assign();
+
+        recipesToAdd.add(
+                new SpearRecipeBuilder()
+                        .setItem(DFMaterial.FloralSpear)
+                        .setMaterial(DFMaterial.FloralIngot)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .setGroup("FloralSpear")
+                        .build(getInfo(), "Right")
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FloralSpear)
+                .setAddition(DFMaterial.FloralIngot)
+                .assign();
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {

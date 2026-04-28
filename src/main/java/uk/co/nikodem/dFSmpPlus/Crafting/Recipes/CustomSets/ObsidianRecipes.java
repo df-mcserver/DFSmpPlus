@@ -108,6 +108,20 @@ public class ObsidianRecipes extends CraftingTemplate {
                 .setItem(DFMaterial.ObsidianHoe)
                 .setAddition(Material.CRYING_OBSIDIAN)
                 .assign();
+
+        recipesToAdd.add(
+                new SmithingTableRecipeBuilder()
+                        .setBase(new CustomItemRepresentation(Material.NETHERITE_SPEAR))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
+                        .setResult(DFMaterial.ObsidianSpear)
+                        .build(getInfo(), "ObsidianSpear")
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.ObsidianSpear)
+                .setAddition(Material.CRYING_OBSIDIAN)
+                .assign();
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {

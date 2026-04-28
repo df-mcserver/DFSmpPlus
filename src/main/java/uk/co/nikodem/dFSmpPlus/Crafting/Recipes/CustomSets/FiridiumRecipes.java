@@ -165,6 +165,21 @@ public class FiridiumRecipes extends CraftingTemplate {
                 .setItem(DFMaterial.FiridiumHoe)
                 .setAddition(DFMaterial.FiridiumIngot)
                 .assign();
+
+        recipesToAdd.add(
+                new SpearRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumSpear)
+                        .setMaterial(DFMaterial.FiridiumIngot)
+                        .setHandle(Material.IRON_BARS)
+                        .setGroup("FiridiumSpear")
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "Firidium")
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FiridiumSpear)
+                .setAddition(DFMaterial.FiridiumIngot)
+                .assign();
     }
 
     public void addArmour(List<Recipe> recipesToAdd) {
