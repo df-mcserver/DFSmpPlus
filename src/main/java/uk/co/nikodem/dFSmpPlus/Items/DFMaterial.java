@@ -1060,6 +1060,30 @@ public class DFMaterial {
             .addMeta(new ObsidianItemMeta(false), new AdvancementOnObtainMeta(ObsidianItem.class))
             .create();
 
+    public static DFMaterial CalciteChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "calcite_chisel", "0dedfe")
+            .setDisplayName("Calcite Chisel")
+            .addMeta(new ChiselMeta(5.5f), new CustomDurabilityMeta(45))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial FloralChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "floral_chisel", "3c5329")
+            .setDisplayName("<light_purple>Floral Chisel")
+            .addMeta(new ChiselMeta(7f), new CustomDurabilityMeta(75))
+            .setMaxStack(1)
+            .create();
+
+    public static DFMaterial CalciteShears = new Builder(Material.SHEARS, "calcite_shears", "fa0dce")
+            .setDisplayName("Calcite Shears")
+            .addMeta(new CustomDurabilityMeta(175))
+            .setTool(createFasterTool(ItemType.SHEARS, 0.95f))
+            .create();
+
+    public static DFMaterial FloralShears = new Builder(Material.SHEARS, "floral_shears", "509e97")
+            .setDisplayName("<light_purple>Floral Shears")
+            .addMeta(new CustomDurabilityMeta(450))
+            .setTool(createFasterTool(ItemType.SHEARS, 1.5f))
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

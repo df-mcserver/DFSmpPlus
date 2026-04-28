@@ -236,7 +236,9 @@ public class DFItemUtils {
             case WOODEN -> {
                 res = isWooden(item)
                         || isStone(item)
+                        || isCalcite(item)
                         || isIron(item)
+                        || isFloral(item)
                         || isFiridium(item)
                         || isCopper(item)
                         || isGolden(item)
@@ -246,7 +248,9 @@ public class DFItemUtils {
             }
             case STONE -> {
                 res = isStone(item)
+                        || isCalcite(item)
                         || isIron(item)
+                        || isFloral(item)
                         || isFiridium(item)
                         || isCopper(item)
                         || isGolden(item)
@@ -256,7 +260,9 @@ public class DFItemUtils {
             }
             case COPPER -> {
                 res = isCopper(item)
+                        || isCalcite(item)
                         || isIron(item)
+                        || isFloral(item)
                         || isFiridium(item)
                         || isCopper(item)
                         || isGolden(item)
@@ -266,6 +272,7 @@ public class DFItemUtils {
             }
             case IRON -> {
                 res = isIron(item)
+                        || isFloral(item)
                         || isFiridium(item)
                         || isCopper(item)
                         || isGolden(item)
@@ -318,6 +325,24 @@ public class DFItemUtils {
                 || item.getType() == Material.IRON_SHOVEL
                 || item.getType() == Material.IRON_HOE
                 || DFMaterial.IronChisel.isSimilar(item)) && !isCopper(item);
+    }
+
+    public static boolean isCalcite(ItemStack item) {
+        return DFMaterial.CalciteSword.isSimilar(item)
+                || DFMaterial.CalciteAxe.isSimilar(item)
+                || DFMaterial.CalcitePickaxe.isSimilar(item)
+                || DFMaterial.CalciteShovel.isSimilar(item)
+                || DFMaterial.CalciteHoe.isSimilar(item)
+                || DFMaterial.CalciteChisel.isSimilar(item);
+    }
+
+    public static boolean isFloral(ItemStack item) {
+        return DFMaterial.FloralSword.isSimilar(item)
+                || DFMaterial.FloralAxe.isSimilar(item)
+                || DFMaterial.FloralPickaxe.isSimilar(item)
+                || DFMaterial.FloralShovel.isSimilar(item)
+                || DFMaterial.FloralHoe.isSimilar(item)
+                || DFMaterial.FloralChisel.isSimilar(item);
     }
 
     public static boolean isGolden(ItemStack item) {

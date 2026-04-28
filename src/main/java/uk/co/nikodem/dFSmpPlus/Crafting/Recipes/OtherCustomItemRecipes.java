@@ -530,6 +530,32 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setResult(DFMaterial.ObsidianShears)
                         .build(getInfo(), "ObsidianShears")
         );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.CalciteShears)
+                        .build(getInfo(), "calciteshears")
+                        .shape(" X", "X ")
+                        .setIngredient('X', Material.CALCITE)
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteShears)
+                .setAddition(Material.CALCITE)
+                .assign();
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.FloralShears)
+                        .build(getInfo(), "floralshears")
+                        .shape(" X", "X ")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FloralIngot.toItemStack()))
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FloralShears)
+                .setAddition(DFMaterial.FloralIngot)
+                .assign();
     }
 
     @Override

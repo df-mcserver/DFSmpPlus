@@ -10,6 +10,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardHel
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Armour.StandardLeggingsRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairAnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Tools.*;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 

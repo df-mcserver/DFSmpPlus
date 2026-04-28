@@ -153,6 +153,32 @@ public class ChiselRecipes extends CraftingTemplate {
                 .setItem(DFMaterial.ObsidianChisel)
                 .setAddition(Material.CRYING_OBSIDIAN)
                 .assign();
+
+        recipesToAdd.add(
+                new DirectConversionRecipeBuilder()
+                        .setSource(Material.CALCITE)
+                        .setOutput(DFMaterial.CalciteChisel)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "CalciteChisel")
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.CalciteChisel)
+                .setAddition(Material.CALCITE)
+                .assign();
+
+        recipesToAdd.add(
+                new DirectConversionRecipeBuilder()
+                        .setSource(DFMaterial.FloralIngot)
+                        .setOutput(DFMaterial.FloralChisel)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "FloralChisel")
+        );
+
+        new ItemRepairAnvilRecipeBuilder()
+                .setItem(DFMaterial.FloralChisel)
+                .setAddition(DFMaterial.FloralIngot)
+                .assign();
     }
 
     @Override
