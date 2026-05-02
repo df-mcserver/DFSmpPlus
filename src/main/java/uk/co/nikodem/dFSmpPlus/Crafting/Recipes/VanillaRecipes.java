@@ -517,6 +517,7 @@ public class VanillaRecipes extends CraftingTemplate {
                 Material.TUFF,
                 // these don't make sense but it's for qol
                 Material.NETHERRACK,
+                Material.BLACKSTONE,
                 Material.END_STONE
         );
 
