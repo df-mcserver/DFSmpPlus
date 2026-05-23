@@ -19,6 +19,12 @@ public class AutoSmeltable {
             entry(Material.COBBLESTONE_SLAB, Material.STONE_SLAB),
             entry(Material.COBBLESTONE_STAIRS, Material.STONE_STAIRS),
 
+            entry(Material.SANDSTONE, Material.SMOOTH_SANDSTONE),
+            entry(Material.SANDSTONE_SLAB, Material.SMOOTH_SANDSTONE_SLAB),
+
+            entry(Material.RED_SANDSTONE, Material.SMOOTH_RED_SANDSTONE),
+            entry(Material.RED_SANDSTONE_SLAB, Material.SMOOTH_RED_SANDSTONE_SLAB),
+
             entry(Material.STONE, Material.SMOOTH_STONE),
             entry(Material.STONE_SLAB, Material.SMOOTH_STONE_SLAB),
 
