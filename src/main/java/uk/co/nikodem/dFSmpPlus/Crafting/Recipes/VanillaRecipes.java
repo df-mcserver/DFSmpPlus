@@ -37,6 +37,7 @@ public class VanillaRecipes extends CraftingTemplate {
         doVanillaRecipeChanges(recipesToAdd);
         doSlimeblockChange(recipesToAdd);
         doPoppedChorusRecipeReadditions(recipesToAdd);
+        doWoodChanges(recipesToAdd);
 
         addLooseStoneRecipes(recipesToAdd);
 
@@ -48,6 +49,58 @@ public class VanillaRecipes extends CraftingTemplate {
         addCakeRecipe(recipesToAdd);
 
         return recipesToAdd;
+    }
+
+    private void doWoodChanges(List<Recipe> recipesToAdd) {
+        Map<Material, Material> allLogsToWood = Map.ofEntries(
+                Map.entry(Material.OAK_LOG, Material.OAK_WOOD),
+                Map.entry(Material.ACACIA_LOG, Material.ACACIA_WOOD),
+                Map.entry(Material.BIRCH_LOG, Material.BIRCH_WOOD),
+                Map.entry(Material.CHERRY_LOG, Material.CHERRY_WOOD),
+                Map.entry(Material.DARK_OAK_LOG, Material.DARK_OAK_WOOD),
+                Map.entry(Material.JUNGLE_LOG, Material.JUNGLE_WOOD),
+                Map.entry(Material.MANGROVE_LOG, Material.MANGROVE_WOOD),
+                Map.entry(Material.SPRUCE_LOG, Material.SPRUCE_WOOD),
+                Map.entry(Material.PALE_OAK_LOG, Material.PALE_OAK_WOOD),
+                Map.entry(Material.WARPED_STEM, Material.WARPED_HYPHAE),
+                Map.entry(Material.CRIMSON_STEM, Material.CRIMSON_HYPHAE),
+
+                Map.entry(Material.STRIPPED_OAK_LOG, Material.STRIPPED_OAK_WOOD),
+                Map.entry(Material.STRIPPED_ACACIA_LOG, Material.STRIPPED_ACACIA_WOOD),
+                Map.entry(Material.STRIPPED_BIRCH_LOG, Material.STRIPPED_BIRCH_WOOD),
+                Map.entry(Material.STRIPPED_CHERRY_LOG, Material.STRIPPED_CHERRY_WOOD),
+                Map.entry(Material.STRIPPED_DARK_OAK_LOG, Material.STRIPPED_DARK_OAK_WOOD),
+                Map.entry(Material.STRIPPED_JUNGLE_LOG, Material.STRIPPED_JUNGLE_WOOD),
+                Map.entry(Material.STRIPPED_MANGROVE_LOG, Material.STRIPPED_MANGROVE_WOOD),
+                Map.entry(Material.STRIPPED_SPRUCE_LOG, Material.STRIPPED_SPRUCE_WOOD),
+                Map.entry(Material.STRIPPED_PALE_OAK_LOG, Material.STRIPPED_PALE_OAK_WOOD),
+                Map.entry(Material.STRIPPED_WARPED_STEM, Material.STRIPPED_WARPED_HYPHAE),
+                Map.entry(Material.STRIPPED_CRIMSON_STEM, Material.STRIPPED_CRIMSON_HYPHAE)
+        );
+
+        for (Map.Entry<Material, Material> entry : allLogsToWood.entrySet()) {
+            RecipeRemover.addQuery( // custom one is implemented
+                    new RecipeWithResultRemoval()
+                            .setResult(entry.getValue())
+                            .onlyUseMinecraftNamespace()
+            );
+
+            recipesToAdd.add(
+                    new ShapedRecipeBuilder()
+                            .setOutput(entry.getValue(), 4)
+                            .build(getInfo(), entry.getKey().name()+"-efficient")
+                            .shape("XX", "XX")
+                            .setIngredient('X', entry.getKey())
+            );
+
+            recipesToAdd.add(
+                    new ShapedRecipeBuilder()
+                            .setOutput(entry.getKey(), 4)
+                            .build(getInfo(), entry.getValue().name()+"-efficient")
+                            .shape("XX", "XX")
+                            .setIngredient('X', entry.getValue())
+            );
+        }
     }
 
     private void doPoppedChorusRecipeReadditions(List<Recipe> recipesToAdd) {
