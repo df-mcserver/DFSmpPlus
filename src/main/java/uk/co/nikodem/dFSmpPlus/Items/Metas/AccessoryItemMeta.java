@@ -5,17 +5,22 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
+import uk.co.nikodem.dFSmpPlus.Accessories.Player.AccessoryUI;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
+import uk.co.nikodem.dFSmpPlus.Player.BedrockPlayers;
 
-import java.util.List;
+import java.util.*;
 
 public class AccessoryItemMeta implements DFMaterialMeta {
     public final AccessoryInformation information;
+
+    public static final HashMap<UUID, Long> debounce = new HashMap<>();
 
     public AccessoryItemMeta(AccessoryInformation information) {
         this.information = information;
@@ -23,8 +28,23 @@ public class AccessoryItemMeta implements DFMaterialMeta {
 
     @Override
     public void ItemUse(Player plr, DFMaterial material, ItemStack item, PlayerInteractEvent event) {
-        if (event.getAction().isRightClick()) {
-            plr.sendActionBar(MiniMessage.miniMessage().deserialize("<grey>Equip this accessory with the /a command!"));
+        if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+            boolean opensMenu = false;
+
+            long current = new Date().getTime();
+
+            Long lastTimestamp = debounce.get(plr.getUniqueId());
+            if (lastTimestamp != null) {
+                opensMenu = current < lastTimestamp + (500);
+            }
+
+            debounce.remove(plr.getUniqueId());
+            debounce.put(plr.getUniqueId(), current);
+
+            if (opensMenu) {
+                AccessoryUI.open(plr);
+                plr.sendActionBar(MiniMessage.miniMessage().deserialize("<grey>Opened accessory menu!"));
+            } else plr.sendActionBar(MiniMessage.miniMessage().deserialize("<grey>"+ (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr)) ? "Triple" : "Double") +" click or use /a to open the accessory menu!"));
         }
     };
 
