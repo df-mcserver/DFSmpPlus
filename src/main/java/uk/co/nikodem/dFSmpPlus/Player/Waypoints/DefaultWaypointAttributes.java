@@ -21,7 +21,8 @@ public class DefaultWaypointAttributes {
 
     public static void updateLocatorBar(Player plr) {
         // not show locator bar if they're on bedrock or not yet checked
-        updateLocatorBar(plr, !BedrockPlayers.hasChecked(plr) || Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr)));
+        updateLocatorBar(plr, false);
+//        updateLocatorBar(plr, !BedrockPlayers.hasChecked(plr) || Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr)));
     }
 
     public static void updateLocatorBar(Player plr, boolean isBedrock) {

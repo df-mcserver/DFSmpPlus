@@ -23,7 +23,7 @@ public class LocatorBarCommand implements DFCommand {
                 .then(Commands.argument("enabled", BoolArgumentType.bool()).executes(ctx -> {
                             Player plr = (Player) ctx.getSource().getExecutor();
                             if (plr == null) return 0;
-                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
+//                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
                             final Boolean toggle = ctx.getArgument("enabled", Boolean.class);
                             if (toggle == null) return 0;
 
@@ -40,7 +40,7 @@ public class LocatorBarCommand implements DFCommand {
                 .executes(ctx -> {
                     Player plr = (Player) ctx.getSource().getExecutor();
                     if (plr == null) return 0;
-                    if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
+//                    if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
                     boolean res = getPlayerLocatorBar(plr);
 
