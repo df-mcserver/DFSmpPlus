@@ -26,29 +26,23 @@ public class SpawnEggInBucketMeta implements DFMaterialMeta {
         // incredibly hacky, because there's pretty much no other way to do this
 
         if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-            if (plr.hasCooldown(item)) return;
             if (event.getHand() == null) return;
 
             Boolean result = DFItemUtils.shouldBePlaced(plr, event.getClickedBlock());
-            if (result == null) {
+            if (result == null || plr.hasCooldown(item) || result.equals(Boolean.FALSE) || event.useItemInHand().equals(Event.Result.DENY)) {
                 event.setCancelled(true);
                 return;
             }
-            if (result.equals(Boolean.FALSE)) return;
-            if (event.useItemInHand().equals(Event.Result.DENY)) return;
+            plr.setCooldown(item, 10);
             ItemMeta meta = item.getItemMeta();
             String bucketUsedName = meta.getPersistentDataContainer().get(Keys.entityBucketUsed, PersistentDataType.STRING);
             if (bucketUsedName == null) return;
 
             DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(bucketUsedName);
             if (newMaterial != null) {
-                EquipmentSlot slot = event.getHand();
                 Bukkit.getScheduler().runTaskLater(DFSmpPlus.getPlugin(), () -> {
-                    if (item.getAmount() == 1) plr.getInventory().setItem(slot, newMaterial.toItemStack());
-                    if (plr.getInventory().firstEmpty() == -1) plr.dropItem(newMaterial.toItemStack());
-                    else plr.getInventory().addItem(newMaterial.toItemStack());
+                    plr.getInventory().addItem(newMaterial.toItemStack());
                 }, 1L);
-                return;
             }
         }
     };

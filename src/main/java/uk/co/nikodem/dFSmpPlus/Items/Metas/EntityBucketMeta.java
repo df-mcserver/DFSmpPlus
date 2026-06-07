@@ -138,7 +138,7 @@ public class EntityBucketMeta implements DFMaterialMeta {
             meta.lore(lores);
             eggItem.setItemMeta(meta);
 
-            plr.setCooldown(eggItem, 20);
+            plr.setCooldown(eggItem, 10);
 
             if (item.getAmount() == 1 && plr.getGameMode() != GameMode.CREATIVE) {
                 plr.getInventory().setItemInMainHand(eggItem);
