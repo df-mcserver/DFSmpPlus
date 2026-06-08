@@ -6,7 +6,6 @@ import org.bukkit.inventory.Recipe;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ControlledShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairCombineRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
@@ -19,9 +18,9 @@ public class HiddenRepairRecipes extends CraftingTemplate {
 
         doVampireSwordRemoval(recipesToAdd);
         doChiselRecipes(recipesToAdd);
+        doShearsRecipes(recipesToAdd);
 
         doCalciteRecipes(recipesToAdd);
-        doCopperRecipes(recipesToAdd);
         doFiridiumRecipes(recipesToAdd);
         doObsidianRecipes(recipesToAdd);
         doSculkRecipes(recipesToAdd);
@@ -39,6 +38,49 @@ public class HiddenRepairRecipes extends CraftingTemplate {
                         .setResult(Material.STICK)
                         .setTransformer((data) -> ItemStack.of(Material.AIR))
                         .build(getInfo(), "VampSwordCombine")
+        );
+    }
+
+    public void doShearsRecipes(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CopperShears)
+                        .build(getInfo(), "CopperShears")
+        );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FiridiumShears)
+                        .build(getInfo(), "FiridiumShears")
+        );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.GoldShears)
+                        .build(getInfo(), "GoldShears")
+        );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.DiamondShears)
+                        .build(getInfo(), "DiamondShears")
+        );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.NetheriteShears)
+                        .build(getInfo(), "NetheriteShears")
+        );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.ObsidianShears)
+                        .build(getInfo(), "ObsidianShears")
+        );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FloralShears)
+                        .build(getInfo(), "FloralShears")
+        );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalciteShears)
+                        .build(getInfo(), "CalciteShears")
         );
     }
 
@@ -88,6 +130,16 @@ public class HiddenRepairRecipes extends CraftingTemplate {
                         .setItem(DFMaterial.ObsidianChisel)
                         .build(getInfo(), "ObsidianChisel")
         );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.FloralChisel)
+                        .build(getInfo(), "FloralChisel")
+        );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.CalciteChisel)
+                        .build(getInfo(), "CalciteChisel")
+        );
     }
 
     public void doCalciteRecipes(List<Recipe> recipesToAdd) {
@@ -135,54 +187,6 @@ public class HiddenRepairRecipes extends CraftingTemplate {
                 new ItemRepairCombineRecipeBuilder()
                         .setItem(DFMaterial.CalciteBoots)
                         .build(getInfo(), "CalciteBoots")
-        );
-    }
-
-    public void doCopperRecipes(List<Recipe> recipesToAdd) {
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(Material.COPPER_SWORD)
-                        .build(getInfo(), "CopperSword")
-        );
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(Material.COPPER_AXE)
-                        .build(getInfo(), "CopperAxe")
-        );
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(Material.COPPER_PICKAXE)
-                        .build(getInfo(), "CopperPickaxe")
-        );
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(Material.COPPER_SHOVEL)
-                        .build(getInfo(), "CopperShovel")
-        );
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(Material.COPPER_HOE)
-                        .build(getInfo(), "CopperHoe")
-        );
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(Material.COPPER_HELMET)
-                        .build(getInfo(), "CopperHelmet")
-        );
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(Material.COPPER_CHESTPLATE)
-                        .build(getInfo(), "CopperChestplate")
-        );
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(Material.COPPER_LEGGINGS)
-                        .build(getInfo(), "CopperLeggings")
-        );
-        recipesToAdd.add(
-                new ItemRepairCombineRecipeBuilder()
-                        .setItem(Material.COPPER_BOOTS)
-                        .build(getInfo(), "CopperBoots")
         );
     }
 
