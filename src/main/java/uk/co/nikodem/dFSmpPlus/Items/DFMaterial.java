@@ -1084,6 +1084,22 @@ public class DFMaterial {
             .setTool(createFasterTool(ItemType.SHEARS, 1.5f))
             .create();
 
+    public static DFMaterial DiamondTintedElytra = new Builder(Material.ELYTRA, "diamond_tinted_elytra", "b15705")
+            .setDisplayName("<light_purple>Diamond Tinted Elytra")
+            .addMeta(new CustomDurabilityMeta(500))
+            .create();
+
+    public static DFMaterial NetheriteTintedElytra = new Builder(Material.ELYTRA, "netherite_tinted_elytra", "8d4966")
+            .setDisplayName("<light_purple>Netherite Tinted Elytra")
+            .addMeta(new CustomDurabilityMeta(550))
+            .create();
+
+    public static DFMaterial ObsidianTintedElytra = new Builder(Material.ELYTRA, "obsidian_tinted_elytra", "bed751")
+            .setDisplayName("<light_purple>Obsidian Tinted Elytra")
+            .addMeta(new CustomDurabilityMeta(575), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .addEnchantment(Enchantment.UNBREAKING, 10)
+            .create();
+
     private final String namedId;
     private final TextComponent displayName;
     private final Material base;

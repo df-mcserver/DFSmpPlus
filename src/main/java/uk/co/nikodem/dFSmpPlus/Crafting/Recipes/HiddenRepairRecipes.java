@@ -19,6 +19,7 @@ public class HiddenRepairRecipes extends CraftingTemplate {
         doVampireSwordRemoval(recipesToAdd);
         doChiselRecipes(recipesToAdd);
         doShearsRecipes(recipesToAdd);
+        doElytraRecipes(recipesToAdd);
 
         doCalciteRecipes(recipesToAdd);
         doFiridiumRecipes(recipesToAdd);
@@ -38,6 +39,24 @@ public class HiddenRepairRecipes extends CraftingTemplate {
                         .setResult(Material.STICK)
                         .setTransformer((data) -> ItemStack.of(Material.AIR))
                         .build(getInfo(), "VampSwordCombine")
+        );
+    }
+
+    public void doElytraRecipes(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.DiamondTintedElytra)
+                        .build(getInfo(), "DiamondTintedElytra")
+        );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.NetheriteTintedElytra)
+                        .build(getInfo(), "NetheriteTintedElytra")
+        );
+        recipesToAdd.add(
+                new ItemRepairCombineRecipeBuilder()
+                        .setItem(DFMaterial.ObsidianTintedElytra)
+                        .build(getInfo(), "ObsidianTintedElytra")
         );
     }
 

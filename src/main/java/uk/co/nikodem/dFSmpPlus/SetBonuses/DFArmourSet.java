@@ -68,9 +68,27 @@ public class DFArmourSet {
             .addMeta(new ConduitMeta())
             .create();
 
+    public static final DFArmourSet Native_Diamond_Elytra = new Builder("DiamondElytra")
+            .setHelmet(Material.DIAMOND_HELMET)
+            .setChestplate(DFMaterial.DiamondTintedElytra)
+            .setLeggings(Material.DIAMOND_LEGGINGS)
+            .setBoots(Material.DIAMOND_BOOTS)
+            .setSetBonus("Gives you the power of the conduits")
+            .addMeta(new ConduitMeta())
+            .create();
+
     public static final DFArmourSet Native_Netherite = new Builder("Netherite")
             .setHelmet(Material.NETHERITE_HELMET)
             .setChestplate(Material.NETHERITE_CHESTPLATE)
+            .setLeggings(Material.NETHERITE_LEGGINGS)
+            .setBoots(Material.NETHERITE_BOOTS)
+            .setSetBonus("Makes you immune to fire")
+            .addMeta(new FireImmunityMeta())
+            .create();
+
+    public static final DFArmourSet Native_Netherite_Elytra = new Builder("NetheriteElytra")
+            .setHelmet(Material.NETHERITE_HELMET)
+            .setChestplate(DFMaterial.NetheriteTintedElytra)
             .setLeggings(Material.NETHERITE_LEGGINGS)
             .setBoots(Material.NETHERITE_BOOTS)
             .setSetBonus("Makes you immune to fire")
@@ -121,6 +139,16 @@ public class DFArmourSet {
             .setBase(DFArmourSet.Native_Netherite)
             .setHelmet(DFMaterial.ObsidianHelmet)
             .setChestplate(DFMaterial.ObsidianChestplate)
+            .setLeggings(DFMaterial.ObsidianLeggings)
+            .setBoots(DFMaterial.ObsidianBoots)
+            .setSetBonus("Makes you immune to fire")
+            .addMeta(new ObsidianMeta(), new FireImmunityMeta())
+            .create();
+
+    public static final DFArmourSet Obsidian_Elytra = new Builder("ObsidianElytra")
+            .setBase(DFArmourSet.Native_Netherite)
+            .setHelmet(DFMaterial.ObsidianHelmet)
+            .setChestplate(DFMaterial.ObsidianTintedElytra)
             .setLeggings(DFMaterial.ObsidianLeggings)
             .setBoots(DFMaterial.ObsidianBoots)
             .setSetBonus("Makes you immune to fire")

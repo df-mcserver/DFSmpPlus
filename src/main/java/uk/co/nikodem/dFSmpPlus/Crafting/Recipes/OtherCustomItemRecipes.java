@@ -32,6 +32,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         addCustomBuckets(recipesToAdd);
         addEmptyingEntityBuckets(recipesToAdd);
         addAncientDebrisFragmentRecipe(recipesToAdd);
+        addElytras(recipesToAdd);
         addShears(recipesToAdd);
 
         return recipesToAdd;
@@ -447,6 +448,35 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setCategory(CookingBookCategory.BLOCKS)
                         .setSource(DFMaterial.AncientDebrisChunk)
                         .build(getInfo(), "chunktoscrap-blasting")
+        );
+    }
+
+    public void addElytras(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.DiamondTintedElytra)
+                        .build(getInfo(), "DiamondTintedElytra")
+                        .shape("DXD")
+                        .setIngredient('D', Material.DIAMOND)
+                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.ELYTRA)))
+        );
+
+        recipesToAdd.add(
+                new SmithingTableRecipeBuilder()
+                        .setBase(new CustomItemRepresentation(DFMaterial.DiamondTintedElytra))
+                        .setTemplate(new CustomItemRepresentation(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
+                        .setAddition(new CustomItemRepresentation(Material.NETHERITE_INGOT))
+                        .setResult(DFMaterial.NetheriteTintedElytra)
+                        .build(getInfo(), "NetheriteTintedElytra")
+        );
+
+        recipesToAdd.add(
+                new SmithingTableRecipeBuilder()
+                        .setBase(new CustomItemRepresentation(DFMaterial.NetheriteTintedElytra))
+                        .setTemplate(new CustomItemRepresentation(DFMaterial.ObsidianUpgradeTemplate))
+                        .setAddition(new CustomItemRepresentation(Material.CRYING_OBSIDIAN))
+                        .setResult(DFMaterial.ObsidianTintedElytra)
+                        .build(getInfo(), "ObsidianTintedElytra")
         );
     }
 
