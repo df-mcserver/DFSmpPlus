@@ -5,8 +5,10 @@ import org.bukkit.Tag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.recipe.CookingBookCategory;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
+import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.*;
@@ -453,12 +455,36 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
 
     public void addElytras(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
-                new ShapedRecipeBuilder()
-                        .setOutput(DFMaterial.DiamondTintedElytra)
+                new ControlledShapelessRecipeBuilder()
+                        .addIngredient(Material.ELYTRA)
+                        .addIngredient(Material.DIAMOND)
+                        .addIngredient(Material.DIAMOND)
+                        .setResult(DFMaterial.DiamondTintedElytra)
+                        .setTransformer((data) -> {
+                            ItemStack[] items = data.getValue();
+
+                            ItemStack elytra = null;
+                            for (ItemStack item : items) {
+                                if (item == null) continue;
+                                if (item.getType().equals(Material.ELYTRA)) {
+                                    if (item.getPersistentDataContainer().has(Keys.dfmaterial)) continue;
+                                    elytra = item;
+                                    break;
+                                }
+                            }
+
+                            if (elytra == null) return ItemStack.of(Material.AIR);
+                            Damageable elytraMeta = (Damageable) elytra.getItemMeta();
+
+                            ItemStack result = DFMaterial.DiamondTintedElytra.toItemStack();
+                            Damageable resultMeta = (Damageable) result.getItemMeta();
+                            resultMeta.setDamage(elytraMeta.getDamage());
+                            result.setItemMeta(resultMeta);
+                            result.addEnchantments(elytra.getEnchantments());
+
+                            return result;
+                        })
                         .build(getInfo(), "DiamondTintedElytra")
-                        .shape("DXD")
-                        .setIngredient('D', Material.DIAMOND)
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.ELYTRA)))
         );
 
         recipesToAdd.add(

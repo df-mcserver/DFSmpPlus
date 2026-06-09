@@ -21,9 +21,20 @@ public class OnCraft {
     }
 
     public static void OnCraft(ItemStack item, Player plr, @Nullable CraftItemEvent e) {
+        if (item != null) {
+            DFItemUtils.addUUIDIfMarked(item);
+
+            DFMaterial material = DFItemUtils.getDFMaterial(item);
+            if (material == null) return;
+
+            if (material.hasMeta()) {
+                for (DFMaterialMeta meta : material.getMeta()) {
+                    meta.ItemCrafted(material, item, plr, e);
+                }
+            }
+        }
+
         if (e == null) return;
-        if (item == null) return;
-        DFItemUtils.addUUIDIfMarked(item);
 
         // hopefully this doesn't cause any issues later on down the line
         ItemStack[] newMatrix = new ItemStack[e.getInventory().getMatrix().length];
@@ -40,14 +51,5 @@ public class OnCraft {
         Bukkit.getScheduler().runTaskLater(DFSmpPlus.getPlugin(), () -> {
             e.getInventory().setMatrix(newMatrix);
         }, 1L);
-
-        DFMaterial material = DFItemUtils.getDFMaterial(item);
-        if (material == null) return;
-
-        if (material.hasMeta()) {
-            for (DFMaterialMeta meta : material.getMeta()) {
-                meta.ItemCrafted(material, item, plr, e);
-            }
-        }
     }
 }
