@@ -3,7 +3,7 @@ package uk.co.nikodem.dFSmpPlus.SetBonuses.Metas;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
-import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.ObsidianArmour;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Armour.ObsidianArmour;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSet;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetMeta;
 

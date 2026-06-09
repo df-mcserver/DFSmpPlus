@@ -1,8 +1,7 @@
-package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools;
+package uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Armour;
 
 import com.fren_gor.ultimateAdvancementAPI.advancement.Advancement;
 import com.fren_gor.ultimateAdvancementAPI.advancement.BaseAdvancement;
-import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplay;
 import com.fren_gor.ultimateAdvancementAPI.advancement.display.AdvancementDisplayBuilder;
 import com.fren_gor.ultimateAdvancementAPI.util.AdvancementKey;
 import org.jetbrains.annotations.NotNull;

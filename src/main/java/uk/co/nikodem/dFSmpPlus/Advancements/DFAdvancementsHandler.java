@@ -12,6 +12,7 @@ import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Accessory.EquipAllAccessories;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Accessory.ITinkeredItOut;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Armour.IndecisiveWardrobe;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Armour.MatchingAttire;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Armour.ObsidianArmour;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.Bluebellsar;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BluebellsarRun;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BulliedByBluebellsar;
