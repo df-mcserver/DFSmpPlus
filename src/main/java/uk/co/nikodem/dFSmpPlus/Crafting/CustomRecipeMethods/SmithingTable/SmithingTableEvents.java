@@ -89,7 +89,6 @@ public class SmithingTableEvents {
                     event.setResult(result);
                 } else {
                     // remove result if the recipe should work, but fails to do so
-
                     event.setResult(new ItemStack(Material.AIR));
                 }
             }
@@ -97,14 +96,14 @@ public class SmithingTableEvents {
     }
 
     public static void onSmithingTableCraft(InventoryClickEvent event) {
+        HumanEntity plr = event.getWhoClicked();
+
         Inventory inv = event.getClickedInventory();
         if (inv == null) return;
         if (inv.getType() != InventoryType.SMITHING) return;
 
         SmithingInventory inventory = (SmithingInventory) inv;
         if (event.getRawSlot() != SmithingTable_Result) return;
-
-        HumanEntity plr = event.getWhoClicked();
 
         ItemStack item = inventory.getResult();
 

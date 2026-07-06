@@ -1,16 +1,19 @@
-package uk.co.nikodem.dFSmpPlus.Entities;
+package uk.co.nikodem.dFSmpPlus.Player;
 
+import com.destroystokyo.paper.MaterialTags;
 import io.papermc.paper.event.player.PlayerItemFrameChangeEvent;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-import org.bukkit.block.Container;
+import io.papermc.paper.event.player.PlayerOpenSignEvent;
+import org.bukkit.FeatureFlag;
+import org.bukkit.block.*;
+import org.bukkit.block.data.Directional;
+import org.bukkit.block.data.type.WallSign;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-public class ItemFrameRightClickOnChests {
+public class RightClickPassthrough {
     public static void onInteractWithEntity(PlayerItemFrameChangeEvent event) {
         Player plr = event.getPlayer();
         ItemFrame frame = event.getItemFrame();
@@ -24,6 +27,22 @@ public class ItemFrameRightClickOnChests {
         Block block = direction.add(frame.getLocation().toVector()).toLocation(frame.getWorld()).getBlock();
 
         if (block.getState() instanceof Container container) {
+            Inventory inv = container.getInventory();
+            plr.openInventory(inv);
+            event.setCancelled(true);
+        }
+    }
+
+    public static void onSignOpen(PlayerOpenSignEvent event) {
+        Player plr = event.getPlayer();
+        Sign sign = event.getSign();
+        Directional directional = (Directional) sign.getBlockData();
+
+        if (plr.isSneaking() || !sign.isPlaced()) return;
+        BlockFace facing = directional.getFacing();
+        Block restingBlock = facing.getOppositeFace().getDirection().add(event.getSign().getLocation().toVector()).toLocation(sign.getWorld()).getBlock();
+
+        if (restingBlock.getState() instanceof Container container) {
             Inventory inv = container.getInventory();
             plr.openInventory(inv);
             event.setCancelled(true);
