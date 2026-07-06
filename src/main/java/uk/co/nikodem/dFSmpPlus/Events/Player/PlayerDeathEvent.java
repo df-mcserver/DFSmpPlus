@@ -11,6 +11,7 @@ import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BulliedByBluebells
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatEvents;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.WorldRecordAdvancementHandler;
+import uk.co.nikodem.dFSmpPlus.SetBonuses.SetBonusText;
 
 public class PlayerDeathEvent implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
@@ -18,6 +19,7 @@ public class PlayerDeathEvent implements Listener {
         CombatEvents.onDeath(event);
         AccessoryEvents.UserKilledPlayer(event);
         WorldRecordAdvancementHandler.onDeath(event);
+        SetBonusText.onDeath(event);
 
         if (event.getPlayer().getPersistentDataContainer().has(Keys.comicallyLarge)) {
             String blockName = event.getPlayer().getPersistentDataContainer().get(Keys.comicallyLarge, PersistentDataType.STRING);

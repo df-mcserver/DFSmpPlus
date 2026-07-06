@@ -8,6 +8,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockDispenseArmorEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -179,5 +180,14 @@ public class SetBonusText {
             if (set.itemInSet(item)) return set.getSetBonusText();
         }
         return null;
+    }
+
+    public static void onDeath(PlayerDeathEvent event) {
+        Player plr = event.getEntity();
+
+        for (ItemStack item : plr.getInventory().getContents()) {
+            if (item == null) return;
+            removeSetBonusText(item);
+        }
     }
 }
