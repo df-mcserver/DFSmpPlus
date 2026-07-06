@@ -221,7 +221,6 @@ public class DFMaterial {
             .setDisplayName("Obsidian Sword")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(false), new AdvancementOnObtainMeta(ObsidianItem.class))
-            .setTool(createFasterTool(ItemType.NETHERITE_SWORD, 1.1f))
             .create();
 
     public static DFMaterial ObsidianAxe = new Builder(Material.NETHERITE_AXE, "obsidian_axe", "0983d1")
