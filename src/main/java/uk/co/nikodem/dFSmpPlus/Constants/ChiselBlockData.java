@@ -280,7 +280,7 @@ public class ChiselBlockData {
     }
 
     public ItemStack getDrop() {
-        return this.drop;
+        return this.drop.clone();
     }
 
     public float getSpeedMultiplier() {
