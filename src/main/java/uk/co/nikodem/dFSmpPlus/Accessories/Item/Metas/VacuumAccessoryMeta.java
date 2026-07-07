@@ -95,15 +95,16 @@ public class VacuumAccessoryMeta implements AccessoryMeta {
                 boolean hasVacuumedItem = false;
                 PlayerInventory inv = plr.getInventory();
                 if (drop.isSimilar(inv.getItemInOffHand())) {
+                    int stackSize = drop.getMaxStackSize();
                     int totalAmount = drop.getAmount() + inv.getItemInOffHand().getAmount();
-                    if (totalAmount <= 64) {
+                    if (totalAmount <= stackSize) {
                         inv.getItemInOffHand().setAmount(totalAmount);
                         hasVacuumedItem = true;
                         continue;
                     } else {
                         hasVacuumedItem = true;
-                        inv.getItemInOffHand().setAmount(64);
-                        drop.setAmount(totalAmount - 64);
+                        inv.getItemInOffHand().setAmount(stackSize);
+                        drop.setAmount(totalAmount - stackSize);
                     }
                 }
                 Map<Integer, ItemStack> overflow = inv.addItem(drop);
