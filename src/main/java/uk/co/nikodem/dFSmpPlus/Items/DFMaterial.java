@@ -1,17 +1,12 @@
 package uk.co.nikodem.dFSmpPlus.Items;
 
-import io.papermc.paper.datacomponent.DataComponentType;
 import io.papermc.paper.datacomponent.DataComponentTypes;
-import io.papermc.paper.datacomponent.item.Consumable;
-import io.papermc.paper.datacomponent.item.FoodProperties;
-import io.papermc.paper.datacomponent.item.Repairable;
-import io.papermc.paper.datacomponent.item.Tool;
+import io.papermc.paper.datacomponent.item.*;
 import io.papermc.paper.datacomponent.item.consumable.ItemUseAnimation;
 import io.papermc.paper.registry.RegistryKey;
 import io.papermc.paper.registry.keys.ItemTypeKeys;
 import io.papermc.paper.registry.set.RegistrySet;
 import net.kyori.adventure.key.Key;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.NamespacedKey;
@@ -347,6 +342,7 @@ public class DFMaterial {
     public static DFMaterial PointyStick = new Builder(Material.POPPED_CHORUS_FRUIT, "pointy_stick", "9350fa")
             .setDisplayName("Pointy Stick")
             .addMeta(new SoundOnCraftMeta(Sounds.WoodCrash), new ChiselMeta(1f), new CustomDurabilityMeta(2), new PointyStickMeta())
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
             .create();
 
@@ -363,12 +359,14 @@ public class DFMaterial {
     public static DFMaterial CopperChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_chisel", "088d4c")
             .setDisplayName("Copper Chisel")
             .addMeta(new ChiselMeta(4.5f), new CustomDurabilityMeta(40))
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
             .create();
 
     public static DFMaterial IronChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "iron_chisel", "31e03e")
             .setDisplayName("Iron Chisel")
             .addMeta(new ChiselMeta(6.5f), new CustomDurabilityMeta(50))
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
             .create();
 
@@ -376,31 +374,36 @@ public class DFMaterial {
             .setDisplayName("Firidium Chisel")
             .addEnchantment(Enchantment.FIRE_ASPECT, 1)
             .addMeta(new ChiselMeta(6.5f), new CustomDurabilityMeta(50), new AutosmeltingItemMeta(), new AdvancementOnObtainMeta(FiridiumTool.class))
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
             .create();
 
     public static DFMaterial GoldChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_chisel", "1217e1")
             .setDisplayName("Gold Chisel")
             .addMeta(new ChiselMeta(7.5f), new CustomDurabilityMeta(70))
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
             .create();
 
     public static DFMaterial DiamondChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "diamond_chisel", "7fde6f")
             .setDisplayName("Diamond Chisel")
             .addMeta(new ChiselMeta(7f), new CustomDurabilityMeta(500))
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
             .create();
 
     public static DFMaterial NetheriteChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "netherite_chisel", "29e56a")
             .setDisplayName("Netherite Chisel")
             .addMeta(new ChiselMeta(8f), new CustomDurabilityMeta(1500))
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
             .create();
 
     public static DFMaterial ObsidianChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "obsidian_chisel", "551ada")
             .setDisplayName("Obsidian Chisel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
-            .addMeta(new ChiselMeta(15f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class), new AdvancementOnObtainMeta(GenuineDedication.class))
+            .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class), new AdvancementOnObtainMeta(GenuineDedication.class))
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
             .create();
 
@@ -1062,12 +1065,14 @@ public class DFMaterial {
     public static DFMaterial CalciteChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "calcite_chisel", "0dedfe")
             .setDisplayName("Calcite Chisel")
             .addMeta(new ChiselMeta(5.5f), new CustomDurabilityMeta(45))
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
             .create();
 
     public static DFMaterial FloralChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "floral_chisel", "3c5329")
             .setDisplayName("<light_purple>Floral Chisel")
             .addMeta(new ChiselMeta(7f), new CustomDurabilityMeta(75))
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
             .create();
 
@@ -1110,6 +1115,7 @@ public class DFMaterial {
     private final ItemStack item;
     private final List<DFMaterialMeta> metas;
     private final List<NamespacedKey> possibleModels;
+    private final List<Enchantment> allowedUnsafeEnchantments;
     private final String updateId;
 
     public ItemStack toItemStack() {
@@ -1190,6 +1196,10 @@ public class DFMaterial {
         return !this.metas.isEmpty();
     }
 
+    public List<Enchantment> getAllowedUnsafeEnchantments() {
+        return this.allowedUnsafeEnchantments;
+    }
+
     public DFMaterial(
             Material base,
             String namedId,
@@ -1212,7 +1222,8 @@ public class DFMaterial {
             @Nullable Tool tool,
             @Nullable FoodProperties food,
             @Nullable Repairable repairable,
-            String updateId
+            String updateId,
+            @Nullable List<Enchantment> allowedUnsafeEnchantments
             )
     {
         List<TextComponent> workingLore = lores == null ? List.of() : lores;
@@ -1310,6 +1321,8 @@ public class DFMaterial {
         if (repairable != null) item.setData(DataComponentTypes.REPAIRABLE, repairable);
         if (Name != null) item.setData(DataComponentTypes.ITEM_NAME, Name);
 
+        this.allowedUnsafeEnchantments = allowedUnsafeEnchantments;
+
         if (this.hasMeta()) {
             for (DFMaterialMeta createdmeta : this.getMeta()) {
                 createdmeta.ItemCreated(this, this.item);
@@ -1346,6 +1359,8 @@ public class DFMaterial {
         private Tool tool = null;
         private FoodProperties food = null;
         private Repairable repairable = null;
+
+        private List<Enchantment> allowedUnsafeEnchantments = new ArrayList<>();
 
         private List<NamespacedKey> possibleModels = new ArrayList<>();
 
@@ -1467,6 +1482,11 @@ public class DFMaterial {
             return this;
         }
 
+        public Builder addPossibleModels(NamespacedKey... models) {
+            this.possibleModels.addAll(Arrays.asList(models));
+            return this;
+        }
+
         public Builder setConsumable(Consumable consumable) {
             this.consumable = consumable;
             return this;
@@ -1487,8 +1507,8 @@ public class DFMaterial {
             return this;
         }
 
-        public Builder addPossibleModels(NamespacedKey... models) {
-            this.possibleModels.addAll(Arrays.asList(models));
+        public Builder addAllowedUnsafeEnchantments(Enchantment... enchantments) {
+            this.allowedUnsafeEnchantments.addAll(Arrays.asList(enchantments));
             return this;
         }
 
@@ -1515,7 +1535,8 @@ public class DFMaterial {
                     tool,
                     food,
                     repairable,
-                    updateId
+                    updateId,
+                    allowedUnsafeEnchantments
             );
             DFMaterial.DFMaterialIndex.put(namedId, newMaterial);
             return newMaterial;

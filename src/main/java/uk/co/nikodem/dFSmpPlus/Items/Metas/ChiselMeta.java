@@ -12,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockType;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
@@ -30,7 +31,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChiselMeta implements DFMaterialMeta {
@@ -88,26 +89,33 @@ public class ChiselMeta implements DFMaterialMeta {
     public void ItemStartMine(Player plr, DFMaterial material, ItemStack tool, BlockBreakProgressUpdateEvent event) {
 
         // TODO: fix this on bedrock
+        // TODO: maybe doing this dynamically isn't the best idea, maybe define it when the item is made and update the list ?
         // (animations plays fine, but it doesn't actually break until it normally should
 
         Block block = event.getBlock();
         ChiselBlockData data = ChiselBlockData.getChiselBlockData(block);
-        // !! WARNING !!
-        // the code below may or may not make you want to kill yourself
-        // PLEASE I BEG if there's a better way to do this that is easy to do
-        // fix it as soon as physcially possible
         if (data == null) {
             tool.setData(DataComponentTypes.TOOL, Tool.tool().defaultMiningSpeed(1f).build());
             return;
         };
+
+        // add the replacement block in case this code doesnt run fast enough to accomodate for when the block is replaced
+        List<BlockType> expectedBlocks = new ArrayList<>();
+        expectedBlocks.add(block.getType().asBlockType());
+        if (data.getReplacingMaterial() != null) expectedBlocks.add(data.getReplacingMaterial().asBlockType());
+
         RegistryKeySet<BlockType> blocks = RegistrySet.keySetFromValues(
                 RegistryKey.BLOCK,
-                Collections.singleton(block.getType().asBlockType())
+                expectedBlocks
         );
+
+        int efficiencyLevel = tool.getEnchantmentLevel(Enchantment.EFFICIENCY);
+        float efficiencyMult = efficiencyLevel == 0 ? 0f : (efficiencyLevel^2)+1f;
+
         tool.setData(DataComponentTypes.TOOL, Tool.tool()
                 .addRule(Tool.rule(
                         blocks,
-                        miningSpeed * data.getSpeedMultiplier(),
+                        (miningSpeed * data.getSpeedMultiplier()) + efficiencyMult,
                         TriState.NOT_SET
                 ))
             .defaultMiningSpeed(1f).build());

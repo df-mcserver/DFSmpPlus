@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -11,11 +12,14 @@ import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.view.AnvilView;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.Transformer.AnvilTransformData;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.Transformer.AnvilTransformResponse;
 import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
+import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
+import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.*;
 
@@ -33,6 +37,30 @@ public class AnvilEvents {
 
         if (base == null) return;
         if (addition == null) return;
+
+        DFMaterial material = DFItemUtils.getDFMaterial(base);
+        if (material != null) {
+            ItemMeta meta1 = addition.getItemMeta();
+            if (meta1 instanceof EnchantmentStorageMeta meta) {
+                ItemStack result = base.clone();
+                boolean changed = false;
+                for (Map.Entry<Enchantment, Integer> storedEnchant : meta.getStoredEnchants().entrySet()) {
+                    for (Enchantment ench : material.getAllowedUnsafeEnchantments()) {
+                        if (ench.equals(storedEnchant.getKey())) {
+                            Integer currentEnchLevel = base.getEnchantmentLevel(ench);
+                            Integer bookEnchLevel = storedEnchant.getValue();
+                            result.addUnsafeEnchantment(ench, Objects.equals(currentEnchLevel, bookEnchLevel) ? bookEnchLevel + 1 : bookEnchLevel);
+                            changed = true;
+                        }
+                    }
+                }
+
+                if (changed) {
+                    event.setResult(result);
+                    return;
+                }
+            }
+        }
 
         for (AnvilRecipe recipe : recipes) {
             if (doesAnvilInventoryMatchRecipe(base, addition, recipe)) {
