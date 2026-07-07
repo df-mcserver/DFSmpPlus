@@ -36,16 +36,17 @@ public class RightClickPassthrough {
     public static void onSignOpen(PlayerOpenSignEvent event) {
         Player plr = event.getPlayer();
         Sign sign = event.getSign();
-        Directional directional = (Directional) sign.getBlockData();
 
-        if (plr.isSneaking() || !sign.isPlaced()) return;
-        BlockFace facing = directional.getFacing();
-        Block restingBlock = facing.getOppositeFace().getDirection().add(event.getSign().getLocation().toVector()).toLocation(sign.getWorld()).getBlock();
+        if (sign instanceof Directional directional) {
+            if (plr.isSneaking() || !sign.isPlaced()) return;
+            BlockFace facing = directional.getFacing();
+            Block restingBlock = facing.getOppositeFace().getDirection().add(event.getSign().getLocation().toVector()).toLocation(sign.getWorld()).getBlock();
 
-        if (restingBlock.getState() instanceof Container container) {
-            Inventory inv = container.getInventory();
-            plr.openInventory(inv);
-            event.setCancelled(true);
+            if (restingBlock.getState() instanceof Container container) {
+                Inventory inv = container.getInventory();
+                plr.openInventory(inv);
+                event.setCancelled(true);
+            }
         }
     }
 }
