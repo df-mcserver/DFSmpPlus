@@ -43,6 +43,10 @@ public class Keys {
     public static NamespacedKey floralLeggings = createDefaultKey("floral_leggings");
     public static NamespacedKey floralBoots = createDefaultKey("floral_boots");
 
+    public static NamespacedKey diamondTintedElytra = createDefaultKey("diamond_tinted_elytra");
+    public static NamespacedKey netheriteTintedElytra = createDefaultKey("netherite_tinted_elytra");
+    public static NamespacedKey obsidianTintedElytra = createDefaultKey("obsidian_tinted_elytra");
+
     public static NamespacedKey createDefaultKey(String key) {
         return new NamespacedKey(
                 "dfsmpplus",

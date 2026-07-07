@@ -1083,20 +1083,23 @@ public class DFMaterial {
             .setTool(createFasterTool(ItemType.SHEARS, 1.5f))
             .create();
 
-    public static DFMaterial DiamondTintedElytra = new Builder(Material.ELYTRA, "diamond_tinted_elytra", "b15705")
+    public static DFMaterial DiamondTintedElytra = new Builder(Material.ELYTRA, "diamond_tinted_elytra", "3b3a22")
             .setDisplayName("<light_purple>Diamond Tinted Elytra")
             .addMeta(new CustomDurabilityMeta(500))
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(diamondTintedElytra, 1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .create();
 
-    public static DFMaterial NetheriteTintedElytra = new Builder(Material.ELYTRA, "netherite_tinted_elytra", "8d4966")
+    public static DFMaterial NetheriteTintedElytra = new Builder(Material.ELYTRA, "netherite_tinted_elytra", "341366")
             .setDisplayName("<light_purple>Netherite Tinted Elytra")
             .addMeta(new CustomDurabilityMeta(550))
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(netheriteTintedElytra, 1.5D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .create();
 
-    public static DFMaterial ObsidianTintedElytra = new Builder(Material.ELYTRA, "obsidian_tinted_elytra", "bed751")
+    public static DFMaterial ObsidianTintedElytra = new Builder(Material.ELYTRA, "obsidian_tinted_elytra", "25be6b")
             .setDisplayName("<light_purple>Obsidian Tinted Elytra")
             .addMeta(new CustomDurabilityMeta(575), new AdvancementOnObtainMeta(ObsidianItem.class))
             .addEnchantment(Enchantment.UNBREAKING, 10)
+            .addAttribute(Attribute.ARMOR, new AttributeModifier(obsidianTintedElytra, 2D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .create();
 
     private final String namedId;
