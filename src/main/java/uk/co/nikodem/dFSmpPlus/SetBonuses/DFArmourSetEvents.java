@@ -3,6 +3,7 @@ package uk.co.nikodem.dFSmpPlus.SetBonuses;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -35,16 +36,30 @@ public class DFArmourSetEvents {
         }
     }
 
+    public static void PlayerDamaged(EntityDamageEvent e) {
+        if (e.getEntity() instanceof Player plr) {
+            DFArmourSet armourSet = DFArmourSetUtils.getPlayersArmourSet(plr);
+
+            if (armourSet == null) return;
+
+            if (armourSet.hasMeta()) {
+                for (DFArmourSetMeta meta : armourSet.getMeta()) {
+                    meta.PlayerTakeDamage(plr, armourSet, e);
+                }
+            }
+        }
+    }
+
     public static void PlayerHunger(FoodLevelChangeEvent e) {
-        Player plr = (Player) e.getEntity();
+        if (e.getEntity() instanceof Player plr) {
+            DFArmourSet armourSet = DFArmourSetUtils.getPlayersArmourSet(plr);
 
-        DFArmourSet armourSet = DFArmourSetUtils.getPlayersArmourSet(plr);
+            if (armourSet == null) return;
 
-        if (armourSet == null) return;
-
-        if (armourSet.hasMeta()) {
-            for (DFArmourSetMeta meta : armourSet.getMeta()) {
-                meta.PlayerHunger(plr, armourSet, e);
+            if (armourSet.hasMeta()) {
+                for (DFArmourSetMeta meta : armourSet.getMeta()) {
+                    meta.PlayerHunger(plr, armourSet, e);
+                }
             }
         }
     }

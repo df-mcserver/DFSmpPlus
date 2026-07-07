@@ -15,7 +15,7 @@ public class KnockbackResistenceMeta implements AccessoryMeta {
     public Map<Attribute, AttributeModifier> AddAdditionalAttributeModifiers(Player plr, ItemStack accessory, AccessoryInformation info) {
         return Map.of(
                 Attribute.KNOCKBACK_RESISTANCE,
-                new AttributeModifier(Keys.cobaltShieldKb, 0.5f, AttributeModifier.Operation.ADD_NUMBER)
+                new AttributeModifier(Keys.cobaltShieldKb, 0.3f, AttributeModifier.Operation.ADD_NUMBER)
         );
     };
 }

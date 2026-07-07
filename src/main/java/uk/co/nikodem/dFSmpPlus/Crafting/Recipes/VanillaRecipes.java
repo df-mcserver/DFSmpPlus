@@ -695,15 +695,7 @@ public class VanillaRecipes extends CraftingTemplate {
                 Map.entry(Material.END_STONE_BRICK_SLAB, Material.END_STONE_BRICKS),
                 Map.entry(Material.PURPUR_SLAB, Material.PURPUR_BLOCK),
                 Map.entry(Material.QUARTZ_SLAB, Material.QUARTZ_BLOCK),
-                Map.entry(Material.SMOOTH_QUARTZ_SLAB, Material.SMOOTH_QUARTZ),
-                Map.entry(Material.CUT_COPPER_SLAB, Material.CUT_COPPER),
-                Map.entry(Material.EXPOSED_CUT_COPPER_SLAB, Material.EXPOSED_CUT_COPPER),
-                Map.entry(Material.WEATHERED_CUT_COPPER_SLAB, Material.WEATHERED_CUT_COPPER),
-                Map.entry(Material.OXIDIZED_CUT_COPPER_SLAB, Material.OXIDIZED_CUT_COPPER),
-                Map.entry(Material.WAXED_CUT_COPPER_SLAB, Material.WAXED_CUT_COPPER),
-                Map.entry(Material.WAXED_EXPOSED_CUT_COPPER_SLAB, Material.WAXED_EXPOSED_CUT_COPPER),
-                Map.entry(Material.WAXED_WEATHERED_CUT_COPPER_SLAB, Material.WAXED_WEATHERED_CUT_COPPER),
-                Map.entry(Material.WAXED_OXIDIZED_CUT_COPPER_SLAB, Material.WAXED_OXIDIZED_CUT_COPPER)
+                Map.entry(Material.SMOOTH_QUARTZ_SLAB, Material.SMOOTH_QUARTZ)
         );
 
         for (Map.Entry<Material, Material> entry : slabToFullblockMapping.entrySet()) {

@@ -29,7 +29,8 @@ public class VeinMineable {
             Material.AMETHYST_BLOCK,
             Material.AMETHYST_CLUSTER,
             Material.GLOWSTONE,
-            Material.ANCIENT_DEBRIS
+            Material.ANCIENT_DEBRIS,
+            Material.GILDED_BLACKSTONE
     );
 
     public final static List<Material> VeinLogs = List.of(
@@ -57,7 +58,8 @@ public class VeinMineable {
             Material.CRIMSON_STEM,
             Material.STRIPPED_WARPED_STEM,
             Material.STRIPPED_CRIMSON_STEM,
-            Material.MUSHROOM_STEM
+            Material.MUSHROOM_STEM,
+            Material.BAMBOO_BLOCK
     );
 
     public static boolean isVeinOre(Material material) {

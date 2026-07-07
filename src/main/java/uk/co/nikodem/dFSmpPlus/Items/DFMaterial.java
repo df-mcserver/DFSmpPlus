@@ -94,6 +94,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .setTool(createFasterTool(ItemType.IRON_SWORD, 1.1f))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumPickaxe = new Builder(Material.IRON_PICKAXE, "firidium_pickaxe", "a66167")
@@ -101,6 +102,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltablePickaxe), new AdvancementOnObtainMeta(FiridiumTool.class))
             .setTool(createFasterTool(ItemType.IRON_PICKAXE, 1.1f))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumAxe = new Builder(Material.IRON_AXE, "firidium_axe", "df6ecd")
@@ -108,6 +110,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltableAxe), new AdvancementOnObtainMeta(FiridiumTool.class))
             .setTool(createFasterTool(ItemType.IRON_AXE, 1.1f))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumShovel = new Builder(Material.IRON_SHOVEL, "firidium_shovel", "ceb2c4")
@@ -115,6 +118,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AutosmeltingItemMeta(AutoSmeltable.AutosmeltableShovel), new AdvancementOnObtainMeta(FiridiumTool.class))
             .setTool(createFasterTool(ItemType.IRON_SHOVEL, 1.1f))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumHoe = new Builder(Material.IRON_HOE, "firidium_hoe", "abfd61")
@@ -122,14 +126,17 @@ public class DFMaterial {
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .setTool(createFasterTool(ItemType.IRON_HOE, 1.1f))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumIngot = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_ingot", "724ded")
             .setDisplayName("<red>Firidium Ingot")
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumNugget = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_nugget", "11a0b1")
             .setDisplayName("<red>Firidium Nugget")
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumHelmet = new Builder(Material.IRON_HELMET, "firidium_helmet", "66b0d4")
@@ -138,6 +145,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Helmet)")
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumChestplate = new Builder(Material.IRON_CHESTPLATE, "firidium_chestplate", "158122")
@@ -146,6 +154,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Chestplate)")
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumLeggings = new Builder(Material.IRON_LEGGINGS, "firidium_leggings", "a8c203")
@@ -154,6 +163,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Leggings)")
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumBoots = new Builder(Material.IRON_BOOTS, "firidium_boots", "897759")
@@ -162,6 +172,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addLore("<gray>(Equivalent to Iron Boots)")
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial BluebellsarStick = new Builder(Material.POPPED_CHORUS_FRUIT, "bluebellsar_stick", "414eb0")
@@ -216,6 +227,7 @@ public class DFMaterial {
             .setDisplayName("Obsidian Sword")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(false), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianAxe = new Builder(Material.NETHERITE_AXE, "obsidian_axe", "0983d1")
@@ -223,6 +235,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
             .setTool(createFasterTool(ItemType.NETHERITE_AXE, 1.1f))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianPickaxe = new Builder(Material.NETHERITE_PICKAXE, "obsidian_pickaxe", "7dac36")
@@ -230,6 +243,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
             .setTool(createFasterTool(ItemType.NETHERITE_PICKAXE, 1.1f))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianShovel = new Builder(Material.NETHERITE_SHOVEL, "obsidian_shovel", "6d2cd0")
@@ -237,6 +251,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
             .setTool(createFasterTool(ItemType.NETHERITE_SHOVEL, 1.1f))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianHoe = new Builder(Material.NETHERITE_HOE, "obsidian_hoe", "45d501")
@@ -244,6 +259,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
             .setTool(createFasterTool(ItemType.NETHERITE_HOE, 1.1f))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianHelmet = new Builder(Material.NETHERITE_HELMET, "obsidian_helmet", "e36323")
@@ -254,6 +270,7 @@ public class DFMaterial {
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianHelmet, 5D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianHelmet, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianHelmet, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.HEAD))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianChestplate = new Builder(Material.NETHERITE_CHESTPLATE, "obsidian_chestplate", "8e0d18")
@@ -264,6 +281,7 @@ public class DFMaterial {
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianChestplate, 9D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianChestplate, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianChestplate, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianLeggings = new Builder(Material.NETHERITE_LEGGINGS, "obsidian_leggings", "b858c6")
@@ -274,6 +292,7 @@ public class DFMaterial {
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianLeggings, 7D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianLeggings, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianLeggings, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.LEGS))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianBoots = new Builder(Material.NETHERITE_BOOTS, "obsidian_boots", "95b194")
@@ -284,6 +303,7 @@ public class DFMaterial {
             .addAttribute(Attribute.ARMOR, new AttributeModifier(Keys.obsidianBoots, 5D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addAttribute(Attribute.ARMOR_TOUGHNESS, new AttributeModifier(Keys.obsidianBoots, 3D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
             .addAttribute(Attribute.KNOCKBACK_RESISTANCE, new AttributeModifier(Keys.obsidianBoots, 0.1D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.FEET))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial LifeCrystal = new Builder(Material.POPPED_CHORUS_FRUIT, "life_crystal", "a36e2a")
@@ -302,6 +322,7 @@ public class DFMaterial {
             .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.HEAD)
             .addLore("<gray>(Equivalent to Diamond Helmet)")
             .addMeta(new CustomDurabilityMeta(950))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial SculkChestplate = new Builder(Material.DIAMOND_CHESTPLATE, "sculk_chestplate", "3cf095")
@@ -309,6 +330,7 @@ public class DFMaterial {
             .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.CHEST)
             .addLore("<gray>(Equivalent to Diamond Chestplate)")
             .addMeta(new CustomDurabilityMeta(1250))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial SculkLeggings = new Builder(Material.DIAMOND_LEGGINGS, "sculk_leggings", "11f3f3")
@@ -316,6 +338,7 @@ public class DFMaterial {
             .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.LEGS)
             .addLore("<gray>(Equivalent to Diamond Leggings)")
             .addMeta(new CustomDurabilityMeta(1100))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial SculkBoots = new Builder(Material.DIAMOND_BOOTS, "sculk_boots", "706dec")
@@ -323,6 +346,7 @@ public class DFMaterial {
             .setEquippable("sculk", Sound.ITEM_ARMOR_EQUIP_NETHERITE, EquipmentSlot.FEET)
             .addLore("<gray>(Equivalent to Diamond Boots)")
             .addMeta(new CustomDurabilityMeta(1000))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial SculkFragment = new Builder(Material.ECHO_SHARD, "sculk_fragment", "e8d1bb")
@@ -376,6 +400,7 @@ public class DFMaterial {
             .addMeta(new ChiselMeta(6.5f), new CustomDurabilityMeta(50), new AutosmeltingItemMeta(), new AdvancementOnObtainMeta(FiridiumTool.class))
             .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial GoldChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_chisel", "1217e1")
@@ -397,6 +422,7 @@ public class DFMaterial {
             .addMeta(new ChiselMeta(8f), new CustomDurabilityMeta(1500))
             .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "obsidian_chisel", "551ada")
@@ -405,6 +431,7 @@ public class DFMaterial {
             .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class), new AdvancementOnObtainMeta(GenuineDedication.class))
             .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
             .setMaxStack(1)
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial CalciteSword = new Builder(Material.STONE_SWORD, "calcite_sword", "56871a")
@@ -676,8 +703,8 @@ public class DFMaterial {
             .setDisplayName("Cobalt Shield")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("shield")
-                    .setArmourPoints(5D)
-                    .setDescription("+5 Knockback Resistance")
+                    .setArmourPoints(2D)
+                    .setDescription("+3 Knockback Resistance")
                     .setEquipSound(Sounds.EquipAccessory_Shield)
                     .addMeta(new KnockbackResistenceMeta())
                     .create()))
@@ -701,6 +728,7 @@ public class DFMaterial {
                     .setEquipSound(Sounds.EquipAccessory_Essence)
                     .addMeta(new AutosmeltAccessoryMeta(AutoSmeltable.AutosmeltableAxe, AutoSmeltable.AutosmeltablePickaxe, AutoSmeltable.AutosmeltableShovel))
                     .create()))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial BootsOfSwiftness = new Builder(Material.POPPED_CHORUS_FRUIT, "boots_of_swiftness", "9d7a95")
@@ -858,6 +886,7 @@ public class DFMaterial {
     public static DFMaterial FiridiumShears = new Builder(Material.SHEARS, "firidium_shears", "4236e4")
             .setDisplayName("Firidium Shears")
             .addEnchantment(Enchantment.FIRE_ASPECT)
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial GoldShears = new Builder(Material.SHEARS, "gold_shears", "ea9014")
@@ -876,6 +905,7 @@ public class DFMaterial {
             .setDisplayName("Netherite Shears")
             .addMeta(new CustomDurabilityMeta(750))
             .setTool(createFasterTool(ItemType.SHEARS, 3.25f))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianShears = new Builder(Material.SHEARS, "obsidian_shears", "62eefc")
@@ -884,6 +914,7 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .setTool(createFasterTool(ItemType.SHEARS, 3.5f))
             .addMeta(new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial CopperBucket = new Builder(Material.BUCKET, "copper_bucket", "953da0")
@@ -1050,6 +1081,7 @@ public class DFMaterial {
             .setDisplayName("Firidium Spear")
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FloralSpear = new Builder(Material.IRON_SPEAR, "floral_spear", "e40fdc")
@@ -1060,6 +1092,7 @@ public class DFMaterial {
             .setDisplayName("Obsidian Spear")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ObsidianItemMeta(false), new AdvancementOnObtainMeta(ObsidianItem.class))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial CalciteChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "calcite_chisel", "0dedfe")
@@ -1098,6 +1131,7 @@ public class DFMaterial {
             .setDisplayName("<light_purple>Netherite Tinted Elytra")
             .addMeta(new CustomDurabilityMeta(550))
             .addAttribute(Attribute.ARMOR, new AttributeModifier(netheriteTintedElytra, 1.5D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
+            .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial ObsidianTintedElytra = new Builder(Material.ELYTRA, "obsidian_tinted_elytra", "25be6b")
@@ -1105,6 +1139,7 @@ public class DFMaterial {
             .addMeta(new CustomDurabilityMeta(575), new AdvancementOnObtainMeta(ObsidianItem.class))
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(obsidianTintedElytra, 2D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
+            .setCanSurviveLava(true)
             .create();
 
     private final String namedId;
@@ -1116,6 +1151,7 @@ public class DFMaterial {
     private final List<DFMaterialMeta> metas;
     private final List<NamespacedKey> possibleModels;
     private final List<Enchantment> allowedUnsafeEnchantments;
+    private final boolean survivesLava;
     private final String updateId;
 
     public ItemStack toItemStack() {
@@ -1196,6 +1232,10 @@ public class DFMaterial {
         return !this.metas.isEmpty();
     }
 
+    public boolean canSurviveLava() {
+        return this.survivesLava;
+    }
+
     public List<Enchantment> getAllowedUnsafeEnchantments() {
         return this.allowedUnsafeEnchantments;
     }
@@ -1223,7 +1263,8 @@ public class DFMaterial {
             @Nullable FoodProperties food,
             @Nullable Repairable repairable,
             String updateId,
-            @Nullable List<Enchantment> allowedUnsafeEnchantments
+            @Nullable List<Enchantment> allowedUnsafeEnchantments,
+            boolean survivesLava
             )
     {
         List<TextComponent> workingLore = lores == null ? List.of() : lores;
@@ -1322,6 +1363,7 @@ public class DFMaterial {
         if (Name != null) item.setData(DataComponentTypes.ITEM_NAME, Name);
 
         this.allowedUnsafeEnchantments = allowedUnsafeEnchantments;
+        this.survivesLava = survivesLava;
 
         if (this.hasMeta()) {
             for (DFMaterialMeta createdmeta : this.getMeta()) {
@@ -1363,6 +1405,7 @@ public class DFMaterial {
         private List<Enchantment> allowedUnsafeEnchantments = new ArrayList<>();
 
         private List<NamespacedKey> possibleModels = new ArrayList<>();
+        private boolean survivesLava = false;
 
         public Builder(Material base, String namedId, String updateId) {
             this.base = base;
@@ -1512,6 +1555,11 @@ public class DFMaterial {
             return this;
         }
 
+        public Builder setCanSurviveLava(boolean bool) {
+            this.survivesLava = bool;
+            return this;
+        }
+
         public DFMaterial create() {
             DFMaterial newMaterial = new DFMaterial(
                     base,
@@ -1536,7 +1584,8 @@ public class DFMaterial {
                     food,
                     repairable,
                     updateId,
-                    allowedUnsafeEnchantments
+                    allowedUnsafeEnchantments,
+                    survivesLava
             );
             DFMaterial.DFMaterialIndex.put(namedId, newMaterial);
             return newMaterial;
