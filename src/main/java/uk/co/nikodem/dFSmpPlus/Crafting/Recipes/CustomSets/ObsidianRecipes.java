@@ -33,7 +33,7 @@ public class ObsidianRecipes extends CraftingTemplate {
                         .build(getInfo())
                         .shape("XYX", "XOX", "XXX")
                         .setIngredient('X', Material.DIAMOND)
-                        .setIngredient('O', Material.CRYING_OBSIDIAN)
+                        .setIngredient('O', Material.OBSIDIAN)
                         .setIngredient('Y', new RecipeChoice.ExactChoice(DFMaterial.ObsidianUpgradeTemplate.toItemStack()))
         );
     }
