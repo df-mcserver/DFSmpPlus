@@ -31,7 +31,8 @@ public class PlayerAccessoryData {
             if (info == null) continue;
 
             for (AccessoryMeta accessoryMeta : info.getMeta()) {
-                if (accessoryMeta.getClass() == metaClass) return true;
+                if (accessoryMeta.getClass().equals(metaClass)) return true;
+                else if (accessoryMeta.getClass().getSuperclass() != null) if (accessoryMeta.getClass().getSuperclass().equals(metaClass)) return true;
             }
         }
         return false;

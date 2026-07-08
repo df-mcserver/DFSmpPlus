@@ -67,4 +67,9 @@ public class AutosmeltAccessoryMeta implements AccessoryMeta {
             if (output != null) AutosmeltingOnBlockbreak.doAutosmelt(event, this.allAutosmeltLists);
         }
     };
+
+    public static boolean canAutosmelt(Player plr) {
+        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+        return plr.isSneaking() && data.autosmeltEssenceEnabled;
+    }
 }

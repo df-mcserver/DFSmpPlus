@@ -9,21 +9,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Action.AccessoryAction;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
-import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryMeta;
-import uk.co.nikodem.dFSmpPlus.Blocks.BlockManipulation.AutosmeltingOnBlockbreak;
-import uk.co.nikodem.dFSmpPlus.Blocks.BlockManipulation.VeinminingOnBlockbreak;
-import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
-import uk.co.nikodem.dFSmpPlus.Constants.VeinMineable;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SplitMiningAccessoryMeta extends AutosmeltAccessoryMeta {
-    public final List<Material> allVeinmineLists;
+    public final VeinminingAccessoryMeta veinminingAccessoryMeta = new VeinminingAccessoryMeta();
 
     public List<AccessoryAction> GetAccessoryActions() {
         return List.of(
@@ -69,17 +61,8 @@ public class SplitMiningAccessoryMeta extends AutosmeltAccessoryMeta {
         );
     };
 
-    public SplitMiningAccessoryMeta() {
-        List<Material> finalList = new ArrayList<>();
-        for (List<Material> subList : List.of(VeinMineable.VeinLogs, VeinMineable.VeinOres)) {
-            finalList.addAll(subList);
-        }
-        this.allVeinmineLists = finalList;
-    }
-
     @Override
     public void BlockMined(Player plr, ItemStack accessory, AccessoryInformation info, BlockBreakEvent event) {
-        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
-        if (plr.isSneaking() && data.veinMinerEssenceEnabled) VeinminingOnBlockbreak.doVeinmine(event, this.allVeinmineLists);
+        veinminingAccessoryMeta.BlockMined(plr, accessory, info, event);
     };
 }

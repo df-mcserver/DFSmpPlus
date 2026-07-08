@@ -55,7 +55,9 @@ public class ChiselMeta implements DFMaterialMeta {
                 if (face == null) return;
                 ItemStack drop = data.getDrop();
                 PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
-                boolean autosmelt = DFItemUtils.containsMeta(material, AutosmeltingItemMeta.class) || (accessoryData.hasAccessoryWithMetaEquipped(AutosmeltAccessoryMeta.class) && plr.isSneaking());
+                boolean hasAutosmeltingItem = DFItemUtils.containsMeta(material, AutosmeltingItemMeta.class);
+                boolean hasAutosmeltingAccessory = accessoryData.hasAccessoryWithMetaEquipped(AutosmeltAccessoryMeta.class);
+                boolean autosmelt = (hasAutosmeltingItem || (hasAutosmeltingAccessory && AutosmeltAccessoryMeta.canAutosmelt(plr)));
 
                 if (autosmelt) {
                     Material autosmeltMat = AutoSmeltable.AutosmeltableChisel.get(drop.getType());
