@@ -32,6 +32,6 @@ public class BinCommand implements DFBasicCommand {
 
     @Override
     public Collection<String> getAliases() {
-        return List.of("trash", "rubbish", "garbage");
+        return List.of("trash", "rubbish", "garbage", "b");
     }
 }

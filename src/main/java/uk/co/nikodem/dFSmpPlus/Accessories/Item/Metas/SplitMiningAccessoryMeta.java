@@ -10,15 +10,19 @@ import org.bukkit.inventory.meta.ItemMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Action.AccessoryAction;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryMeta;
+import uk.co.nikodem.dFSmpPlus.Blocks.BlockManipulation.AutosmeltingOnBlockbreak;
 import uk.co.nikodem.dFSmpPlus.Blocks.BlockManipulation.VeinminingOnBlockbreak;
+import uk.co.nikodem.dFSmpPlus.Constants.AutoSmeltable;
 import uk.co.nikodem.dFSmpPlus.Constants.VeinMineable;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class VeinminingAccessoryMeta implements AccessoryMeta {
+public class SplitMiningAccessoryMeta extends AutosmeltAccessoryMeta {
     public final List<Material> allVeinmineLists;
 
     public List<AccessoryAction> GetAccessoryActions() {
@@ -26,32 +30,46 @@ public class VeinminingAccessoryMeta implements AccessoryMeta {
                 new AccessoryAction.Builder()
                         .setChooseItemStackicon((plr, accessoryItem, accessoryInformation) -> {
                             PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
-                            if (data.veinMinerEssenceEnabled) {
-                                ItemStack clickToDisable = ItemStack.of(Material.GREEN_STAINED_GLASS_PANE);
-                                ItemMeta meta = clickToDisable.getItemMeta();
-                                meta.displayName(MiniMessage.miniMessage().deserialize("<green>Vein mining enabled"));
-                                meta.lore(List.of(MiniMessage.miniMessage().deserialize("Click to deactivate vein mining")));
-                                clickToDisable.setItemMeta(meta);
-                                return clickToDisable;
-                            } else {
-                                ItemStack clickToEnable = ItemStack.of(Material.RED_STAINED_GLASS_PANE);
-                                ItemMeta meta = clickToEnable.getItemMeta();
-                                meta.displayName(MiniMessage.miniMessage().deserialize("<red>Vein mining disabled"));
-                                meta.lore(List.of(MiniMessage.miniMessage().deserialize("Click to activate vein mining")));
-                                clickToEnable.setItemMeta(meta);
-                                return clickToEnable;
-                            }
+
+                            boolean autosmelt = data.autosmeltEssenceEnabled;
+                            boolean vein = data.veinMinerEssenceEnabled;
+
+                            ItemStack cycleItem = ItemStack.of(autosmelt && vein ? Material.GREEN_STAINED_GLASS_PANE : autosmelt || vein ? Material.ORANGE_STAINED_GLASS_PANE : Material.RED_STAINED_GLASS_PANE);
+                            ItemMeta meta = cycleItem.getItemMeta();
+                            meta.displayName(MiniMessage.miniMessage().deserialize(
+                                    (autosmelt || vein ? "<green>" : "<red>") +
+                                            (autosmelt && vein ? "Autosmelt and vein mining enabled" : autosmelt ? "Autosmelt enabled" : vein ? "Vein mining enabled" : "Autosmelt and vein mining disabled")
+                                    )
+                            );
+                            meta.lore(List.of(MiniMessage.miniMessage().deserialize("Click to cycle")));
+                            cycleItem.setItemMeta(meta);
+                            return cycleItem;
                         })
                         .setOnClickAction((plr, accessoryItem, accessoryInformation,inventoryClickEvent) -> {
                             PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
-                            data.veinMinerEssenceEnabled = !data.veinMinerEssenceEnabled;
+
+                            boolean autosmelt = data.autosmeltEssenceEnabled;
+                            boolean vein = data.veinMinerEssenceEnabled;
+
+                            if (autosmelt && vein) {
+                                data.veinMinerEssenceEnabled = false;
+                            } else if (autosmelt) {
+                                data.autosmeltEssenceEnabled = false;
+                                data.veinMinerEssenceEnabled = true;
+                            } else if (vein) {
+                                data.veinMinerEssenceEnabled = false;
+                            } else {
+                                data.veinMinerEssenceEnabled = true;
+                                data.autosmeltEssenceEnabled = true;
+                            }
+
                             DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
                         })
                         .create()
         );
     };
 
-    public VeinminingAccessoryMeta() {
+    public SplitMiningAccessoryMeta() {
         List<Material> finalList = new ArrayList<>();
         for (List<Material> subList : List.of(VeinMineable.VeinLogs, VeinMineable.VeinOres)) {
             finalList.addAll(subList);

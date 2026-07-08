@@ -77,6 +77,18 @@ public class AccessoryRecipes extends CraftingTemplate {
         );
 
         recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.SplitEssence)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "splitessence")
+                        .shape(" A ", "LEL", " B ")
+                        .setIngredient('A', new RecipeChoice.ExactChoice(DFMaterial.FiridiumEssence.toItemStack()))
+                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.VeinMinerEssence.toItemStack()))
+                        .setIngredient('E', new RecipeChoice.ExactChoice(ItemStack.of(Material.ENDER_EYE)))
+                        .setIngredient('L', new RecipeChoice.ExactChoice(ItemStack.of(Material.LAPIS_LAZULI)))
+        );
+
+        recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.BootsOfSwiftness)
                         .setCategory(CraftingBookCategory.EQUIPMENT)

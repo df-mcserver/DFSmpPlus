@@ -12,6 +12,8 @@ public class PlayerData {
     public PlayerAccessoryData playerAccessoryData;
     public LastDeathInformation lastDeathInformation;
     public boolean locatorBarEnabled = false;
+    public boolean veinMinerEssenceEnabled = true;
+    public boolean autosmeltEssenceEnabled = true;
     public boolean hasVacuumSoundEnabled = true;
     public Integer lifeCrystals;
     public List<String> armourSetsWithSetBonusesWorn = new ArrayList<>();

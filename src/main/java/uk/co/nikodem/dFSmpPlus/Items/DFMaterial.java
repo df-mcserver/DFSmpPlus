@@ -694,7 +694,7 @@ public class DFMaterial {
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("phantom_ignore")
                     .addMeta(new PhantomIgnoresMeta())
-                    .setDescription("Phantoms don't target you")
+                    .setDescription("Phantoms don't target you\nPhantoms are poisoned when they attack you")
                     .setEquipSound(Sounds.EquipAccessory_ContaminatedMembrane)
                     .create()))
             .create();
@@ -714,9 +714,9 @@ public class DFMaterial {
             .setDisplayName("Vein Miner's essence")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("essence")
-                    .setDescription("Vein mines ores and logs when mined whilst sneaking")
+                    .setDescription("Can vein mines ores and logs when mined whilst sneaking\nCan be toggled")
                     .setEquipSound(Sounds.EquipAccessory_Essence)
-                    .addMeta(new VeinminingAccessoryMeta(VeinMineable.VeinLogs, VeinMineable.VeinOres))
+                    .addMeta(new VeinminingAccessoryMeta())
                     .create()))
             .create();
 
@@ -724,9 +724,20 @@ public class DFMaterial {
             .setDisplayName("Firidium essence")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("essence")
-                    .setDescription("Autosmelts any smeltable block when mined whilst sneaking")
+                    .setDescription("Can autosmelts any smeltable block when mined whilst sneaking\nCan be toggled")
                     .setEquipSound(Sounds.EquipAccessory_Essence)
-                    .addMeta(new AutosmeltAccessoryMeta(AutoSmeltable.AutosmeltableAxe, AutoSmeltable.AutosmeltablePickaxe, AutoSmeltable.AutosmeltableShovel))
+                    .addMeta(new AutosmeltAccessoryMeta())
+                    .create()))
+            .setCanSurviveLava(true)
+            .create();
+
+    public static DFMaterial SplitEssence = new Builder(Material.POPPED_CHORUS_FRUIT, "split_essence", "7ec71d")
+            .setDisplayName("Split essence")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("essence")
+                    .setDescription("Can vein mine ores and logs when mined whilst sneaking\nCan autosmelt any smeltable block when mined whilst sneaking\nCan be configured")
+                    .setEquipSound(Sounds.EquipAccessory_Essence)
+                    .addMeta(new SplitMiningAccessoryMeta())
                     .create()))
             .setCanSurviveLava(true)
             .create();
@@ -831,7 +842,7 @@ public class DFMaterial {
             .setDisplayName("Discreet Chicken Bucket")
             .addLore("It's not finger licking good.")
             .setFoodProperties(FoodProperties.food().nutrition(12).saturation(4f).build())
-            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(2.4f).animation(ItemUseAnimation.EAT).build())
             .addMeta(new ConsumingResidueMeta("strange_bucket", null))
             .setMaxStack(1)
             .create();
@@ -840,7 +851,7 @@ public class DFMaterial {
             .setDisplayName("Discreet Chips")
             .addLore("It's not finger licking good.")
             .setFoodProperties(FoodProperties.food().nutrition(9).saturation(2f).build())
-            .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
+            .setConsumable(Consumable.consumable().consumeSeconds(2.4f).animation(ItemUseAnimation.EAT).build())
             .addMeta(new ConsumingResidueMeta("strange_chip_box", null))
             .setMaxStack(1)
             .create();
@@ -851,7 +862,7 @@ public class DFMaterial {
             .setConsumable(Consumable.consumable().consumeSeconds(1.6f).animation(ItemUseAnimation.EAT).build())
             .create();
 
-    public static DFMaterial Coke = new Builder(Material.POTION, "coke", "8f2bab")
+    public static DFMaterial Coke = new Builder(Material.POPPED_CHORUS_FRUIT, "coke", "8f2bab")
             .setDisplayName("Coke")
             .addLore("Literally the same as pepsi")
             .setFoodProperties(FoodProperties.food().canAlwaysEat(true).build())
@@ -860,7 +871,7 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
-    public static DFMaterial Pepsi = new Builder(Material.POTION, "pepsi", "3f6d82")
+    public static DFMaterial Pepsi = new Builder(Material.POPPED_CHORUS_FRUIT, "pepsi", "3f6d82")
             .setDisplayName("Pepsi")
             .addLore("Literally the same as coke")
             .setFoodProperties(FoodProperties.food().canAlwaysEat(true).build())

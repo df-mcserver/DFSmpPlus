@@ -1,12 +1,9 @@
 package uk.co.nikodem.dFSmpPlus.Player;
 
-import com.destroystokyo.paper.MaterialTags;
 import io.papermc.paper.event.player.PlayerItemFrameChangeEvent;
 import io.papermc.paper.event.player.PlayerOpenSignEvent;
-import org.bukkit.FeatureFlag;
 import org.bukkit.block.*;
 import org.bukkit.block.data.Directional;
-import org.bukkit.block.data.type.WallSign;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -37,7 +34,7 @@ public class RightClickPassthrough {
         Player plr = event.getPlayer();
         Sign sign = event.getSign();
 
-        if (sign instanceof Directional directional) {
+        if (sign.getBlockData() instanceof Directional directional) {
             if (plr.isSneaking() || !sign.isPlaced()) return;
             BlockFace facing = directional.getFacing();
             Block restingBlock = facing.getOppositeFace().getDirection().add(event.getSign().getLocation().toVector()).toLocation(sign.getWorld()).getBlock();

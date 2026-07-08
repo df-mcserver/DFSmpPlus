@@ -7,8 +7,6 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.PresetSoundData;
 
-import java.util.Objects;
-
 public class ConsumingResidueMeta implements DFMaterialMeta {
     public final String residueItemId;
     public final ItemStack residueItemStack;
@@ -29,11 +27,9 @@ public class ConsumingResidueMeta implements DFMaterialMeta {
     public void ItemConsumed(Player plr, DFMaterial material, ItemStack item, PlayerItemConsumeEvent event) {
         ItemStack residue = residueItemStack;
 
-        if (residue == null) DFMaterial.DFMaterialIndex.get(residueItemId);
+        if (residue == null) residue = DFMaterial.DFMaterialIndex.get(residueItemId).toItemStack();
+        if (residue == null) return;
 
-        if (residue != null) {
-            if (item.getAmount() == 1) plr.getInventory().setItemInMainHand(residue);
-            else plr.getInventory().addItem(residue);
-        }
+        event.setReplacement(residue);
     };
 }
