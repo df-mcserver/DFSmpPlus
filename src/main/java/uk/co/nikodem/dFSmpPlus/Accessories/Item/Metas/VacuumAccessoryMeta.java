@@ -64,20 +64,15 @@ public class VacuumAccessoryMeta implements AccessoryMeta {
 
     public static List<ItemStack> giveItemEntitiesToPlayerViaVacuum(Player plr, List<Item> newDrops) {
         PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
-        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
         boolean hasVacuum = accessoryData.hasAccessoryWithMetaEquipped(VacuumAccessoryMeta.class);
-        boolean hasVacuumedItem = false;
 
         List<ItemStack> items = new ArrayList<>();
         for (Item item : newDrops) {
             items.add(item.getItemStack());
             if (hasVacuum) {
                 item.setItemStack(ItemStack.of(Material.AIR));
-                hasVacuumedItem = true;
             }
         }
-
-        if (hasVacuumedItem && data.hasVacuumSoundEnabled) Sounds.VacuumPickupItem.playSound(plr);
 
         return giveItemsToPlayerViaVacuum(plr, items);
     }
