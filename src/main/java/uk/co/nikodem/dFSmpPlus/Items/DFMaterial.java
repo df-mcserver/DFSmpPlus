@@ -43,7 +43,7 @@ import static uk.co.nikodem.dFSmpPlus.Items.DFItemUtils.createFasterTool;
 
 public class DFMaterial {
     // please don't touch lol
-    public final static HashMap<String, DFMaterial> DFMaterialIndex = new HashMap<>();
+    public final static LinkedHashMap<String, DFMaterial> DFMaterialIndex = new LinkedHashMap<>();
 
     public static DFMaterial MagicMirror = new Builder(Material.POPPED_CHORUS_FRUIT, "magic_mirror", "f86358")
             .setDisplayName("<dark_purple>Magic Mirror")
