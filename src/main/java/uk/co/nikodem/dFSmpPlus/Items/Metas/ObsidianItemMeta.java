@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.Nullable;
 import uk.co.nikodem.dFSmpPlus.Entities.EntityUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
@@ -63,7 +64,7 @@ public class ObsidianItemMeta implements DFMaterialMeta {
         return List.of((TextComponent) MiniMessage.miniMessage().deserialize("<dark_grey><i>Deals x1.75 damage to enemies, x1.2 otherwise."));
     }
 
-    public void ItemCrafted(DFMaterial material, ItemStack item, CraftItemEvent event) {
+    public void ItemCrafted(DFMaterial material, ItemStack item, Player plr, @Nullable CraftItemEvent event) {
         TelemetryUtils.increaseObsidianToolsMade(1);
-    }
+    };
 }
