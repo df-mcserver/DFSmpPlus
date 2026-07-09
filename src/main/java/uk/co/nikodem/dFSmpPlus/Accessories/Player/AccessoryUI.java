@@ -139,7 +139,7 @@ public class AccessoryUI {
                     }
                     accessoryData.accessoryInsertLock = true;
                     ItemStack item = event.getCurrentItem();
-                    for (int i = 0; i <= 4; i ++) {
+                    for (int i = 0; i <= accessoryData.getAccessoryCapIndex(); i ++) {
                         Boolean result = (insertItemIntoAccessorySlot(plr, item, i));
                         if (Boolean.TRUE.equals(result)) {
                             AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
