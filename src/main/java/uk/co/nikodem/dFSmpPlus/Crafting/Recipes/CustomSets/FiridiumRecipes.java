@@ -1,7 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.Recipes.CustomSets;
 
 import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.recipe.CookingBookCategory;
@@ -17,9 +16,6 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairA
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Tools.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.RecipeWithIngredientReplace;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.RecipeRemover;
-import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
@@ -30,7 +26,7 @@ public class FiridiumRecipes extends CraftingTemplate {
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();
 
-        addIngotRecipes(recipesToAdd);
+        addIngredientRecipes(recipesToAdd);
         addTools(recipesToAdd);
         addArmour(recipesToAdd);
         addFurnaceRecipes(recipesToAdd);
@@ -38,7 +34,7 @@ public class FiridiumRecipes extends CraftingTemplate {
         return recipesToAdd;
     }
 
-    public void addIngotRecipes(List<Recipe> recipesToAdd) {
+    public void addIngredientRecipes(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new BlastFurnaceRecipeBuilder()
                         .setSource(Material.IRON_INGOT)
@@ -71,6 +67,16 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .shape("XXX", "XXX", "XXX")
                         .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FiridiumNugget.toItemStack()))
         );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.HeatProofRod)
+                        .setCategory(CraftingBookCategory.MISC)
+                        .build(getInfo(), "heatproofrod")
+                        .shape("XIX", "XIX")
+                        .setIngredient('X', Material.IRON_NUGGET)
+                        .setIngredient('I', Material.STICK)
+        );
     }
 
     public void addTools(List<Recipe> recipesToAdd) {
@@ -78,7 +84,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                 new SwordRecipeBuilder()
                         .setItem(DFMaterial.FiridiumSword)
                         .setMaterial(DFMaterial.FiridiumIngot)
-                        .setHandle(Material.IRON_BARS)
+                        .setHandle(DFMaterial.HeatProofRod)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
         );
@@ -92,7 +98,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                 new LeftAxeRecipeBuilder()
                         .setItem(DFMaterial.FiridiumAxe)
                         .setMaterial(DFMaterial.FiridiumIngot)
-                        .setHandle(Material.IRON_BARS)
+                        .setHandle(DFMaterial.HeatProofRod)
                         .setGroup("FiridiumAxe")
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Left-Firidium")
@@ -102,7 +108,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                 new RightAxeRecipeBuilder()
                         .setItem(DFMaterial.FiridiumAxe)
                         .setMaterial(DFMaterial.FiridiumIngot)
-                        .setHandle(Material.IRON_BARS)
+                        .setHandle(DFMaterial.HeatProofRod)
                         .setGroup("FiridiumAxe")
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Right-Firidium")
@@ -117,7 +123,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                 new PickaxeRecipeBuilder()
                         .setItem(DFMaterial.FiridiumPickaxe)
                         .setMaterial(DFMaterial.FiridiumIngot)
-                        .setHandle(Material.IRON_BARS)
+                        .setHandle(DFMaterial.HeatProofRod)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
         );
@@ -131,7 +137,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                 new ShovelRecipeBuilder()
                         .setItem(DFMaterial.FiridiumShovel)
                         .setMaterial(DFMaterial.FiridiumIngot)
-                        .setHandle(Material.IRON_BARS)
+                        .setHandle(DFMaterial.HeatProofRod)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")
         );
@@ -145,7 +151,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                 new LeftHoeRecipeBuilder()
                         .setItem(DFMaterial.FiridiumHoe)
                         .setMaterial(DFMaterial.FiridiumIngot)
-                        .setHandle(Material.IRON_BARS)
+                        .setHandle(DFMaterial.HeatProofRod)
                         .setGroup("FiridiumHoe")
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Left-Firidium")
@@ -155,7 +161,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                 new RightHoeRecipeBuilder()
                         .setItem(DFMaterial.FiridiumHoe)
                         .setMaterial(DFMaterial.FiridiumIngot)
-                        .setHandle(Material.IRON_BARS)
+                        .setHandle(DFMaterial.HeatProofRod)
                         .setGroup("FiridiumHoe")
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Right-Firidium")
@@ -170,7 +176,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                 new SpearRecipeBuilder()
                         .setItem(DFMaterial.FiridiumSpear)
                         .setMaterial(DFMaterial.FiridiumIngot)
-                        .setHandle(Material.IRON_BARS)
+                        .setHandle(DFMaterial.HeatProofRod)
                         .setGroup("FiridiumSpear")
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "Firidium")

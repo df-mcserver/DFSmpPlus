@@ -89,6 +89,21 @@ public class DFMaterial {
             .setTool(createFasterTool(ItemType.IRON_AXE, 1.25f))
             .create();
 
+    public static DFMaterial HeatProofRod = new Builder(Material.POPPED_CHORUS_FRUIT, "heat_proof_rod", "b58dba")
+            .setDisplayName("<red>Heat-proof Rod")
+            .setCanSurviveLava(true)
+            .create();
+
+    public static DFMaterial FiridiumIngot = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_ingot", "724ded")
+            .setDisplayName("<red>Firidium Ingot")
+            .setCanSurviveLava(true)
+            .create();
+
+    public static DFMaterial FiridiumNugget = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_nugget", "11a0b1")
+            .setDisplayName("<red>Firidium Nugget")
+            .setCanSurviveLava(true)
+            .create();
+
     public static DFMaterial FiridiumSword = new Builder(Material.IRON_SWORD, "firidium_sword", "a2bc91")
             .setDisplayName("<red>Firidium Sword")
             .addEnchantment(Enchantment.FIRE_ASPECT)
@@ -126,16 +141,6 @@ public class DFMaterial {
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
             .setTool(createFasterTool(ItemType.IRON_HOE, 1.1f))
-            .setCanSurviveLava(true)
-            .create();
-
-    public static DFMaterial FiridiumIngot = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_ingot", "724ded")
-            .setDisplayName("<red>Firidium Ingot")
-            .setCanSurviveLava(true)
-            .create();
-
-    public static DFMaterial FiridiumNugget = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_nugget", "11a0b1")
-            .setDisplayName("<red>Firidium Nugget")
             .setCanSurviveLava(true)
             .create();
 
