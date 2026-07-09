@@ -15,6 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.view.AnvilView;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Accessory.ITinkeredItOut;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.Transformer.AnvilTransformData;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.Transformer.AnvilTransformResponse;
 import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
@@ -137,6 +139,8 @@ public class AnvilEvents {
 
                 if (event.isShiftClick()) plr.getInventory().addItem(result);
                 else plr.setItemOnCursor(result);
+
+                if (DFItemUtils.isAccessory(base) && DFItemUtils.isAccessory(addition)) DFAdvancementsHandler.grantAdvancement((Player) plr, ITinkeredItOut.class);
 
                 inventory.setFirstItem(ItemStack.of(Material.AIR));
                 inventory.setSecondItem(additionResult == null ? ItemStack.of(Material.AIR) : additionResult);

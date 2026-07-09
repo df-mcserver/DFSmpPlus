@@ -197,6 +197,7 @@ public class AccessoryUI {
         }
 
         if (accessoryData.isAccessoryEquipped(info)) return false;
+        if (accessoryData.hasConflictingAccessoryEquipped(info)) return false;
 
         for (int i : indexesToCheck) {
             if (i > accessoryData.getAccessoryCapIndex()) break;

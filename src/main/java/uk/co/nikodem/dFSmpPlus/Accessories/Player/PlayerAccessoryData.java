@@ -6,6 +6,8 @@ import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryMeta;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 
+import java.util.List;
+
 public class PlayerAccessoryData {
     public ItemStack[] slots = new ItemStack[7];
     public int accessoryCapIndexAddition = 0;
@@ -23,6 +25,21 @@ public class PlayerAccessoryData {
 
     public boolean isAccessoryEquipped(AccessoryInformation info) {
         return isAccessoryEquipped(info.getNamespacedKey());
+    }
+
+    public boolean hasConflictingAccessoryEquipped(String accessory_id, List<String> conflicts) {
+        for (ItemStack item : slots) {
+            AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
+            if (info == null) continue;
+
+            if (conflicts.contains(info.getNamespacedKey().getKey())) return true;
+            if (info.getConflicts().contains(accessory_id)) return true;
+        }
+        return false;
+    }
+
+    public boolean hasConflictingAccessoryEquipped(AccessoryInformation info) {
+        return hasConflictingAccessoryEquipped(info.getNamespacedKey().getKey(), info.getConflicts());
     }
 
     public boolean hasAccessoryWithMetaEquipped(Class<? extends AccessoryMeta> metaClass) {

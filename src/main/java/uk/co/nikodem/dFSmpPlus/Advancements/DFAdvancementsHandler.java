@@ -85,7 +85,7 @@ public class DFAdvancementsHandler {
 
         EquipAccessory equipAccessory = new EquipAccessory(main);
         EquipAllAccessories equipAllAccessories = new EquipAllAccessories(equipAccessory);
-        new ITinkeredItOut(equipAllAccessories); // TODO
+        new ITinkeredItOut(equipAllAccessories);
 
         MatchingAttire matchingAttire = new MatchingAttire(main);
         new IndecisiveWardrobe(matchingAttire);

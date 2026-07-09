@@ -25,6 +25,8 @@ public class Sounds {
     public static PresetSoundData DefaultEquipAccessory = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_GENERIC, 1F, 1F);
 
     public static PresetSoundData EquipAccessory_LuckyHorseshoe = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_GOLD, 1F, 1F);
+    public static PresetSoundData EquipAccessory_ElytraBraces = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_CHAIN, 1F, 1F);
+    public static PresetSoundData EquipAccessory_BracedHorseshoe = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_NETHERITE, 1F, 1F);
     public static PresetSoundData EquipAccessory_ContaminatedMembrane = new PresetSoundData(Sound.ITEM_GLOW_INK_SAC_USE, 1F, 1F);
     public static PresetSoundData EquipAccessory_Shield = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_IRON, 1F, 1F);
     public static PresetSoundData EquipAccessory_Essence = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_IRON, 1F, 1F);

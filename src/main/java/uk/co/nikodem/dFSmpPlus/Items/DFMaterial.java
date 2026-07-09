@@ -14,6 +14,7 @@ import org.bukkit.Registry;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.damage.DamageType;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -108,7 +109,6 @@ public class DFMaterial {
             .setDisplayName("<red>Firidium Sword")
             .addEnchantment(Enchantment.FIRE_ASPECT)
             .addMeta(new AdvancementOnObtainMeta(FiridiumTool.class))
-            .setTool(createFasterTool(ItemType.IRON_SWORD, 1.1f))
             .setCanSurviveLava(true)
             .create();
 
@@ -442,7 +442,6 @@ public class DFMaterial {
     public static DFMaterial CalciteSword = new Builder(Material.STONE_SWORD, "calcite_sword", "56871a")
             .setDisplayName("Calcite Sword")
             .addEnchantment(Enchantment.UNBREAKING, 1)
-            .setTool(createFasterTool(ItemType.IRON_SWORD, 0.9f))
             .create();
 
     public static DFMaterial CalciteAxe = new Builder(Material.IRON_AXE, "calcite_axe", "4ba115")
@@ -629,7 +628,6 @@ public class DFMaterial {
     public static DFMaterial FloralSword = new Builder(Material.IRON_SWORD, "floral_sword", "9b7e23")
             .setDisplayName("<light_purple>Floral Sword")
             .addMeta(new CustomDurabilityMeta(750), new HarvesterItemMeta())
-            .setTool(Material.DIAMOND_SWORD.getDefaultData(DataComponentTypes.TOOL))
             .create();
 
     public static DFMaterial FloralAxe = new Builder(Material.IRON_AXE, "floral_axe", "6dd2f2")
@@ -688,9 +686,30 @@ public class DFMaterial {
             .setDisplayName("Lucky Horseshoe")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("negating_falldamage")
-                    .addMeta(new NegatingFallDamageMeta())
+                    .addMeta(new NegatingDamageMeta(DamageType.FALL))
                     .setDescription("Negates all fall damage")
                     .setEquipSound(Sounds.EquipAccessory_LuckyHorseshoe)
+                    .create()))
+            .create();
+
+    public static DFMaterial ElytraBraces = new Builder(Material.POPPED_CHORUS_FRUIT, "elytra_braces", "c3bcb9")
+            .setDisplayName("Elytra Braces")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("elytra_braces")
+                    .addMeta(new NegatingDamageMeta(DamageType.FLY_INTO_WALL))
+                    .setDescription("Negates all elytra kinetic damage")
+                    .setEquipSound(Sounds.EquipAccessory_ElytraBraces)
+                    .create()))
+            .create();
+
+    public static DFMaterial BracedHorseshoe = new Builder(Material.POPPED_CHORUS_FRUIT, "braced_horseshoe", "7c6ded")
+            .setDisplayName("Braced Horseshoe")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("braced_horseshoe")
+                    .addMeta(new NegatingDamageMeta(DamageType.FALL, DamageType.FLY_INTO_WALL))
+                    .setDescription("Negates all fall damage and elytra kinetic damage")
+                    .setEquipSound(Sounds.EquipAccessory_BracedHorseshoe)
+                    .addConflicts("elytra_braces", "negating_falldamage")
                     .create()))
             .create();
 
@@ -764,6 +783,17 @@ public class DFMaterial {
                     .setDescription("Auto plants seeds when walking over farmland with seeds in hand\nPrevents stepping over crops")
                     .setEquipSound(Sounds.EquipAccessory_Boots)
                     .addMeta(new FlowerBootsMeta())
+                    .create()))
+            .create();
+
+    public static DFMaterial FlowerBootsOfSwiftness = new Builder(Material.POPPED_CHORUS_FRUIT, "flower_boots_of_swiftness", "d3c4e33")
+            .setDisplayName("Flower Boots of Swiftness")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("flower_boots_of_swiftness")
+                    .setDescription("+2% Speed\nAuto plants seeds when walking over farmland with seeds in hand\nPrevents stepping over crops")
+                    .setEquipSound(Sounds.EquipAccessory_Boots)
+                    .addMeta(new SwiftnessAccessoryMeta(), new FlowerBootsMeta())
+                    .addConflicts("flower_boots", "boots_of_swiftness")
                     .create()))
             .create();
 

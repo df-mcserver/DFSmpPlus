@@ -15,13 +15,15 @@ public class AccessoryInformation {
     private final double armourPoints;
     private final String accessoryDescription;
     private final PresetSoundData equipSound;
+    private final List<String> conflicts;
 
     public AccessoryInformation(
             String namedId,
             List<AccessoryMeta> metas,
             double armourPoints,
             String accessoryDescription,
-            PresetSoundData equipSound
+            PresetSoundData equipSound,
+            List<String> conflicts
     )
     {
         this.namedId = namedId;
@@ -29,6 +31,7 @@ public class AccessoryInformation {
         this.armourPoints = armourPoints;
         this.accessoryDescription = accessoryDescription;
         this.equipSound = equipSound;
+        this.conflicts = conflicts;
     }
 
     public NamespacedKey getNamespacedKey() {
@@ -51,6 +54,10 @@ public class AccessoryInformation {
         return !this.metas.isEmpty();
     }
 
+    public List<String> getConflicts() {
+        return this.conflicts;
+    }
+
     public PresetSoundData getEquipSound() {
         return this.equipSound;
     }
@@ -61,6 +68,7 @@ public class AccessoryInformation {
         private String accessoryDescription = "Unknown effect";
         private final List<AccessoryMeta> metas = new ArrayList<>();
         private PresetSoundData equipSound = Sounds.DefaultEquipAccessory;
+        private final List<String> conflicts = new ArrayList<>();
 
         public Builder(String namedId) {
             this.namedId = namedId;
@@ -86,13 +94,19 @@ public class AccessoryInformation {
             return this;
         }
 
+        public Builder addConflicts(String... accessoryIds) {
+            this.conflicts.addAll(Arrays.asList(accessoryIds));
+            return this;
+        }
+
         public AccessoryInformation create() {
             return new AccessoryInformation(
                     namedId,
                     metas,
                     armourPoints,
                     accessoryDescription,
-                    equipSound
+                    equipSound,
+                    conflicts
             );
         }
     }

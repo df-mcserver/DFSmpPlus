@@ -4,9 +4,9 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.AnvilRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -30,6 +30,28 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setIngredient('I', Material.BREEZE_ROD)
                         .setIngredient('F', Material.FEATHER)
         );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.ElytraBraces)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "elytrabraces")
+                        .shape("NI", "IN")
+                        .setIngredient('N', Material.IRON_BARS)
+                        .setIngredient('I', Material.IRON_NUGGET)
+        );
+
+        new AnvilRecipeBuilder()
+                .setBase(DFMaterial.LuckyHorseshoe)
+                .setAddition(DFMaterial.ElytraBraces)
+                .setResult(DFMaterial.BracedHorseshoe)
+                .assign();
+
+        new AnvilRecipeBuilder()
+                .setBase(DFMaterial.ElytraBraces)
+                .setAddition(DFMaterial.LuckyHorseshoe)
+                .setResult(DFMaterial.BracedHorseshoe)
+                .assign();
 
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
@@ -104,10 +126,22 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.FlowerBoots)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "flowerboots")
-                        .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', Material.LEATHER_BOOTS)
+                        .shape(" O ", "OXO", " O ")
+                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FloralBoots.toItemStack()))
                         .setIngredient('O', new RecipeChoice.ExactChoice(DFMaterial.FlowerPowder.toItemStack()))
         );
+
+        new AnvilRecipeBuilder()
+                .setBase(DFMaterial.BootsOfSwiftness)
+                .setAddition(DFMaterial.FlowerBoots)
+                .setResult(DFMaterial.FlowerBootsOfSwiftness)
+                .assign();
+
+        new AnvilRecipeBuilder()
+                .setBase(DFMaterial.FlowerBoots)
+                .setAddition(DFMaterial.BootsOfSwiftness)
+                .setResult(DFMaterial.FlowerBootsOfSwiftness)
+                .assign();
 
         recipesToAdd.add(
                 new ShapelessRecipeBuilder()
