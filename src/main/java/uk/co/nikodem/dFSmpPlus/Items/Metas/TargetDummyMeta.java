@@ -39,7 +39,7 @@ public class TargetDummyMeta implements DFMaterialMeta {
         Damageable damageable = (Damageable) item.getItemMeta();
         if (damageable == null) return;
         item.setAmount(item.getAmount() - 1);
-        ArmorStand entity = (ArmorStand) block.getWorld().spawnEntity(block.getLocation().add(0.5, 1, 0.5), EntityType.ARMOR_STAND);
+        ArmorStand entity = (ArmorStand) block.getWorld().spawnEntity(block.getLocation().add(0.5, 0, 0.5).add(event.getBlockFace().getDirection()).setDirection(plr.getFacing().getOppositeFace().getDirection()), EntityType.ARMOR_STAND);
         entity.getAttribute(Attribute.MAX_HEALTH).addModifier(
                 new AttributeModifier(
                         Keys.targetDummy,
@@ -69,32 +69,35 @@ public class TargetDummyMeta implements DFMaterialMeta {
         double damage = event.getDamage();
         Entity damager = event.getDamager();
         if (damager instanceof Player plr) {
-            int newDamage = event.getEntity().getPersistentDataContainer().has(Keys.targetDummy) ? event.getEntity().getPersistentDataContainer().get(
+            Entity dummy = event.getEntity();
+
+            int newDamage = dummy.getPersistentDataContainer().has(Keys.targetDummy) ? dummy.getPersistentDataContainer().get(
                     Keys.targetDummy,
                     PersistentDataType.INTEGER
             ) + (int) damage : (int) damage;
-            event.getEntity().getPersistentDataContainer().set(
+            dummy.getPersistentDataContainer().set(
                     Keys.targetDummy,
                     PersistentDataType.INTEGER,
                     newDamage
             );
 
-            if (newDamage > maxdamage) {
-                event.getEntity().getWorld().playSound(event.getEntity(), Sound.ENTITY_PLAYER_ATTACK_CRIT, 1F, 1F);
-                Sounds.BrokenTool.playSound(event.getEntity());
-                event.getEntity().getWorld().spawnParticle(Particle.CRIT, event.getEntity().getLocation().add(0, 1.5, 0), 25, 0, 0, 0, 0.6);
-                event.getEntity().remove();
+            if (newDamage >= maxdamage) {
+                Sounds.CritTargetDummy.playSound(dummy);
+                Sounds.BrokenTool.playSound(dummy);
+                dummy.getWorld().spawnParticle(Particle.ITEM, dummy.getLocation().add(0, 1, 0), 25, 0, 0, 0, ItemStack.of(Material.OAK_PLANKS));
+                dummy.getWorld().spawnParticle(Particle.CRIT, dummy.getLocation().add(0, 1.5, 0), 25, 0, 0, 0, 0.6);
+                dummy.remove();
 
                 DFAdvancementsHandler.grantAdvancement(plr, BreakTargetDummy.class);
                 return;
             }
 
-            event.getEntity().customName(Component.text("♥  "+(maxdamage-newDamage)+"/"+maxdamage, NamedTextColor.RED));
+            dummy.customName(Component.text("♥  "+(maxdamage-newDamage)+"/"+maxdamage, NamedTextColor.RED));
 
             if (event.isCritical()) {
-                event.getEntity().getWorld().playSound(event.getEntity(), Sound.ENTITY_PLAYER_ATTACK_CRIT, 1F, 1F);
-                event.getEntity().getWorld().spawnParticle(Particle.CRIT, event.getEntity().getLocation().add(0, 1.5, 0), 6, 0, 0, 0, 0.6);
-            } else event.getEntity().getWorld().playSound(event.getEntity(), Sound.ENTITY_ARMOR_STAND_HIT, 1F, 1F);
+                Sounds.CritTargetDummy.playSound(dummy);
+                dummy.getWorld().spawnParticle(Particle.CRIT, dummy.getLocation().add(0, 1.5, 0), 6, 0, 0, 0, 0.6);
+            } else Sounds.AttackTargetDummy.playSound(dummy);
 
             plr.sendActionBar(MiniMessage.miniMessage().deserialize("<red>-♥ <white>"+new DecimalFormat("#0.00").format(event.getDamage())));
         }

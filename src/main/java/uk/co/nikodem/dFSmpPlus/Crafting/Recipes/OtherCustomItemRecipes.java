@@ -23,6 +23,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();
 
+        addTargetDummy(recipesToAdd);
         addMagicMirror(recipesToAdd);
         addEntityBucket(recipesToAdd);
         doWartChanges(recipesToAdd);
@@ -39,6 +40,17 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         addCardboard(recipesToAdd);
 
         return recipesToAdd;
+    }
+
+    public void addTargetDummy(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.TargetDummy)
+                        .build(getInfo(), "target")
+                        .shape("I", "X")
+                        .setIngredient('I', Material.ARMOR_STAND)
+                        .setIngredient('X', Material.TARGET)
+        );
     }
 
     public void addEmptyingEntityBuckets(List<Recipe> recipesToAdd) {
