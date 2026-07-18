@@ -613,6 +613,36 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo(), "deep-to-cobble")
         );
 
+        Map<Material, Material> baseToSmooth = Map.ofEntries(
+                Map.entry(Material.STONE, Material.SMOOTH_STONE),
+                Map.entry(Material.STONE_SLAB, Material.SMOOTH_SANDSTONE_SLAB),
+                Map.entry(Material.SANDSTONE, Material.SMOOTH_SANDSTONE),
+                Map.entry(Material.SANDSTONE_STAIRS, Material.SMOOTH_SANDSTONE_STAIRS),
+                Map.entry(Material.SANDSTONE_SLAB, Material.SMOOTH_SANDSTONE_SLAB),
+                Map.entry(Material.RED_SANDSTONE, Material.SMOOTH_RED_SANDSTONE),
+                Map.entry(Material.RED_SANDSTONE_STAIRS, Material.SMOOTH_RED_SANDSTONE_STAIRS),
+                Map.entry(Material.RED_SANDSTONE_SLAB, Material.SMOOTH_RED_SANDSTONE_SLAB),
+                Map.entry(Material.BASALT, Material.SMOOTH_BASALT),
+                Map.entry(Material.QUARTZ_BLOCK, Material.SMOOTH_QUARTZ),
+                Map.entry(Material.QUARTZ_SLAB, Material.SMOOTH_QUARTZ_SLAB),
+                Map.entry(Material.QUARTZ_STAIRS, Material.SMOOTH_QUARTZ_STAIRS)
+        );
+
+        for (Map.Entry<Material, Material> entry : baseToSmooth.entrySet()) {
+            recipesToAdd.add(
+                    new StonecutterRecipeBuilder()
+                            .setSource(entry.getKey())
+                            .setOutput(entry.getValue())
+                            .build(getInfo(), entry.getKey().name())
+            );
+            recipesToAdd.add(
+                    new StonecutterRecipeBuilder()
+                            .setSource(entry.getValue())
+                            .setOutput(entry.getKey())
+                            .build(getInfo(), entry.getValue().name())
+            );
+        }
+
         Map<Material, Material> allLogsToStrippedLogs = Map.ofEntries(
                 Map.entry(Material.OAK_LOG, Material.STRIPPED_OAK_LOG),
                 Map.entry(Material.ACACIA_LOG, Material.STRIPPED_ACACIA_LOG),
