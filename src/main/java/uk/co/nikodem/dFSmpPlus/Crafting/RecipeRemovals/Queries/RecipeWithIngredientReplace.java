@@ -9,17 +9,17 @@ public class RecipeWithIngredientReplace extends RecipeWithIngredientRemoval {
     private RecipeChoice replacementIngredient;
 
     public RecipeWithIngredientReplace setReplacementIngredient(ItemStack result) {
-        this.replacementIngredient = new RecipeChoice.ExactChoice(result);
+        this.replacementIngredient = RecipeChoice.exactChoice(result);
         return this;
     }
 
     public RecipeWithIngredientReplace setReplacementIngredient(Material result) {
-        this.replacementIngredient = new RecipeChoice.ExactChoice(new ItemStack(result));
+        this.replacementIngredient = RecipeChoice.exactChoice(new ItemStack(result));
         return this;
     }
 
     public RecipeWithIngredientReplace setReplacementIngredient(DFMaterial result) {
-        this.replacementIngredient = new RecipeChoice.ExactChoice(result.toItemStack());
+        this.replacementIngredient = RecipeChoice.exactChoice(result.toItemStack());
         return this;
     }
 

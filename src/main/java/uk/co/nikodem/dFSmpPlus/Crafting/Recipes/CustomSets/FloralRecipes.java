@@ -44,8 +44,8 @@ public class FloralRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "FloralIngot-Powder")
                         .shape("XO", "OX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FlowerPowder.toItemStack()))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_INGOT)))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.FlowerPowder.toItemStack()))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_INGOT)))
         );
 
         recipesToAdd.add(
@@ -53,7 +53,7 @@ public class FloralRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.FloralNugget, 9)
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "FloralNugget")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FloralIngot.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.FloralIngot.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -62,7 +62,7 @@ public class FloralRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "FloralIngot")
                         .shape("XXX", "XXX", "XXX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FloralNugget.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.FloralNugget.toItemStack()))
         );
     }
 

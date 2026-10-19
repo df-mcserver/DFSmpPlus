@@ -58,42 +58,42 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.CopperEntityBucket)
                         .build(getInfo(), "ccbucketempty")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.CopperCleaningEntityBucket.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.CopperCleaningEntityBucket.toItemStack()))
         );
 
         recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.CopperEntityBucket)
                         .build(getInfo(), "csbucketempty")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.CopperStoringEntityBucket.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.CopperStoringEntityBucket.toItemStack()))
         );
 
         recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.EntityBucket)
                         .build(getInfo(), "icbucketempty")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.CleaningEntityBucket.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.CleaningEntityBucket.toItemStack()))
         );
 
         recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.EntityBucket)
                         .build(getInfo(), "isbucketempty")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.StoringEntityBucket.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.StoringEntityBucket.toItemStack()))
         );
 
         recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.GoldEntityBucket)
                         .build(getInfo(), "gcbucketempty")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.GoldCleaningEntityBucket.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.GoldCleaningEntityBucket.toItemStack()))
         );
 
         recipesToAdd.add(
                 new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.GoldEntityBucket)
                         .build(getInfo(), "gsbucketempty")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.GoldStoringEntityBucket.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.GoldStoringEntityBucket.toItemStack()))
         );
     }
 
@@ -103,7 +103,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.CopperBucket)
                         .build(getInfo(), "cbucket")
                         .shape("X X", " X ")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_INGOT)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.COPPER_INGOT)))
         );
 
         recipesToAdd.add(
@@ -111,7 +111,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.GoldBucket)
                         .build(getInfo(), "gbucket")
                         .shape("X X", " X ")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.GOLD_INGOT)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.GOLD_INGOT)))
         );
     }
 
@@ -128,7 +128,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(Material.WARPED_WART_BLOCK)
                         .build(getInfo(), "wwtowwb")
                         .shape("XXX", "XXX", "XXX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.WarpedWart.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.WarpedWart.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -136,7 +136,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(Material.NETHER_WART_BLOCK)
                         .build(getInfo(), "nwtonwb")
                         .shape("XXX", "XXX", "XXX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(new ItemStack(Material.NETHER_WART)))
+                        .setIngredient('X', RecipeChoice.exactChoice(new ItemStack(Material.NETHER_WART)))
         );
     }
 
@@ -161,7 +161,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "EB-NoBucketCopper")
                         .shape("BXB", " B ")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_INGOT)))
+                        .setIngredient('B', RecipeChoice.exactChoice(ItemStack.of(Material.COPPER_INGOT)))
         );
 
         recipesToAdd.add(
@@ -171,7 +171,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "EB-BucketCopper")
                         .shape("X", "B")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.CopperBucket.toItemStack()))
+                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.CopperBucket.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -181,7 +181,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "CEBCopper")
                         .shape("X", "B")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.CopperWaterBucket.toItemStack()))
+                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.CopperWaterBucket.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -191,7 +191,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "SEBCopper")
                         .shape("X", "B")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.CopperLavaBucket.toItemStack()))
+                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.CopperLavaBucket.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -201,7 +201,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "EB-NoBucket")
                         .shape("BXB", " B ")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_INGOT)))
+                        .setIngredient('B', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_INGOT)))
         );
 
         recipesToAdd.add(
@@ -211,7 +211,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "EB-Bucket")
                         .shape("X", "B")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.BUCKET)))
+                        .setIngredient('B', RecipeChoice.exactChoice(ItemStack.of(Material.BUCKET)))
         );
 
         recipesToAdd.add(
@@ -221,7 +221,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "CEB")
                         .shape("X", "B")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.WATER_BUCKET)))
+                        .setIngredient('B', RecipeChoice.exactChoice(ItemStack.of(Material.WATER_BUCKET)))
         );
 
         recipesToAdd.add(
@@ -231,7 +231,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "SEB")
                         .shape("X", "B")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.LAVA_BUCKET)))
+                        .setIngredient('B', RecipeChoice.exactChoice(ItemStack.of(Material.LAVA_BUCKET)))
         );
 
         //
@@ -243,7 +243,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "EB-NoBucketGold")
                         .shape("BXB", " B ")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(ItemStack.of(Material.GOLD_INGOT)))
+                        .setIngredient('B', RecipeChoice.exactChoice(ItemStack.of(Material.GOLD_INGOT)))
         );
 
         recipesToAdd.add(
@@ -253,7 +253,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "EB-BucketGold")
                         .shape("X", "B")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.GoldBucket.toItemStack()))
+                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.GoldBucket.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -263,7 +263,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "CEBGold")
                         .shape("X", "B")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.GoldWaterBucket.toItemStack()))
+                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.GoldWaterBucket.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -273,7 +273,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "SEBGold")
                         .shape("X", "B")
                         .setIngredient('X', Material.COBWEB)
-                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.GoldLavaBucket.toItemStack()))
+                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.GoldLavaBucket.toItemStack()))
         );
     }
 
@@ -310,9 +310,9 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "LocatorCompass")
                         .shape(" D ", "AXA", " D ")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COMPASS)))
-                        .setIngredient('A', new RecipeChoice.ExactChoice(ItemStack.of(Material.DIAMOND)))
-                        .setIngredient('D', new RecipeChoice.ExactChoice(ItemStack.of(Material.AMETHYST_SHARD)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.COMPASS)))
+                        .setIngredient('A', RecipeChoice.exactChoice(ItemStack.of(Material.DIAMOND)))
+                        .setIngredient('D', RecipeChoice.exactChoice(ItemStack.of(Material.AMETHYST_SHARD)))
         );
 
         recipesToAdd.add(
@@ -321,9 +321,9 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "LocatorCompassModule")
                         .shape(" I ", "SCS", " I ")
-                        .setIngredient('I', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_INGOT)))
-                        .setIngredient('S', new RecipeChoice.ExactChoice(ItemStack.of(Material.STRING)))
-                        .setIngredient('C', new RecipeChoice.ExactChoice(ItemStack.of(Material.COAL)))
+                        .setIngredient('I', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_INGOT)))
+                        .setIngredient('S', RecipeChoice.exactChoice(ItemStack.of(Material.STRING)))
+                        .setIngredient('C', RecipeChoice.exactChoice(ItemStack.of(Material.COAL)))
         );
 
         recipesToAdd.add(
@@ -332,8 +332,8 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "EndLocatorCompassModule")
                         .shape("XXX", "XOX", "XXX")
-                        .setIngredient('O', new RecipeChoice.ExactChoice(DFMaterial.LocatorCompassModule.toItemStack()))
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.ENDER_EYE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(DFMaterial.LocatorCompassModule.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.ENDER_EYE)))
         );
     }
 
@@ -343,7 +343,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.FlowerPestleAndMortar)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "FlowerPM")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
                         .addIngredient(new RecipeChoice.MaterialChoice(Tag.ITEMS_FLOWERS))
         );
 
@@ -354,7 +354,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "EmptyPM")
                         .shape("XIX", " X ")
                         .setIngredient('X', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
-                        .setIngredient('I', new RecipeChoice.ExactChoice(DFMaterial.PointyStick.toItemStack()))
+                        .setIngredient('I', RecipeChoice.exactChoice(DFMaterial.PointyStick.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -362,7 +362,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.RottenFleshPestleAndMortar)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "RottenPM")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
                         .addIngredient(Material.ROTTEN_FLESH)
         );
 
@@ -371,7 +371,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.GravelPestleAndMortar)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "GravelPM")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
                         .addIngredient(Material.GRAVEL)
         );
 
@@ -380,7 +380,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.AmethystPestleAndMortar)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "AmethystPM")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.EmptyPestleAndMortar.toItemStack()))
                         .addIngredient(Material.AMETHYST_BLOCK)
         );
     }
@@ -421,8 +421,8 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.EggSandwich)
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "eggsandwich")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FriedEgg.toItemStack()))
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FriedEgg.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.FriedEgg.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.FriedEgg.toItemStack()))
                         .addIngredient(Material.BREAD)
         );
 
@@ -443,10 +443,10 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.AncientDebrisChunk)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "fragtochunk")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.AncientDebrisFragment.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -538,7 +538,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.FiridiumShears)
                         .build(getInfo(), "firidiumshears")
                         .shape(" X", "X ")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FiridiumIngot.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.FiridiumIngot.toItemStack()))
         );
 
         new ItemRepairAnvilRecipeBuilder()
@@ -618,7 +618,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.FloralShears)
                         .build(getInfo(), "floralshears")
                         .shape(" X", "X ")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FloralIngot.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.FloralIngot.toItemStack()))
         );
 
         new ItemRepairAnvilRecipeBuilder()

@@ -7,7 +7,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.*;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeRemovals.Queries.*;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

@@ -25,7 +25,7 @@ import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Vamp.*;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.lang.reflect.Field;
 import java.util.HashSet;
 

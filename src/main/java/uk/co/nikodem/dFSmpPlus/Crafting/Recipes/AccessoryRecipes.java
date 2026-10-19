@@ -72,7 +72,7 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .shape("NLN", "LGL", " N ")
                         .setIngredient('L', Material.LAPIS_LAZULI)
                         .setIngredient('G', Material.GOLD_INGOT)
-                        .setIngredient('N', new RecipeChoice.ExactChoice(new ItemStack(Material.IRON_NUGGET)))
+                        .setIngredient('N', RecipeChoice.exactChoice(new ItemStack(Material.IRON_NUGGET)))
         );
 
         recipesToAdd.add(
@@ -82,8 +82,8 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .build(getInfo(), "veinessence")
                         .shape("AAA", "XAP", "AAA")
                         .setIngredient('A', Material.AMETHYST_SHARD)
-                        .setIngredient('P', new RecipeChoice.ExactChoice(DFMaterial.VeinPickaxe.toItemStack()))
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.VeinAxe.toItemStack()))
+                        .setIngredient('P', RecipeChoice.exactChoice(DFMaterial.VeinPickaxe.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.VeinAxe.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -92,10 +92,10 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "autosmeltessence")
                         .shape("NAN", "NNN", "PNS")
-                        .setIngredient('N', new RecipeChoice.ExactChoice(DFMaterial.FiridiumNugget.toItemStack()))
-                        .setIngredient('P', new RecipeChoice.ExactChoice(DFMaterial.FiridiumPickaxe.toItemStack()))
-                        .setIngredient('A', new RecipeChoice.ExactChoice(DFMaterial.FiridiumAxe.toItemStack()))
-                        .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.FiridiumShovel.toItemStack()))
+                        .setIngredient('N', RecipeChoice.exactChoice(DFMaterial.FiridiumNugget.toItemStack()))
+                        .setIngredient('P', RecipeChoice.exactChoice(DFMaterial.FiridiumPickaxe.toItemStack()))
+                        .setIngredient('A', RecipeChoice.exactChoice(DFMaterial.FiridiumAxe.toItemStack()))
+                        .setIngredient('S', RecipeChoice.exactChoice(DFMaterial.FiridiumShovel.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -104,10 +104,10 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "splitessence")
                         .shape(" A ", "LEL", " B ")
-                        .setIngredient('A', new RecipeChoice.ExactChoice(DFMaterial.FiridiumEssence.toItemStack()))
-                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.VeinMinerEssence.toItemStack()))
-                        .setIngredient('E', new RecipeChoice.ExactChoice(ItemStack.of(Material.ENDER_EYE)))
-                        .setIngredient('L', new RecipeChoice.ExactChoice(ItemStack.of(Material.LAPIS_LAZULI)))
+                        .setIngredient('A', RecipeChoice.exactChoice(DFMaterial.FiridiumEssence.toItemStack()))
+                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.VeinMinerEssence.toItemStack()))
+                        .setIngredient('E', RecipeChoice.exactChoice(ItemStack.of(Material.ENDER_EYE)))
+                        .setIngredient('L', RecipeChoice.exactChoice(ItemStack.of(Material.LAPIS_LAZULI)))
         );
 
         recipesToAdd.add(
@@ -127,8 +127,8 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "flowerboots")
                         .shape(" O ", "OXO", " O ")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FloralBoots.toItemStack()))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(DFMaterial.FlowerPowder.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.FloralBoots.toItemStack()))
+                        .setIngredient('O', RecipeChoice.exactChoice(DFMaterial.FlowerPowder.toItemStack()))
         );
 
         new AnvilRecipeBuilder()
@@ -161,7 +161,7 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "vacuum")
                         .shape(" X ", "XOX", "IOI")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_INGOT)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_INGOT)))
                         .setIngredient('O', Material.WIND_CHARGE)
                         .setIngredient('I', Material.IRON_BARS)
         );

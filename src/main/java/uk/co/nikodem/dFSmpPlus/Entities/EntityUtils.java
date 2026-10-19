@@ -3,7 +3,7 @@ package uk.co.nikodem.dFSmpPlus.Entities;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 import java.util.Objects;
 

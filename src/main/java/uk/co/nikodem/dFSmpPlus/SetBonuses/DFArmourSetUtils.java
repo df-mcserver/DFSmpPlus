@@ -2,7 +2,7 @@ package uk.co.nikodem.dFSmpPlus.SetBonuses;
 
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class DFArmourSetUtils {
     @Nullable

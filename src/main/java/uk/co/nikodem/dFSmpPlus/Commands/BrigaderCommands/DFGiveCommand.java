@@ -19,7 +19,7 @@ import uk.co.nikodem.dFSmpPlus.Commands.DFCommand;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class DFGiveCommand implements DFCommand {

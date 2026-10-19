@@ -87,7 +87,7 @@ public class ControlledShapelessRecipeBuilder extends RecipeBuilder {
         );
 
         for (CustomItemRepresentation representation : this.ingredients) {
-            dummyRecipe.addIngredient(new RecipeChoice.ExactChoice(representation.getItem()));
+            dummyRecipe.addIngredient(RecipeChoice.exactChoice(representation.getItem()));
         }
 
         info.addKey(dummyRecipe.getKey());

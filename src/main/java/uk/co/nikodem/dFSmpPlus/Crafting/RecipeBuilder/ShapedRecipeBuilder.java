@@ -7,7 +7,7 @@ import org.bukkit.inventory.recipe.CraftingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeTemplateInfo;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class ShapedRecipeBuilder extends RecipeBuilder {
 

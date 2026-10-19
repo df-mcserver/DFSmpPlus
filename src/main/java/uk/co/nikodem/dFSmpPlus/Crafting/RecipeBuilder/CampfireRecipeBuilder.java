@@ -9,7 +9,7 @@ import org.bukkit.inventory.recipe.CookingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeTemplateInfo;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class CampfireRecipeBuilder extends RecipeBuilder {
     private ItemStack output;
@@ -36,17 +36,17 @@ public class CampfireRecipeBuilder extends RecipeBuilder {
     }
 
     public CampfireRecipeBuilder setSource(ItemStack source) {
-        this.source = new RecipeChoice.ExactChoice(source);
+        this.source = RecipeChoice.exactChoice(source);
         return this;
     }
 
     public CampfireRecipeBuilder setSource(DFMaterial source) {
-        this.source = new RecipeChoice.ExactChoice(source.toItemStack());
+        this.source = RecipeChoice.exactChoice(source.toItemStack());
         return this;
     }
 
     public CampfireRecipeBuilder setSource(Material source) {
-        this.source = new RecipeChoice.ExactChoice(new ItemStack(source));
+        this.source = RecipeChoice.exactChoice(new ItemStack(source));
         return this;
     }
 

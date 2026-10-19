@@ -2,7 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Player;
 
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.UUID;
 

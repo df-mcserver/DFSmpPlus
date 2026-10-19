@@ -8,7 +8,7 @@ import org.bukkit.inventory.recipe.CookingBookCategory;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeTemplateInfo;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class FurnaceRecipeBuilder extends RecipeBuilder {
 
@@ -36,17 +36,17 @@ public class FurnaceRecipeBuilder extends RecipeBuilder {
     }
 
     public FurnaceRecipeBuilder setSource(ItemStack source) {
-        this.source = new RecipeChoice.ExactChoice(source);
+        this.source = RecipeChoice.exactChoice(source);
         return this;
     }
 
     public FurnaceRecipeBuilder setSource(DFMaterial source) {
-        this.source = new RecipeChoice.ExactChoice(source.toItemStack());
+        this.source = RecipeChoice.exactChoice(source.toItemStack());
         return this;
     }
 
     public FurnaceRecipeBuilder setSource(Material source) {
-        this.source = new RecipeChoice.ExactChoice(new ItemStack(source));
+        this.source = RecipeChoice.exactChoice(new ItemStack(source));
         return this;
     }
 

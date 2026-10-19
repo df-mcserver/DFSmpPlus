@@ -10,7 +10,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class OnCraft {
     public static void OnCraft(CraftItemEvent e) {

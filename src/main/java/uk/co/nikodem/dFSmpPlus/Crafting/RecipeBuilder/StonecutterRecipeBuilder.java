@@ -7,7 +7,7 @@ import org.bukkit.inventory.StonecuttingRecipe;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeTemplateInfo;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class StonecutterRecipeBuilder extends RecipeBuilder {
 
@@ -22,17 +22,17 @@ public class StonecutterRecipeBuilder extends RecipeBuilder {
     }
 
     public StonecutterRecipeBuilder setSource(ItemStack source) {
-        this.source = new RecipeChoice.ExactChoice(source);
+        this.source = RecipeChoice.exactChoice(source);
         return this;
     }
 
     public StonecutterRecipeBuilder setSource(DFMaterial source) {
-        this.source = new RecipeChoice.ExactChoice(source.toItemStack());
+        this.source = RecipeChoice.exactChoice(source.toItemStack());
         return this;
     }
 
     public StonecutterRecipeBuilder setSource(Material source) {
-        this.source = new RecipeChoice.ExactChoice(new ItemStack(source));
+        this.source = RecipeChoice.exactChoice(new ItemStack(source));
         return this;
     }
 

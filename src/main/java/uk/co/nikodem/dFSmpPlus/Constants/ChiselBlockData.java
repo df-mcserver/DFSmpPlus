@@ -20,7 +20,7 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.PresetSoundData;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class ChiselBlockData {
