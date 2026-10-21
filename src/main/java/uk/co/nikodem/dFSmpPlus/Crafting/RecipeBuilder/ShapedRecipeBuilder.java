@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder;
 
 import org.bukkit.Material;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
@@ -9,11 +10,17 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
 public class ShapedRecipeBuilder extends RecipeBuilder {
+    public static Map<String, Function<Map.Entry<ShapedRecipe, PrepareItemCraftEvent>, ItemStack>> transformers = new HashMap<>();
 
     private ItemStack output;
     private CraftingBookCategory category;
     private String group;
+    private Function<Map.Entry<ShapedRecipe, PrepareItemCraftEvent>, ItemStack> transform = null;
 
     public ShapedRecipeBuilder setOutput(Material output) {
         this.output = new ItemStack(output);
@@ -50,6 +57,11 @@ public class ShapedRecipeBuilder extends RecipeBuilder {
         return this;
     }
 
+    public ShapedRecipeBuilder transformOutput(Function<Map.Entry<ShapedRecipe, PrepareItemCraftEvent>, ItemStack> transform) {
+        this.transform = transform;
+        return this;
+    }
+
     @Override
     public ShapedRecipe build(RecipeTemplateInfo info, String extra) {
         ShapedRecipe recipe =  new ShapedRecipe(
@@ -61,6 +73,9 @@ public class ShapedRecipeBuilder extends RecipeBuilder {
         if (this.category != null) recipe.setCategory(this.category);
         if (this.group != null) recipe.setGroup(this.group);
         info.addKey(recipe.getKey());
+
+        if (this.transform != null) transformers.put(recipe.getKey().asString(), this.transform);
+
         return recipe;
     }
 

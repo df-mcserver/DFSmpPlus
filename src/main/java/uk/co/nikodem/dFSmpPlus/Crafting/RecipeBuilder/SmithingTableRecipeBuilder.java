@@ -1,6 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder;
 
 import org.bukkit.Material;
+import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.SmithingTransformRecipe;
@@ -10,6 +11,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.Smithi
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeTemplateInfo;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
+import java.util.Map;
 import java.util.function.Function;
 
 public class SmithingTableRecipeBuilder extends RecipeBuilder {
@@ -18,7 +20,7 @@ public class SmithingTableRecipeBuilder extends RecipeBuilder {
     private CustomItemRepresentation base;
     private CustomItemRepresentation template;
     private CustomItemRepresentation addition;
-    private Function<SmithingTableRecipe, ItemStack> transformer;
+    private Function<Map.Entry<SmithingTableRecipe, PrepareSmithingEvent>, ItemStack> transformer;
 
     public SmithingTableRecipeBuilder setResult(ItemStack result) {
         this.result = result;
@@ -116,7 +118,7 @@ public class SmithingTableRecipeBuilder extends RecipeBuilder {
         return this;
     }
 
-    public SmithingTableRecipeBuilder setTransformer(Function<SmithingTableRecipe, ItemStack> transformer) {
+    public SmithingTableRecipeBuilder setTransformer(Function<Map.Entry<SmithingTableRecipe, PrepareSmithingEvent>, ItemStack> transformer) {
         this.transformer = transformer;
         return this;
     }

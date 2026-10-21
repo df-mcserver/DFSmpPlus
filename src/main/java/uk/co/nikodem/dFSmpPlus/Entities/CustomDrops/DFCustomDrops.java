@@ -22,7 +22,6 @@ public class DFCustomDrops {
     private DFCustomDropCheck check;
     private EntityType type;
 
-    // Chisel Blocks
     public static void createCustomDropData() {
         new Builder(EntityType.FROG).setItem(Material.VERDANT_FROGLIGHT).setRandomRange(0, 2).setCheck((e) -> ((Frog) e.getEntity()).getVariant() == Frog.Variant.COLD).create();
         new Builder(EntityType.FROG).setItem(Material.PEARLESCENT_FROGLIGHT).setRandomRange(0, 2).setCheck((e) -> ((Frog) e.getEntity()).getVariant() == Frog.Variant.WARM).create();
@@ -36,7 +35,7 @@ public class DFCustomDrops {
 
         new Builder(EntityType.SNIFFER).setItem(Material.MOSS_BLOCK).setRandomRange(1, 2).create();
 
-        new Builder(EntityType.SULFUR_CUBE).setItem(Material.GUNPOWDER).setRandomRange(1,3).create();
+        new Builder(EntityType.SULFUR_CUBE).setItem(Material.GUNPOWDER).setRandomRange(2,3).setCheck((e) -> !((Ageable) e.getEntity()).isAdult()).create();
     }
 
     public ItemStack getItem() {

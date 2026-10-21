@@ -58,8 +58,8 @@ public class RecipeRemover {
                     boolean shouldRemove = !query.getOnlyUseMinecraftNamespace() || key.getNamespace().equals("minecraft");
                     if (shouldRemove) {
                         if (query instanceof RecipeWithIngredientReplace replaceQuery) {
-                            recipesToReAdd.add(createSimilarRecipe(r, ingredient, replaceQuery.getReplacementIngredient()));
                             Bukkit.removeRecipe(key);
+                            recipesToReAdd.add(createSimilarRecipe(r, ingredient, replaceQuery.getReplacementIngredient()));
                         } else {
                             Bukkit.removeRecipe(key);
                         }
@@ -153,7 +153,8 @@ public class RecipeRemover {
     @Nullable
     public static Recipe createSimilarRecipe(Recipe r, RecipeChoice removedIngredient, RecipeChoice addedIngredient) {
         if (r instanceof ShapedRecipe recipe) {
-            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+            NamespacedKey key = recipe.getKey();
+//            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
             ShapedRecipe shapedRecipe = new ShapedRecipe(key, recipe.getResult());
             shapedRecipe.shape(recipe.getShape());
             shapedRecipe.setGroup(recipe.getGroup());
@@ -179,7 +180,8 @@ public class RecipeRemover {
 
             return shapedRecipe;
         } else if (r instanceof ShapelessRecipe recipe) {
-            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+//            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+            NamespacedKey key = recipe.getKey();
             ShapelessRecipe shapelessRecipe = new ShapelessRecipe(key, recipe.getResult());
             shapelessRecipe.setGroup(recipe.getGroup());
             shapelessRecipe.setCategory(recipe.getCategory());
@@ -203,7 +205,8 @@ public class RecipeRemover {
 
             return shapelessRecipe;
         } else if (r instanceof StonecuttingRecipe recipe) {
-            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+//            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+            NamespacedKey key = recipe.getKey();
             StonecuttingRecipe stonecuttingRecipe = new StonecuttingRecipe(key, recipe.getResult(), recipe.getInputChoice());
             stonecuttingRecipe.setGroup(recipe.getGroup());
 
@@ -212,7 +215,8 @@ public class RecipeRemover {
 
             return stonecuttingRecipe;
         } else if (r instanceof FurnaceRecipe recipe) {
-            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+//            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+            NamespacedKey key = recipe.getKey();
             FurnaceRecipe furnaceRecipe = new FurnaceRecipe(key, recipe.getResult(), recipe.getInputChoice(), recipe.getExperience(), recipe.getCookingTime());
             furnaceRecipe.setCategory(recipe.getCategory());
             furnaceRecipe.setGroup(recipe.getGroup());
@@ -222,7 +226,8 @@ public class RecipeRemover {
 
             return furnaceRecipe;
         } else if (r instanceof BlastingRecipe recipe) {
-            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+//            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+            NamespacedKey key = recipe.getKey();
             BlastingRecipe blastingRecipe = new BlastingRecipe(key, recipe.getResult(), recipe.getInputChoice(), recipe.getExperience(), recipe.getCookingTime());
             blastingRecipe.setCategory(recipe.getCategory());
             blastingRecipe.setGroup(recipe.getGroup());
@@ -232,7 +237,8 @@ public class RecipeRemover {
 
             return blastingRecipe;
         } else if (r instanceof SmokingRecipe recipe) {
-            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+//            NamespacedKey key = appendToNamespacedKey(recipe.getKey(), "-replaced");
+            NamespacedKey key = recipe.getKey();
             SmokingRecipe smokingRecipe = new SmokingRecipe(key, recipe.getResult(), recipe.getInputChoice(), recipe.getExperience(), recipe.getCookingTime());
             smokingRecipe.setCategory(recipe.getCategory());
             smokingRecipe.setGroup(recipe.getGroup());

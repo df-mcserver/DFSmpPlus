@@ -61,7 +61,7 @@ public class SmithingTableEvents {
 
                     // set the item to the (transformed) item
 
-                    ItemStack result = recipe.transformResult();
+                    ItemStack result = recipe.transformResult(event);
 
                     // apply standard changes
 

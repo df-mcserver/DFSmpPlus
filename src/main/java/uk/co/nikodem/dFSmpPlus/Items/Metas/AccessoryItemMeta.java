@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.AccessoryUI;
+import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Player.BedrockPlayers;
@@ -28,6 +29,7 @@ public class AccessoryItemMeta implements DFMaterialMeta {
 
     @Override
     public void ItemUse(Player plr, DFMaterial material, ItemStack item, PlayerInteractEvent event) {
+        if (DFItemUtils.containsMeta(material, BackpackRightclickOverride.class)) return;
         if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
             boolean opensMenu = false;
 

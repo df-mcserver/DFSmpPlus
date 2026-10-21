@@ -1,8 +1,10 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable;
 
+import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 
+import java.util.Map;
 import java.util.function.Function;
 
 public class SmithingTableRecipe {
@@ -12,9 +14,9 @@ public class SmithingTableRecipe {
     private final CustomItemRepresentation base;
     private final CustomItemRepresentation addition;
 
-    private Function<SmithingTableRecipe, ItemStack> transformResult;
+    private Function<Map.Entry<SmithingTableRecipe, PrepareSmithingEvent>, ItemStack> transformResult;
 
-    public SmithingTableRecipe(ItemStack result, CustomItemRepresentation template, CustomItemRepresentation base, CustomItemRepresentation addition, Function<SmithingTableRecipe, ItemStack> transformResult) {
+    public SmithingTableRecipe(ItemStack result, CustomItemRepresentation template, CustomItemRepresentation base, CustomItemRepresentation addition, Function<Map.Entry<SmithingTableRecipe, PrepareSmithingEvent>, ItemStack> transformResult) {
         this.result = result;
         this.template = template;
         this.base = base;
@@ -29,9 +31,9 @@ public class SmithingTableRecipe {
         this.addition = addition;
     }
 
-    public ItemStack transformResult() {
+    public ItemStack transformResult(PrepareSmithingEvent event) {
         if (transformResult == null) return this.result;
-        return transformResult.apply(this);
+        return transformResult.apply(Map.entry(this, event));
     }
 
     public ItemStack getResult() {

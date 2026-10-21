@@ -3,9 +3,13 @@ package uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.MergingCraftingTabl
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
+import org.jetbrains.annotations.Nullable;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 
 import java.util.*;
+import java.util.function.Function;
 
 public class CraftingTableEvents {
     public static List<ControlledShapelessRecipe> recipes = new ArrayList<>();
@@ -13,6 +17,14 @@ public class CraftingTableEvents {
     public static void onCraftingTableEvent(PrepareItemCraftEvent event) {
         CraftingInventory inventory = event.getInventory();
         ItemStack[] matrix = inventory.getMatrix();
+
+        if (event.getRecipe() != null) {
+            if (event.getRecipe() instanceof ShapedRecipe shapedRecipe) {
+                var transformer = ShapedRecipeBuilder.transformers.get(shapedRecipe.getKey().asString());
+                if (transformer != null)
+                    inventory.setResult(transformer.apply(Map.entry(shapedRecipe, event)));
+            }
+        }
 
         for (ControlledShapelessRecipe recipe : recipes) {
             if (doesCraftingInventoryMatchRecipe(matrix, recipe)) {

@@ -144,6 +144,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new SpawnCommand(),
                     new BinCommand(),
                     new BackCommand(),
+                    new BackpackCommand(),
 
                     new DFDebugCommand(),
                     new DFMaterialView()

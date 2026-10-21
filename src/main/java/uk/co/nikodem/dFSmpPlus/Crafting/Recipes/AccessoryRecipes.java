@@ -1,23 +1,34 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.Recipes;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Item;
+import org.bukkit.event.inventory.PrepareItemCraftEvent;
+import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.recipe.CraftingBookCategory;
+import org.bukkit.persistence.PersistentDataType;
+import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.AnvilRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
+import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.SmithingTableRecipe;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.*;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Etc.DirectConversionRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AccessoryRecipes extends CraftingTemplate {
     @Override
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();
+
+        addBackpackRecipes(recipesToAdd);
 
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
@@ -203,6 +214,106 @@ public class AccessoryRecipes extends CraftingTemplate {
         );
 
         return recipesToAdd;
+    }
+
+    public void addBackpackRecipes(List<Recipe> recipesToAdd) {
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.CopperBackpack)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "copper-backpack")
+                        .shape("XXX", "XOX", "XXX")
+                        .setIngredient('X', Material.COPPER_INGOT)
+                        .setIngredient('O', Material.CHEST)
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.IronBackpack)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .transformOutput(data -> backpackUuidConversionFunction(DFMaterial.CopperBackpack, data))
+                        .build(getInfo(), "iron-backpack")
+                        .shape("XXX", "XOX", "XXX")
+                        .setIngredient('X', Material.IRON_INGOT)
+                        .setIngredient('O', RecipeChoice.predicateChoice((item -> DFMaterial.CopperBackpack.isSimilar(item)), DFMaterial.CopperBackpack.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.GoldBackpack)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .transformOutput(data -> backpackUuidConversionFunction(DFMaterial.IronBackpack, data))
+                        .build(getInfo(), "gold-backpack")
+                        .shape("XXX", "XOX", "XXX")
+                        .setIngredient('X', Material.GOLD_INGOT)
+                        .setIngredient('O', RecipeChoice.predicateChoice((item -> DFMaterial.IronBackpack.isSimilar(item)), DFMaterial.IronBackpack.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.DiamondBackpack)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .transformOutput(data -> backpackUuidConversionFunction(DFMaterial.GoldBackpack, data))
+                        .build(getInfo(), "diamond-backpack")
+                        .shape("XXX", "XOX", "XXX")
+                        .setIngredient('X', Material.DIAMOND)
+                        .setIngredient('O', RecipeChoice.predicateChoice((item -> DFMaterial.GoldBackpack.isSimilar(item)), DFMaterial.GoldBackpack.toItemStack()))
+        );
+
+        recipesToAdd.add(
+                new SmithingTableRecipeBuilder()
+                        .setBase(new CustomItemRepresentation(DFMaterial.DiamondBackpack))
+                        .setTemplate(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
+                        .setAddition(Material.NETHERITE_INGOT)
+                        .setResult(DFMaterial.NetheriteBackpack.toItemStack())
+                        .setTransformer(data -> {
+                            SmithingTableRecipe recipe = data.getKey();
+                            PrepareSmithingEvent event = data.getValue();
+
+                            ItemStack base = event.getInventory().getInputEquipment();
+
+                            if (base == null) return ItemStack.empty();
+                            if (base.isEmpty()) return ItemStack.empty();
+                            String uuid = DFItemUtils.getUUID(base);
+
+                            if (uuid == null) return ItemStack.empty();
+
+                            ItemStack result = recipe.getResult().clone();
+                            DFItemUtils.set(result, Keys.markedForUUID, PersistentDataType.BOOLEAN, false);
+                            DFItemUtils.set(result, Keys.UUID, PersistentDataType.STRING, uuid);
+
+                            return result;
+                        })
+                        .build(getInfo(), "netherite-backpack")
+        );
+    }
+
+    private ItemStack backpackUuidConversionFunction(DFMaterial similar, Map.Entry<ShapedRecipe, PrepareItemCraftEvent> data) {
+        PrepareItemCraftEvent event = data.getValue();
+        ShapedRecipe recipe = data.getKey();
+
+        return backpackUuidConversionFunction(similar, event.getInventory().getMatrix(), recipe.getResult());
+    }
+
+    private ItemStack backpackUuidConversionFunction(DFMaterial similar, ItemStack[] ingredients, ItemStack result_from_recipe) {
+        for (ItemStack item : ingredients) {
+            if (item == null) continue;
+            if (item.isEmpty()) continue;
+
+            if (similar.isSimilar(item)) {
+                String uuid = DFItemUtils.getUUID(item);
+
+                if (uuid == null) return ItemStack.empty();
+
+                ItemStack result = result_from_recipe.clone();
+                DFItemUtils.set(result, Keys.markedForUUID, PersistentDataType.BOOLEAN, false);
+                DFItemUtils.set(result, Keys.UUID, PersistentDataType.STRING, uuid);
+
+                return result;
+            }
+        }
+
+        return ItemStack.empty();
     }
 
     @Override

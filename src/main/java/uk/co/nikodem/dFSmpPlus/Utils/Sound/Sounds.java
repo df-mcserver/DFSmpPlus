@@ -34,6 +34,12 @@ public class Sounds {
     public static PresetSoundData EquipAccessory_Boots = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_LEATHER, 1F, 1F);
     public static PresetSoundData EquipAccessory_Book = new PresetSoundData(Sound.BLOCK_CHISELED_BOOKSHELF_INSERT, 1F, 1F);
 
+    public static PresetSoundData EquipAccessory_CopperBackpack = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_COPPER, 1F, 0.9F);
+    public static PresetSoundData EquipAccessory_IronBackpack = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_IRON, 1F, 0.9F);
+    public static PresetSoundData EquipAccessory_GoldBackpack = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_GOLD, 1F, 0.9F);
+    public static PresetSoundData EquipAccessory_DiamondBackpack = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_DIAMOND, 1F, 0.9F);
+    public static PresetSoundData EquipAccessory_NetheriteBackpack = new PresetSoundData(Sound.ITEM_ARMOR_EQUIP_NETHERITE, 1F, 0.9F);
+
     public static PresetSoundData VacuumPickupItem = new PresetSoundData(Sound.ENTITY_ITEM_PICKUP, 0.5F, 1.2F);
 
     public static PresetSoundData MattBlade = new PresetSoundData("dfjr:matt_blade", 0.25F, 1F);

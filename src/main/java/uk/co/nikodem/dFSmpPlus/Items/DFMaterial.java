@@ -873,6 +873,67 @@ public class DFMaterial {
                     .create()))
             .create();
 
+    public static DFMaterial CopperBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_backpack", "UPDATE")
+            .setDisplayName("Copper Backpack")
+            .setMaxStack(1)
+            .markForUUID()
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("backpack")
+                    .setDescription("Gives an extra inventory to the user\nUse /backpack, or /b to open")
+                    .setEquipSound(Sounds.EquipAccessory_CopperBackpack)
+                    .addMeta(new BackpackMeta(9*2))
+                    .create()))
+            .addMeta(new BackpackRightclickOverride())
+            .create();
+
+    public static DFMaterial IronBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "iron_backpack", "UPDATE")
+            .setDisplayName("Iron Backpack")
+            .setMaxStack(1)
+            .markForUUID()
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("backpack")
+                    .setDescription("Gives an extra inventory to the user\nUse /backpack, or /b to open")
+                    .setEquipSound(Sounds.EquipAccessory_IronBackpack)
+                    .addMeta(new BackpackMeta(9*3))
+                    .create()))
+            .addMeta(new BackpackRightclickOverride())
+            .create();
+
+    public static DFMaterial GoldBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_backpack", "UPDATE")
+            .setDisplayName("Gold Backpack")
+            .setMaxStack(1)
+            .markForUUID()
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("backpack")
+                    .setDescription("Gives an extra inventory to the user\nUse /backpack, or /b to open")
+                    .setEquipSound(Sounds.EquipAccessory_GoldBackpack)
+                    .addMeta(new BackpackMeta(9*4))
+                    .create()))
+            .addMeta(new BackpackRightclickOverride())
+            .create();
+
+    public static DFMaterial DiamondBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "diamond_backpack", "UPDATE")
+            .setDisplayName("Diamond Backpack")
+            .setMaxStack(1)
+            .markForUUID()
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("backpack")
+                    .setDescription("Gives an extra inventory to the user\nUse /backpack, or /b to open")
+                    .setEquipSound(Sounds.EquipAccessory_DiamondBackpack)
+                    .addMeta(new BackpackMeta(9*5))
+                    .create()))
+            .addMeta(new BackpackRightclickOverride())
+            .create();
+
+    public static DFMaterial NetheriteBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "netherite_backpack", "UPDATE")
+            .setDisplayName("Netherite Backpack")
+            .setMaxStack(1)
+            .markForUUID()
+            .setCanSurviveLava(true)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("backpack")
+                    .setDescription("Gives an extra inventory to the user\nUse /backpack, or /b to open")
+                    .setEquipSound(Sounds.EquipAccessory_NetheriteBackpack)
+                    .addMeta(new BackpackMeta(9*6))
+                    .create()))
+            .addMeta(new BackpackRightclickOverride())
+            .create();
+
     public static DFMaterial AncientDebrisFragment = new Builder(Material.POPPED_CHORUS_FRUIT, "ancient_debris_fragment", "89d45c")
             .setDisplayName("Ancient Debris Fragment")
             .create();
