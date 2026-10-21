@@ -35,6 +35,8 @@ public class DFCustomDrops {
         new Builder(EntityType.GOAT).setItem(Material.COOKED_MUTTON).setRandomRange(1, 2).setCheck(e -> e.getEntity().getFireTicks() > 0 && ((Ageable) e.getEntity()).isAdult()).create();
 
         new Builder(EntityType.SNIFFER).setItem(Material.MOSS_BLOCK).setRandomRange(1, 2).create();
+
+        new Builder(EntityType.SULFUR_CUBE).setItem(Material.GUNPOWDER).setRandomRange(1,3).create();
     }
 
     public ItemStack getItem() {

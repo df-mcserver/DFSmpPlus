@@ -612,7 +612,6 @@ public class DFMaterial {
             .setMaxStack(1)
             .create();
 
-
     public static DFMaterial FlowerPowder = new Builder(Material.POPPED_CHORUS_FRUIT, "flower_powder", "3f4dd9")
             .setDisplayName("<light_purple>Flower Powder")
             .create();
