@@ -6,4 +6,5 @@ public class LastDeathInformation {
     public Long lastDeathTime = null;
     public Location location = null;
     public Boolean diedInCombat = null;
+    public Boolean invalidLocation = null;
 }

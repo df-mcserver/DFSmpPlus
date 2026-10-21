@@ -3,13 +3,16 @@ package uk.co.nikodem.dFSmpPlus.Commands.BasicCommands;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import uk.co.nikodem.dFSmpPlus.Commands.DFBasicCommand;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.LastDeathInformation;
 import uk.co.nikodem.dFSmpPlus.Player.Combat.CombatLoggingManager;
+import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import java.util.Collection;
 import java.util.List;
@@ -31,6 +34,7 @@ public class BackCommand implements DFBasicCommand {
             Location deathLocation = info.location;
             Long timeOfDeath = info.lastDeathTime;
             Boolean diedInCombat = info.diedInCombat;
+            Boolean invalidLocation = info.invalidLocation;
 
             if (deathLocation == null || timeOfDeath == null || diedInCombat == null) {
                 denyCommand(sender, "you haven't died recently!");
@@ -49,12 +53,22 @@ public class BackCommand implements DFBasicCommand {
                 return;
             }
 
+            if (invalidLocation) {
+                denyCommand(sender, "you cannot return to that location!");
+                return;
+            }
+
             if (CombatLoggingManager.isInCombat(plr)) {
                 denyCommand(sender, "you are in combat!");
                 return;
             }
 
-            plr.teleport(deathLocation);
+            Sounds.Teleport.playSound(plr.getLocation());
+            plr.getLocation().getWorld().spawnParticle(Particle.GLOW_SQUID_INK, plr.getLocation(), 15);
+            plr.teleport(deathLocation, PlayerTeleportEvent.TeleportCause.COMMAND);
+            Sounds.Teleport.playSound(deathLocation);
+            deathLocation.getWorld().spawnParticle(Particle.GLOW_SQUID_INK, deathLocation, 15);
+
             data.lastDeathInformation = null;
             DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
 

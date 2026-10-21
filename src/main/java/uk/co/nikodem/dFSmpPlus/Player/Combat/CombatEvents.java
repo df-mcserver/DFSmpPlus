@@ -57,7 +57,10 @@ public class CombatEvents {
             updateCombatBar(attacker);
         }
 
+        boolean diedInVoid = false;
+
         if (event.getDamageSource().getDamageType() == DamageType.OUT_OF_WORLD) {
+            diedInVoid = true;
             if (victim.getInventory().getItemInMainHand().getType() == Material.TOTEM_OF_UNDYING
                     || victim.getInventory().getItemInOffHand().getType() == Material.TOTEM_OF_UNDYING) {
                 DFAdvancementsHandler.grantAdvancement(victim, DoublingDown.class);
@@ -78,6 +81,7 @@ public class CombatEvents {
         info.diedInCombat = CombatLoggingManager.isInCombat(victim);
         info.location = victim.getLocation();
         info.lastDeathTime = new Date().getTime();
+        info.invalidLocation = diedInVoid;
         data.lastDeathInformation = info;
         DFSmpPlus.playerDataHandler.writePlayerData(victim, data);
 
