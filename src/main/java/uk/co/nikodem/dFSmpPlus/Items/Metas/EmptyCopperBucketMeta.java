@@ -9,11 +9,12 @@ import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
 import java.util.Objects;
 
-public class EmptyCopperBucketMeta implements DFMaterialMeta {
+public class EmptyCopperBucketMeta extends CustomBucketCanFillMeta {
     private final String namedIdPrefix;
 
     public EmptyCopperBucketMeta(String namedIdPrefix) {
         this.namedIdPrefix = namedIdPrefix;
+        super(namedIdPrefix);
     }
 
     public void BucketFillEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketFillEvent event) {

@@ -35,7 +35,8 @@ public class MusicDiscRecipes extends CraftingTemplate {
                 Material.MUSIC_DISC_STRAD,
                 Material.MUSIC_DISC_TEARS,
                 Material.MUSIC_DISC_WAIT,
-                Material.MUSIC_DISC_WARD
+                Material.MUSIC_DISC_WARD,
+                Material.MUSIC_DISC_BOUNCE
         );
 
         int i = 0;

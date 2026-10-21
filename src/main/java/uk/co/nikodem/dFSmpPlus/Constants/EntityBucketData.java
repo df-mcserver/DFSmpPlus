@@ -82,6 +82,7 @@ public class EntityBucketData {
             Map.entry(EntityType.PUFFERFISH, Material.PUFFERFISH_SPAWN_EGG),
             Map.entry(EntityType.SILVERFISH, Material.SILVERFISH_SPAWN_EGG),
             Map.entry(EntityType.VINDICATOR, Material.VINDICATOR_SPAWN_EGG),
+            Map.entry(EntityType.SULFUR_CUBE, Material.SULFUR_CUBE_SPAWN_EGG),
             Map.entry(EntityType.CAVE_SPIDER, Material.CAVE_SPIDER_SPAWN_EGG),
             Map.entry(EntityType.PIGLIN_BRUTE, Material.PIGLIN_BRUTE_SPAWN_EGG),
             Map.entry(EntityType.ZOMBIE_HORSE, Material.ZOMBIE_HORSE_SPAWN_EGG),

@@ -10,10 +10,11 @@ import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 
-public class FilledCustomBucketMeta implements DFMaterialMeta {
+public class FilledCustomBucketMeta extends CustomBucketCanFillMeta {
     private final String namedIdPrefix;
 
     public FilledCustomBucketMeta(String namedIdPrefix) {
+        super(namedIdPrefix);
         this.namedIdPrefix = namedIdPrefix;
     }
 
@@ -23,26 +24,4 @@ public class FilledCustomBucketMeta implements DFMaterialMeta {
             event.setItemStack(newMaterial.toItemStack());
         }
     }
-
-    public void BucketEntityEvent(Player plr, DFMaterial material, ItemStack item, PlayerBucketEntityEvent event) {
-        ItemStack vanillaItemStack = event.getEntityBucket();
-        String nameToLookFor = namedIdPrefix + vanillaItemStack.getType().key().value();
-
-        DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(nameToLookFor);
-        if (newMaterial != null) {
-            ItemMeta currentMeta = vanillaItemStack.getItemMeta();
-            ItemMeta baseMeta = newMaterial.toItemStack().getItemMeta();
-
-            currentMeta.setItemModel(baseMeta.getItemModel());
-            if (!currentMeta.hasCustomName()) item.setData(DataComponentTypes.ITEM_NAME, newMaterial.getDisplayName());
-            String dfupdateid = baseMeta.getPersistentDataContainer().get(Keys.dfUpdateId, PersistentDataType.STRING);
-            if (dfupdateid != null) currentMeta.getPersistentDataContainer().set(Keys.dfUpdateId, PersistentDataType.STRING, dfupdateid);
-            currentMeta.getPersistentDataContainer().set(Keys.dfmaterial, PersistentDataType.STRING, nameToLookFor);
-
-            Boolean markeduuid = baseMeta.getPersistentDataContainer().get(Keys.markedForUUID, PersistentDataType.BOOLEAN);
-            if (markeduuid != null) currentMeta.getPersistentDataContainer().set(Keys.markedForUUID, PersistentDataType.BOOLEAN, markeduuid);
-
-            vanillaItemStack.setItemMeta(currentMeta);
-        }
-    };
 }

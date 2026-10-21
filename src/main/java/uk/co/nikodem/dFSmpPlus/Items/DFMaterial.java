@@ -1024,6 +1024,11 @@ public class DFMaterial {
             .addMeta(new FilledCustomBucketMeta("copper_"))
             .create();
 
+    public static DFMaterial CopperSulfurCubeBucket = new Builder(Material.SULFUR_CUBE_BUCKET, "copper_sulfur_cube_bucket", "UPDATE")
+            .setDisplayName("Copper Bucket of Sulfur Cube")
+            .addMeta(new FilledCustomBucketMeta("copper_"))
+            .create();
+
     public static DFMaterial CopperCleaningEntityBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_cleaning_entity_bucket", "f83d19")
             .setDisplayName("Copper Cleaning Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
@@ -1098,6 +1103,11 @@ public class DFMaterial {
 
     public static DFMaterial GoldTadpoleBucket = new Builder(Material.TADPOLE_BUCKET, "gold_tadpole_bucket", "3ab314")
             .setDisplayName("Golden Bucket of Tadpole")
+            .addMeta(new FilledCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldSulfurCubeBucket = new Builder(Material.SULFUR_CUBE_BUCKET, "gold_sulfur_cube_bucket", "UPDATE")
+            .setDisplayName("Golden Bucket of Sulfur Cube")
             .addMeta(new FilledCustomBucketMeta("gold_"))
             .create();
 

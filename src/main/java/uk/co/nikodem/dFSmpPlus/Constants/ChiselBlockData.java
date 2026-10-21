@@ -183,6 +183,40 @@ public class ChiselBlockData {
         new Builder(Material.YELLOW_WOOL).setReplacement(Material.WHITE_WOOL).setDrop(Material.YELLOW_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
         new Builder(Material.WHITE_WOOL).setReplacement(Material.AIR).setDrop(Material.STRING, 2).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
 
+        new Builder(Material.BLACK_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.BLACK_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.BLUE_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.BLUE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.BROWN_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.BROWN_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.CYAN_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.CYAN_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.GRAY_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.GRAY_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.GREEN_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.GREEN_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.LIGHT_GRAY_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.LIGHT_GRAY_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.LIGHT_BLUE_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.LIGHT_BLUE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.LIME_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.LIME_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.MAGENTA_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.MAGENTA_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.ORANGE_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.ORANGE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.PINK_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.PINK_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.PURPLE_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.PURPLE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.RED_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.RED_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.YELLOW_WOOL_STAIRS).setReplacement(Material.WHITE_WOOL_STAIRS).setDrop(Material.YELLOW_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.WHITE_WOOL_STAIRS).setReplacement(Material.AIR).setDrop(Material.STRING, 2).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+
+        new Builder(Material.BLACK_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.BLACK_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.BLUE_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.BLUE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.BROWN_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.BROWN_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.CYAN_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.CYAN_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.GRAY_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.GRAY_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.GREEN_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.GREEN_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.LIGHT_GRAY_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.LIGHT_GRAY_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.LIGHT_BLUE_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.LIGHT_BLUE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.LIME_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.LIME_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.MAGENTA_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.MAGENTA_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.ORANGE_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.ORANGE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.PINK_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.PINK_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.PURPLE_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.PURPLE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.RED_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.RED_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.YELLOW_WOOL_SLAB).setReplacement(Material.WHITE_WOOL_SLAB).setDrop(Material.YELLOW_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.WHITE_WOOL_SLAB).setReplacement(Material.AIR).setDrop(Material.STRING, 2).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+
         new Builder(Material.BLACK_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.BLACK_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
         new Builder(Material.BLUE_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.BLUE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
         new Builder(Material.BROWN_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.BROWN_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
@@ -211,6 +245,9 @@ public class ChiselBlockData {
         new Builder(Material.MANGROVE_LEAVES).setReplacement(Material.AIR).setDrop(Material.MANGROVE_PROPAGULE, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.CHERRY_LEAVES).setReplacement(Material.AIR).setDrop(Material.CHERRY_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.PALE_OAK_LEAVES).setReplacement(Material.AIR).setDrop(Material.PALE_OAK_LEAVES, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.YELLOW_POPLAR_LEAVES).setReplacement(Material.AIR).setDrop(Material.YELLOW_POPLAR_LEAVES, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.ORANGE_POPLAR_LEAVES).setReplacement(Material.AIR).setDrop(Material.ORANGE_POPLAR_LEAVES, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.RED_POPLAR_LEAVES).setReplacement(Material.AIR).setDrop(Material.RED_POPLAR_LEAVES, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
 
         new Builder(Material.OAK_LOG).setReplacement(Material.STRIPPED_OAK_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.ACACIA_LOG).setReplacement(Material.STRIPPED_ACACIA_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
@@ -223,6 +260,7 @@ public class ChiselBlockData {
         new Builder(Material.PALE_OAK_LOG).setReplacement(Material.STRIPPED_PALE_OAK_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.WARPED_STEM).setReplacement(Material.STRIPPED_WARPED_STEM).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.CRIMSON_STEM).setReplacement(Material.STRIPPED_CRIMSON_STEM).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.POPLAR_LOG).setReplacement(Material.STRIPPED_POPLAR_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
 
         new Builder(Material.STRIPPED_OAK_LOG).setReplacement(Material.AIR).setDrop(Material.OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.STRIPPED_ACACIA_LOG).setReplacement(Material.AIR).setDrop(Material.ACACIA_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
@@ -235,6 +273,7 @@ public class ChiselBlockData {
         new Builder(Material.STRIPPED_PALE_OAK_LOG).setReplacement(Material.AIR).setDrop(Material.PALE_OAK_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.STRIPPED_WARPED_STEM).setReplacement(Material.AIR).setDrop(Material.WARPED_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.STRIPPED_CRIMSON_STEM).setReplacement(Material.AIR).setDrop(Material.CRIMSON_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.STRIPPED_POPLAR_LOG).setReplacement(Material.AIR).setDrop(Material.POPLAR_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
     }
 
     // chisel block data
