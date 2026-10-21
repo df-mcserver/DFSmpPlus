@@ -77,6 +77,7 @@ public class DFAdvancementsHandler {
 
         new TDP(main);
         new BonAppetit(main);
+        new WelcomeHome(main);
 
         new ObsidianArmour(new ObsidianItem(main));
 
