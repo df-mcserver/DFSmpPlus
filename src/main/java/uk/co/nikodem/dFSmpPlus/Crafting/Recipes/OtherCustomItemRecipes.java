@@ -629,23 +629,13 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
 
     public void addCardboard(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
-                new ShapedRecipeBuilder()
+                new ShapelessRecipeBuilder()
                         .setOutput(DFMaterial.Cardboard)
                         .setGroup("group")
-                        .build(getInfo(), "cardboard_right")
-                        .shape("X ", "XD", "X ")
-                        .setIngredient('X', Material.PAPER)
-                        .setIngredient('D', Material.BROWN_DYE)
-        );
-
-        recipesToAdd.add(
-                new ShapedRecipeBuilder()
-                        .setOutput(DFMaterial.Cardboard)
-                        .setGroup("cardboard")
-                        .build(getInfo(), "cardboard_left")
-                        .shape(" X", "DX", " X")
-                        .setIngredient('X', Material.PAPER)
-                        .setIngredient('D', Material.BROWN_DYE)
+                        .build(getInfo(), "cardboard")
+                        .addIngredient( Material.PAPER)
+                        .addIngredient( Material.PAPER)
+                        .addIngredient(Material.BROWN_DYE)
         );
     }
 
