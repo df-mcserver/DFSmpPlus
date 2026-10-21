@@ -33,7 +33,7 @@ public class ChiselRecipes extends CraftingTemplate {
     public void addAllChisels(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new DirectConversionRecipeBuilder()
-                        .setSource(new RecipeChoice.ExactChoice(ItemStack.of(Material.STICK)))
+                        .setSource(RecipeChoice.exactChoice(ItemStack.of(Material.STICK)))
                         .setOutput(DFMaterial.PointyStick)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "PointyStick")
@@ -63,7 +63,7 @@ public class ChiselRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "CopperChisel")
                         .shape("XX", "XX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_NUGGET)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.COPPER_NUGGET)))
         );
 
         new ItemRepairAnvilRecipeBuilder()
@@ -77,7 +77,7 @@ public class ChiselRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "IronChisel")
                         .shape("XX", "XX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_NUGGET)))
         );
 
         new ItemRepairAnvilRecipeBuilder()
@@ -91,7 +91,7 @@ public class ChiselRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "FiridiumChisel")
                         .shape("XX", "XX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FiridiumNugget.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.FiridiumNugget.toItemStack()))
         );
 
         new ItemRepairAnvilRecipeBuilder()

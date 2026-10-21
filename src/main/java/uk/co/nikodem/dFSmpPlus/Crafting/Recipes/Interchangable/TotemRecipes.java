@@ -27,7 +27,7 @@ public class TotemRecipes extends CraftingTemplate {
         for (NamespacedKey model : allTotemModels) {
             recipesToAdd.add(
                     new StonecutterRecipeBuilder()
-                            .setSource(new RecipeChoice.ExactChoice(ItemStack.of(Material.TOTEM_OF_UNDYING)))
+                            .setSource(RecipeChoice.exactChoice(ItemStack.of(Material.TOTEM_OF_UNDYING)))
                             .setOutput(DFItemUtils.setModel(ItemStack.of(Material.TOTEM_OF_UNDYING), model))
                             .build(getInfo(), "totem"+i)
             );

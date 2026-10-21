@@ -43,4 +43,6 @@ public class Sounds {
 
     public static PresetSoundData PlaceTargetDummy = new PresetSoundData(Sound.ENTITY_ARMOR_STAND_PLACE, 1F, 1F);
     public static PresetSoundData PickupTargetDummy = new PresetSoundData(Sound.ENTITY_ARMOR_STAND_BREAK, 1F, 1F);
+    public static PresetSoundData AttackTargetDummy = new PresetSoundData(Sound.ENTITY_ARMOR_STAND_HIT, 1F, 1F);
+    public static PresetSoundData CritTargetDummy = new PresetSoundData(Sound.ENTITY_PLAYER_ATTACK_CRIT, 1F, 1F);
 }

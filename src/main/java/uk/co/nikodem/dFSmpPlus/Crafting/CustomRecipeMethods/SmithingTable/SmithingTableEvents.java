@@ -10,6 +10,7 @@ import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.SmithingInventory;
+import org.bukkit.inventory.meta.ArmorMeta;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import uk.co.nikodem.dFSmpPlus.Crafting.OnCraft;
@@ -77,14 +78,19 @@ public class SmithingTableEvents {
                         }
                     }
 
+                    if (meta instanceof ArmorMeta armorMeta && baseMeta instanceof ArmorMeta baseArmorMeta) {
+                        if (baseArmorMeta.hasTrim()) armorMeta.setTrim(baseArmorMeta.getTrim());
+                    }
+
                     if (DFItemUtils.itemIsRenamed(base)) {
                         meta.displayName(baseMeta.displayName());
                     }
 
                     if (meta instanceof Damageable damageableA && baseMeta instanceof Damageable damageableB) {
                         damageableA.setDamage(damageableB.getDamage());
-                        result.setItemMeta(meta);
                     }
+
+                    result.setItemMeta(meta);
 
                     event.setResult(result);
                 } else {

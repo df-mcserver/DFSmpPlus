@@ -20,6 +20,7 @@ import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.Nullable;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.*;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.Bluebellsar;
@@ -34,7 +35,6 @@ import uk.co.nikodem.dFSmpPlus.Items.Metas.*;
 import org.bukkit.Material;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
-import javax.annotation.Nullable;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -1024,6 +1024,11 @@ public class DFMaterial {
             .addMeta(new FilledCustomBucketMeta("copper_"))
             .create();
 
+    public static DFMaterial CopperSulfurCubeBucket = new Builder(Material.SULFUR_CUBE_BUCKET, "copper_sulfur_cube_bucket", "UPDATE")
+            .setDisplayName("Copper Bucket of Sulfur Cube")
+            .addMeta(new FilledCustomBucketMeta("copper_"))
+            .create();
+
     public static DFMaterial CopperCleaningEntityBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_cleaning_entity_bucket", "f83d19")
             .setDisplayName("Copper Cleaning Entity Bucket")
             .addLore("<light_purple>Stores an entire entity within a bucket.")
@@ -1098,6 +1103,11 @@ public class DFMaterial {
 
     public static DFMaterial GoldTadpoleBucket = new Builder(Material.TADPOLE_BUCKET, "gold_tadpole_bucket", "3ab314")
             .setDisplayName("Golden Bucket of Tadpole")
+            .addMeta(new FilledCustomBucketMeta("gold_"))
+            .create();
+
+    public static DFMaterial GoldSulfurCubeBucket = new Builder(Material.SULFUR_CUBE_BUCKET, "gold_sulfur_cube_bucket", "UPDATE")
+            .setDisplayName("Golden Bucket of Sulfur Cube")
             .addMeta(new FilledCustomBucketMeta("gold_"))
             .create();
 

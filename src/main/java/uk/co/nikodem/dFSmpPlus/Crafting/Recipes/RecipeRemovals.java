@@ -88,15 +88,15 @@ public class RecipeRemovals extends CraftingTemplate {
     public void replaceIngredientsWithExactChoices() {
         // TODO fix these not working
         RecipeRemover.addQuery(new RecipeWithIngredientReplace()
-                .setReplacementIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.STICK)))
+                .setReplacementIngredient(RecipeChoice.exactChoice(new ItemStack(Material.STICK)))
                 .setIngredient(Material.STICK));
 
         RecipeRemover.addQuery(new RecipeWithIngredientReplace()
-                .setReplacementIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.IRON_INGOT)))
+                .setReplacementIngredient(RecipeChoice.exactChoice(new ItemStack(Material.IRON_INGOT)))
                 .setIngredient(Material.IRON_INGOT));
 
         RecipeRemover.addQuery(new RecipeWithIngredientReplace()
-                .setReplacementIngredient(new RecipeChoice.ExactChoice(new ItemStack(Material.POPPED_CHORUS_FRUIT)))
+                .setReplacementIngredient(RecipeChoice.exactChoice(new ItemStack(Material.POPPED_CHORUS_FRUIT)))
                 .setIngredient(Material.POPPED_CHORUS_FRUIT));
 
         RecipeRemover.addQuery(new RecipeWithResultRemoval()

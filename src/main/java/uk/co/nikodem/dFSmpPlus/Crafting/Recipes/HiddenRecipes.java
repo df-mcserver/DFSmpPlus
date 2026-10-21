@@ -58,7 +58,7 @@ public class HiddenRecipes extends CraftingTemplate {
                         .build(getInfo(), "mblade")
                         .shape("E", "S")
                         .setIngredient('E', Material.CREEPER_SPAWN_EGG)
-                        .setIngredient('S', new RecipeChoice.ExactChoice(ItemStack.of(Material.DIAMOND_SWORD)))
+                        .setIngredient('S', RecipeChoice.exactChoice(ItemStack.of(Material.DIAMOND_SWORD)))
         );
     }
 

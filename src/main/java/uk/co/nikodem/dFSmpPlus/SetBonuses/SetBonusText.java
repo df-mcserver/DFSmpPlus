@@ -23,7 +23,7 @@ import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Armour.MatchingAttire;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class SetBonusText {

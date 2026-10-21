@@ -56,7 +56,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .setOutput(DFMaterial.FiridiumNugget, 9)
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "FiridiumNugget")
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.FiridiumIngot.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.FiridiumIngot.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -65,7 +65,7 @@ public class FiridiumRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "FiridiumIngot")
                         .shape("XXX", "XXX", "XXX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FiridiumNugget.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.FiridiumNugget.toItemStack()))
         );
 
         recipesToAdd.add(

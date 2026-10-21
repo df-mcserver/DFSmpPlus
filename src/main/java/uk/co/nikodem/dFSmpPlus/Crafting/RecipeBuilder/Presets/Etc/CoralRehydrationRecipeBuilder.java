@@ -10,7 +10,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeTemplateInfo;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class CoralRehydrationRecipeBuilder extends RecipeBuilder {
     private ItemStack coral;
@@ -35,17 +35,17 @@ public class CoralRehydrationRecipeBuilder extends RecipeBuilder {
     }
 
     public CoralRehydrationRecipeBuilder setMaterial(DFMaterial deadCoral) {
-        this.deadCoral = new RecipeChoice.ExactChoice(deadCoral.toItemStack());
+        this.deadCoral = RecipeChoice.exactChoice(deadCoral.toItemStack());
         return this;
     }
 
     public CoralRehydrationRecipeBuilder setMaterial(ItemStack deadCoral) {
-        this.deadCoral = new RecipeChoice.ExactChoice(deadCoral);
+        this.deadCoral = RecipeChoice.exactChoice(deadCoral);
         return this;
     }
 
     public CoralRehydrationRecipeBuilder setMaterial(Material deadCoral) {
-        this.deadCoral = new RecipeChoice.ExactChoice(new ItemStack(deadCoral));
+        this.deadCoral = RecipeChoice.exactChoice(new ItemStack(deadCoral));
         return this;
     }
 

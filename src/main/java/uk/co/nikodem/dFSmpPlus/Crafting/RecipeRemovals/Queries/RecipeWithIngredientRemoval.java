@@ -11,17 +11,17 @@ public class RecipeWithIngredientRemoval extends RecipeRemovalQuery {
     private boolean onlyMinecraftNamespace = false;
 
     public RecipeWithIngredientRemoval setIngredient(ItemStack result) {
-        this.ingredient = new RecipeChoice.ExactChoice(result);
+        this.ingredient = RecipeChoice.exactChoice(result);
         return this;
     }
 
     public RecipeWithIngredientRemoval setIngredient(Material result) {
-        this.ingredient = new RecipeChoice.ExactChoice(new ItemStack(result));
+        this.ingredient = RecipeChoice.exactChoice(new ItemStack(result));
         return this;
     }
 
     public RecipeWithIngredientRemoval setIngredient(DFMaterial result) {
-        this.ingredient = new RecipeChoice.ExactChoice(result.toItemStack());
+        this.ingredient = RecipeChoice.exactChoice(result.toItemStack());
         return this;
     }
 

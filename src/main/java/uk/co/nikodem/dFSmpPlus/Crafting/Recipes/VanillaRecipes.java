@@ -111,7 +111,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo())
                         .shape("I", "X")
                         .setIngredient('I', Material.BLAZE_ROD)
-                        .setIngredient('X', new RecipeChoice.ExactChoice(new ItemStack(Material.POPPED_CHORUS_FRUIT)))
+                        .setIngredient('X', RecipeChoice.exactChoice(new ItemStack(Material.POPPED_CHORUS_FRUIT)))
         );
 
         recipesToAdd.add(
@@ -120,7 +120,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("XX", "XX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(new ItemStack(Material.POPPED_CHORUS_FRUIT)))
+                        .setIngredient('X', RecipeChoice.exactChoice(new ItemStack(Material.POPPED_CHORUS_FRUIT)))
         );
     }
 
@@ -132,7 +132,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo(), "w/iron")
                         .shape("CCC", "CIC", "CSC")
                         .setIngredient('C', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
-                        .setIngredient('I', new RecipeChoice.ExactChoice(new ItemStack(Material.IRON_INGOT)))
+                        .setIngredient('I', RecipeChoice.exactChoice(new ItemStack(Material.IRON_INGOT)))
                         .setIngredient('S', Material.REDSTONE)
         );
 
@@ -164,7 +164,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo())
                         .shape("XXX", "XIX", "XXX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_NUGGET)))
                         .setIngredient('I', Material.TORCH)
         );
 
@@ -174,7 +174,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo())
                         .shape("XXX", "XIX", "XXX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_NUGGET)))
                         .setIngredient('I', Material.SOUL_TORCH)
         );
 
@@ -184,7 +184,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo())
                         .shape("XXX", "XIX", "XXX")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_NUGGET)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.COPPER_NUGGET)))
                         .setIngredient('I', Material.COPPER_TORCH)
         );
 
@@ -194,7 +194,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo())
                         .shape("X", "X")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_NUGGET)))
         );
 
         recipesToAdd.add(
@@ -203,7 +203,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo())
                         .shape("X", "X")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_NUGGET)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.COPPER_NUGGET)))
         );
     }
 
@@ -282,7 +282,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo(), "ironnugget")
                         .shape(" X", "P ")
                         .setIngredient('P', Material.PAPER)
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.IRON_NUGGET)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_NUGGET)))
         );
 
         recipesToAdd.add(
@@ -293,7 +293,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo(), "goldnugget")
                         .shape(" X", "P ")
                         .setIngredient('P', Material.PAPER)
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.GOLD_NUGGET)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.GOLD_NUGGET)))
         );
 
         recipesToAdd.add(
@@ -304,7 +304,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo(), "coppernugget")
                         .shape(" X", "P ")
                         .setIngredient('P', Material.PAPER)
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.COPPER_NUGGET)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.COPPER_NUGGET)))
         );
 
         recipesToAdd.add(
@@ -315,7 +315,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo(), "firidiumnugget")
                         .shape(" X", "P ")
                         .setIngredient('P', Material.PAPER)
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FiridiumNugget.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.FiridiumNugget.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -326,7 +326,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .build(getInfo(), "floralnugget")
                         .shape(" X", "P ")
                         .setIngredient('P', Material.PAPER)
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.FloralNugget.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.FloralNugget.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -505,8 +505,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setOutput(Material.STONE_AXE)
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.LooseStone.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.LooseStone.toItemStack()))
                         .addIngredient(Material.STICK)
                         .addIngredient(Material.STRING)
         );
@@ -516,7 +516,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setOutput(Material.STONE_SHOVEL)
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.LooseStone.toItemStack()))
                         .addIngredient(Material.STICK)
                         .addIngredient(Material.STRING)
         );
@@ -528,7 +528,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setGroup("StonePickaxeLS")
                         .build(getInfo(), "LEFT")
                         .shape("XXX", "SI ", " I ")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.LooseStone.toItemStack()))
                         .setIngredient('I', Material.STICK)
                         .setIngredient('S', Material.STRING)
         );
@@ -540,7 +540,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setGroup("StonePickaxeLS")
                         .build(getInfo(), "RIGHT")
                         .shape("XXX", " IS", " I ")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(DFMaterial.LooseStone.toItemStack()))
+                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.LooseStone.toItemStack()))
                         .setIngredient('I', Material.STICK)
                         .setIngredient('S', Material.STRING)
         );
@@ -612,6 +612,36 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setOutput(Material.COBBLED_DEEPSLATE)
                         .build(getInfo(), "deep-to-cobble")
         );
+
+        Map<Material, Material> baseToSmooth = Map.ofEntries(
+                Map.entry(Material.STONE, Material.SMOOTH_STONE),
+                Map.entry(Material.STONE_SLAB, Material.SMOOTH_SANDSTONE_SLAB),
+                Map.entry(Material.SANDSTONE, Material.SMOOTH_SANDSTONE),
+                Map.entry(Material.SANDSTONE_STAIRS, Material.SMOOTH_SANDSTONE_STAIRS),
+                Map.entry(Material.SANDSTONE_SLAB, Material.SMOOTH_SANDSTONE_SLAB),
+                Map.entry(Material.RED_SANDSTONE, Material.SMOOTH_RED_SANDSTONE),
+                Map.entry(Material.RED_SANDSTONE_STAIRS, Material.SMOOTH_RED_SANDSTONE_STAIRS),
+                Map.entry(Material.RED_SANDSTONE_SLAB, Material.SMOOTH_RED_SANDSTONE_SLAB),
+                Map.entry(Material.BASALT, Material.SMOOTH_BASALT),
+                Map.entry(Material.QUARTZ_BLOCK, Material.SMOOTH_QUARTZ),
+                Map.entry(Material.QUARTZ_SLAB, Material.SMOOTH_QUARTZ_SLAB),
+                Map.entry(Material.QUARTZ_STAIRS, Material.SMOOTH_QUARTZ_STAIRS)
+        );
+
+        for (Map.Entry<Material, Material> entry : baseToSmooth.entrySet()) {
+            recipesToAdd.add(
+                    new StonecutterRecipeBuilder()
+                            .setSource(entry.getKey())
+                            .setOutput(entry.getValue())
+                            .build(getInfo(), entry.getKey().name())
+            );
+            recipesToAdd.add(
+                    new StonecutterRecipeBuilder()
+                            .setSource(entry.getValue())
+                            .setOutput(entry.getKey())
+                            .build(getInfo(), entry.getValue().name())
+            );
+        }
 
         Map<Material, Material> allLogsToStrippedLogs = Map.ofEntries(
                 Map.entry(Material.OAK_LOG, Material.STRIPPED_OAK_LOG),
@@ -705,7 +735,7 @@ public class VanillaRecipes extends CraftingTemplate {
                             .setCategory(CraftingBookCategory.BUILDING)
                             .build(getInfo(), "stob")
                             .shape("X", "X")
-                            .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(entry.getKey())))
+                            .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(entry.getKey())))
             );
         }
     }
@@ -717,8 +747,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.STONE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.COAL)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.STONE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.COAL)))
         );
 
         recipesToAdd.add(
@@ -727,8 +757,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.STONE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.RAW_COPPER)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.STONE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.RAW_COPPER)))
         );
 
         recipesToAdd.add(
@@ -737,8 +767,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.STONE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.RAW_IRON)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.STONE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.RAW_IRON)))
         );
 
         recipesToAdd.add(
@@ -747,8 +777,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.STONE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.RAW_GOLD)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.STONE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.RAW_GOLD)))
         );
 
         recipesToAdd.add(
@@ -757,8 +787,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.STONE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.DIAMOND)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.STONE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.DIAMOND)))
         );
 
         recipesToAdd.add(
@@ -767,8 +797,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.STONE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.EMERALD)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.STONE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.EMERALD)))
         );
 
         recipesToAdd.add(
@@ -777,8 +807,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.STONE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.REDSTONE)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.STONE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.REDSTONE)))
         );
 
         recipesToAdd.add(
@@ -787,8 +817,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape(" O ", "OXO", " O ")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.STONE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.LAPIS_BLOCK)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.STONE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.LAPIS_BLOCK)))
         );
 
         recipesToAdd.add(
@@ -797,8 +827,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OXO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.NETHERRACK)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.GOLD_INGOT)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.NETHERRACK)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.GOLD_INGOT)))
         );
 
         recipesToAdd.add(
@@ -807,8 +837,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.NETHERRACK)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.QUARTZ)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.NETHERRACK)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.QUARTZ)))
         );
 
         recipesToAdd.add(
@@ -817,8 +847,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.DEEPSLATE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.COAL)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.DEEPSLATE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.COAL)))
         );
 
         recipesToAdd.add(
@@ -827,8 +857,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.DEEPSLATE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.RAW_COPPER)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.DEEPSLATE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.RAW_COPPER)))
         );
 
         recipesToAdd.add(
@@ -837,8 +867,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.DEEPSLATE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.RAW_IRON)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.DEEPSLATE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.RAW_IRON)))
         );
 
         recipesToAdd.add(
@@ -847,8 +877,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.DEEPSLATE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.RAW_GOLD)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.DEEPSLATE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.RAW_GOLD)))
         );
 
         recipesToAdd.add(
@@ -857,8 +887,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.DEEPSLATE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.DIAMOND)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.DEEPSLATE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.DIAMOND)))
         );
 
         recipesToAdd.add(
@@ -867,8 +897,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.DEEPSLATE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.EMERALD)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.DEEPSLATE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.EMERALD)))
         );
 
         recipesToAdd.add(
@@ -877,8 +907,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape(" O ", "OXO", " O ")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.DEEPSLATE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.LAPIS_BLOCK)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.DEEPSLATE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.LAPIS_BLOCK)))
         );
 
         recipesToAdd.add(
@@ -887,8 +917,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.BUILDING)
                         .build(getInfo())
                         .shape("OOO", "OXO", "OOO")
-                        .setIngredient('X', new RecipeChoice.ExactChoice(ItemStack.of(Material.DEEPSLATE)))
-                        .setIngredient('O', new RecipeChoice.ExactChoice(ItemStack.of(Material.REDSTONE)))
+                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.DEEPSLATE)))
+                        .setIngredient('O', RecipeChoice.exactChoice(ItemStack.of(Material.REDSTONE)))
         );
     }
 
@@ -924,7 +954,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "copper")
                         .shape("BBB", "XYX", "WWW")
-                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.CopperMilkBucket.toItemStack()))
+                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.CopperMilkBucket.toItemStack()))
                         .setIngredient('X', Material.SUGAR)
                         .setIngredient('Y', new RecipeChoice.MaterialChoice(Tag.ITEMS_EGGS))
                         .setIngredient('W', Material.WHEAT)
@@ -936,7 +966,7 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "gold")
                         .shape("BBB", "XYX", "WWW")
-                        .setIngredient('B', new RecipeChoice.ExactChoice(DFMaterial.GoldMilkBucket.toItemStack()))
+                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.GoldMilkBucket.toItemStack()))
                         .setIngredient('X', Material.SUGAR)
                         .setIngredient('Y', new RecipeChoice.MaterialChoice(Tag.ITEMS_EGGS))
                         .setIngredient('W', Material.WHEAT)

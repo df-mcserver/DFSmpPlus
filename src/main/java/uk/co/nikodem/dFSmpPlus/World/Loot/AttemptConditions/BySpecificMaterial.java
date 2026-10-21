@@ -2,12 +2,11 @@ package uk.co.nikodem.dFSmpPlus.World.Loot.AttemptConditions;
 
 import org.bukkit.Material;
 import org.bukkit.event.world.LootGenerateEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.World.Loot.LootEditCondition;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

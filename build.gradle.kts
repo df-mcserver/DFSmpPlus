@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "uk.co.nikodem"
-version = "3.0.0"
+version = "3.1.0"
 
 repositories {
     mavenCentral()
@@ -17,14 +17,14 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
-    compileOnly("com.frengor:ultimateadvancementapi:3.0.0-beta-1")
+    compileOnly("io.papermc.paper:paper-api:26.3.build.+")
+    compileOnly("com.frengor:ultimateadvancementapi:3.0.0-beta-4")
     implementation("com.google.code.gson:gson:2.13.2")
     implementation("net.kyori:adventure-text-serializer-plain:4.25.0")
 }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
 }

@@ -40,8 +40,8 @@ public class HiddenFoodRecipes extends CraftingTemplate {
                         .build(getInfo(), "strange_chip_box")
                         .addIngredient(Material.RED_DYE)
                         .addIngredient(Material.WHITE_DYE)
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.Cardboard.toItemStack()))
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.Cardboard.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.Cardboard.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.Cardboard.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -51,7 +51,7 @@ public class HiddenFoodRecipes extends CraftingTemplate {
                         .build(getInfo(), "dcbucket")
                         .addIngredient(Material.COOKED_CHICKEN)
                         .addIngredient(Material.COOKED_CHICKEN)
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.StrangeBucket.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.StrangeBucket.toItemStack()))
         );
 
         recipesToAdd.add(
@@ -61,7 +61,7 @@ public class HiddenFoodRecipes extends CraftingTemplate {
                         .build(getInfo(), "dcbox")
                         .addIngredient(Material.BAKED_POTATO)
                         .addIngredient(Material.BAKED_POTATO)
-                        .addIngredient(new RecipeChoice.ExactChoice(DFMaterial.StrangeChipBox.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.StrangeChipBox.toItemStack()))
         );
     }
 

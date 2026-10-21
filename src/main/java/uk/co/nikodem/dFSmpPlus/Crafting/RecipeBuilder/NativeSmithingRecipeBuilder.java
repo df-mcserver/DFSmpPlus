@@ -43,17 +43,17 @@ public class NativeSmithingRecipeBuilder extends RecipeBuilder {
     }
 
     public NativeSmithingRecipeBuilder setTemplate(DFMaterial template) {
-        this.template = new RecipeChoice.ExactChoice(template.toItemStack());
+        this.template = RecipeChoice.exactChoice(template.toItemStack());
         return this;
     }
 
     public NativeSmithingRecipeBuilder setTemplate(Material template) {
-        this.template = new RecipeChoice.ExactChoice(new ItemStack(template));
+        this.template = RecipeChoice.exactChoice(new ItemStack(template));
         return this;
     }
 
     public NativeSmithingRecipeBuilder setTemplate(ItemStack template) {
-        this.template = new RecipeChoice.ExactChoice(template);
+        this.template = RecipeChoice.exactChoice(template);
         return this;
     }
 
@@ -63,17 +63,17 @@ public class NativeSmithingRecipeBuilder extends RecipeBuilder {
     }
 
     public NativeSmithingRecipeBuilder setBase(DFMaterial base) {
-        this.base = new RecipeChoice.ExactChoice(base.toItemStack());
+        this.base = RecipeChoice.exactChoice(base.toItemStack());
         return this;
     }
 
     public NativeSmithingRecipeBuilder setBase(Material base) {
-        this.base = new RecipeChoice.ExactChoice(new ItemStack(base));
+        this.base = RecipeChoice.exactChoice(new ItemStack(base));
         return this;
     }
 
     public NativeSmithingRecipeBuilder setBase(ItemStack base) {
-        this.base = new RecipeChoice.ExactChoice(base);
+        this.base = RecipeChoice.exactChoice(base);
         return this;
     }
 
@@ -83,17 +83,17 @@ public class NativeSmithingRecipeBuilder extends RecipeBuilder {
     }
 
     public NativeSmithingRecipeBuilder setAddition(DFMaterial addition) {
-        this.addition = new RecipeChoice.ExactChoice(addition.toItemStack());
+        this.addition = RecipeChoice.exactChoice(addition.toItemStack());
         return this;
     }
 
     public NativeSmithingRecipeBuilder setAddition(Material addition) {
-        this.addition = new RecipeChoice.ExactChoice(new ItemStack(addition));
+        this.addition = RecipeChoice.exactChoice(new ItemStack(addition));
         return this;
     }
 
     public NativeSmithingRecipeBuilder setAddition(ItemStack addition) {
-        this.addition = new RecipeChoice.ExactChoice(addition);
+        this.addition = RecipeChoice.exactChoice(addition);
         return this;
     }
 

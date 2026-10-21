@@ -2,7 +2,7 @@ package uk.co.nikodem.dFSmpPlus.World.Loot;
 
 import org.bukkit.event.world.LootGenerateEvent;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public interface LootEditCondition {

@@ -59,7 +59,9 @@ public class VeinMineable {
             Material.STRIPPED_WARPED_STEM,
             Material.STRIPPED_CRIMSON_STEM,
             Material.MUSHROOM_STEM,
-            Material.BAMBOO_BLOCK
+            Material.BAMBOO_BLOCK,
+            Material.STRIPPED_POPLAR_LOG,
+            Material.POPLAR_LOG
     );
 
     public static boolean isVeinOre(Material material) {

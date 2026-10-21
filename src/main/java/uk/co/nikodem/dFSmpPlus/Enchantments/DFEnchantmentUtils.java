@@ -2,7 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Enchantments;
 
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class DFEnchantmentUtils {
     public static int getEnchantmentLevelOfItem(ItemStack item, DFEnchantment enchantment) {

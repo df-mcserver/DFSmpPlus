@@ -31,8 +31,8 @@ public class SculkRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
                         .shape("SES", "S S")
-                        .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.SculkFragment.toItemStack()))
-                        .setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.ECHO_SHARD)))
+                        .setIngredient('S', RecipeChoice.exactChoice(DFMaterial.SculkFragment.toItemStack()))
+                        .setIngredient('E', RecipeChoice.exactChoice(new ItemStack(Material.ECHO_SHARD)))
         );
 
         new ItemRepairAnvilRecipeBuilder()
@@ -46,8 +46,8 @@ public class SculkRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
                         .shape("S S", "SES", "ESE")
-                        .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.SculkFragment.toItemStack()))
-                        .setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.ECHO_SHARD)))
+                        .setIngredient('S', RecipeChoice.exactChoice(DFMaterial.SculkFragment.toItemStack()))
+                        .setIngredient('E', RecipeChoice.exactChoice(new ItemStack(Material.ECHO_SHARD)))
         );
 
         new ItemRepairAnvilRecipeBuilder()
@@ -61,8 +61,8 @@ public class SculkRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
                         .shape("SSS", "E E", "S S")
-                        .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.SculkFragment.toItemStack()))
-                        .setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.ECHO_SHARD)))
+                        .setIngredient('S', RecipeChoice.exactChoice(DFMaterial.SculkFragment.toItemStack()))
+                        .setIngredient('E', RecipeChoice.exactChoice(new ItemStack(Material.ECHO_SHARD)))
         );
 
         new ItemRepairAnvilRecipeBuilder()
@@ -76,8 +76,8 @@ public class SculkRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo())
                         .shape("S S", "E E")
-                        .setIngredient('S', new RecipeChoice.ExactChoice(DFMaterial.SculkFragment.toItemStack()))
-                        .setIngredient('E', new RecipeChoice.ExactChoice(new ItemStack(Material.ECHO_SHARD)))
+                        .setIngredient('S', RecipeChoice.exactChoice(DFMaterial.SculkFragment.toItemStack()))
+                        .setIngredient('E', RecipeChoice.exactChoice(new ItemStack(Material.ECHO_SHARD)))
         );
 
         new ItemRepairAnvilRecipeBuilder()

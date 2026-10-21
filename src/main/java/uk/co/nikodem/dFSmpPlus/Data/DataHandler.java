@@ -5,6 +5,7 @@ import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 
 import java.io.*;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public abstract class DataHandler {
     public abstract String getFolderName();
@@ -64,7 +65,7 @@ public abstract class DataHandler {
     }
 
     public File getFileInDirectory(String fileName, boolean addJsonEnding) {
-        return Path.of(getAllocatedDirectory().toURI().getPath(), "/"+fileName+(addJsonEnding ? ".json" : "")).toFile();
+        return Path.of(Paths.get(getAllocatedDirectory().toURI()).toString(), fileName+(addJsonEnding ? ".json" : "")).toFile();
     }
 
     public File getFileInDirectory(String fileName) {
@@ -76,6 +77,6 @@ public abstract class DataHandler {
     }
 
     public File getAllocatedDirectory() {
-        return Path.of(DFSmpPlus.getPlugin().getDataPath().toUri().getPath(), "/"+getFolderName()).toFile();
+        return DFSmpPlus.getPlugin().getDataFolder();
     }
 }

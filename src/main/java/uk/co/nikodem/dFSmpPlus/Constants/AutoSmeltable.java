@@ -46,6 +46,9 @@ public class AutoSmeltable {
             entry(Material.MANGROVE_LOG, Material.CHARCOAL),
             entry(Material.OAK_LOG, Material.CHARCOAL),
             entry(Material.SPRUCE_LOG, Material.CHARCOAL),
+            entry(Material.WARPED_STEM, Material.CHARCOAL),
+            entry(Material.CRIMSON_STEM, Material.CHARCOAL),
+            entry(Material.POPLAR_LOG, Material.CHARCOAL),
             entry(Material.STRIPPED_ACACIA_LOG, Material.CHARCOAL),
             entry(Material.STRIPPED_BIRCH_LOG, Material.CHARCOAL),
             entry(Material.STRIPPED_CHERRY_LOG, Material.CHARCOAL),
@@ -56,8 +59,7 @@ public class AutoSmeltable {
             entry(Material.STRIPPED_SPRUCE_LOG, Material.CHARCOAL),
             entry(Material.STRIPPED_CRIMSON_STEM, Material.CHARCOAL),
             entry(Material.STRIPPED_WARPED_STEM, Material.CHARCOAL),
-            entry(Material.WARPED_STEM, Material.CHARCOAL),
-            entry(Material.CRIMSON_STEM, Material.CHARCOAL)
+            entry(Material.STRIPPED_POPLAR_LOG, Material.CHARCOAL)
     );
 
     public final static Map<Material, Material> AutosmeltableChisel = Map.ofEntries(

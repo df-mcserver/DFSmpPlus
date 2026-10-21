@@ -10,7 +10,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapedRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeTemplateInfo;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public abstract class PresetArmourRecipeBuilder extends RecipeBuilder {
@@ -70,7 +70,7 @@ public abstract class PresetArmourRecipeBuilder extends RecipeBuilder {
                 .setCategory(this.category)
                 .build(info, extra)
                 .shape(getShape().toArray(new String[0]))
-                .setIngredient('X', new RecipeChoice.ExactChoice(material));
+                .setIngredient('X', RecipeChoice.exactChoice(material));
     }
 
     @Override

@@ -10,7 +10,7 @@ import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeTemplateInfo;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class DirectConversionRecipeBuilder extends RecipeBuilder {
     private ItemStack output;
@@ -45,17 +45,17 @@ public class DirectConversionRecipeBuilder extends RecipeBuilder {
     }
 
     public DirectConversionRecipeBuilder setSource(DFMaterial source) {
-        this.source = new RecipeChoice.ExactChoice(source.toItemStack());
+        this.source = RecipeChoice.exactChoice(source.toItemStack());
         return this;
     }
 
     public DirectConversionRecipeBuilder setSource(ItemStack source) {
-        this.source = new RecipeChoice.ExactChoice(source);
+        this.source = RecipeChoice.exactChoice(source);
         return this;
     }
 
     public DirectConversionRecipeBuilder setSource(Material source) {
-        this.source = new RecipeChoice.ExactChoice(new ItemStack(source));
+        this.source = RecipeChoice.exactChoice(new ItemStack(source));
         return this;
     }
 
