@@ -53,6 +53,42 @@ public class AccessoryRecipes extends CraftingTemplate {
                 .setResult(DFMaterial.BracedHorseshoe)
                 .assign();
 
+        new AnvilRecipeBuilder()
+                .setBase(DFMaterial.BracedHorseshoe)
+                .setAddition(DFMaterial.ContaminatedMembrane)
+                .setResult(DFMaterial.ContaminatedBracedHorseshoe)
+                .assign();
+
+        new AnvilRecipeBuilder()
+                .setBase(DFMaterial.ContaminatedMembrane)
+                .setAddition(DFMaterial.BracedHorseshoe)
+                .setResult(DFMaterial.ContaminatedBracedHorseshoe)
+                .assign();
+
+        new AnvilRecipeBuilder()
+                .setBase(DFMaterial.ContaminatedElytraBraces)
+                .setAddition(DFMaterial.LuckyHorseshoe)
+                .setResult(DFMaterial.ContaminatedBracedHorseshoe)
+                .assign();
+
+        new AnvilRecipeBuilder()
+                .setBase(DFMaterial.LuckyHorseshoe)
+                .setAddition(DFMaterial.ContaminatedElytraBraces)
+                .setResult(DFMaterial.ContaminatedBracedHorseshoe)
+                .assign();
+
+        new AnvilRecipeBuilder()
+                .setBase(DFMaterial.ContaminatedMembrane)
+                .setAddition(DFMaterial.ElytraBraces)
+                .setResult(DFMaterial.ContaminatedElytraBraces)
+                .assign();
+
+        new AnvilRecipeBuilder()
+                .setBase(DFMaterial.ElytraBraces)
+                .setAddition(DFMaterial.ContaminatedMembrane)
+                .setResult(DFMaterial.ContaminatedElytraBraces)
+                .assign();
+
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.ContaminatedMembrane)

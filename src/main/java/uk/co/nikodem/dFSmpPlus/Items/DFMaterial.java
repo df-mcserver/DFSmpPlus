@@ -701,6 +701,18 @@ public class DFMaterial {
                     .create()))
             .create();
 
+    public static DFMaterial ContaminatedElytraBraces = new Builder(Material.POPPED_CHORUS_FRUIT, "contaminated_elytra_braces", "UPDATE")
+            .setDisplayName("Contaminated Elytra Braces")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("contaminated_elytra_braces")
+                    .addMeta(new NegatingDamageMeta(DamageType.FLY_INTO_WALL))
+                    .addMeta(new PhantomIgnoresMeta())
+                    .setDescription("Negates all elytra kinetic damage\nPhantoms don't target you\nPhantoms are poisoned when they attack you")
+                    .setEquipSound(Sounds.EquipAccessory_ElytraBraces)
+                    .addConflicts("elytra_braces", "phantom_ignore")
+                    .create()))
+            .create();
+
     public static DFMaterial BracedHorseshoe = new Builder(Material.POPPED_CHORUS_FRUIT, "braced_horseshoe", "7c6ded")
             .setDisplayName("Braced Horseshoe")
             .setMaxStack(1)
@@ -708,7 +720,18 @@ public class DFMaterial {
                     .addMeta(new NegatingDamageMeta(DamageType.FALL, DamageType.FLY_INTO_WALL))
                     .setDescription("Negates all fall damage and elytra kinetic damage")
                     .setEquipSound(Sounds.EquipAccessory_BracedHorseshoe)
-                    .addConflicts("elytra_braces", "negating_falldamage")
+                    .addConflicts("elytra_braces", "negating_falldamage", "contaminated_braced_horseshoe", "contaminated_elytra_braces")
+                    .create()))
+            .create();
+
+    public static DFMaterial ContaminatedBracedHorseshoe = new Builder(Material.POPPED_CHORUS_FRUIT, "contaminated_braced_horseshoe", "UPDATE")
+            .setDisplayName("Contaminated Braced Horseshoe")
+            .setMaxStack(1)
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("contaminated_braced_horseshoe")
+                    .addMeta(new NegatingDamageMeta(DamageType.FALL, DamageType.FLY_INTO_WALL))
+                    .setDescription("Negates all fall damage and elytra kinetic damage\nPhantoms don't target you\nPhantoms are poisoned when they attack you")
+                    .setEquipSound(Sounds.EquipAccessory_BracedHorseshoe)
+                    .addConflicts("elytra_braces", "negating_falldamage", "braced_horseshoe", "contaminated_elytra_braces", "phantom_ignore")
                     .create()))
             .create();
 
