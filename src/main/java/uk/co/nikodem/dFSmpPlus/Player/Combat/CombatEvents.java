@@ -80,7 +80,7 @@ public class CombatEvents {
         LastDeathInformation info = new LastDeathInformation();
         info.diedInCombat = CombatLoggingManager.isInCombat(victim);
         info.location = victim.getLocation();
-        info.lastDeathTime = new Date().getTime();
+        info.lastDeathTime = 0L;
         info.invalidLocation = diedInVoid;
         data.lastDeathInformation = info;
         DFSmpPlus.playerDataHandler.writePlayerData(victim, data);
