@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Events.Player;
 
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,5 +21,9 @@ public class PlayerRespawnEvent implements Listener {
         LastDeathInformation info = data.lastDeathInformation;
         info.lastDeathTime = new Date().getTime();
         DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
+
+        if ((!info.diedInCombat) && (!info.invalidLocation)) {
+            plr.sendMessage(MiniMessage.miniMessage().deserialize("<i><grey>/back to return to your death location"));
+        }
     }
 }
