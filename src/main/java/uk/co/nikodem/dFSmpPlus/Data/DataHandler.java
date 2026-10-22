@@ -65,7 +65,8 @@ public abstract class DataHandler {
     }
 
     public File getFileInDirectory(String fileName, boolean addJsonEnding) {
-        return Path.of(Paths.get(getAllocatedDirectory().toURI()).toString(), fileName+(addJsonEnding ? ".json" : "")).toFile();
+        Path path = Path.of(Paths.get(getAllocatedDirectory().toURI()).toString(), fileName+(addJsonEnding ? ".json" : ""));
+        return path.toFile();
     }
 
     public File getFileInDirectory(String fileName) {
@@ -77,6 +78,6 @@ public abstract class DataHandler {
     }
 
     public File getAllocatedDirectory() {
-        return DFSmpPlus.getPlugin().getDataFolder();
+        return Path.of(DFSmpPlus.getPlugin().getDataFolder().toPath().toString(), getFolderName()).toFile();
     }
 }

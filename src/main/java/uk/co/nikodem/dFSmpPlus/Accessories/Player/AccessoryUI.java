@@ -5,6 +5,7 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -50,6 +51,11 @@ public class AccessoryUI {
         if (inv.getHolder() instanceof AccessoryInventory) {
             Inventory clickedInventory = event.getClickedInventory();
             if (clickedInventory == null) return;
+
+            if (event.getAction().equals(InventoryAction.HOTBAR_SWAP)) {
+                event.setCancelled(true);
+                return;
+            }
 
             if (clickedInventory.getHolder() instanceof AccessoryInventory) {
                 if (isAccessoryConfigSlot(accessoryData, event.getSlot())) {

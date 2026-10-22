@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Events.Player.Inventory;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.BackpackMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.AccessoryUI;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.Anvil.AnvilEvents;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.SmithingTableEvents;
@@ -16,5 +17,6 @@ public class InventoryClickEvent implements Listener {
         AnvilEvents.onAnvilInventoryClick(event);
         SmithingTableEvents.onSmithingTableCraft(event);
         AccessoryUI.onInventoryClick(event);
+        BackpackMeta.onInventoryClick(event);
     }
 }

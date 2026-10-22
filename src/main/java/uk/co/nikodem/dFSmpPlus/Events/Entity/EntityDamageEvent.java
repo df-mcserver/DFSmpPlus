@@ -6,13 +6,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.BackpackMeta;
 import uk.co.nikodem.dFSmpPlus.Constants.DamageCauseGroups;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Entities.EnderDragon;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
-import uk.co.nikodem.dFSmpPlus.SetBonuses.Metas.FireImmunityMeta;
 
 public class EntityDamageEvent implements Listener {
     @EventHandler
@@ -20,6 +20,7 @@ public class EntityDamageEvent implements Listener {
         EnderDragon.onDamaged(event);
         AccessoryEvents.UserDamaged(event);
         DFArmourSetEvents.PlayerDamaged(event);
+
         if (!event.getEntity().isDead()) {
             event.getEntity().getPersistentDataContainer().remove(Keys.bluebellsarDeath);
         }
@@ -45,5 +46,7 @@ public class EntityDamageEvent implements Listener {
                 }
             }
         }
+
+        BackpackMeta.onItemDestroy(event);
     }
 }
