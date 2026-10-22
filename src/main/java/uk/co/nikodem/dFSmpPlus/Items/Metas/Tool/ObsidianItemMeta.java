@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Items.Metas;
+package uk.co.nikodem.dFSmpPlus.Items.Metas.Tool;
 
 import io.papermc.paper.event.block.BlockBreakProgressUpdateEvent;
 import net.kyori.adventure.text.TextComponent;

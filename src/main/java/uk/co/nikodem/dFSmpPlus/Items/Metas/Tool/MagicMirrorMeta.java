@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Items.Metas;
+package uk.co.nikodem.dFSmpPlus.Items.Metas.Tool;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.*;

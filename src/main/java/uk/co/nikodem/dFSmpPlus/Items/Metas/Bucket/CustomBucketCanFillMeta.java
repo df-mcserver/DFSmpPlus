@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Items.Metas;
+package uk.co.nikodem.dFSmpPlus.Items.Metas.Bucket;
 
 import io.papermc.paper.datacomponent.DataComponentTypes;
 import net.kyori.adventure.text.minimessage.MiniMessage;

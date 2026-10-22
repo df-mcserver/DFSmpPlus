@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Items.Metas;
+package uk.co.nikodem.dFSmpPlus.Items.Metas.Accessory;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;

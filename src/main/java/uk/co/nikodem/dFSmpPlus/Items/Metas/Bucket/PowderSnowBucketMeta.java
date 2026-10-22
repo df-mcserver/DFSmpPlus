@@ -1,4 +1,4 @@
-package uk.co.nikodem.dFSmpPlus.Items.Metas;
+package uk.co.nikodem.dFSmpPlus.Items.Metas.Bucket;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

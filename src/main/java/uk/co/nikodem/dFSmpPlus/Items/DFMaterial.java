@@ -33,6 +33,10 @@ import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Constants.VeinMineable;
 import uk.co.nikodem.dFSmpPlus.Items.Metas.*;
 import org.bukkit.Material;
+import uk.co.nikodem.dFSmpPlus.Items.Metas.Accessory.AccessoryItemMeta;
+import uk.co.nikodem.dFSmpPlus.Items.Metas.Accessory.BackpackRightclickOverride;
+import uk.co.nikodem.dFSmpPlus.Items.Metas.Bucket.*;
+import uk.co.nikodem.dFSmpPlus.Items.Metas.Tool.*;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
 
 import java.util.*;

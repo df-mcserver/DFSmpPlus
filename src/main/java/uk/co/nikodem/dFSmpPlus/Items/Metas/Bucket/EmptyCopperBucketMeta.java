@@ -1,13 +1,10 @@
-package uk.co.nikodem.dFSmpPlus.Items.Metas;
+package uk.co.nikodem.dFSmpPlus.Items.Metas.Bucket;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.inventory.ItemStack;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
-import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
-
-import java.util.Objects;
 
 public class EmptyCopperBucketMeta extends CustomBucketCanFillMeta {
     private final String namedIdPrefix;

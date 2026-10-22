@@ -22,7 +22,7 @@ import org.bukkit.spawner.BaseSpawner;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 import uk.co.nikodem.dFSmpPlus.Constants.Enums;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
-import uk.co.nikodem.dFSmpPlus.Items.Metas.AccessoryItemMeta;
+import uk.co.nikodem.dFSmpPlus.Items.Metas.Accessory.AccessoryItemMeta;
 
 import org.jetbrains.annotations.Nullable;
 import java.util.*;
