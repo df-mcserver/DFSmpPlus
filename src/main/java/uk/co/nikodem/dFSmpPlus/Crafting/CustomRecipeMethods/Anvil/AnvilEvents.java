@@ -40,12 +40,14 @@ public class AnvilEvents {
         if (base == null) return;
         if (addition == null) return;
 
+        ItemStack result = null;
+        boolean changed = false;
+
         DFMaterial material = DFItemUtils.getDFMaterial(base);
         if (material != null) {
             ItemMeta meta1 = addition.getItemMeta();
             if (meta1 instanceof EnchantmentStorageMeta meta) {
-                ItemStack result = base.clone();
-                boolean changed = false;
+                result = base.clone();
                 for (Map.Entry<Enchantment, Integer> storedEnchant : meta.getStoredEnchants().entrySet()) {
                     for (Enchantment ench : material.getAllowedUnsafeEnchantments()) {
                         if (ench.equals(storedEnchant.getKey())) {
@@ -56,17 +58,12 @@ public class AnvilEvents {
                         }
                     }
                 }
-
-                if (changed) {
-                    event.setResult(result);
-                    return;
-                }
             }
         }
 
         for (AnvilRecipe recipe : recipes) {
             if (doesAnvilInventoryMatchRecipe(base, addition, recipe)) {
-                ItemStack result;
+                changed = true;
                 if (recipe.getTransformer() == null) {
                     result = recipe.getResult().clone();
                 } else {
@@ -78,15 +75,21 @@ public class AnvilEvents {
 
                     result = data.getResult().clone();
                 }
+            }
+        }
 
-                String renameText = event.getView().getRenameText();
+        if (changed && result != null) {
+            String renameText = event.getView().getRenameText();
+            if (renameText != null) {
                 if (!Objects.equals(renameText, "")) {
                     ItemMeta meta = result.getItemMeta();
                     meta.displayName(Component.text(renameText));
                     result.setItemMeta(meta);
                 }
-                event.setResult(result);
             }
+
+            event.getView().getPlayer().sendMessage("blah");
+            event.setResult(result);
         }
     }
 
