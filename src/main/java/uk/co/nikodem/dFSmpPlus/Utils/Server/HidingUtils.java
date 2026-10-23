@@ -47,7 +47,6 @@ public class HidingUtils {
     }
 
     public void hideAllExclusiveEntitiesOnJoin(Player plr) {
-        System.out.println(exclusiveEntities.entrySet());
         for (Map.Entry<UUID, List<Entity>> entry : exclusiveEntities.entrySet()) {
             if (entry.getKey() != plr.getUniqueId()) {
                 List<Entity> entitiesToHide = entry.getValue();

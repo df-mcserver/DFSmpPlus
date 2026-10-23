@@ -22,14 +22,6 @@ public class CustomBucketCanFillMeta implements DFMaterialMeta {
         ItemStack vanillaItemStack = event.getEntityBucket();
         String nameToLookFor = namedIdPrefix + vanillaItemStack.getType().key().value();
 
-        // TODO: SULFUR CUBE BUCKET TEMPORARY STOPGAP
-        // wait until https://github.com/PaperMC/Paper/pull/14150 is merged, because otherwise it causes issues with converting back into copper/gold buckets
-        // for now, just stop custom buckets from bucketting sulfur cubes (the likelihood is this won't even happen in normal gameplay :p)
-        if (nameToLookFor.contains("sulfur")) {
-            event.setCancelled(true);
-            plr.sendMessage(MiniMessage.miniMessage().deserialize("<red>Cannot bucket sulfur cube with this bucket!<br><white>This will be fixed, just waiting on a paper update, sorry :p"));
-        }
-
         DFMaterial newMaterial = DFMaterial.DFMaterialIndex.get(nameToLookFor);
         if (newMaterial != null) {
             ItemMeta currentMeta = vanillaItemStack.getItemMeta();

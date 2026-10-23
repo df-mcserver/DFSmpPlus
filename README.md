@@ -1,5 +1,5 @@
 # DFSmpPlus
-A 26.3 [PaperMC](https://papermc.io/) plugin (not spigot) built to add various QoL additions and custom content.  
+A 26.3 #216+ [PaperMC](https://papermc.io/) plugin (not spigot) built to add various QoL additions and custom content.  
 Requires JDK 25.  
 Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 
