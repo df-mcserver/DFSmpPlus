@@ -705,7 +705,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial ContaminatedElytraBraces = new Builder(Material.POPPED_CHORUS_FRUIT, "contaminated_elytra_braces", "UPDATE")
+    public static DFMaterial ContaminatedElytraBraces = new Builder(Material.POPPED_CHORUS_FRUIT, "contaminated_elytra_braces", "ce44f8")
             .setDisplayName("Contaminated Elytra Braces")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("contaminated_elytra_braces")
@@ -728,7 +728,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial ContaminatedBracedHorseshoe = new Builder(Material.POPPED_CHORUS_FRUIT, "contaminated_braced_horseshoe", "UPDATE")
+    public static DFMaterial ContaminatedBracedHorseshoe = new Builder(Material.POPPED_CHORUS_FRUIT, "contaminated_braced_horseshoe", "41e138")
             .setDisplayName("Contaminated Braced Horseshoe")
             .setMaxStack(1)
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("contaminated_braced_horseshoe")
@@ -877,7 +877,7 @@ public class DFMaterial {
                     .create()))
             .create();
 
-    public static DFMaterial CopperBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_backpack", "UPDATE")
+    public static DFMaterial CopperBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_backpack", "5ea7f0")
             .setDisplayName("Copper Backpack")
             .addLore("<#C15A36>Copper")
             .setMaxStack(1)
@@ -890,7 +890,7 @@ public class DFMaterial {
             .addMeta(new BackpackItemMeta())
             .create();
 
-    public static DFMaterial IronBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "iron_backpack", "UPDATE")
+    public static DFMaterial IronBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "iron_backpack", "04190e")
             .setDisplayName("Iron Backpack")
             .addLore("<#D8D8D8>Iron")
             .setMaxStack(1)
@@ -903,7 +903,7 @@ public class DFMaterial {
             .addMeta(new BackpackItemMeta())
             .create();
 
-    public static DFMaterial GoldBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_backpack", "UPDATE")
+    public static DFMaterial GoldBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_backpack", "8d3be0")
             .setDisplayName("Gold Backpack")
             .addLore("<#FDF55F>Gold")
             .setMaxStack(1)
@@ -916,7 +916,7 @@ public class DFMaterial {
             .addMeta(new BackpackItemMeta())
             .create();
 
-    public static DFMaterial DiamondBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "diamond_backpack", "UPDATE")
+    public static DFMaterial DiamondBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "diamond_backpack", "205a13")
             .setDisplayName("Diamond Backpack")
             .addLore("<#A1FBE8>Diamond")
             .setMaxStack(1)
@@ -929,7 +929,7 @@ public class DFMaterial {
             .addMeta(new BackpackItemMeta())
             .create();
 
-    public static DFMaterial NetheriteBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "netherite_backpack", "UPDATE")
+    public static DFMaterial NetheriteBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "netherite_backpack", "aa2069")
             .setDisplayName("Netherite Backpack")
             .addLore("<#4D494D>Netherite")
             .setMaxStack(1)
@@ -1116,7 +1116,7 @@ public class DFMaterial {
             .addMeta(new FilledCustomBucketMeta("copper_"))
             .create();
 
-    public static DFMaterial CopperSulfurCubeBucket = new Builder(Material.SULFUR_CUBE_BUCKET, "copper_sulfur_cube_bucket", "UPDATE")
+    public static DFMaterial CopperSulfurCubeBucket = new Builder(Material.SULFUR_CUBE_BUCKET, "copper_sulfur_cube_bucket", "d21beb")
             .setDisplayName("Copper Bucket of Sulfur Cube")
             .addMeta(new FilledCustomBucketMeta("copper_"))
             .create();
@@ -1198,7 +1198,7 @@ public class DFMaterial {
             .addMeta(new FilledCustomBucketMeta("gold_"))
             .create();
 
-    public static DFMaterial GoldSulfurCubeBucket = new Builder(Material.SULFUR_CUBE_BUCKET, "gold_sulfur_cube_bucket", "UPDATE")
+    public static DFMaterial GoldSulfurCubeBucket = new Builder(Material.SULFUR_CUBE_BUCKET, "gold_sulfur_cube_bucket", "cdb8a1")
             .setDisplayName("Golden Bucket of Sulfur Cube")
             .addMeta(new FilledCustomBucketMeta("gold_"))
             .create();
