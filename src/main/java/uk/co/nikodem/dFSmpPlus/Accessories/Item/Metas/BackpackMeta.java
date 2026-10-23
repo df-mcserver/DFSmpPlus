@@ -94,8 +94,8 @@ public class BackpackMeta implements AccessoryMeta {
                     backpackItemStorage.items.remove(i);
                     plr.dropItem(item);
                 } else {
-                    ItemStack old_val = backpackItemStorage.items.put(i, item);
-                    if (old_val == null) changed = true;
+                    backpackItemStorage.items.put(i, item);
+                    changed = true;
                 }
 
                 i++;
