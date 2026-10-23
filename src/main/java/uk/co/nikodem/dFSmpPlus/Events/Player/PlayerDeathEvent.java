@@ -6,6 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.persistence.PersistentDataType;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.BackpackMeta;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Bluebellsar.BulliedByBluebellsar;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
@@ -16,6 +17,7 @@ import uk.co.nikodem.dFSmpPlus.SetBonuses.SetBonusText;
 public class PlayerDeathEvent implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void PlayerDeathEvent(org.bukkit.event.entity.PlayerDeathEvent event) {
+        BackpackMeta.onDeath(event);
         CombatEvents.onDeath(event);
         AccessoryEvents.UserKilledPlayer(event);
         WorldRecordAdvancementHandler.onDeath(event);

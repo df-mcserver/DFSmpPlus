@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Items.Metas.Accessory;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
@@ -22,7 +23,14 @@ public class BackpackItemMeta implements DFMaterialMeta {
 
     @Override
     public void ItemUse(Player plr, DFMaterial material, ItemStack item, PlayerInteractEvent event) {
-        if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+        if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+
+            Boolean result = DFItemUtils.shouldBePlaced(plr, event.getClickedBlock());
+            if (result == null || plr.hasCooldown(item) || result.equals(Boolean.FALSE) || event.useItemInHand().equals(Event.Result.DENY)) {
+                event.setCancelled(true);
+                return;
+            }
+
             boolean opensBackpack = false;
 
             long current = new Date().getTime();

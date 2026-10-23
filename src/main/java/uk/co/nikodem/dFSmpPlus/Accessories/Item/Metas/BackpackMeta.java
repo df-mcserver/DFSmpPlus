@@ -1,14 +1,16 @@
 package uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas;
 
-import com.destroystokyo.paper.MaterialTags;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.*;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -194,5 +196,31 @@ public class BackpackMeta implements AccessoryMeta {
         }
 
         return false;
+    }
+
+    public static void onDropItem(PlayerDropItemEvent event) {
+        Item item = event.getItemDrop();
+        ItemStack itemStack = item.getItemStack();
+
+        String uuid = DFItemUtils.getUUID(itemStack);
+        if (uuid == null) return;
+
+        Player plr = event.getPlayer();
+
+        InventoryView view = plr.getOpenInventory();
+        if (view.getTopInventory().getHolder() instanceof BackpackItemStorage backpackItemStorage) {
+            if (backpackItemStorage.uuid.equals(uuid)) {
+                plr.closeInventory(InventoryCloseEvent.Reason.CANT_USE);
+            }
+        }
+    }
+
+    public static void onDeath(PlayerDeathEvent event) {
+        Player plr = event.getPlayer();
+
+        InventoryView view = plr.getOpenInventory();
+        if (view.getTopInventory().getHolder() instanceof BackpackItemStorage) {
+            plr.closeInventory(InventoryCloseEvent.Reason.CANT_USE);
+        }
     }
 }
