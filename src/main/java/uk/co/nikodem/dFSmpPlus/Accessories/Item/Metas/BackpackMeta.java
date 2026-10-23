@@ -1,5 +1,6 @@
 package uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas;
 
+import com.destroystokyo.paper.MaterialTags;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -162,6 +163,8 @@ public class BackpackMeta implements AccessoryMeta {
 
     public static boolean canBeStoredInBackpack(ItemStack item) {
         if (Tag.SHULKER_BOXES.isTagged(item.getType())) return false;
+        if (Tag.ITEMS_BUNDLES.isTagged(item.getType())) return false;
+        if (item.getType().equals(Material.DRAGON_EGG)) return false;
 
         AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
         if (info == null) return true;
