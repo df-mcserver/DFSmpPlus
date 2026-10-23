@@ -75,10 +75,9 @@ public class BackpackMeta implements AccessoryMeta {
         Player plr = (Player) event.getPlayer();
         Inventory inv = event.getInventory();
 
-        boolean changed = false;
-
         if (inv.getHolder() instanceof BackpackItemStorage backpackItemStorage) {
             int i = 0;
+
             for (ItemStack item : inv.getContents()) {
                 if (item == null) {
                     backpackItemStorage.items.replace(i, null);
@@ -92,12 +91,10 @@ public class BackpackMeta implements AccessoryMeta {
                 }
 
                 if (!canBeStoredInBackpack(item)) {
-                    changed = true;
                     backpackItemStorage.items.remove(i);
                     plr.dropItem(item);
                 } else {
                     backpackItemStorage.items.put(i, item);
-                    changed = true;
                 }
 
                 i++;
@@ -105,7 +102,7 @@ public class BackpackMeta implements AccessoryMeta {
 
             GlobalData globalData = DFSmpPlus.globalDataHandler.getGlobalData();
             globalData.backpackMappings.put(backpackItemStorage.uuid, backpackItemStorage);
-            if (changed) DFSmpPlus.globalDataHandler.writeGlobalData(globalData);
+            DFSmpPlus.globalDataHandler.writeGlobalData(globalData);
         }
     }
 
