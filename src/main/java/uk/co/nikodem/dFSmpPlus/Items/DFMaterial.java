@@ -582,7 +582,7 @@ public class DFMaterial {
             .setDisplayName("Totem of Undying")
             .addLore("for bedrock resource pack auto generation")
             .addLore("don't actually use this item")
-            .addPossibleModels("totem_legacy", "totem_creeper", "totem_amongus", "totem_dantdm", "totem_techno", "totem_herobrine")
+            .addPossibleModels("totem_legacy", "totem_creeper", "totem_amongus", "totem_dantdm", "totem_techno", "totem_herobrine", "totem_soul", "totem_sun", "totem_animated")
             .removeCustomModel()
             .create();
 
