@@ -68,7 +68,7 @@ public class DFAdvancementsHandler {
         new ITTDDTA(main); // TODO
         new WorldRecord(main);
         new WhatYouEgg(main);
-        new I3Rocks(main); // TODO
+        new I3Rocks(main);
         new BreakTargetDummy(main);
         new SightedWarden(main);
         new IYCBTJT(main);

@@ -5,6 +5,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.I3Rocks;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
@@ -25,11 +27,11 @@ public class OnCraft {
             DFItemUtils.addUUIDIfMarked(item);
 
             DFMaterial material = DFItemUtils.getDFMaterial(item);
-            if (material == null) return;
-
-            if (material.hasMeta()) {
-                for (DFMaterialMeta meta : material.getMeta()) {
-                    meta.ItemCrafted(material, item, plr, e);
+            if (material != null) {
+                if (material.hasMeta()) {
+                    for (DFMaterialMeta meta : material.getMeta()) {
+                        meta.ItemCrafted(material, item, plr, e);
+                    }
                 }
             }
         }
@@ -45,6 +47,8 @@ public class OnCraft {
                 else if (DFMaterial.CopperMilkBucket.isSimilar(x)) newMatrix[i] = DFMaterial.CopperBucket.toItemStack();
                 else if (x.getType().equals(Material.MILK_BUCKET)) newMatrix[i] = ItemStack.of(Material.BUCKET); // fixes issue on bedrock
                 else newMatrix[i] = x;
+
+                if (DFMaterial.LooseStone.isSimilar(x)) DFAdvancementsHandler.grantAdvancement(plr, I3Rocks.class);
             }
         }
 

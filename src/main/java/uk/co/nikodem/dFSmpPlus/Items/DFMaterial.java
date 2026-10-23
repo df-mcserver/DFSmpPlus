@@ -96,16 +96,19 @@ public class DFMaterial {
 
     public static DFMaterial HeatProofRod = new Builder(Material.POPPED_CHORUS_FRUIT, "heat_proof_rod", "b58dba")
             .setDisplayName("<red>Heat-proof Rod")
+            .addMeta(new IngredientMeta())
             .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumIngot = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_ingot", "724ded")
             .setDisplayName("<red>Firidium Ingot")
+            .addMeta(new IngredientMeta())
             .setCanSurviveLava(true)
             .create();
 
     public static DFMaterial FiridiumNugget = new Builder(Material.POPPED_CHORUS_FRUIT, "firidium_nugget", "11a0b1")
             .setDisplayName("<red>Firidium Nugget")
+            .addMeta(new IngredientMeta())
             .setCanSurviveLava(true)
             .create();
 
@@ -224,6 +227,7 @@ public class DFMaterial {
 
     public static DFMaterial ObsidianUpgradeTemplate = new Builder(Material.POPPED_CHORUS_FRUIT, "obsidian_upgrade", "d9dc97")
             .setDisplayName("<yellow>Obsidian Upgrade")
+            .addLore("<blue>Ingredients")
             .addLore("<gray>Smithing Template")
             .addLore("")
             .addLore("<gray>Applies to:")
@@ -381,6 +385,7 @@ public class DFMaterial {
 
     public static DFMaterial LooseStone = new Builder(Material.POPPED_CHORUS_FRUIT, "loose_stone", "0398b4")
             .setDisplayName("Loose Stone")
+            .addMeta(new IngredientMeta())
             .create();
 
     public static DFMaterial SharpStone = new Builder(Material.POPPED_CHORUS_FRUIT, "sharp_stone", "72e21e")
@@ -564,6 +569,7 @@ public class DFMaterial {
 
     public static DFMaterial LocatorCompassModule = new Builder(Material.POPPED_CHORUS_FRUIT, "locator_compass_module_base", "ec1741")
             .setDisplayName("Empty Compass Module")
+            .addMeta(new IngredientMeta())
             .create();
 
     public static DFMaterial EndLocatorCompassModule = new Builder(Material.POPPED_CHORUS_FRUIT, "locator_compass_end_module", "19f1a0")
@@ -618,14 +624,17 @@ public class DFMaterial {
 
     public static DFMaterial FlowerPowder = new Builder(Material.POPPED_CHORUS_FRUIT, "flower_powder", "3f4dd9")
             .setDisplayName("<light_purple>Flower Powder")
+            .addMeta(new IngredientMeta())
             .create();
 
     public static DFMaterial FloralIngot = new Builder(Material.POPPED_CHORUS_FRUIT, "floral_ingot", "27452d")
             .setDisplayName("<light_purple>Floral Ingot")
+            .addMeta(new IngredientMeta())
             .create();
 
     public static DFMaterial FloralNugget = new Builder(Material.POPPED_CHORUS_FRUIT, "floral_nugget", "83a422")
             .setDisplayName("<light_purple>Floral Nugget")
+            .addMeta(new IngredientMeta())
             .create();
 
     public static DFMaterial FloralSword = new Builder(Material.IRON_SWORD, "floral_sword", "9b7e23")
@@ -945,14 +954,17 @@ public class DFMaterial {
 
     public static DFMaterial AncientDebrisFragment = new Builder(Material.POPPED_CHORUS_FRUIT, "ancient_debris_fragment", "89d45c")
             .setDisplayName("Ancient Debris Fragment")
+            .addMeta(new IngredientMeta())
             .create();
 
     public static DFMaterial AncientDebrisChunk = new Builder(Material.POPPED_CHORUS_FRUIT, "ancient_debris_chunk", "ffb0fa")
             .setDisplayName("Ancient Debris Chunk")
+            .addMeta(new IngredientMeta())
             .create();
 
     public static DFMaterial Cardboard = new Builder(Material.POPPED_CHORUS_FRUIT, "cardboard", "e466e4")
             .setDisplayName("Cardboard")
+            .addMeta(new IngredientMeta())
             .create();
 
     public static DFMaterial StrangeBucket = new Builder(Material.POPPED_CHORUS_FRUIT, "strange_bucket", "6b62ab")
@@ -1288,6 +1300,11 @@ public class DFMaterial {
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addAttribute(Attribute.ARMOR, new AttributeModifier(obsidianTintedElytra, 2D, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlotGroup.CHEST))
             .setCanSurviveLava(true)
+            .create();
+
+    public static DFMaterial ElytraWing = new Builder(Material.POPPED_CHORUS_FRUIT, "elytra_wing", "34f35d")
+            .setDisplayName("<aqua>Elytra Wing")
+            .addMeta(new IngredientMeta())
             .create();
 
     private final String namedId;

@@ -1,7 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.World;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.inventory.ItemStack;
@@ -131,10 +131,21 @@ public class PopulateChests {
                         .addCondition(new IsChest())
                         .addCondition(new BySpecificMaterial().addMaterial(Material.IRON_INGOT).setRandomMax(2),
                                 data -> {
-                                    if (getRandomNumber(0, 1) == 0) {
-                                        replaceModifiedSlotsInLoot(data, DFMaterial.FiridiumIngot);
-                                    } else {
-                                        replaceModifiedSlotsInLoot(data, DFMaterial.FloralIngot);
+                                    for (int i : data.getModifiedSlots()) {
+
+                                        ItemStack item;
+                                        int num = getRandomNumber(0, 2);
+                                        if (num == 0) {
+                                            item = DFMaterial.FiridiumIngot.toItemStack();
+                                        } else if (num == 1) {
+                                            item = DFMaterial.FloralIngot.toItemStack();
+                                        } else {
+                                            item = ItemStack.of(Material.IRON_INGOT);
+                                        }
+
+                                        ItemStack x = data.getEvent().getLoot().get(i);
+
+                                        data.getEvent().getLoot().set(i, item);
                                     }
                                 })
         );
@@ -168,6 +179,21 @@ public class PopulateChests {
                                 data -> {
                                     replaceModifiedSlotsInLoot(data, DFMaterial.FloralBoots);
                                 })
+        );
+
+        attempts.add(
+                new LootEditAttempt()
+                        .addCondition(new IsChest())
+                        .addCondition(new ByDimension().setDimension(World.Environment.THE_END))
+                        .setFinalEdit(data -> {
+                            int chance = getRandomNumber(0, 14);
+                            if (chance == 0) addItemToLoot(data, DFMaterial.ElytraBraces);
+                            else if (chance == 1) addItemToLoot(data, DFMaterial.LuckyHorseshoe);
+                            else if (chance == 2) addItemToLoot(data, DFMaterial.BracedHorseshoe);
+                            else if (chance == 3) addItemToLoot(data, DFMaterial.ContaminatedElytraBraces);
+                            else if (chance == 4) addItemToLoot(data, DFMaterial.ContaminatedBracedHorseshoe);
+                            else if (chance < 10) addItemToLoot(data, DFMaterial.ElytraWing);
+                        })
         );
     }
 

@@ -40,8 +40,8 @@ public class VanillaRecipes extends CraftingTemplate {
         doWoodChanges(recipesToAdd);
 
         addLooseStoneRecipes(recipesToAdd);
-
         addStonecuttingRecipes(recipesToAdd);
+        addElytraRecipe(recipesToAdd);
 
         addOreRecipes(recipesToAdd);
         addSlabRecipes(recipesToAdd);
@@ -940,36 +940,24 @@ public class VanillaRecipes extends CraftingTemplate {
                 new ShapedRecipeBuilder()
                         .setOutput(Material.CAKE)
                         .setCategory(CraftingBookCategory.MISC)
-                        .build(getInfo(), "iron")
-                        .shape("BBB", "XYX", "WWW")
-                        .setIngredient('B', Material.MILK_BUCKET)
-                        .setIngredient('X', Material.SUGAR)
-                        .setIngredient('Y', new RecipeChoice.MaterialChoice(Tag.ITEMS_EGGS))
-                        .setIngredient('W', Material.WHEAT)
-        );
-
-        recipesToAdd.add(
-                new ShapedRecipeBuilder()
-                        .setOutput(Material.CAKE)
-                        .setCategory(CraftingBookCategory.MISC)
                         .build(getInfo(), "copper")
                         .shape("BBB", "XYX", "WWW")
-                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.CopperMilkBucket.toItemStack()))
+                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.CopperMilkBucket.toItemStack(), DFMaterial.GoldMilkBucket.toItemStack(), ItemStack.of(Material.MILK_BUCKET)))
                         .setIngredient('X', Material.SUGAR)
                         .setIngredient('Y', new RecipeChoice.MaterialChoice(Tag.ITEMS_EGGS))
                         .setIngredient('W', Material.WHEAT)
         );
+    }
 
+    public void addElytraRecipe(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
-                new ShapedRecipeBuilder()
-                        .setOutput(Material.CAKE)
-                        .setCategory(CraftingBookCategory.MISC)
-                        .build(getInfo(), "gold")
-                        .shape("BBB", "XYX", "WWW")
-                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.GoldMilkBucket.toItemStack()))
-                        .setIngredient('X', Material.SUGAR)
-                        .setIngredient('Y', new RecipeChoice.MaterialChoice(Tag.ITEMS_EGGS))
-                        .setIngredient('W', Material.WHEAT)
+                new ShapelessRecipeBuilder()
+                        .setOutput(Material.ELYTRA)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "elytra")
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.ElytraWing.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.ElytraWing.toItemStack()))
+                        .addIngredient(Material.PHANTOM_MEMBRANE)
         );
     }
 
