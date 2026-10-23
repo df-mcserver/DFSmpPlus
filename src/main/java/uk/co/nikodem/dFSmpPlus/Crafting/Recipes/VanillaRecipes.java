@@ -955,8 +955,8 @@ public class VanillaRecipes extends CraftingTemplate {
                         .setOutput(Material.ELYTRA)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "elytra")
-                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.ElytraWing.toItemStack()))
-                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.ElytraWing.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.TatteredElytraWing.toItemStack()))
+                        .addIngredient(RecipeChoice.exactChoice(DFMaterial.TatteredElytraWing.toItemStack()))
                         .addIngredient(Material.PHANTOM_MEMBRANE)
         );
     }

@@ -192,7 +192,7 @@ public class PopulateChests {
                             else if (chance == 2) addItemToLoot(data, DFMaterial.BracedHorseshoe);
                             else if (chance == 3) addItemToLoot(data, DFMaterial.ContaminatedElytraBraces);
                             else if (chance == 4) addItemToLoot(data, DFMaterial.ContaminatedBracedHorseshoe);
-                            else if (chance < 10) addItemToLoot(data, DFMaterial.ElytraWing);
+                            else if (chance < 10) addItemToLoot(data, DFMaterial.TatteredElytraWing);
                         })
         );
     }

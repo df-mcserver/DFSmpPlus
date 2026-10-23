@@ -1302,8 +1302,8 @@ public class DFMaterial {
             .setCanSurviveLava(true)
             .create();
 
-    public static DFMaterial ElytraWing = new Builder(Material.POPPED_CHORUS_FRUIT, "elytra_wing", "34f35d")
-            .setDisplayName("<aqua>Elytra Wing")
+    public static DFMaterial TatteredElytraWing = new Builder(Material.POPPED_CHORUS_FRUIT, "tattered_elytra_wing", "34f35d")
+            .setDisplayName("<aqua>Tattered Elytra Wing")
             .addMeta(new IngredientMeta())
             .create();
 
