@@ -29,7 +29,7 @@ public class AccessoryItemMeta implements DFMaterialMeta {
 
     @Override
     public void ItemUse(Player plr, DFMaterial material, ItemStack item, PlayerInteractEvent event) {
-        if (DFItemUtils.containsMeta(material, BackpackRightclickOverride.class)) return;
+        if (DFItemUtils.containsMeta(material, BackpackItemMeta.class)) return;
         if (event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
             boolean opensMenu = false;
 

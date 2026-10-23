@@ -34,7 +34,7 @@ import uk.co.nikodem.dFSmpPlus.Constants.VeinMineable;
 import uk.co.nikodem.dFSmpPlus.Items.Metas.*;
 import org.bukkit.Material;
 import uk.co.nikodem.dFSmpPlus.Items.Metas.Accessory.AccessoryItemMeta;
-import uk.co.nikodem.dFSmpPlus.Items.Metas.Accessory.BackpackRightclickOverride;
+import uk.co.nikodem.dFSmpPlus.Items.Metas.Accessory.BackpackItemMeta;
 import uk.co.nikodem.dFSmpPlus.Items.Metas.Bucket.*;
 import uk.co.nikodem.dFSmpPlus.Items.Metas.Tool.*;
 import uk.co.nikodem.dFSmpPlus.Utils.Sound.Sounds;
@@ -879,6 +879,7 @@ public class DFMaterial {
 
     public static DFMaterial CopperBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_backpack", "UPDATE")
             .setDisplayName("Copper Backpack")
+            .addLore("<#C15A36>Copper")
             .setMaxStack(1)
             .markForUUID()
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("backpack")
@@ -886,11 +887,12 @@ public class DFMaterial {
                     .setEquipSound(Sounds.EquipAccessory_CopperBackpack)
                     .addMeta(new BackpackMeta(9*2))
                     .create()))
-            .addMeta(new BackpackRightclickOverride())
+            .addMeta(new BackpackItemMeta())
             .create();
 
     public static DFMaterial IronBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "iron_backpack", "UPDATE")
             .setDisplayName("Iron Backpack")
+            .addLore("<#D8D8D8>Iron")
             .setMaxStack(1)
             .markForUUID()
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("backpack")
@@ -898,11 +900,12 @@ public class DFMaterial {
                     .setEquipSound(Sounds.EquipAccessory_IronBackpack)
                     .addMeta(new BackpackMeta(9*3))
                     .create()))
-            .addMeta(new BackpackRightclickOverride())
+            .addMeta(new BackpackItemMeta())
             .create();
 
     public static DFMaterial GoldBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_backpack", "UPDATE")
             .setDisplayName("Gold Backpack")
+            .addLore("<#FDF55F>Gold")
             .setMaxStack(1)
             .markForUUID()
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("backpack")
@@ -910,11 +913,12 @@ public class DFMaterial {
                     .setEquipSound(Sounds.EquipAccessory_GoldBackpack)
                     .addMeta(new BackpackMeta(9*4))
                     .create()))
-            .addMeta(new BackpackRightclickOverride())
+            .addMeta(new BackpackItemMeta())
             .create();
 
     public static DFMaterial DiamondBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "diamond_backpack", "UPDATE")
             .setDisplayName("Diamond Backpack")
+            .addLore("<#A1FBE8>Diamond")
             .setMaxStack(1)
             .markForUUID()
             .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("backpack")
@@ -922,11 +926,12 @@ public class DFMaterial {
                     .setEquipSound(Sounds.EquipAccessory_DiamondBackpack)
                     .addMeta(new BackpackMeta(9*5))
                     .create()))
-            .addMeta(new BackpackRightclickOverride())
+            .addMeta(new BackpackItemMeta())
             .create();
 
     public static DFMaterial NetheriteBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "netherite_backpack", "UPDATE")
             .setDisplayName("Netherite Backpack")
+            .addLore("<#4D494D>Netherite")
             .setMaxStack(1)
             .markForUUID()
             .setCanSurviveLava(true)
@@ -935,7 +940,7 @@ public class DFMaterial {
                     .setEquipSound(Sounds.EquipAccessory_NetheriteBackpack)
                     .addMeta(new BackpackMeta(9*6))
                     .create()))
-            .addMeta(new BackpackRightclickOverride())
+            .addMeta(new BackpackItemMeta())
             .create();
 
     public static DFMaterial AncientDebrisFragment = new Builder(Material.POPPED_CHORUS_FRUIT, "ancient_debris_fragment", "89d45c")

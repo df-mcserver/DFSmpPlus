@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
@@ -26,6 +27,7 @@ public interface AccessoryMeta {
     default void UserKilledPlayer(Player plr, ItemStack accessory, AccessoryInformation info, PlayerDeathEvent event) {};
     default void UserInteract(Player plr, ItemStack accessory, AccessoryInformation info, PlayerInteractEvent event) {};
     default void UserMove(Player plr, ItemStack accessory, AccessoryInformation info, PlayerMoveEvent event) {};
+    default void ItemPickup(Player plr, ItemStack accessory, AccessoryInformation info, PlayerAttemptPickupItemEvent event) {};
 
     default Map<Attribute, AttributeModifier> AddAdditionalAttributeModifiers(Player plr, ItemStack accessory, AccessoryInformation info) {
         return Map.of();

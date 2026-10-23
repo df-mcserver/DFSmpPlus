@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class BackpackRightclickOverride implements DFMaterialMeta {
+public class BackpackItemMeta implements DFMaterialMeta {
     public static final HashMap<UUID, Long> debounce = new HashMap<>();
 
     @Override
