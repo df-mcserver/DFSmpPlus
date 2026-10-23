@@ -10,7 +10,6 @@ import java.util.List;
 
 public class PlayerAccessoryData {
     public ItemStack[] slots = new ItemStack[7];
-    public int accessoryCapIndexAddition = 0;
     public boolean accessoryInsertLock = false;
 
     public boolean isAccessoryEquipped(NamespacedKey id) {
@@ -56,6 +55,6 @@ public class PlayerAccessoryData {
     }
 
     public int getAccessoryCapIndex() {
-        return 4 + accessoryCapIndexAddition;
+        return 6;
     }
 }
