@@ -886,6 +886,19 @@ public class DFMaterial {
                     .create()))
             .create();
 
+    public static DFMaterial LeatherBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "leather_backpack", "1745e8")
+            .setDisplayName("Leather Backpack")
+            .addLore("<#893B25>Leather")
+            .setMaxStack(1)
+            .markForUUID()
+            .addMeta(new AccessoryItemMeta(new AccessoryInformation.Builder("backpack")
+                    .setDescription("Gives an extra inventory to the user\nUse /backpack, or /b to open")
+                    .setEquipSound(Sounds.EquipAccessory_CopperBackpack)
+                    .addMeta(new BackpackMeta(9))
+                    .create()))
+            .addMeta(new BackpackItemMeta())
+            .create();
+
     public static DFMaterial CopperBackpack = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_backpack", "5ea7f0")
             .setDisplayName("Copper Backpack")
             .addLore("<#C15A36>Copper")

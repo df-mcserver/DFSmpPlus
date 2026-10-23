@@ -1,7 +1,7 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.Recipes;
 
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
+import org.bukkit.Tag;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.inventory.PrepareSmithingEvent;
 import org.bukkit.inventory.ItemStack;
@@ -15,7 +15,6 @@ import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.CustomItemRepresentation;
 import uk.co.nikodem.dFSmpPlus.Crafting.CustomRecipeMethods.SmithingTable.SmithingTableRecipe;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.*;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Etc.DirectConversionRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 
@@ -219,12 +218,24 @@ public class AccessoryRecipes extends CraftingTemplate {
     public void addBackpackRecipes(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.LeatherBackpack)
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "leather-backpack")
+                        .shape("XOX", "S S")
+                        .setIngredient('X', Material.LEATHER)
+                        .setIngredient('S', Material.STRING)
+                        .setIngredient('O', new RecipeChoice.MaterialChoice(Tag.ITEMS_BUNDLES))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.CopperBackpack)
                         .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .transformOutput(data -> backpackUuidConversionFunction(DFMaterial.LeatherBackpack, data))
                         .build(getInfo(), "copper-backpack")
                         .shape("XXX", "XOX", "XXX")
                         .setIngredient('X', Material.COPPER_INGOT)
-                        .setIngredient('O', Material.CHEST)
+                        .setIngredient('O', RecipeChoice.predicateChoice((item -> DFMaterial.LeatherBackpack.isSimilar(item)), DFMaterial.LeatherBackpack.toItemStack()))
         );
 
         recipesToAdd.add(
