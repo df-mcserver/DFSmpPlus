@@ -18,7 +18,7 @@ public class EquipAllAccessories extends BaseAdvancement {
     public EquipAllAccessories(@NotNull Advancement parent) {
         super(parent, KEY.getKey(),
                 new AdvancementDisplayBuilder(
-                        DFMaterial.CobaltShield.toItemStack(), // TODO: Replace with obsidian shield
+                        DFMaterial.CobaltShield.toItemStack(),
                         "No more slots")
                         .description("Equip the maximum amount of accessories.")
                         .taskFrame()

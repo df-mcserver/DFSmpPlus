@@ -63,6 +63,7 @@ public class DFAdvancementsHandler {
 
         new WomboCombo(new NotEvenCloseBaby(main));
 
+        new NYGITB(main);
         new MagicMirror(main);
         new DoublingDown(main);
         new ITTDDTA(main);
@@ -85,8 +86,8 @@ public class DFAdvancementsHandler {
         new CompassUse(compassCraft); // TODO
 
         EquipAccessory equipAccessory = new EquipAccessory(main);
-        EquipAllAccessories equipAllAccessories = new EquipAllAccessories(equipAccessory);
-        new ITinkeredItOut(equipAllAccessories);
+        ITinkeredItOut iTinkeredItOut = new ITinkeredItOut(equipAccessory);
+        new EquipAllAccessories(iTinkeredItOut);
 
         MatchingAttire matchingAttire = new MatchingAttire(main);
         new IndecisiveWardrobe(matchingAttire);

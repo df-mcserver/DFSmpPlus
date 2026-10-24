@@ -12,6 +12,8 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.SpawnEggMeta;
 import org.bukkit.persistence.PersistentDataType;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.NYGITB;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Entities.EntityUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
@@ -44,6 +46,8 @@ public class EntityBucketMeta implements DFMaterialMeta {
         Material egg = EntityUtils.ConvertEntityToEgg(entity.getType());
 
         if (egg != null) {
+            DFAdvancementsHandler.grantAdvancement(plr, NYGITB.class);
+
             EntitySnapshot snapshot = entity.createSnapshot();
             if (snapshot == null && storesEntitySnapshot) return;
 
