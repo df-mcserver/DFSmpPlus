@@ -110,9 +110,28 @@ public class WaypointManager {
                 if (entity.getScoreboardTags().contains(WaypointConstants.WAYPOINT_TAG)) waypointEntityCount++;
             }
             if (waypointEntityCount <= 0) chunk.setForceLoaded(false);
+
+            return true;
         }
 
-        return true;
+        return false;
+    }
+
+    @Nullable
+    public static Boolean UpdateWaypoint(Player plr, String id) {
+        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+        WaypointInformation info = data.waypoints.get(id);
+        if (info == null) return null;
+
+        ArmorStand waypointEntity = activeWaypoints.get(plr.getUniqueId()).get(id);
+        if (waypointEntity != null) {
+            waypointEntity.setWaypointColor(Color.fromRGB((int) info.colour));
+            waypointEntity.teleport(info.location);
+
+            return true;
+        }
+
+        return false;
     }
 
     @Nullable
