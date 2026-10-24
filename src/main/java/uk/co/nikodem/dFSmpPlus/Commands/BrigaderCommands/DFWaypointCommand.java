@@ -72,12 +72,12 @@ public class DFWaypointCommand implements DFCommand {
                             })
                 ).then(
                         Commands.literal("add")
-                                .then(Commands.argument("name", StringArgumentType.string()).executes(ctx -> {
+                                .then(Commands.argument("waypoint_name", StringArgumentType.string()).executes(ctx -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return 0;
 //                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
-                                            final String name = ctx.getArgument("name", String.class);
+                                            final String name = ctx.getArgument("waypoint_name", String.class);
                                             Random random = new Random();
 
                                             return doPlaceWaypointCommand(plr, random.nextInt(128)+127, random.nextInt(128)+127, random.nextInt(128)+127, name);
@@ -87,14 +87,14 @@ public class DFWaypointCommand implements DFCommand {
                                             if (plr == null) return 0;
 //                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
-                                            final String name = ctx.getArgument("name", String.class);
+                                            final String name = ctx.getArgument("waypoint_name", String.class);
                                             final NamedTextColor colour = ctx.getArgument("colour", NamedTextColor.class);
 
                                             return doPlaceWaypointCommand(plr, colour.red(), colour.green(), colour.blue(), name);
                                         })))
                 ).then(
                         Commands.literal("remove")
-                                .then(Commands.argument("name", StringArgumentType.string())
+                                .then(Commands.argument("waypoint_name", StringArgumentType.string())
                                         .suggests((ctx, builder) -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return builder.buildFuture();
@@ -109,7 +109,7 @@ public class DFWaypointCommand implements DFCommand {
                                             if (plr == null) return 0;
 //                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
-                                            final String name = ctx.getArgument("name", String.class);
+                                            final String name = ctx.getArgument("waypoint_name", String.class);
 
                                             Boolean removal = WaypointManager.RemoveWaypoint(plr, name);
                                             if (removal == null) {
@@ -123,7 +123,7 @@ public class DFWaypointCommand implements DFCommand {
                             )
                 ).then(
                         Commands.literal("info")
-                                .then(Commands.argument("waypoint", StringArgumentType.string())
+                                .then(Commands.argument("waypoint_name", StringArgumentType.string())
                                         .suggests((ctx, builder) -> {
                                             Player plr = (Player) ctx.getSource().getExecutor();
                                             if (plr == null) return builder.buildFuture();
@@ -138,7 +138,7 @@ public class DFWaypointCommand implements DFCommand {
                                             if (plr == null) return 0;
 //                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
 
-                                            final String waypointname = StringArgumentType.getString(ctx, "waypoint");
+                                            final String waypointname = StringArgumentType.getString(ctx, "waypoint_name");
 
                                             WaypointInformation info = DFSmpPlus.playerDataHandler.getPlayerData(plr).waypoints.get(waypointname);
                                             if (info == null) {
@@ -167,11 +167,62 @@ public class DFWaypointCommand implements DFCommand {
 
                                             plr.sendMessage(
                                                     MiniMessage.miniMessage().deserialize(
-                                                            String.format("<color:%s>Waypoint %s:</color:%s>\n- X: %d\n- Y: %d\n- Z: %d\n- Distance: %s", hex, waypointname, hex, info.location.getBlockX(), info.location.getBlockY(), info.location.getBlockZ(), distanceString)
+                                                            String.format("<color:%s>Waypoint %s:</color:%s>\n- X: %d\n- Y: %d\n- Z: %d\n- Distance: %s\n- Enabled: %s", hex, waypointname, hex, info.location.getBlockX(), info.location.getBlockY(), info.location.getBlockZ(), distanceString, info.enabled)
                                                     )
                                             );
                                             return Command.SINGLE_SUCCESS;
                                         })
+                                )
+                ).then(
+                        Commands.literal("toggle")
+                                .then(Commands.argument("waypoint_name", StringArgumentType.string())
+                                        .suggests((ctx, builder) -> {
+                                            Player plr = (Player) ctx.getSource().getExecutor();
+                                            if (plr == null) return builder.buildFuture();
+//                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return builder.buildFuture();
+
+                                            for (Map.Entry<String, WaypointInformation> info : DFSmpPlus.playerDataHandler.getPlayerData(plr).waypoints.entrySet()) {
+                                                builder.suggest(info.getKey());
+                                            }
+                                            return builder.buildFuture();
+                                        }).executes(ctx -> {
+                                            Player plr = (Player) ctx.getSource().getExecutor();
+                                            if (plr == null) return 0;
+//                                            if (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) return 0;
+
+                                            final String name = ctx.getArgument("waypoint_name", String.class);
+
+                                            Boolean state_change = WaypointManager.ToggleWaypoint(plr, name, null);
+                                            if (state_change == null) {
+                                                plr.sendMessage("Waypoint \""+name+"\" does not exist!");
+                                                return Command.SINGLE_SUCCESS;
+                                            }
+
+                                            if (!state_change) plr.sendMessage(MiniMessage.miniMessage().deserialize("Waypoint \""+name+"\" is now <red>disabled</red>!"));
+                                            else plr.sendMessage(MiniMessage.miniMessage().deserialize("Waypoint \""+name+"\" is now <green>enabled</green>!"));
+                                            return Command.SINGLE_SUCCESS;
+                                        })
+                                                .then(Commands.argument("state", BoolArgumentType.bool()) .executes(ctx -> {
+                                                    Player plr = (Player) ctx.getSource().getExecutor();
+                                                    if (plr == null) return 0;
+
+                                                    final String name = ctx.getArgument("waypoint_name", String.class);
+                                                    final Boolean state = ctx.getArgument("state", Boolean.class);
+
+                                                    if (state == null) {
+                                                        plr.sendMessage("<red>Invalid state!");
+                                                    }
+
+                                                    Boolean state_change = WaypointManager.ToggleWaypoint(plr, name, state);
+                                                    if (state_change == null) {
+                                                        plr.sendMessage("Waypoint \""+name+"\" does not exist!");
+                                                        return Command.SINGLE_SUCCESS;
+                                                    }
+
+                                                    if (!state_change) plr.sendMessage(MiniMessage.miniMessage().deserialize("Waypoint \""+name+"\" is now <red>disabled</red>!"));
+                                                    else plr.sendMessage(MiniMessage.miniMessage().deserialize("Waypoint \""+name+"\" is now <green>enabled</green>!"));
+                                                    return Command.SINGLE_SUCCESS;
+                                                }))
                                 )
                 ).then(
                         Commands.literal("list")
@@ -187,7 +238,7 @@ public class DFWaypointCommand implements DFCommand {
                                     }
                                     plr.sendMessage("All waypoints:");
                                     for (Map.Entry<String, WaypointInformation> info : data.waypoints.entrySet()) {
-                                        plr.sendMessage("- "+info.getKey());
+                                        plr.sendMessage(MiniMessage.miniMessage().deserialize((info.getValue().enabled ? "" : "<grey><i>")+"- "+info.getKey()));
                                     }
                                     return Command.SINGLE_SUCCESS;
                                 })

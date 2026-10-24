@@ -5,4 +5,5 @@ import org.bukkit.Location;
 public class WaypointInformation {
     public Location location;
     public long colour;
+    public boolean enabled;
 }

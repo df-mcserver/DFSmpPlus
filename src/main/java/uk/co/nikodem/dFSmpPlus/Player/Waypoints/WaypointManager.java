@@ -18,7 +18,7 @@ import java.util.List;
 // TODO Rewrite when https://github.com/PaperMC/adventure/pull/1377 gets merged
 
 public class WaypointManager {
-    public static final HashMap<UUID, List<ArmorStand>> activeWaypoints = new HashMap<>();
+    public static final HashMap<UUID, HashMap<String, ArmorStand>> activeWaypoints = new HashMap<>();
     public static final HashMap<NamespacedKey, List<Long>> unloadedChunksWithWaypoints = new HashMap<>();
 
     public static WaypointCreationResult CreateNewWaypoint(Player plr, Location location, String id, long colour) {
@@ -29,12 +29,15 @@ public class WaypointManager {
         WaypointInformation info = new WaypointInformation();
         info.location = location;
         info.colour = colour;
+        info.enabled = true;
         data.waypoints.put(id, info);
 
         DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
 
         ArmorStand waypointEntity = CreateWaypoint(plr, id, info.colour, location);
         if (waypointEntity == null) return WaypointCreationResult.FAILED_CREATING_WAYPOINT;
+
+        ToggleWaypoint(plr, id, info.enabled);
 
         return WaypointCreationResult.SUCCESS;
     }
@@ -70,8 +73,8 @@ public class WaypointManager {
                 AttributeInstance transmit_range = waypointEntity.getAttribute(Attribute.WAYPOINT_TRANSMIT_RANGE);
                 if (transmit_range != null) transmit_range.setBaseValue(WaypointConstants.WAYPOINT_MAX_DISTANCE);
 
-                List<ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr.getUniqueId(), k -> new ArrayList<>());
-                waypoints.add(waypointEntity);
+                HashMap<String, ArmorStand> waypoints = activeWaypoints.computeIfAbsent(plr.getUniqueId(), k -> new HashMap<>());
+                waypoints.put(id, waypointEntity);
                 activeWaypoints.replace(plr.getUniqueId(), waypoints);
 
                 killGhostWaypointsInChunk(location.getChunk());
@@ -97,29 +100,46 @@ public class WaypointManager {
         data.waypoints.remove(id);
         DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
 
-        List<ArmorStand> spawnedWaypoints = activeWaypoints.get(plr.getUniqueId());
-        for (ArmorStand waypointEntity : spawnedWaypoints) {
-            if (waypointEntity.getScoreboardTags().contains(id)) {
-                DFSmpPlus.hidingUtils.removeExclusiveEntitiesOnEntityRemoval(plr, waypointEntity);
-                Chunk chunk = waypointEntity.getChunk();
-                waypointEntity.remove();
-                int waypointEntityCount = 0;
-                for (Entity entity : chunk.getEntities()) {
-                    if (entity.getScoreboardTags().contains(WaypointConstants.WAYPOINT_TAG)) waypointEntityCount++;
-                }
-                if (waypointEntityCount <= 0) chunk.setForceLoaded(false);
+        ArmorStand waypointEntity = activeWaypoints.get(plr.getUniqueId()).get(id);
+        if (waypointEntity != null) {
+            DFSmpPlus.hidingUtils.removeExclusiveEntitiesOnEntityRemoval(plr, waypointEntity);
+            Chunk chunk = waypointEntity.getChunk();
+            waypointEntity.remove();
+            int waypointEntityCount = 0;
+            for (Entity entity : chunk.getEntities()) {
+                if (entity.getScoreboardTags().contains(WaypointConstants.WAYPOINT_TAG)) waypointEntityCount++;
             }
+            if (waypointEntityCount <= 0) chunk.setForceLoaded(false);
         }
 
         return true;
     }
 
+    @Nullable
+    public static Boolean ToggleWaypoint(Player plr, String id, @Nullable Boolean state) {
+        PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+        WaypointInformation info = data.waypoints.get(id);
+
+        if (info == null) return null;
+
+        info.enabled = state == null ? !(info.enabled) : state;
+        DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
+
+        ArmorStand waypointEntity = activeWaypoints.get(plr.getUniqueId()).get(id);
+        if (waypointEntity != null) {
+            if (info.enabled) plr.showEntity(DFSmpPlus.getPlugin(), waypointEntity);
+            else plr.hideEntity(DFSmpPlus.getPlugin(), waypointEntity);
+        }
+
+        return info.enabled;
+    }
+
     public static void CleanupOnShutdown() {
-        for (Map.Entry<UUID, List<ArmorStand>> entry : activeWaypoints.entrySet()) {
-            List<ArmorStand> waypoints = entry.getValue();
+        for (Map.Entry<UUID, HashMap<String, ArmorStand>> entry : activeWaypoints.entrySet()) {
+            HashMap<String, ArmorStand> waypoints = entry.getValue();
             if (waypoints == null) return;
-            for (ArmorStand waypointEntity : waypoints) {
-                waypointEntity.remove();
+            for (Map.Entry<String, ArmorStand> subentry : waypoints.entrySet()) {
+                subentry.getValue().remove();
             }
         }
 
@@ -139,11 +159,11 @@ public class WaypointManager {
     }
 
     public static void CleanupOnLeave(Player plr) {
-        List<ArmorStand> waypoints = activeWaypoints.get(plr.getUniqueId());
+        HashMap<String, ArmorStand> waypoints = activeWaypoints.get(plr.getUniqueId());
         DFSmpPlus.hidingUtils.removeExclusiveEntitiesOnLeave(plr);
         if (waypoints == null) return;
-        for (ArmorStand waypointEntity : waypoints) {
-            waypointEntity.remove();
+        for (Map.Entry<String, ArmorStand> entry : waypoints.entrySet()) {
+            entry.getValue().remove();
         }
 
         activeWaypoints.remove(plr.getUniqueId());
@@ -178,12 +198,12 @@ public class WaypointManager {
 
     @Nullable
     public static UUID getWaypointOwner(ArmorStand armorStand) {
-        for (Map.Entry<UUID, List<ArmorStand>> entry : WaypointManager.activeWaypoints.entrySet()) {
+        for (Map.Entry<UUID, HashMap<String, ArmorStand>> entry : WaypointManager.activeWaypoints.entrySet()) {
             UUID waypointsOwner = entry.getKey();
-            List<ArmorStand> waypoints = entry.getValue();
+            HashMap<String, ArmorStand> waypoints = entry.getValue();
 
-            for (ArmorStand waypoint : waypoints) {
-                if (waypoint.getUniqueId().equals(armorStand.getUniqueId())) return waypointsOwner;
+            for (Map.Entry<String, ArmorStand> subentry : waypoints.entrySet()) {
+                if (subentry.getValue().getUniqueId().equals(armorStand.getUniqueId())) return waypointsOwner;
             }
         }
         return null;
