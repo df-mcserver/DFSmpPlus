@@ -27,7 +27,6 @@ public class BackpackItemMeta implements DFMaterialMeta {
 
             Boolean result = DFItemUtils.shouldBePlaced(plr, event.getClickedBlock());
             if (result == null || plr.hasCooldown(item) || result.equals(Boolean.FALSE) || event.useItemInHand().equals(Event.Result.DENY)) {
-                event.setCancelled(true);
                 return;
             }
 

@@ -5,11 +5,11 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.Particle;
-import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
+import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -32,6 +32,11 @@ public class TargetDummyMeta implements DFMaterialMeta {
 
     @Override
     public void ItemUse(Player plr, DFMaterial material, ItemStack item, PlayerInteractEvent event) {
+        Boolean result = DFItemUtils.shouldBePlaced(plr, event.getClickedBlock());
+        if (result == null || plr.hasCooldown(item) || result.equals(Boolean.FALSE) || event.useItemInHand().equals(Event.Result.DENY)) {
+            return;
+        }
+
         Block block = event.getClickedBlock();
         if (block == null) return;
         if (!event.getAction().isRightClick()) return;
