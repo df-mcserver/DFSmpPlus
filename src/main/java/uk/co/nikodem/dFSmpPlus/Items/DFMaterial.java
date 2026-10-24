@@ -373,7 +373,7 @@ public class DFMaterial {
             .addLore("<aqua>A powerful sword which grows in power with every kill.")
             .markForUUID()
             .addPersistentData(Keys.vampireSwordStage, PersistentDataType.INTEGER, 0)
-            .addMeta(new VampireSwordMeta(), new AdvancementOnObtainMeta(SoItBegins.class))
+            .addMeta(new VampireSwordMeta(), new AdvancementOnObtainMeta(SoItBegins.class), new CustomDurabilityMeta(125))
             .create();
 
     public static DFMaterial PointyStick = new Builder(Material.POPPED_CHORUS_FRUIT, "pointy_stick", "9350fa")

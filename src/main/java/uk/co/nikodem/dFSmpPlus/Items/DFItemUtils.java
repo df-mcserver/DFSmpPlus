@@ -444,6 +444,15 @@ public class DFItemUtils {
                 || item.getType() == Material.NETHERITE_HOE;
     }
 
+    public static boolean isHorseArmour(ItemStack item) {
+        return item.getType() == Material.LEATHER_HORSE_ARMOR
+                || item.getType() == Material.IRON_HORSE_ARMOR
+                || item.getType() == Material.COPPER_HORSE_ARMOR
+                || item.getType() == Material.GOLDEN_HORSE_ARMOR
+                || item.getType() == Material.DIAMOND_HORSE_ARMOR
+                || item.getType() == Material.NETHERITE_HORSE_ARMOR;
+    }
+
     public static boolean isChisel(ItemStack item) {
         return DFMaterial.PointyStick.isSimilar(item)
                 || DFMaterial.SharpStone.isSimilar(item)

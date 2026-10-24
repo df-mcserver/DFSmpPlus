@@ -1,12 +1,18 @@
 package uk.co.nikodem.dFSmpPlus.Crafting.Recipes;
 
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.recipe.CraftingBookCategory;
+import org.bukkit.persistence.PersistentDataType;
+import uk.co.nikodem.dFSmpPlus.Constants.Keys;
 import uk.co.nikodem.dFSmpPlus.Crafting.CraftingTemplate;
-import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ControlledShapelessRecipeBuilder;
 import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.Presets.Repair.ItemRepairCombineRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Crafting.RecipeBuilder.ShapelessRecipeBuilder;
+import uk.co.nikodem.dFSmpPlus.Items.DFItemUtils;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
+import uk.co.nikodem.dFSmpPlus.Items.Metas.Tool.VampireSwordMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +22,7 @@ public class HiddenRepairRecipes extends CraftingTemplate {
     public List<Recipe> populateRecipes() {
         List<Recipe> recipesToAdd = new ArrayList<>();
 
-        doVampireSwordRemoval(recipesToAdd);
+        doVampireRepair(recipesToAdd);
         doChiselRecipes(recipesToAdd);
         doShearsRecipes(recipesToAdd);
         doElytraRecipes(recipesToAdd);
@@ -31,14 +37,72 @@ public class HiddenRepairRecipes extends CraftingTemplate {
         return recipesToAdd;
     }
 
-    public void doVampireSwordRemoval(List<Recipe> recipesToAdd) {
+    public void doVampireRepair(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
-                new ControlledShapelessRecipeBuilder()
-                        .addIngredient(DFMaterial.VampireSword)
-                        .addIngredient(DFMaterial.VampireSword)
-                        .setResult(Material.STICK)
-                        .setTransformer((data) -> ItemStack.of(Material.AIR))
-                        .build(getInfo(), "VampSwordCombine")
+                new ShapelessRecipeBuilder()
+                        .setOutput(DFMaterial.VampireSword)
+                        .transformOutput((data -> {
+                            ItemStack swordA = null;
+                            ItemStack swordB = null;
+                            for (ItemStack item : data.getValue().getInventory().getMatrix()) {
+                                if (item == null) continue;
+                                if (item.isEmpty()) continue;
+                                DFMaterial material = DFItemUtils.getDFMaterial(item);
+                                if (material == null) return null;
+
+                                if (material.equals(DFMaterial.VampireSword)) {
+                                    if (swordA == null) swordA = item;
+                                    else {
+                                        swordB = item;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (swordA == null || swordB == null) return null;
+                            ItemMeta swordAMeta = swordA.getItemMeta();
+                            ItemMeta swordBMeta = swordB.getItemMeta();
+                            if (swordAMeta == null || swordBMeta == null) return null;
+                            Integer stageA = swordAMeta.getPersistentDataContainer().get(Keys.vampireSwordStage, PersistentDataType.INTEGER);
+                            Integer stageB = swordBMeta.getPersistentDataContainer().get(Keys.vampireSwordStage, PersistentDataType.INTEGER);
+                            if (stageA == null || stageB == null) return null;
+
+                            int newStage = Math.max(Math.max(stageA, stageB) - 1, 0);
+                            ItemStack newSword = DFMaterial.VampireSword.toItemStack();
+                            DFItemUtils.set(
+                                    newSword,
+                                    Keys.vampireSwordStage,
+                                    PersistentDataType.INTEGER,
+                                    newStage
+                            );
+
+                            DFItemUtils.set(
+                                    newSword,
+                                    Keys.vampireSwordWasRepaired,
+                                    PersistentDataType.BOOLEAN,
+                                    true
+                            );
+
+                            VampireSwordMeta meta = new VampireSwordMeta();
+                            meta.updateLore(newSword, newStage);
+                            meta.updateModel(newSword, newStage);
+
+                            return newSword;
+                        }))
+                        .setCategory(CraftingBookCategory.EQUIPMENT)
+                        .build(getInfo(), "repairbycombine")
+                        .addIngredient(RecipeChoice.predicateChoice(x -> {
+                            if (x.isEmpty()) return false;
+                            DFMaterial material = DFItemUtils.getDFMaterial(x);
+                            if (material == null) return false;
+                            return material.equals(DFMaterial.VampireSword);
+                        }, DFMaterial.VampireSword.toItemStack()))
+                        .addIngredient(RecipeChoice.predicateChoice(x -> {
+                            if (x.isEmpty()) return false;
+                            DFMaterial material = DFItemUtils.getDFMaterial(x);
+                            if (material == null) return false;
+                            return material.equals(DFMaterial.VampireSword);
+                        }, DFMaterial.VampireSword.toItemStack()))
         );
     }
 

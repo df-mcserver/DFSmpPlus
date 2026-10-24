@@ -7,6 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -107,7 +108,7 @@ public class VampireSwordMeta implements DFMaterialMeta {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
         List<TextComponent> newLore = new ArrayList<>(DFMaterial.VampireSword.getLore());
-        newLore.add(Component.text("  +"+stage+" damage", NamedTextColor.RED));
+        if (stage > 0) newLore.add(Component.text("  +"+stage+" damage", NamedTextColor.RED));
         meta.lore(newLore);
         item.setItemMeta(meta);
     }
@@ -148,6 +149,19 @@ public class VampireSwordMeta implements DFMaterialMeta {
             mappings.put(itemUUID, Map.of(targetUUID, new Date().getTime()));
             updateMappings(mappings);
             return true;
+        }
+    }
+
+    @Override
+    public void ItemCrafted(DFMaterial material, ItemStack item, Player plr, @Nullable CraftItemEvent event) {
+        ItemMeta meta = item.getItemMeta();
+        Boolean wasRepaired = meta.getPersistentDataContainer().get(Keys.vampireSwordWasRepaired, PersistentDataType.BOOLEAN);
+
+        if (wasRepaired == null) return;
+        if (wasRepaired) {
+            DFAdvancementsHandler.grantAdvancement(plr, OSFTSB.class);
+            meta.getPersistentDataContainer().remove(Keys.vampireSwordWasRepaired);
+            item.setItemMeta(meta);
         }
     }
 }

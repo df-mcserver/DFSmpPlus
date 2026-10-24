@@ -53,7 +53,7 @@ public class DFAdvancementsHandler {
         new NetheriteTech(newWorld);
 
         SoItBegins soItBegins = new SoItBegins(main);
-        new OSFTSB(soItBegins); // TODO
+        new OSFTSB(soItBegins);
         new Stage10(new Stage9(new Stage6(new Stage2(new Stage1(soItBegins)))));
 
         Bluebellsar bluebellsar = new Bluebellsar(main);
@@ -65,7 +65,7 @@ public class DFAdvancementsHandler {
 
         new MagicMirror(main);
         new DoublingDown(main);
-        new ITTDDTA(main); // TODO
+        new ITTDDTA(main);
         new WorldRecord(main);
         new WhatYouEgg(main);
         new I3Rocks(main);

@@ -147,7 +147,7 @@ public class DFMaterialUpdater {
         if (refMeta == null) return Map.entry(NULL, ItemStack.empty());
 
         if ((refMeta.hasItemModel() != meta.hasItemModel()) || (!Objects.equals(refMeta.getItemModel(),meta.getItemModel()))) {
-            updatesToPerform.add(Enums.UpdateType.ITEM_MODEL);
+            if (!dfMaterial.getPossibleModels().contains(meta.getItemModel())) updatesToPerform.add(Enums.UpdateType.ITEM_MODEL);
         }
         if (!item.hasData(DataComponentTypes.ITEM_NAME) || (item.getData(DataComponentTypes.ITEM_NAME) != dfMaterial.getDisplayName())) {
             if ((!DFItemUtils.itemIsRenamed(item)) || DFItemUtils.itemHasOldCustomNameFormat(item)) updatesToPerform.add(Enums.UpdateType.CUSTOM_NAME);
