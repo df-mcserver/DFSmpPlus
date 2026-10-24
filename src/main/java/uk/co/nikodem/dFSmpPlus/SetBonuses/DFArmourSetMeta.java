@@ -4,7 +4,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
+import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryInformation;
 
 public interface DFArmourSetMeta {
     public default void PlayerAttack(Player plr, DFArmourSet armourSet, ItemStack weapon, EntityDamageByEntityEvent event) {};
@@ -14,4 +17,6 @@ public interface DFArmourSetMeta {
     public default boolean AdditionalQualification(Player plr, DFArmourSet armourSet, ItemStack equippedHelmet, ItemStack equippedChestplate, ItemStack equippedLeggings, ItemStack equippedBoots) {return true;};
     public default void RunPerSecond(Player plr, DFArmourSet armourSet) {};
     public default void OnUpdateSetBonus(Player plr, ItemStack itemUpdated, DFArmourSet armourSet) {};
+    public default void UserMove(Player plr, DFArmourSet armourSet, PlayerMoveEvent event) {};
+    public default void UserInteract(Player plr, DFArmourSet armourSet, PlayerInteractEvent event) {};
 }

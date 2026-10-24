@@ -55,7 +55,7 @@ public class DFArmourSet {
             .setChestplate(Material.COPPER_CHESTPLATE)
             .setLeggings(Material.COPPER_LEGGINGS)
             .setBoots(Material.COPPER_BOOTS)
-            .setSetBonus("Has a chance to strike lightning when critical hitting someone, during the rain.")
+            .setSetBonus("Has a chance to strike lightning when critical hitting someone, during the rain")
             .addMeta(new CopperMeta())
             .create();
 
@@ -112,7 +112,8 @@ public class DFArmourSet {
             .setChestplate(DFMaterial.FloralChestplate)
             .setLeggings(DFMaterial.FloralLeggings)
             .setBoots(DFMaterial.FloralBoots)
-            .setSetBonus("TBD.")
+            .setSetBonus("Running on dirt grows it into grass, stops trampling on farmland")
+            .addMeta(new FloralMeta())
             .create();
 
     public static final DFArmourSet Sculk = new Builder("Sculk")
@@ -121,7 +122,7 @@ public class DFArmourSet {
             .setChestplate(DFMaterial.SculkChestplate)
             .setLeggings(DFMaterial.SculkLeggings)
             .setBoots(DFMaterial.SculkBoots)
-            .setSetBonus("When hit, your opponent is blinded and you become invisible.")
+            .setSetBonus("When hit, your opponent is blinded and you become invisible")
             .addMeta(new SculkArmourMeta())
             .create();
 
@@ -131,7 +132,7 @@ public class DFArmourSet {
             .setChestplate(DFMaterial.FiridiumChestplate)
             .setLeggings(DFMaterial.FiridiumLeggings)
             .setBoots(DFMaterial.FiridiumBoots)
-            .setSetBonus("Attackers get set on fire.")
+            .setSetBonus("Attackers get set on fire")
             .addMeta(new FiridiumMeta())
             .create();
 

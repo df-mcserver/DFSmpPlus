@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class DFArmourSetEvents {
@@ -72,6 +74,32 @@ public class DFArmourSetEvents {
         if (armourSet.hasMeta()) {
             for (DFArmourSetMeta meta : armourSet.getMeta()) {
                 meta.RunPerSecond(plr, armourSet);
+            }
+        }
+    }
+
+    public static void UserInteract(PlayerMoveEvent event) {
+        Player plr = event.getPlayer();
+        DFArmourSet armourSet = DFArmourSetUtils.getPlayersArmourSet(plr);
+
+        if (armourSet == null) return;
+
+        if (armourSet.hasMeta()) {
+            for (DFArmourSetMeta meta : armourSet.getMeta()) {
+                meta.UserMove(plr, armourSet, event);
+            }
+        }
+    }
+
+    public static void UserInteract(PlayerInteractEvent event) {
+        Player plr = event.getPlayer();
+        DFArmourSet armourSet = DFArmourSetUtils.getPlayersArmourSet(plr);
+
+        if (armourSet == null) return;
+
+        if (armourSet.hasMeta()) {
+            for (DFArmourSetMeta meta : armourSet.getMeta()) {
+                meta.UserInteract(plr, armourSet, event);
             }
         }
     }

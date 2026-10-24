@@ -5,6 +5,7 @@ import org.bukkit.event.Listener;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.AccessoryEvents;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
 import uk.co.nikodem.dFSmpPlus.Player.EnderEggStoragePreventer;
+import uk.co.nikodem.dFSmpPlus.SetBonuses.DFArmourSetEvents;
 import uk.co.nikodem.dFSmpPlus.SetBonuses.SetBonusText;
 
 public class PlayerInteractEvent implements Listener {
@@ -14,5 +15,6 @@ public class PlayerInteractEvent implements Listener {
         SetBonusText.onItemUsed(event);
         AccessoryEvents.UserInteract(event);
         DFMaterialEvents.ItemUse(event);
+        DFArmourSetEvents.UserInteract(event);
     }
 }
