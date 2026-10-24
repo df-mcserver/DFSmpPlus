@@ -160,6 +160,16 @@ public class BackpackMeta implements AccessoryMeta {
         }
     }
 
+    public static void onBackpackItemBinned(ItemStack item) {
+        String uuid = DFItemUtils.getUUID(item);
+        if (uuid == null) return;
+
+        GlobalData globalData = DFSmpPlus.globalDataHandler.getGlobalData();
+        globalData.backpackMappings.remove(uuid);
+
+        DFSmpPlus.globalDataHandler.writeGlobalData(globalData);
+    }
+
     public static boolean canBeStoredInBackpack(ItemStack item) {
         if (Tag.SHULKER_BOXES.isTagged(item.getType())) return false;
         if (Tag.ITEMS_BUNDLES.isTagged(item.getType())) return false;

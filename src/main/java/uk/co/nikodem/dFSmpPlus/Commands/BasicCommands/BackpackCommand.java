@@ -35,5 +35,4 @@ public class BackpackCommand implements DFBasicCommand {
     public Collection<String> getAliases() {
         return List.of("bag", "b");
     }
-
 }
