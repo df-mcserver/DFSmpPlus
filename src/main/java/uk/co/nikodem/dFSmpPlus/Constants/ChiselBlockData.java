@@ -274,6 +274,28 @@ public class ChiselBlockData {
         new Builder(Material.STRIPPED_WARPED_STEM).setReplacement(Material.AIR).setDrop(Material.WARPED_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.STRIPPED_CRIMSON_STEM).setReplacement(Material.AIR).setDrop(Material.CRIMSON_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.STRIPPED_POPLAR_LOG).setReplacement(Material.AIR).setDrop(Material.POPLAR_PLANKS, 4).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
+
+        new Builder(Material.STONE_BRICKS).setReplacement(Material.CHISELED_STONE_BRICKS).create();
+        new Builder(Material.DEEPSLATE).setReplacement(Material.CHISELED_DEEPSLATE).create();
+        new Builder(Material.TUFF).setReplacement(Material.CHISELED_TUFF).create();
+        new Builder(Material.TUFF_BRICKS).setReplacement(Material.CHISELED_TUFF_BRICKS).create();
+        new Builder(Material.RESIN_BRICKS).setReplacement(Material.CHISELED_RESIN_BRICKS).create();
+        new Builder(Material.SANDSTONE).setReplacement(Material.CHISELED_SANDSTONE).create();
+        new Builder(Material.RED_SANDSTONE).setReplacement(Material.CHISELED_RED_SANDSTONE).create();
+        new Builder(Material.CINNABAR).setReplacement(Material.CHISELED_CINNABAR).create();
+        new Builder(Material.SULFUR).setReplacement(Material.CHISELED_SULFUR).create();
+        new Builder(Material.NETHER_BRICKS).setReplacement(Material.CHISELED_NETHER_BRICKS).create();
+        new Builder(Material.POLISHED_BLACKSTONE).setReplacement(Material.CHISELED_POLISHED_BLACKSTONE).create();
+        new Builder(Material.QUARTZ_BLOCK).setReplacement(Material.CHISELED_QUARTZ_BLOCK).create();
+        new Builder(Material.COPPER_BLOCK).setReplacement(Material.CHISELED_COPPER).create();
+        new Builder(Material.EXPOSED_COPPER).setReplacement(Material.EXPOSED_CHISELED_COPPER).create();
+        new Builder(Material.WEATHERED_COPPER).setReplacement(Material.WEATHERED_CHISELED_COPPER).create();
+        new Builder(Material.OXIDIZED_COPPER).setReplacement(Material.OXIDIZED_CHISELED_COPPER).create();
+        new Builder(Material.WAXED_COPPER_BLOCK).setReplacement(Material.WAXED_OXIDIZED_CHISELED_COPPER).create();
+        new Builder(Material.WAXED_EXPOSED_COPPER).setReplacement(Material.WAXED_EXPOSED_CHISELED_COPPER).create();
+        new Builder(Material.WAXED_WEATHERED_COPPER).setReplacement(Material.WAXED_WEATHERED_CHISELED_COPPER).create();
+        new Builder(Material.WAXED_OXIDIZED_COPPER).setReplacement(Material.WAXED_OXIDIZED_CHISELED_COPPER).create();
+        new Builder(Material.INFESTED_STONE_BRICKS).setReplacement(Material.INFESTED_CHISELED_STONE_BRICKS).create();
     }
 
     // chisel block data
