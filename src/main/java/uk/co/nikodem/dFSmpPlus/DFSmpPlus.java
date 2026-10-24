@@ -173,6 +173,7 @@ public final class DFSmpPlus extends JavaPlugin implements Listener {
                     new EntityPickupItemEvent(),
                     new EntityTargetEvent(),
                     new EntityDeathEvent(),
+                    new EntityResurrectEvent(),
                     new EntityDropItemEvent(),
                     new EntityZapEvent(),
 
