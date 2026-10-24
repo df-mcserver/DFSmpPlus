@@ -88,7 +88,6 @@ public class AnvilEvents {
                 }
             }
 
-            event.getView().getPlayer().sendMessage("blah");
             event.setResult(result);
         }
     }
