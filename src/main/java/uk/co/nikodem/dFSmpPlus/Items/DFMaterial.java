@@ -379,7 +379,7 @@ public class DFMaterial {
     public static DFMaterial PointyStick = new Builder(Material.POPPED_CHORUS_FRUIT, "pointy_stick", "9350fa")
             .setDisplayName("Pointy Stick")
             .addMeta(new SoundOnCraftMeta(Sounds.WoodCrash), new ChiselMeta(1f), new CustomDurabilityMeta(2), new PointyStickMeta())
-            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY, Enchantment.UNBREAKING)
             .setMaxStack(1)
             .create();
 
@@ -397,14 +397,14 @@ public class DFMaterial {
     public static DFMaterial CopperChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "copper_chisel", "088d4c")
             .setDisplayName("Copper Chisel")
             .addMeta(new ChiselMeta(4.5f), new CustomDurabilityMeta(40))
-            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY, Enchantment.UNBREAKING)
             .setMaxStack(1)
             .create();
 
     public static DFMaterial IronChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "iron_chisel", "31e03e")
             .setDisplayName("Iron Chisel")
             .addMeta(new ChiselMeta(6.5f), new CustomDurabilityMeta(50))
-            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY, Enchantment.UNBREAKING)
             .setMaxStack(1)
             .create();
 
@@ -412,7 +412,7 @@ public class DFMaterial {
             .setDisplayName("Firidium Chisel")
             .addEnchantment(Enchantment.FIRE_ASPECT, 1)
             .addMeta(new ChiselMeta(6.5f), new CustomDurabilityMeta(50), new AutosmeltingItemMeta(), new AdvancementOnObtainMeta(FiridiumTool.class))
-            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY, Enchantment.UNBREAKING)
             .setMaxStack(1)
             .setCanSurviveLava(true)
             .create();
@@ -420,21 +420,21 @@ public class DFMaterial {
     public static DFMaterial GoldChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "gold_chisel", "1217e1")
             .setDisplayName("Gold Chisel")
             .addMeta(new ChiselMeta(7.5f), new CustomDurabilityMeta(70))
-            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY, Enchantment.UNBREAKING)
             .setMaxStack(1)
             .create();
 
     public static DFMaterial DiamondChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "diamond_chisel", "7fde6f")
             .setDisplayName("Diamond Chisel")
             .addMeta(new ChiselMeta(7f), new CustomDurabilityMeta(500))
-            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY, Enchantment.UNBREAKING)
             .setMaxStack(1)
             .create();
 
     public static DFMaterial NetheriteChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "netherite_chisel", "29e56a")
             .setDisplayName("Netherite Chisel")
             .addMeta(new ChiselMeta(8f), new CustomDurabilityMeta(1500))
-            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY, Enchantment.UNBREAKING)
             .setMaxStack(1)
             .setCanSurviveLava(true)
             .create();
@@ -443,7 +443,7 @@ public class DFMaterial {
             .setDisplayName("Obsidian Chisel")
             .addEnchantment(Enchantment.UNBREAKING, 10)
             .addMeta(new ChiselMeta(10f), new CustomDurabilityMeta(1500), new ObsidianItemMeta(true), new AdvancementOnObtainMeta(ObsidianItem.class), new AdvancementOnObtainMeta(GenuineDedication.class))
-            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY, Enchantment.UNBREAKING)
             .setMaxStack(1)
             .setCanSurviveLava(true)
             .create();
@@ -1271,14 +1271,14 @@ public class DFMaterial {
     public static DFMaterial CalciteChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "calcite_chisel", "0dedfe")
             .setDisplayName("Calcite Chisel")
             .addMeta(new ChiselMeta(5.5f), new CustomDurabilityMeta(45))
-            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY, Enchantment.UNBREAKING)
             .setMaxStack(1)
             .create();
 
     public static DFMaterial FloralChisel = new Builder(Material.POPPED_CHORUS_FRUIT, "floral_chisel", "3c5329")
             .setDisplayName("<light_purple>Floral Chisel")
             .addMeta(new ChiselMeta(7f), new CustomDurabilityMeta(75))
-            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY)
+            .addAllowedUnsafeEnchantments(Enchantment.MENDING, Enchantment.EFFICIENCY, Enchantment.UNBREAKING)
             .setMaxStack(1)
             .create();
 
