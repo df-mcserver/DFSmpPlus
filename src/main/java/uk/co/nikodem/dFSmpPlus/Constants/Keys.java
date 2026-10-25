@@ -52,6 +52,16 @@ public class Keys {
     public static NamespacedKey quickActionsBackpack = createDefaultKey("quick_actions_dfsmp_dialog/backpack");
     public static NamespacedKey quickActionsAccessories = createDefaultKey("quick_actions_dfsmp_dialog/accessories");
 
+    public static NamespacedKey waypointDialog = createDefaultKey("quick_actions_dfsmp_dialog/waypoints");
+    public static NamespacedKey waypointDialogAdd = createDefaultKey("waypoint_dialog/add");
+    public static NamespacedKey waypointDialogCompletedAdd = createDefaultKey("waypoint_dialog/completed_add");
+    public static NamespacedKey waypointDialogEdit = createDefaultKey("waypoint_dialog/edit/"); // requires waypoint name
+    public static NamespacedKey waypointDialogCompletedEdit = createDefaultKey("waypoint_dialog/completed_edit/"); // requires waypoint name
+    public static NamespacedKey waypointDialogRemove = createDefaultKey("waypoint_dialog/remove");
+    public static NamespacedKey waypointDialogCompletedRemove = createDefaultKey("waypoint_dialog/completed_remove");
+    public static NamespacedKey waypointDialogSingleRemove = createDefaultKey("waypoint_dialog/singleremove");
+    public static NamespacedKey waypointDialogSingleCompletedRemove = createDefaultKey("waypoint_dialog/completed_singleremove");
+
     public static NamespacedKey createDefaultKey(String key) {
         return new NamespacedKey(
                 "dfsmpplus",
@@ -91,6 +101,13 @@ public class Keys {
         return new NamespacedKey(
                 "minecraft",
                 key
+        );
+    }
+
+    public static NamespacedKey appendStringToKeysValue(NamespacedKey key, String append) {
+        return new NamespacedKey(
+                key.namespace(),
+                key.value()+append
         );
     }
 }

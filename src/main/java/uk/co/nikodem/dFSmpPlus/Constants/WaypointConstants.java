@@ -2,6 +2,7 @@ package uk.co.nikodem.dFSmpPlus.Constants;
 
 public class WaypointConstants {
     public static final int WAYPOINT_MAX = 25;
+    public static final int WAYPOINT_NAME_MAX_SIZE = 50;
     public static final double WAYPOINT_MAX_DISTANCE = 60000000D;
     public static final String WAYPOINT_TAG = "waypoint";
 }

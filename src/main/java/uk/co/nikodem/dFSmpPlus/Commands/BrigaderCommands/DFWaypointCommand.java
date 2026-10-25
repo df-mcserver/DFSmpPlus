@@ -24,6 +24,7 @@ import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.DefaultWaypointAttributes;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointCreationResult;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointDialog;
 import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointManager;
 
 import java.awt.*;
@@ -41,7 +42,15 @@ public class DFWaypointCommand implements DFCommand {
                 .then(editSubcommand)
                 .then(locatorbarSubcommand)
                 .then(infoSubcommand)
-                .then(listSubcommand);
+                .then(listSubcommand)
+                .then(menuSubcommand)
+                .executes(ctx -> {
+                    Player plr = (Player) ctx.getSource().getExecutor();
+                    if (plr == null) return 0;
+
+                    plr.sendMessage(MiniMessage.miniMessage().deserialize("<red>Incomplete command! Use /waypoint menu to open the waypoint menu!"));
+                    return Command.SINGLE_SUCCESS;
+                });
     }
 
     public LiteralArgumentBuilder<CommandSourceStack> addSubcommand = Commands.literal("add")
@@ -50,9 +59,8 @@ public class DFWaypointCommand implements DFCommand {
                 if (plr == null) return 0;
 
                 final String name = ctx.getArgument("waypoint_name", String.class);
-                Random random = new Random();
 
-                int randomIndex = random.nextInt(0, colourToHex.size()-1);
+                int randomIndex = new Random().nextInt(0, colourToHex.size()-1);
 
                 return doPlaceWaypointCommand(plr, Long.decode((String) colourToHex.values().toArray()[randomIndex]), name);
             })
@@ -277,6 +285,14 @@ public class DFWaypointCommand implements DFCommand {
                 }
                 return Command.SINGLE_SUCCESS;
             });
+    public LiteralArgumentBuilder<CommandSourceStack> menuSubcommand = Commands.literal("menu")
+            .executes(ctx -> {
+                Player plr = (Player) ctx.getSource().getExecutor();
+                if (plr == null) return 0;
+
+                WaypointDialog.openDialog(plr);
+                return Command.SINGLE_SUCCESS;
+            });
 
     public SuggestionProvider<CommandSourceStack> getWaypointNamesSuggestion() {
         return (ctx, builder) -> {
@@ -329,8 +345,12 @@ public class DFWaypointCommand implements DFCommand {
 
         String colour = ctx.getArgument("colour", String.class);
 
-        if (colourToHex.containsKey(colour)) {
-            colour = colourToHex.get(colour);
+        return getColourFromString(colour);
+    }
+
+    public static Long getColourFromString(String colour) {
+        if (colourToHex.containsKey(colour.toLowerCase())) {
+            colour = colourToHex.get(colour.toLowerCase());
         }
 
         try {
@@ -362,7 +382,7 @@ public class DFWaypointCommand implements DFCommand {
     }
 
     public static int doPlaceWaypointCommand(Player plr, long colour, String id) {
-        return doPlaceWaypointCommand(plr, colour, id, plr.getLocation());
+        return doPlaceWaypointCommand(plr, colour, id, plr.getLocation().toBlockLocation().toCenterLocation());
     }
 
     public static int doPlaceWaypointCommand(Player plr, long colour, String id, Location location) {
@@ -381,6 +401,7 @@ public class DFWaypointCommand implements DFCommand {
             case FAILED_CREATING_WAYPOINT -> plr.sendMessage("Error creating "+id+"!");
             case FAILED_ALREADY_EXISTS -> plr.sendMessage("Waypoint "+id+" already exists!");
             case FAILED_REACHED_MAXIMUM -> plr.sendMessage("You cannot make more than "+ WaypointConstants.WAYPOINT_MAX +" waypoints!");
+            case FAILED_NAME_TOO_LONG -> plr.sendMessage("Waypoint name cannot be longer than "+WaypointConstants.WAYPOINT_NAME_MAX_SIZE+" characters!");
         }
 
         return Command.SINGLE_SUCCESS;

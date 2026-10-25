@@ -8,7 +8,6 @@ import io.papermc.paper.command.brigadier.Commands;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 import uk.co.nikodem.dFSmpPlus.Commands.DFCommand;
-import uk.co.nikodem.dFSmpPlus.Player.BedrockPlayers;
 
 import java.util.Collection;
 import java.util.List;

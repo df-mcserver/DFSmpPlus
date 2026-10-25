@@ -22,19 +22,24 @@ public class WaypointManager {
     public static final HashMap<NamespacedKey, List<Long>> unloadedChunksWithWaypoints = new HashMap<>();
 
     public static WaypointCreationResult CreateNewWaypoint(Player plr, Location location, String id, long colour) {
+        return CreateNewWaypoint(plr, location, id, colour, true);
+    }
+
+    public static WaypointCreationResult CreateNewWaypoint(Player plr, Location location, String id, long colour, boolean shown) {
         PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
+        if (id.length() > WaypointConstants.WAYPOINT_NAME_MAX_SIZE) return WaypointCreationResult.FAILED_NAME_TOO_LONG;
         if (data.waypoints.containsKey(id)) return WaypointCreationResult.FAILED_ALREADY_EXISTS;
         if (data.waypoints.size() >= WaypointConstants.WAYPOINT_MAX) return WaypointCreationResult.FAILED_REACHED_MAXIMUM;
 
         WaypointInformation info = new WaypointInformation();
         info.location = location;
         info.colour = colour;
-        info.enabled = true;
+        info.enabled = shown;
         data.waypoints.put(id, info);
 
         DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
 
-        ArmorStand waypointEntity = CreateWaypoint(plr, id, info.colour, location, info.enabled);
+        ArmorStand waypointEntity = CreateWaypoint(plr, id, info.colour, location, shown);
         if (waypointEntity == null) return WaypointCreationResult.FAILED_CREATING_WAYPOINT;
 
         ToggleWaypoint(plr, id, info.enabled);
@@ -128,6 +133,9 @@ public class WaypointManager {
         if (waypointEntity != null) {
             waypointEntity.setWaypointColor(Color.fromRGB((int) info.colour));
             waypointEntity.teleport(info.location);
+
+            if (info.enabled) plr.showEntity(DFSmpPlus.getPlugin(), waypointEntity);
+            else plr.hideEntity(DFSmpPlus.getPlugin(), waypointEntity);
 
             return true;
         }

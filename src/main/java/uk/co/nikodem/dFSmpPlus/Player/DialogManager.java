@@ -23,6 +23,7 @@ import org.bukkit.entity.Player;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.BackpackMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.AccessoryUI;
 import uk.co.nikodem.dFSmpPlus.Constants.Keys;
+import uk.co.nikodem.dFSmpPlus.Player.Waypoints.WaypointDialog;
 
 import java.util.List;
 
@@ -41,8 +42,9 @@ public class DialogManager {
                                         .build())
                                 .type(DialogType.multiAction(
                                         List.of(
-                                                ActionButton.builder(Component.text("Open Accessories")).tooltip(Component.text("/accessories, /a")).action(DialogAction.customClick(Keys.quickActionsAccessories.key(), null)).build(),
-                                                ActionButton.builder(Component.text("Open Backpack")).tooltip(Component.text("/backpack, /b")).action(DialogAction.customClick(Keys.quickActionsBackpack.key(), null)).build(),
+                                                ActionButton.builder(Component.text("Open Accessories")).tooltip(Component.text("/accessories, /a")).action(DialogAction.customClick(Keys.quickActionsAccessories, null)).build(),
+                                                ActionButton.builder(Component.text("Open Backpack")).tooltip(Component.text("/backpack, /b")).action(DialogAction.customClick(Keys.quickActionsBackpack, null)).build(),
+                                                ActionButton.builder(Component.text("Manage Waypoints")).tooltip(Component.text("/waypoint menu")).action(DialogAction.customClick(Keys.waypointDialog, null)).build(),
                                                 ActionButton.builder(Component.text("Server Links")).action(DialogAction.staticAction(ClickEvent.showDialog(Dialog.SERVER_LINKS))).build()
                                         )
                                 ).columns(1).build())
@@ -61,13 +63,13 @@ public class DialogManager {
             Key key = event.getIdentifier();
 
             if (key.equals(Keys.quickActionsAccessories.key())) {
-                plr.closeInventory();
                 AccessoryUI.open(plr);
             } else if (key.equals(Keys.quickActionsBackpack.key())) {
-                plr.closeInventory();
                 if (!BackpackMeta.openPlayerBackpack(plr)) {
                     plr.sendActionBar(MiniMessage.miniMessage().deserialize("<red>No backpack equipped!"));
                 }
+            } else if (key.equals(Keys.waypointDialog.key())) {
+                WaypointDialog.openDialog(plr);
             }
         }
     }
