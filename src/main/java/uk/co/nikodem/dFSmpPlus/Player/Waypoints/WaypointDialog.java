@@ -79,7 +79,7 @@ public class WaypointDialog {
         boolean hasWaypoints = waypointCount > 0;
         buttons.add(
                 ActionButton.builder(Component.text(hasWaypoints ? "Remove waypoints" : "No waypoints to delete!"))
-                        .action(DialogAction.customClick(Keys.waypointDialogRemove, null))
+                        .action(DialogAction.customClick(hasWaypoints ? Keys.waypointDialogRemove : Keys.waypointDialog, null))
                         .tooltip(hasWaypoints ? null : Component.text("Add some waypoints to delete them!"))
                         .width(150)
                         .build()
