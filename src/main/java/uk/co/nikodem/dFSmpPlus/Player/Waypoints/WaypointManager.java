@@ -34,7 +34,7 @@ public class WaypointManager {
 
         DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
 
-        ArmorStand waypointEntity = CreateWaypoint(plr, id, info.colour, location);
+        ArmorStand waypointEntity = CreateWaypoint(plr, id, info.colour, location, info.enabled);
         if (waypointEntity == null) return WaypointCreationResult.FAILED_CREATING_WAYPOINT;
 
         ToggleWaypoint(plr, id, info.enabled);
@@ -43,7 +43,7 @@ public class WaypointManager {
     }
 
     @Nullable
-    public static ArmorStand CreateWaypoint(Player plr, String id, long colour, Location location) {
+    public static ArmorStand CreateWaypoint(Player plr, String id, long colour, Location location, Boolean isShown) {
         if (!location.isChunkLoaded()) {
             // TODO: manage these chunks so that we don't end up with force loaded chunks with no waypoints
             location.getChunk().setForceLoaded(true); // make sure the player gets sent the chunk or whatever
@@ -66,6 +66,7 @@ public class WaypointManager {
                 waypointEntity.addScoreboardTag(id);
 
                 DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
+                if (isShown != null) if (!isShown) plr.hideEntity(DFSmpPlus.getPlugin(), waypointEntity);
 
                 waypointEntity.setWaypointColor(Color.fromRGB((int) colour));
 
@@ -194,7 +195,7 @@ public class WaypointManager {
             String id = waypointEntry.getKey();
 
             WaypointInformation info = waypointEntry.getValue();
-            CreateWaypoint(plr, id, info.colour, info.location);
+            CreateWaypoint(plr, id, info.colour, info.location, info.enabled);
         }
     }
 

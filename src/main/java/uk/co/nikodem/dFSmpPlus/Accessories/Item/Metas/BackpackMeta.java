@@ -171,6 +171,7 @@ public class BackpackMeta implements AccessoryMeta {
     }
 
     public static boolean canBeStoredInBackpack(ItemStack item) {
+        if (item == null) return true;
         if (Tag.SHULKER_BOXES.isTagged(item.getType())) return false;
         if (Tag.ITEMS_BUNDLES.isTagged(item.getType())) return false;
         if (item.getType().equals(Material.DRAGON_EGG)) return false;

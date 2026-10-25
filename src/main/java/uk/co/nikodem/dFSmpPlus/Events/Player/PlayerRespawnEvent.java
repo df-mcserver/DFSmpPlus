@@ -19,6 +19,7 @@ public class PlayerRespawnEvent implements Listener {
         Player plr = event.getPlayer();
         PlayerData data = DFSmpPlus.playerDataHandler.getPlayerData(plr);
         LastDeathInformation info = data.lastDeathInformation;
+        if (info == null) return;
         info.lastDeathTime = new Date().getTime();
         DFSmpPlus.playerDataHandler.writePlayerData(plr, data);
 
