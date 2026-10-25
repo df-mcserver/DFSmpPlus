@@ -21,7 +21,7 @@ public class HiddenRecipes extends CraftingTemplate {
         List<Recipe> recipesToAdd = new ArrayList<>();
 
         addComicallyLarge(recipesToAdd);
-        addMattBlade(recipesToAdd);
+        addPeopleBlades(recipesToAdd);
 
         return recipesToAdd;
     }
@@ -51,7 +51,7 @@ public class HiddenRecipes extends CraftingTemplate {
         );
     }
 
-    public void addMattBlade(List<Recipe> recipesToAdd) {
+    public void addPeopleBlades(List<Recipe> recipesToAdd) {
         recipesToAdd.add(
                 new ShapedRecipeBuilder()
                         .setOutput(DFMaterial.MattBlade)
@@ -59,6 +59,15 @@ public class HiddenRecipes extends CraftingTemplate {
                         .shape("E", "S")
                         .setIngredient('E', Material.CREEPER_SPAWN_EGG)
                         .setIngredient('S', RecipeChoice.exactChoice(ItemStack.of(Material.DIAMOND_SWORD)))
+        );
+
+        recipesToAdd.add(
+                new ShapedRecipeBuilder()
+                        .setOutput(DFMaterial.SebBlade)
+                        .build(getInfo(), "sblade")
+                        .shape("E", "S")
+                        .setIngredient('E', Material.PIG_SPAWN_EGG)
+                        .setIngredient('S', RecipeChoice.exactChoice(ItemStack.of(Material.WOODEN_SWORD)))
         );
     }
 
