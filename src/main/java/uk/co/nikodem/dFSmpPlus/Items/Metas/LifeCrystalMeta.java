@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
-import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.IYCBTJT;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.GoAway;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterial;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialMeta;
 import uk.co.nikodem.dFSmpPlus.Player.LifeCrystals.LifeCrystalManager;
@@ -35,7 +35,7 @@ public class LifeCrystalMeta implements DFMaterialMeta {
                 Integer amount = LifeCrystalManager.getPlayerLifeCrystals(plr);
                 if (amount == null) amount = 0;
 
-                DFAdvancementsHandler.grantAdvancement(plr, IYCBTJT.class);
+                DFAdvancementsHandler.grantAdvancement(plr, GoAway.class);
 
                 if (amount > LifeCrystalManager.maxLifeCrystals) {
                     LifeCrystalManager.setPlayerLifeCrystals(plr, LifeCrystalManager.maxLifeCrystals);

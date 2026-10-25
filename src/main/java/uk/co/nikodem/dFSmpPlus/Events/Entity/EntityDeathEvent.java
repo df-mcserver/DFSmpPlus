@@ -1,10 +1,15 @@
 package uk.co.nikodem.dFSmpPlus.Events.Entity;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.WanderingTrader;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
+import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.GoAway;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Entities.CustomDrops.DFCustomDrops;
 import uk.co.nikodem.dFSmpPlus.Items.DFMaterialEvents;
@@ -15,6 +20,13 @@ public class EntityDeathEvent implements Listener {
     public void EntityDeathEvent(org.bukkit.event.entity.EntityDeathEvent event) {
         DFMaterialEvents.ItemKillEntity(event);
         TelemetryUtils.increaseDeath(event.getEntity(), event.getDamageSource().getCausingEntity());
+
+        if (event.getEntity() instanceof WanderingTrader) {
+            Entity entity = event.getDamageSource().getCausingEntity();
+            if (entity instanceof Player plr) {
+                DFAdvancementsHandler.grantAdvancement(plr, GoAway.class);
+            }
+        }
 
         Bukkit.getScheduler().runTaskLater(DFSmpPlus.getProvidingPlugin(DFSmpPlus.class), () -> {
             for (DFCustomDrops drops : DFCustomDrops.CustomDropsMap) {

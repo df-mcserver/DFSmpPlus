@@ -1,8 +1,12 @@
 package uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas;
 
+import io.papermc.paper.datacomponent.DataComponentType;
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.ItemContainerContents;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.Tag;
+import org.bukkit.block.Container;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -111,7 +115,7 @@ public class BackpackMeta implements AccessoryMeta {
         Inventory inv = event.getInventory();
         Inventory clickedInventory = event.getClickedInventory();
 
-        if (inv.getHolder() instanceof BackpackItemStorage backpackItemStorage) {
+        if (inv.getHolder() instanceof BackpackItemStorage) {
             if (clickedInventory != null) {
                 if (clickedInventory.getHolder() instanceof BackpackItemStorage && !canBeStoredInBackpack(event.getCursor())) {
                     event.setCancelled(true);
@@ -179,9 +183,15 @@ public class BackpackMeta implements AccessoryMeta {
 
     public static boolean canBeStoredInBackpack(ItemStack item) {
         if (item == null) return true;
-        if (Tag.SHULKER_BOXES.isTagged(item.getType())) return false;
         if (Tag.ITEMS_BUNDLES.isTagged(item.getType())) return false;
         if (item.getType().equals(Material.DRAGON_EGG)) return false;
+
+        ItemContainerContents container = item.getData(DataComponentTypes.CONTAINER);
+        if (container != null) {
+            for (ItemStack subItem : container.contents()) {
+                if (!canBeStoredInBackpack(subItem)) return false;
+            }
+        }
 
         AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
         if (info == null) return true;

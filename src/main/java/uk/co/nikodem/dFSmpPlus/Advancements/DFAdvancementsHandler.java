@@ -72,7 +72,7 @@ public class DFAdvancementsHandler {
         new I3Rocks(main);
         new BreakTargetDummy(main);
         new SightedWarden(main);
-        new IYCBTJT(main);
+        new GoAway(main);
         new VeinTool(main);
         new FiridiumTool(main);
 
