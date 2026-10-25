@@ -48,6 +48,10 @@ public class Keys {
     public static NamespacedKey netheriteTintedElytra = createDefaultKey("netherite_tinted_elytra");
     public static NamespacedKey obsidianTintedElytra = createDefaultKey("obsidian_tinted_elytra");
 
+    public static NamespacedKey quickActionsDfsmpDialog = createDefaultKey("quick_actions_dfsmp_dialog");
+    public static NamespacedKey quickActionsBackpack = createDefaultKey("quick_actions_dfsmp_dialog/backpack");
+    public static NamespacedKey quickActionsAccessories = createDefaultKey("quick_actions_dfsmp_dialog/accessories");
+
     public static NamespacedKey createDefaultKey(String key) {
         return new NamespacedKey(
                 "dfsmpplus",
