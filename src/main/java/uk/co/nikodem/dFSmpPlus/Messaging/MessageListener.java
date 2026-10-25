@@ -7,6 +7,7 @@ import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.jetbrains.annotations.NotNull;
 import uk.co.nikodem.dFSmpPlus.DFSmpPlus;
 import uk.co.nikodem.dFSmpPlus.Messaging.Messages.IsGeyser;
+import uk.co.nikodem.dFSmpPlus.Messaging.Messages.PlayerOpenQuickActionsDialog;
 import uk.co.nikodem.dFSmpPlus.Utils.Serialisation.StringHelper;
 
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public class MessageListener implements PluginMessageListener {
 
     public void initialiseMessageHandlers() {
         messageHandlers.put("IsGeyser", new IsGeyser());
+        messageHandlers.put("PlayerOpenQuickActionsDialog", new PlayerOpenQuickActionsDialog());
 
         DFSmpPlus.getPlugin().getServer().getMessenger().registerIncomingPluginChannel(DFSmpPlus.getPlugin(), CUSTOM_PROXY_CHANNEL, this);
     }
