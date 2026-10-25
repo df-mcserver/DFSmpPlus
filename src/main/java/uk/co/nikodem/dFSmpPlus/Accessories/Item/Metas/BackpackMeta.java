@@ -126,7 +126,14 @@ public class BackpackMeta implements AccessoryMeta {
 
             if (event.getAction().equals(InventoryAction.HOTBAR_SWAP)) {
                 int hotbar_index = event.getHotbarButton();
-                ItemStack hotbar_item = plr.getInventory().getItem(hotbar_index);
+                ItemStack hotbar_item;
+                if (hotbar_index == -1) {
+                    // offhand
+                    hotbar_item = plr.getInventory().getItemInOffHand();
+                } else {
+                    hotbar_item = plr.getInventory().getItem(hotbar_index);
+                }
+
 
                 if (hotbar_item == null) return;
 
