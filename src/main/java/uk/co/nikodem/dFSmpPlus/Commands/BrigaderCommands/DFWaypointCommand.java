@@ -299,9 +299,14 @@ public class DFWaypointCommand implements DFCommand {
             Player plr = (Player) ctx.getSource().getExecutor();
             if (plr == null) return builder.buildFuture();
 
-            for (Map.Entry<String, WaypointInformation> info : DFSmpPlus.playerDataHandler.getPlayerData(plr).waypoints.entrySet()) {
-                builder.suggest(info.getKey());
+            HashMap<String, WaypointInformation> waypoints = DFSmpPlus.playerDataHandler.getPlayerData(plr).waypoints;
+            if (waypoints.isEmpty()) builder.suggest("(empty)");
+            else {
+                for (Map.Entry<String, WaypointInformation> info : waypoints.entrySet()) {
+                    builder.suggest(info.getKey());
+                }
             }
+
             return builder.buildFuture();
         };
     }
