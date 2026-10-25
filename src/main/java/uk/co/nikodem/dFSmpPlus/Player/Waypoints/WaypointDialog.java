@@ -12,6 +12,7 @@ import io.papermc.paper.registry.data.dialog.input.DialogInput;
 import io.papermc.paper.registry.data.dialog.type.DialogType;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -113,9 +114,10 @@ public class WaypointDialog {
                         ))
                         .build())
                 .type(DialogType.multiAction(List.of(
-                        ActionButton.builder(MiniMessage.miniMessage().deserialize("<green>Confirm")).action(DialogAction.customClick(Keys.appendStringToKeysValue(Keys.waypointDialogCompletedEdit, hexString), null)).build(),
-                        ActionButton.builder(MiniMessage.miniMessage().deserialize("<red>Delete")).action(DialogAction.customClick(Keys.appendStringToKeysValue(Keys.waypointDialogSingleRemove, hexString), null)).build()
-                )).columns(3).exitAction(ActionButton.builder(MiniMessage.miniMessage().deserialize("Discard changes")).action(DialogAction.customClick(Keys.waypointDialog, null)).build()).build())
+                        ActionButton.builder(MiniMessage.miniMessage().deserialize("<green>Confirm")).action(DialogAction.customClick(Keys.appendStringToKeysValue(Keys.waypointDialogCompletedEdit, hexString), null)).width(200).build(),
+                        ActionButton.builder(MiniMessage.miniMessage().deserialize("<red>Delete")).action(DialogAction.customClick(Keys.appendStringToKeysValue(Keys.waypointDialogSingleRemove, hexString), null)).width(200).build(),
+                        ActionButton.builder(MiniMessage.miniMessage().deserialize("Copy coordinates to clipboard")).action(DialogAction.staticAction(ClickEvent.copyToClipboard(info.location.getBlockX()+" "+info.location.getBlockY()+" "+info.location.getBlockZ()))).width(400).build()
+                )).columns(2).exitAction(ActionButton.builder(MiniMessage.miniMessage().deserialize("Discard changes")).action(DialogAction.customClick(Keys.waypointDialog, null)).build()).build())
         );
 
         plr.showDialog(dialog);
@@ -165,7 +167,7 @@ public class WaypointDialog {
                         .inputs(buttons)
                         .build())
                 .type(DialogType.confirmation(
-                        ActionButton.builder(MiniMessage.miniMessage().deserialize("<red>Delete")).action(DialogAction.customClick(Keys.waypointDialogCompletedRemove, null)).build(),
+                        ActionButton.builder(MiniMessage.miniMessage().deserialize("<red>Delete selected")).tooltip(Component.text("This action is irreversible!")).action(DialogAction.customClick(Keys.waypointDialogCompletedRemove, null)).build(),
                         ActionButton.builder(MiniMessage.miniMessage().deserialize("Cancel")).action(DialogAction.customClick(Keys.waypointDialog, null)).build()
                 ))
         );
@@ -434,16 +436,16 @@ public class WaypointDialog {
         } else {
             switch (env) {
                 case NORMAL -> {
-                    return "In the Overworld";
+                    return "Overworld ("+location.getBlockX()+" "+location.getBlockY()+" "+location.getBlockZ()+")";
                 }
                 case NETHER -> {
-                    return "In the Nether";
+                    return "Nether ("+location.getBlockX()+" "+location.getBlockY()+" "+location.getBlockZ()+")";
                 }
                 case THE_END -> {
-                    return "In The End";
+                    return "The End ("+location.getBlockX()+" "+location.getBlockY()+" "+location.getBlockZ()+")";
                 }
                 default -> {
-                    return "Unknown location";
+                    return "Unknown ("+location.getBlockX()+" "+location.getBlockY()+" "+location.getBlockZ()+")";
                 }
             }
         }
