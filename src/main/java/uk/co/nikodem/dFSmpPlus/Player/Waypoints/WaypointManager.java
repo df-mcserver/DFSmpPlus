@@ -11,9 +11,12 @@ import uk.co.nikodem.dFSmpPlus.Data.Player.PlayerData;
 import uk.co.nikodem.dFSmpPlus.Data.Player.Types.WaypointInformation;
 
 import org.jetbrains.annotations.Nullable;
+import uk.co.nikodem.dFSmpPlus.Utils.Server.HidingUtils;
+
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 // TODO Rewrite when https://github.com/PaperMC/adventure/pull/1377 gets merged
 
@@ -71,7 +74,10 @@ public class WaypointManager {
                 waypointEntity.addScoreboardTag(id);
 
                 DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, waypointEntity);
-                if (isShown != null) if (!isShown) plr.hideEntity(DFSmpPlus.getPlugin(), waypointEntity);
+                if (isShown != null) if (!isShown) {
+                    plr.hideEntity(DFSmpPlus.getPlugin(), waypointEntity);
+                    waypointEntity.getScoreboardTags().add(WaypointConstants.WAYPOINT_HIDDEN_TAG);
+                }
 
                 waypointEntity.setWaypointColor(Color.fromRGB((int) colour));
 
@@ -134,8 +140,14 @@ public class WaypointManager {
             waypointEntity.setWaypointColor(Color.fromRGB((int) info.colour));
             waypointEntity.teleport(info.location);
 
-            if (info.enabled) plr.showEntity(DFSmpPlus.getPlugin(), waypointEntity);
-            else plr.hideEntity(DFSmpPlus.getPlugin(), waypointEntity);
+            if (info.enabled) {
+                plr.showEntity(DFSmpPlus.getPlugin(), waypointEntity);
+                waypointEntity.getScoreboardTags().remove(WaypointConstants.WAYPOINT_HIDDEN_TAG);
+            }
+            else {
+                plr.hideEntity(DFSmpPlus.getPlugin(), waypointEntity);
+                waypointEntity.getScoreboardTags().add(WaypointConstants.WAYPOINT_HIDDEN_TAG);
+            }
 
             return true;
         }
@@ -155,8 +167,14 @@ public class WaypointManager {
 
         ArmorStand waypointEntity = activeWaypoints.get(plr.getUniqueId()).get(id);
         if (waypointEntity != null) {
-            if (info.enabled) plr.showEntity(DFSmpPlus.getPlugin(), waypointEntity);
-            else plr.hideEntity(DFSmpPlus.getPlugin(), waypointEntity);
+            if (info.enabled) {
+                plr.showEntity(DFSmpPlus.getPlugin(), waypointEntity);
+                waypointEntity.getScoreboardTags().remove(WaypointConstants.WAYPOINT_HIDDEN_TAG);
+            }
+            else {
+                plr.hideEntity(DFSmpPlus.getPlugin(), waypointEntity);
+                waypointEntity.getScoreboardTags().add(WaypointConstants.WAYPOINT_HIDDEN_TAG);
+            }
         }
 
         return info.enabled;
@@ -212,7 +230,7 @@ public class WaypointManager {
         for (Entity entity : chunk.getEntities()) {
             if (entity instanceof ArmorStand armorStand) {
                 if (armorStand.getScoreboardTags().contains(WaypointConstants.WAYPOINT_TAG)) {
-                    if (getWaypointOwner(armorStand) == null) {
+                    if (getWaypointOwner(armorStand, true) == null) {
                         armorStand.remove();
                     } else {
                         containsRealWaypoints = true;
@@ -225,13 +243,23 @@ public class WaypointManager {
     }
 
     @Nullable
-    public static UUID getWaypointOwner(ArmorStand armorStand) {
+    public static Player getWaypointOwner(ArmorStand armorStand, boolean updateHiddenStatus) {
         for (Map.Entry<UUID, HashMap<String, ArmorStand>> entry : WaypointManager.activeWaypoints.entrySet()) {
             UUID waypointsOwner = entry.getKey();
             HashMap<String, ArmorStand> waypoints = entry.getValue();
 
             for (Map.Entry<String, ArmorStand> subentry : waypoints.entrySet()) {
-                if (subentry.getValue().getUniqueId().equals(armorStand.getUniqueId())) return waypointsOwner;
+                if (subentry.getValue().getUniqueId().equals(armorStand.getUniqueId())) {
+                    Set<Player> playerMatches = Bukkit.getOnlinePlayers().stream().filter(x -> x.getUniqueId().equals(waypointsOwner)).collect(Collectors.toSet());
+                    for (Player plr : playerMatches) { // should theoretically only run once (one player per uuid)
+                        if (updateHiddenStatus) {
+                            DFSmpPlus.hidingUtils.MakeEntityExclusiveToPlayer(plr, armorStand);
+                            if (armorStand.getScoreboardTags().contains(WaypointConstants.WAYPOINT_HIDDEN_TAG)) plr.hideEntity(DFSmpPlus.getPlugin(), armorStand);
+                            else plr.showEntity(DFSmpPlus.getPlugin(), armorStand);
+                        }
+                        return plr;
+                    }
+                }
             }
         }
         return null;
