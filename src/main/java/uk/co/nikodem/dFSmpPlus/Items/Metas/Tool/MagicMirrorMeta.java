@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import uk.co.nikodem.dFSmpPlus.Advancements.DFAdvancementsHandler;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Etc.WelcomeHome;
 import uk.co.nikodem.dFSmpPlus.Advancements.Nodes.Tools.MagicMirror;
@@ -99,9 +101,10 @@ public class MagicMirrorMeta implements DFMaterialMeta {
 
     public void sendSuccessfulTeleportMessage(Player plr) {
         if (Boolean.FALSE.equals(DFAdvancementsHandler.hasAdvancement(plr, WelcomeHome.class))) DFAdvancementsHandler.grantAdvancement(plr, WelcomeHome.class);
-        int random = (int )(Math.random() * 4096 + 1);
+        int random = (int) (Math.random() * 4096 + 1);
         if (random == 69) {
             plr.sendActionBar(mm.deserialize("<dark_purple>You wake up in your bed in a cold sweat.."));
+            plr.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 15, 3));
             DFAdvancementsHandler.grantAdvancement(plr, MagicMirror.class);
         } else {
             plr.sendActionBar(mm.deserialize("<dark_purple>Teleported to your bed!"));

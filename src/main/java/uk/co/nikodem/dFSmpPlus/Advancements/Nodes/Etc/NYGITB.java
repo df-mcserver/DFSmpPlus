@@ -20,7 +20,7 @@ public class NYGITB extends BaseAdvancement {
                         "No, YOU get in the bucket!")
                         .description("Use an entity bucket for the first time.")
                         .taskFrame()
-                        .coords(1f, 21f)
+                        .coords(1f, 13f)
                         .showToast()
                         .announceChat()
                         .build());

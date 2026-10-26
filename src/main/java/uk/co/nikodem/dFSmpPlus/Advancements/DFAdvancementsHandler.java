@@ -82,8 +82,8 @@ public class DFAdvancementsHandler {
 
         new ObsidianArmour(new ObsidianItem(main));
 
-        CompassCraft compassCraft = new CompassCraft(main);
-        new CompassUse(compassCraft); // TODO
+//        CompassCraft compassCraft = new CompassCraft(main);
+//        new CompassUse(compassCraft); // TODO
 
         EquipAccessory equipAccessory = new EquipAccessory(main);
         ITinkeredItOut iTinkeredItOut = new ITinkeredItOut(equipAccessory);

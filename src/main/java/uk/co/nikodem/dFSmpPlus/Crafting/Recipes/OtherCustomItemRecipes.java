@@ -29,7 +29,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
         doWartChanges(recipesToAdd);
         addBluebellsarStick(recipesToAdd);
         addVampireSword(recipesToAdd);
-        addLocatorCompassAndModules(recipesToAdd);
+//        addLocatorCompassAndModules(recipesToAdd);
         addPestleAndMortar(recipesToAdd);
         addCustomFoodRecipes(recipesToAdd);
         addCustomBuckets(recipesToAdd);
@@ -302,40 +302,40 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .setIngredient('S', Material.STICK)
         );
     }
-
-    public void addLocatorCompassAndModules(List<Recipe> recipesToAdd) {
-        recipesToAdd.add(
-                new ShapedRecipeBuilder()
-                        .setOutput(DFMaterial.LocatorCompass)
-                        .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo(), "LocatorCompass")
-                        .shape(" D ", "AXA", " D ")
-                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.COMPASS)))
-                        .setIngredient('A', RecipeChoice.exactChoice(ItemStack.of(Material.DIAMOND)))
-                        .setIngredient('D', RecipeChoice.exactChoice(ItemStack.of(Material.AMETHYST_SHARD)))
-        );
-
-        recipesToAdd.add(
-                new ShapedRecipeBuilder()
-                        .setOutput(DFMaterial.LocatorCompassModule)
-                        .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo(), "LocatorCompassModule")
-                        .shape(" I ", "SCS", " I ")
-                        .setIngredient('I', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_INGOT)))
-                        .setIngredient('S', RecipeChoice.exactChoice(ItemStack.of(Material.STRING)))
-                        .setIngredient('C', RecipeChoice.exactChoice(ItemStack.of(Material.COAL)))
-        );
-
-        recipesToAdd.add(
-                new ShapedRecipeBuilder()
-                        .setOutput(DFMaterial.EndLocatorCompassModule)
-                        .setCategory(CraftingBookCategory.EQUIPMENT)
-                        .build(getInfo(), "EndLocatorCompassModule")
-                        .shape("XXX", "XOX", "XXX")
-                        .setIngredient('O', RecipeChoice.exactChoice(DFMaterial.LocatorCompassModule.toItemStack()))
-                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.ENDER_EYE)))
-        );
-    }
+//
+//    public void addLocatorCompassAndModules(List<Recipe> recipesToAdd) {
+//        recipesToAdd.add(
+//                new ShapedRecipeBuilder()
+//                        .setOutput(DFMaterial.LocatorCompass)
+//                        .setCategory(CraftingBookCategory.EQUIPMENT)
+//                        .build(getInfo(), "LocatorCompass")
+//                        .shape(" D ", "AXA", " D ")
+//                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.COMPASS)))
+//                        .setIngredient('A', RecipeChoice.exactChoice(ItemStack.of(Material.DIAMOND)))
+//                        .setIngredient('D', RecipeChoice.exactChoice(ItemStack.of(Material.AMETHYST_SHARD)))
+//        );
+//
+//        recipesToAdd.add(
+//                new ShapedRecipeBuilder()
+//                        .setOutput(DFMaterial.LocatorCompassModule)
+//                        .setCategory(CraftingBookCategory.EQUIPMENT)
+//                        .build(getInfo(), "LocatorCompassModule")
+//                        .shape(" I ", "SCS", " I ")
+//                        .setIngredient('I', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_INGOT)))
+//                        .setIngredient('S', RecipeChoice.exactChoice(ItemStack.of(Material.STRING)))
+//                        .setIngredient('C', RecipeChoice.exactChoice(ItemStack.of(Material.COAL)))
+//        );
+//
+//        recipesToAdd.add(
+//                new ShapedRecipeBuilder()
+//                        .setOutput(DFMaterial.EndLocatorCompassModule)
+//                        .setCategory(CraftingBookCategory.EQUIPMENT)
+//                        .build(getInfo(), "EndLocatorCompassModule")
+//                        .shape("XXX", "XOX", "XXX")
+//                        .setIngredient('O', RecipeChoice.exactChoice(DFMaterial.LocatorCompassModule.toItemStack()))
+//                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.ENDER_EYE)))
+//        );
+//    }
 
     public void addPestleAndMortar(List<Recipe> recipesToAdd) {
         recipesToAdd.add(

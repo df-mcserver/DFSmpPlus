@@ -18,7 +18,7 @@ public class UsedSpear extends BaseAdvancement {
         super(parent, KEY.getKey(),
                 new AdvancementDisplayBuilder(
                         DFMaterial.PointyStick.toItemStack(),
-                        "Used Spear")
+                        "Primitive Spear")
                         .description("Kill someone with a pointy stick.")
                         .taskFrame()
                         .coords(2f, 0f)
