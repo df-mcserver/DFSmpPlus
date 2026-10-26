@@ -62,6 +62,8 @@ public class Keys {
     public static NamespacedKey waypointDialogSingleRemove = createDefaultKey("waypoint_dialog/singleremove");
     public static NamespacedKey waypointDialogSingleCompletedRemove = createDefaultKey("waypoint_dialog/completed_singleremove");
 
+    public static NamespacedKey welcomeDialogAccept = createDefaultKey("welcome_dialog/accept");
+
     public static NamespacedKey createDefaultKey(String key) {
         return new NamespacedKey(
                 "dfsmpplus",

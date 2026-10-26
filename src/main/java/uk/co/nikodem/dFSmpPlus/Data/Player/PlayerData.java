@@ -15,6 +15,7 @@ public class PlayerData {
     public boolean veinMinerEssenceEnabled = true;
     public boolean autosmeltEssenceEnabled = true;
     public boolean hasVacuumSoundEnabled = true;
+    public boolean firstTime = true;
     public Integer lifeCrystals;
     public List<String> armourSetsWithSetBonusesWorn = new ArrayList<>();
 
