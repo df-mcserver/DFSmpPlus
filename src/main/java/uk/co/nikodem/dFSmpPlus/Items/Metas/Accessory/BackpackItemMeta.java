@@ -42,7 +42,7 @@ public class BackpackItemMeta implements DFMaterialMeta {
             debounce.remove(plr.getUniqueId());
             debounce.put(plr.getUniqueId(), current);
 
-            if (opensBackpack) {
+            if (opensBackpack || Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) {
                 AccessoryInformation info = DFItemUtils.getAccessoryInformation(item);
                 if (info == null) return;
 
@@ -53,7 +53,7 @@ public class BackpackItemMeta implements DFMaterialMeta {
                 }
 
                 plr.sendActionBar(MiniMessage.miniMessage().deserialize("<grey>Opened backpack!"));
-            } else plr.sendActionBar(MiniMessage.miniMessage().deserialize("<grey>"+ (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr)) ? "Triple" : "Double") +" click to open backpack!"));
+            } else plr.sendActionBar(MiniMessage.miniMessage().deserialize("<grey>Double click to open backpack!"));
         }
     };
 }

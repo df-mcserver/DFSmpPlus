@@ -43,10 +43,10 @@ public class AccessoryItemMeta implements DFMaterialMeta {
             debounce.remove(plr.getUniqueId());
             debounce.put(plr.getUniqueId(), current);
 
-            if (opensMenu) {
+            if (opensMenu || Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr))) {
                 AccessoryUI.open(plr);
                 plr.sendActionBar(MiniMessage.miniMessage().deserialize("<grey>Opened accessory menu!"));
-            } else plr.sendActionBar(MiniMessage.miniMessage().deserialize("<grey>"+ (Boolean.TRUE.equals(BedrockPlayers.isBedrock(plr)) ? "Triple" : "Double") +" click or use /a to open the accessory menu!"));
+            } else plr.sendActionBar(MiniMessage.miniMessage().deserialize("<grey>Double click or use /a to open the accessory menu!"));
         }
     };
 
