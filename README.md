@@ -3,6 +3,9 @@ A 26.3 #216+ [PaperMC](https://papermc.io/) plugin (not spigot) built to add var
 Requires JDK 25.  
 Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 
+> [!NOTE]
+> The server has released. [This commit](https://github.com/df-mcserver/DFSmpPlus/tree/9f3afa18f1d8fb65178bce827432e745932a1ee7) is the commit used in the server.
+
 > [!WARNING]
 > This project is made as a part of a larger server, and thus expects a very specific setup, and will likely not work for you
 > - You may need to edit the source code to make this fit for your purpose, but do not expect help for this
