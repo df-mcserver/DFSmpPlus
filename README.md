@@ -4,7 +4,9 @@ Requires JDK 25.
 Supersedes [DFSmpPlugin](https://github.com/df-mcserver/DFSmpPlugin-Legacy)
 
 > [!NOTE]
-> The server has released. [This commit](https://github.com/df-mcserver/DFSmpPlus/tree/9f3afa18f1d8fb65178bce827432e745932a1ee7) is the commit used in the server.
+> The server has released, below are the exact commits used in the server
+> [1st iteration](https://github.com/df-mcserver/DFSmpPlus/tree/9f3afa18f1d8fb65178bce827432e745932a1ee7)
+> [2nd iteration](https://github.com/df-mcserver/DFSmpPlus/tree/9b14ac8a53bfef0ebd18ea8af1bc76d64f703d6f)
 
 > [!WARNING]
 > This project is made as a part of a larger server, and thus expects a very specific setup, and will likely not work for you
