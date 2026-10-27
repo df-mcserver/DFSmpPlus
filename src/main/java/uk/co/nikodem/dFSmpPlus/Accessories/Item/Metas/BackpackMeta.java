@@ -43,7 +43,7 @@ public class BackpackMeta implements AccessoryMeta {
         if (uuid == null) return;
 
         GlobalData globalData = DFSmpPlus.globalDataHandler.getGlobalData();
-        BackpackItemStorage backpackItemStorage = globalData.backpackMappings.getOrDefault(uuid, new BackpackItemStorage(uuid, MiniMessage.miniMessage().serialize(item.effectiveName()), slots, InventoryType.BARREL));
+        BackpackItemStorage backpackItemStorage = globalData.backpackMappings.getOrDefault(uuid, new BackpackItemStorage(uuid, "<reset>"+MiniMessage.miniMessage().serialize(item.effectiveName()), slots, InventoryType.BARREL));
         backpackItemStorage.maxSlots = slots;
         backpackItemStorage.title = MiniMessage.miniMessage().serialize(item.effectiveName());
 

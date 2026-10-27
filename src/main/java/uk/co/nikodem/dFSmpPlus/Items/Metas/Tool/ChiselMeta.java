@@ -52,7 +52,6 @@ public class ChiselMeta implements DFMaterialMeta {
                 event.setCancelled(true);
                 event.setDropItems(false);
                 BlockFace face = getBlockFace(plr);
-                if (face == null) return;
                 ItemStack drop = data.getDrop();
                 PlayerAccessoryData accessoryData = AccessoryManager.getPlayerAccessoryData(plr);
                 boolean hasAutosmeltingItem = DFItemUtils.containsMeta(material, AutosmeltingItemMeta.class);
@@ -69,7 +68,7 @@ public class ChiselMeta implements DFMaterialMeta {
 
                 if (DFItemUtils.isLevelOrAbove(tool, data.getMinimumToolLevel())) {
                     if (data.getAdvancementOnChisel() != null) DFAdvancementsHandler.grantAdvancement(plr, data.getAdvancementOnChisel());
-                    if (data.getBlockMaterial() != Material.AIR) {
+                    if (data.getBlockMaterial() != Material.AIR && face != null) {
                         loc.add(face.getDirection().divide(new Vector(1.3, 1.3, 1.3)));
                     }
                     for (ItemStack overflow : VacuumAccessoryMeta.giveItemsToPlayerViaVacuum(plr, List.of(drop))) {

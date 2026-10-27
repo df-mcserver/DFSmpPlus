@@ -352,7 +352,7 @@ public class ChiselBlockData {
         return this.soundData;
     }
 
-    public void runBlockModifications(Player plr, Block block, BlockFace face) {
+    public void runBlockModifications(Player plr, Block block, @Nullable BlockFace face) {
         if (blockModification == null) return;
         this.blockModification.modifyBlock(plr, block, face);
     }

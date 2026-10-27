@@ -51,6 +51,8 @@ public class Keys {
     public static NamespacedKey quickActionsDfsmpDialog = createDefaultKey("quick_actions_dfsmp_dialog");
     public static NamespacedKey quickActionsBackpack = createDefaultKey("quick_actions_dfsmp_dialog/backpack");
     public static NamespacedKey quickActionsAccessories = createDefaultKey("quick_actions_dfsmp_dialog/accessories");
+    public static NamespacedKey quickActionsSpawn = createDefaultKey("quick_actions_dfsmp_dialog/spawncommand");
+    public static NamespacedKey quickActionsBack = createDefaultKey("quick_actions_dfsmp_dialog/backcommand");
 
     public static NamespacedKey waypointDialog = createDefaultKey("quick_actions_dfsmp_dialog/waypoints");
     public static NamespacedKey waypointDialogAdd = createDefaultKey("waypoint_dialog/add");

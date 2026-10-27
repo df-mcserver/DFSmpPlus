@@ -29,6 +29,7 @@ import static uk.co.nikodem.dFSmpPlus.Utils.Server.TelemetryUtils.updateKillStre
 
 public class CombatEvents {
     public static void onAttack(EntityDamageByEntityEvent event) {
+        if (event.isCancelled()) return;
         if (event.getEntity() instanceof Player victim && event.getDamageSource().getCausingEntity() instanceof Player attacker) {
             if (event.getDamage() <= 0D) return;
             if (victim.equals(attacker)) return;
@@ -41,6 +42,7 @@ public class CombatEvents {
     }
 
     public static void onDeath(PlayerDeathEvent event) {
+        if (event.isCancelled()) return;
         Player victim = event.getEntity();
 
         Player attacker = CombatLoggingManager.getCombatInformation(victim).getLastAttackerPlayer();

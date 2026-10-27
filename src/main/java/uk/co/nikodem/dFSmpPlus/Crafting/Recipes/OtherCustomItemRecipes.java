@@ -354,7 +354,7 @@ public class OtherCustomItemRecipes extends CraftingTemplate {
                         .build(getInfo(), "EmptyPM")
                         .shape("XIX", " X ")
                         .setIngredient('X', new RecipeChoice.MaterialChoice(Tag.ITEMS_STONE_TOOL_MATERIALS))
-                        .setIngredient('I', RecipeChoice.exactChoice(DFMaterial.PointyStick.toItemStack()))
+                        .setIngredient('I', DFMaterial.PointyStick.getPredicateChoice())
         );
 
         recipesToAdd.add(

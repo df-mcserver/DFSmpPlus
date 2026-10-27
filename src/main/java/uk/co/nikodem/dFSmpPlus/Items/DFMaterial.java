@@ -1418,6 +1418,10 @@ public class DFMaterial {
         return this.allowedUnsafeEnchantments;
     }
 
+    public RecipeChoice.PredicateChoice getPredicateChoice() {
+        return RecipeChoice.predicateChoice(this::isSimilar, this.toItemStack());
+    }
+
     public DFMaterial(
             Material base,
             String namedId,

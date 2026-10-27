@@ -128,8 +128,8 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .build(getInfo(), "veinessence")
                         .shape("AAA", "XAP", "AAA")
                         .setIngredient('A', Material.AMETHYST_SHARD)
-                        .setIngredient('P', RecipeChoice.exactChoice(DFMaterial.VeinPickaxe.toItemStack()))
-                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.VeinAxe.toItemStack()))
+                        .setIngredient('P', DFMaterial.VeinPickaxe.getPredicateChoice())
+                        .setIngredient('X', DFMaterial.VeinAxe.getPredicateChoice())
         );
 
         recipesToAdd.add(
@@ -138,10 +138,10 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "autosmeltessence")
                         .shape("NAN", "NNN", "PNS")
-                        .setIngredient('N', RecipeChoice.exactChoice(DFMaterial.FiridiumNugget.toItemStack()))
-                        .setIngredient('P', RecipeChoice.exactChoice(DFMaterial.FiridiumPickaxe.toItemStack()))
-                        .setIngredient('A', RecipeChoice.exactChoice(DFMaterial.FiridiumAxe.toItemStack()))
-                        .setIngredient('S', RecipeChoice.exactChoice(DFMaterial.FiridiumShovel.toItemStack()))
+                        .setIngredient('N', DFMaterial.FiridiumNugget.getPredicateChoice())
+                        .setIngredient('P', DFMaterial.FiridiumPickaxe.getPredicateChoice())
+                        .setIngredient('A', DFMaterial.FiridiumAxe.getPredicateChoice())
+                        .setIngredient('S', DFMaterial.FiridiumShovel.getPredicateChoice())
         );
 
         recipesToAdd.add(
@@ -150,10 +150,10 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "splitessence")
                         .shape(" A ", "LEL", " B ")
-                        .setIngredient('A', RecipeChoice.exactChoice(DFMaterial.FiridiumEssence.toItemStack()))
-                        .setIngredient('B', RecipeChoice.exactChoice(DFMaterial.VeinMinerEssence.toItemStack()))
-                        .setIngredient('E', RecipeChoice.exactChoice(ItemStack.of(Material.ENDER_EYE)))
-                        .setIngredient('L', RecipeChoice.exactChoice(ItemStack.of(Material.LAPIS_LAZULI)))
+                        .setIngredient('A', DFMaterial.FiridiumEssence.getPredicateChoice())
+                        .setIngredient('B', DFMaterial.VeinMinerEssence.getPredicateChoice())
+                        .setIngredient('E', Material.ENDER_EYE)
+                        .setIngredient('L', Material.LAPIS_LAZULI)
         );
 
         recipesToAdd.add(
@@ -173,8 +173,8 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "flowerboots")
                         .shape(" O ", "OXO", " O ")
-                        .setIngredient('X', RecipeChoice.exactChoice(DFMaterial.FloralBoots.toItemStack()))
-                        .setIngredient('O', RecipeChoice.exactChoice(DFMaterial.FlowerPowder.toItemStack()))
+                        .setIngredient('X', DFMaterial.FloralBoots.getPredicateChoice())
+                        .setIngredient('O', DFMaterial.FlowerPowder.getPredicateChoice())
         );
 
         new AnvilRecipeBuilder()
@@ -207,7 +207,7 @@ public class AccessoryRecipes extends CraftingTemplate {
                         .setCategory(CraftingBookCategory.EQUIPMENT)
                         .build(getInfo(), "vacuum")
                         .shape(" X ", "XOX", "IOI")
-                        .setIngredient('X', RecipeChoice.exactChoice(ItemStack.of(Material.IRON_INGOT)))
+                        .setIngredient('X', Material.IRON_INGOT)
                         .setIngredient('O', Material.WIND_CHARGE)
                         .setIngredient('I', Material.IRON_BARS)
         );

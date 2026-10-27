@@ -19,6 +19,7 @@ import net.kyori.adventure.key.Key;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import uk.co.nikodem.dFSmpPlus.Accessories.Item.Metas.BackpackMeta;
 import uk.co.nikodem.dFSmpPlus.Accessories.Player.AccessoryUI;
@@ -42,6 +43,8 @@ public class DialogManager {
                                         .build())
                                 .type(DialogType.multiAction(
                                         List.of(
+                                                ActionButton.builder(Component.text("Teleport to spawn")).tooltip(Component.text("/spawn")).action(DialogAction.customClick(Keys.quickActionsSpawn, null)).build(),
+                                                ActionButton.builder(Component.text("Go back to last death")).tooltip(Component.text("/back")).action(DialogAction.customClick(Keys.quickActionsBack, null)).build(),
                                                 ActionButton.builder(Component.text("Open Accessories")).tooltip(Component.text("/accessories, /a")).action(DialogAction.customClick(Keys.quickActionsAccessories, null)).build(),
                                                 ActionButton.builder(Component.text("Open Backpack")).tooltip(Component.text("/backpack, /b")).action(DialogAction.customClick(Keys.quickActionsBackpack, null)).build(),
                                                 ActionButton.builder(Component.text("Manage Waypoints")).tooltip(Component.text("/waypoint menu")).action(DialogAction.customClick(Keys.waypointDialog, null)).build(),
@@ -70,6 +73,10 @@ public class DialogManager {
                 }
             } else if (key.equals(Keys.waypointDialog.key())) {
                 WaypointDialog.openDialog(plr);
+            } else if (key.equals(Keys.quickActionsBack)) { // im being lazy
+                Bukkit.getServer().dispatchCommand(plr, "back");
+            } else if (key.equals(Keys.quickActionsSpawn)) {
+                Bukkit.getServer().dispatchCommand(plr, "spawn");
             }
         }
     }
