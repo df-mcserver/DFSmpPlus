@@ -232,6 +232,7 @@ public class ChiselBlockData {
         new Builder(Material.PURPLE_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.PURPLE_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
         new Builder(Material.RED_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.RED_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
         new Builder(Material.YELLOW_CARPET).setReplacement(Material.WHITE_CARPET).setDrop(Material.YELLOW_DYE).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
+        new Builder(Material.WHITE_CARPET).setReplacement(Material.AIR).setDrop(Material.STRING, 1).setSpeedMultiplayer(0.5f).setSoundData(Sounds.WoolChisel).create();
 
         new Builder(Material.CHORUS_FLOWER).setReplacement(Material.CHORUS_PLANT).setDrop(Material.POPPED_CHORUS_FRUIT).create();
         new Builder(Material.COBWEB).setReplacement(Material.STRING).setDrop(Material.SLIME_BALL, 1).setSpeedMultiplayer(0.5f).setSoundData(Sounds.CobwebBreak).create();
@@ -239,15 +240,15 @@ public class ChiselBlockData {
         new Builder(Material.OAK_LEAVES).setReplacement(Material.AIR).setDrop(Material.OAK_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.BIRCH_LEAVES).setReplacement(Material.AIR).setDrop(Material.BIRCH_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.SPRUCE_LEAVES).setReplacement(Material.AIR).setDrop(Material.SPRUCE_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
-        new Builder(Material.JUNGLE_LEAVES).setReplacement(Material.AIR).setDrop(Material.JUNGLE_LEAVES, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.JUNGLE_LEAVES).setReplacement(Material.AIR).setDrop(Material.JUNGLE_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.ACACIA_LEAVES).setReplacement(Material.AIR).setDrop(Material.ACACIA_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
-        new Builder(Material.DARK_OAK_LEAVES).setReplacement(Material.AIR).setDrop(Material.DARK_OAK_LEAVES, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.DARK_OAK_LEAVES).setReplacement(Material.AIR).setDrop(Material.DARK_OAK_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.MANGROVE_LEAVES).setReplacement(Material.AIR).setDrop(Material.MANGROVE_PROPAGULE, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.CHERRY_LEAVES).setReplacement(Material.AIR).setDrop(Material.CHERRY_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
-        new Builder(Material.PALE_OAK_LEAVES).setReplacement(Material.AIR).setDrop(Material.PALE_OAK_LEAVES, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
-        new Builder(Material.YELLOW_POPLAR_LEAVES).setReplacement(Material.AIR).setDrop(Material.YELLOW_POPLAR_LEAVES, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
-        new Builder(Material.ORANGE_POPLAR_LEAVES).setReplacement(Material.AIR).setDrop(Material.ORANGE_POPLAR_LEAVES, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
-        new Builder(Material.RED_POPLAR_LEAVES).setReplacement(Material.AIR).setDrop(Material.RED_POPLAR_LEAVES, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.PALE_OAK_LEAVES).setReplacement(Material.AIR).setDrop(Material.PALE_OAK_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.YELLOW_POPLAR_LEAVES).setReplacement(Material.AIR).setDrop(Material.POPLAR_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.ORANGE_POPLAR_LEAVES).setReplacement(Material.AIR).setDrop(Material.POPLAR_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
+        new Builder(Material.RED_POPLAR_LEAVES).setReplacement(Material.AIR).setDrop(Material.POPLAR_SAPLING, 1).setSpeedMultiplayer(0.1f).setSoundData(Sounds.WoodCrash).create();
 
         new Builder(Material.OAK_LOG).setReplacement(Material.STRIPPED_OAK_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
         new Builder(Material.ACACIA_LOG).setReplacement(Material.STRIPPED_ACACIA_LOG).setDrop(Material.STICK, 2).setSpeedMultiplayer(0.25f).setSoundData(Sounds.WoodCrash).create();
